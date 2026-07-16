@@ -1,0 +1,41 @@
+name: UseCard
+options:
+  bundleIdPrefix: jp.usecard
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+packages:
+  UseCardCore:
+    path: ..
+targets:
+  UseCard:
+    type: application
+    platform: iOS
+    sources:
+      - path: UseCardApp
+      - path: ../catalog/public/latest.json
+        buildPhase: resources
+    dependencies:
+      - package: UseCardCore
+        product: UseCardCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: jp.usecard.app
+        PRODUCT_NAME: UseCard
+        SWIFT_VERSION: 5.0
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: UseCardApp/Info.plist
+        CODE_SIGN_ENTITLEMENTS: UseCardApp/UseCard.entitlements
+        DEVELOPMENT_TEAM: ""
+    scheme:
+      testTargets:
+        - UseCardTests
+  UseCardTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: UseCardTests
+    dependencies:
+      - target: UseCard
+      - package: UseCardCore
+        product: UseCardCore

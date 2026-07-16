@@ -1,0 +1,100 @@
+# UseCard
+
+手持ちのクレジットカードを記録し、金額・店舗・用途・支払い方法から一番お得なカードを計算するSwiftUIアプリです。保有情報は端末と本人のCloudKit private databaseに保存し、カード番号や利用明細は扱いません。
+
+## 現在できること
+
+- 手持ちカードの追加・削除、年間利用額、特典登録、ポイント価値の記録
+- 金額、店舗、用途、購入場所、支払い方法、利用日、頻度によるランキング
+- 手持ちカードと新規申込候補を分けた表示
+- 還元額、実質還元率、年会費控除後価値、公式根拠の表示
+- 公式ページの6時間監視、差分検証、バージョン配信、失敗時の前版維持
+- JCCA会員会社の自動登録と、公式商品ページ候補の月次探索
+- オフライン時の同梱カタログ利用
+
+店舗・日付による主要ルールも条件付きで計算します。現在は、楽天市場での楽天カード特典分、三井住友カード（NL）の対象コンビニ・飲食店でのスマホタッチ／モバイルオーダー利用、イオンカードのお客さま感謝デー（20日・30日）を収録しています。通常還元と同時に付くカード固有の追加分だけを加算し、店舗共通のポイントはカード間比較を歪めないように含めません。
+
+公開カタログには、JCB カード S、楽天カード、三井住友カード（NL）、PayPayカード、イオンカード（WAON一体型）、エポスカード、Orico Card THE POINTを含む32券種を収録しています（2026-07-16更新）。全券種対応に向けて、JCCA登録会社から公式商品ページ候補を自動収集し、個人向け申込導線・年会費・通常還元・ポイント価値・国際ブランドを同じ公式ページで確認できた候補だけを自動昇格します。現時点で確認が足りない候補は誤掲載せず、`catalog/discovery`の確認待ちキューに残します。
+
+## 構成
+
+- `ios/UseCardApp`: SwiftUI、SwiftData、CloudKitのiOSアプリ
+- `Sources/UseCardCore`: カタログ型と端末内推薦エンジン
+- `services/catalog`: 公式ページの収集、厳格抽出、検証、配信処理
+- `catalog/public`: アプリ配信用のmanifestとバージョン付きカタログ
+- `catalog/discovery`: 発行会社・商品ページの探索結果と昇格レポート
+
+## 起動
+
+必要なものはXcode、Apple Developerアカウント、iOS 17以上です。現在の環境にはXcode本体がないため、プロジェクト生成と共有ロジックの検証まで完了しており、シミュレータ起動はXcode導入後に行います。
+
+1. Xcodeで `ios/UseCard.xcodeproj` を開きます。
+2. `UseCard`ターゲットのSigning Teamを選択します。
+3. Bundle IDまたはCloudKit containerを変更する場合は、`ios/UseCardApp/UseCard.entitlements`の`iCloud.jp.usecard.app`も同時に変更します。
+4. iPhoneシミュレータまたは実機で`UseCard`スキームを実行します。
+
+プロジェクト定義を変更した場合は再生成します。
+
+```sh
+./script/generate_xcode_project.sh
+```
+
+## macOSアプリとして起動
+
+XcodeがないMacでも、Apple Silicon・macOS 14以降なら次のコマンドでネイティブの`UseCard.app`を作成して起動できます。
+
+```sh
+./script/run_macos_app.sh
+```
+
+生成先はプロジェクト直下の`UseCard.app`です。macOS版はSwiftのAppKitで実装しており、保有カードをこのMac内に保存します。iOS版のSwiftUI／CloudKit版とは保有情報を同期しません。カタログは同梱版を必ず利用でき、GitHub Pagesを公開すると起動時と「データ」タブから検証済みの更新版を取得します。
+
+「手持ちカード」タブではカード名・発行会社名だけで、公式確認済みの最新カタログを検索します。検索に一致しない場合もネット上の公開済みカタログを自動で再確認します。還元率や年会費を手入力する機能は設けません。未掲載カードはJCCA会員会社と公式商品ページを定期的に自動探索し、年会費・通常還元・申込導線を同じ公式ページで検証できた場合だけ次回カタログへ追加します。
+
+「おすすめ」タブでは、未保有でお得なカードを「申込候補」に出します。「公式申込ページを開く」は発行会社の公式ページを開くだけで、申込内容の入力・送信は行いません。
+
+## カタログ更新
+
+```sh
+cd services/catalog
+npm ci
+npm run typecheck
+npm test
+npm run update
+```
+
+発行会社の商品ページ候補を再探索し、厳格条件を満たすものを昇格する場合は次を実行します。
+
+```sh
+cd services/catalog
+npm run discover -- --crawl
+npm run promote
+npm run update
+```
+
+`update`は全検証を通過してから`catalog/public/latest.json`とmanifestを差し替えます。公式ページが取得不能、値が欠落、還元率が異常、スキーマが不整合の場合は公開処理を失敗させ、GitHub Pages上の直前版を維持します。SMBC公式ページは現在この実行環境から403になるため、確認済み値を`unavailable`状態で保持し、アプリに再確認警告を出します。
+
+GitHubへ公開後は、`.github/workflows/catalog-update.yml`が6時間ごとに既知カードの仕様を検証・配信し、`.github/workflows/issuer-discovery.yml`が毎月JCCA会員会社の公式商品ページを再探索して新規カードを検証・配信します。アプリの初期配信URLは`https://zhuchuanhui.github.io/usecard/`で、設定画面から変更できます。
+
+## 検証
+
+```sh
+./script/smoke.sh
+```
+
+通常のXcode／SwiftPM環境では次も実行します。
+
+```sh
+swift test
+xcodebuild -project ios/UseCard.xcodeproj -scheme UseCard -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO build
+```
+
+このMacのCommand Line ToolsではSwiftPMがコードのコンパイル前に`Unknown error parsing property list`で停止しますが、同じSwiftソースは`swiftc`による型検査と実行スモークテストに成功しています。CIではXcodeを備えたmacOS runnerで`swift test`とiOSビルドを実行します。
+
+## 推薦の前提
+
+- 手持ちカードは今回増える還元額で比較し、既払い年会費は差し引きません。
+- 未保有カードは入力した頻度で年換算し、年会費を差し引きます。
+- 入会キャンペーンは通常還元へ混ぜません。
+- 利用額条件や特典登録が未入力の場合は、確定値と条件達成時の最大値を分け、確定値で順位付けします。
+- 結果は参考情報です。利用・申込前に表示された公式リンクで最新条件を確認してください。

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: services/catalog/package-lock.json
+      - run: npm ci
+        working-directory: services/catalog
+      - run: npm run typecheck
+        working-directory: services/catalog
+      - run: npm test
+        working-directory: services/catalog
+
+  swift:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift test
+      - run: ./script/generate_xcode_project.sh
+      - name: Build iOS app
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/UseCard.xcodeproj -scheme UseCard -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO build

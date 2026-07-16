@@ -1,0 +1,672 @@
+import AppKit
+import CryptoKit
+import Foundation
+
+let application = NSApplication.shared
+let appDelegate = UseCardMacAppDelegate()
+application.delegate = appDelegate
+application.setActivationPolicy(.regular)
+application.run()
+
+final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
+    private let model = MacAppModel()
+    private var holdingsController: HoldingsViewController?
+    private var catalogController: CatalogViewController?
+    private var recommendationController: RecommendationViewController?
+    private var dataController: DataViewController?
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        let tabs = NSTabViewController()
+        tabs.tabStyle = .toolbar
+
+        let recommendation = RecommendationViewController(model: model)
+        let holdings = HoldingsViewController(model: model)
+        let catalog = CatalogViewController(model: model)
+        let data = DataViewController(model: model) { [weak self] in self?.refreshCatalog() }
+        recommendationController = recommendation
+        holdingsController = holdings
+        catalogController = catalog
+        dataController = data
+
+        tabs.addTabViewItem(tab(title: "おすすめ", image: "sparkles", controller: recommendation))
+        tabs.addTabViewItem(tab(title: "手持ちカード", image: "wallet.pass", controller: holdings))
+        tabs.addTabViewItem(tab(title: "カード一覧", image: "creditcard", controller: catalog))
+        tabs.addTabViewItem(tab(title: "データ", image: "arrow.triangle.2.circlepath", controller: data))
+
+        let window = NSWindow(contentViewController: tabs)
+        window.title = "UseCard"
+        window.setContentSize(NSSize(width: 1_080, height: 720))
+        window.minSize = NSSize(width: 900, height: 620)
+        window.center()
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+
+        refreshCatalog()
+    }
+
+    private func tab(title: String, image: String, controller: NSViewController) -> NSTabViewItem {
+        let item = NSTabViewItem(viewController: controller)
+        item.label = title
+        item.image = NSImage(systemSymbolName: image, accessibilityDescription: title)
+        return item
+    }
+
+    private func refreshCatalog() {
+        dataController?.setRefreshing(true)
+        model.refreshCatalog { [weak self] in
+            guard let self else { return }
+            self.holdingsController?.reloadData()
+            self.catalogController?.reloadData()
+            self.recommendationController?.calculate()
+            self.dataController?.setRefreshing(false)
+        }
+    }
+}
+
+final class MacAppModel {
+    private static let heldCardIDsKey = "jp.usecard.macos.held-card-ids"
+    private static let retiredManualCardsKey = "jp.usecard.macos.manual-cards"
+    private let decoder = JSONDecoder()
+    private let remoteBaseURL = URL(string: "https://zhuchuanhui.github.io/usecard/")!
+
+    private(set) var catalog: CardCatalog?
+    private(set) var catalogStatus = "同梱カタログを読み込みました"
+    private(set) var heldCardIDs: Set<String>
+
+    init() {
+        let savedIDs = Set(UserDefaults.standard.stringArray(forKey: Self.heldCardIDsKey) ?? [])
+        heldCardIDs = Set(savedIDs.filter { !$0.hasPrefix("manual-") })
+        if heldCardIDs != savedIDs {
+            UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
+        }
+        UserDefaults.standard.removeObject(forKey: Self.retiredManualCardsKey)
+        loadBundledCatalog()
+    }
+
+    var products: [CardProduct] {
+        (catalog?.products ?? []).sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
+    }
+
+    func isHeld(_ cardID: String) -> Bool {
+        heldCardIDs.contains(cardID)
+    }
+
+    func setHeld(_ isHeld: Bool, cardID: String) {
+        if isHeld {
+            heldCardIDs.insert(cardID)
+        } else {
+            heldCardIDs.remove(cardID)
+        }
+        UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
+    }
+
+    func recommend(intent: PurchaseIntent) -> RecommendationBundle? {
+        guard let catalog else { return nil }
+        let holdings = heldCardIDs.map { UserHolding(cardID: $0) }
+        return RecommendationEngine().rank(catalog: catalog, intent: intent, holdings: holdings)
+    }
+
+    func refreshCatalog(completion: @escaping () -> Void) {
+        let manifestURL = remoteBaseURL.appending(path: "manifest.json")
+        URLSession.shared.dataTask(with: manifestURL) { [weak self] manifestData, manifestResponse, error in
+            guard let self else { return }
+            do {
+                if let error { throw error }
+                guard let manifestData else { throw CatalogRefreshError.badResponse }
+                try self.requireSuccessfulResponse(manifestResponse)
+                let manifest = try self.decoder.decode(RemoteManifest.self, from: manifestData)
+                guard manifest.schemaVersion == 1 else { throw CatalogRefreshError.unsupportedSchema }
+
+                let catalogURL = self.remoteBaseURL.appending(path: manifest.path)
+                URLSession.shared.dataTask(with: catalogURL) { [weak self] catalogData, catalogResponse, error in
+                    guard let self else { return }
+                    let result: Result<CardCatalog, Error> = Result {
+                        if let error { throw error }
+                        guard let catalogData else { throw CatalogRefreshError.badResponse }
+                        try self.requireSuccessfulResponse(catalogResponse)
+                        guard self.sha256(catalogData) == manifest.sha256 else { throw CatalogRefreshError.checksumMismatch }
+                        let catalog = try self.decoder.decode(CardCatalog.self, from: catalogData)
+                        guard catalog.schemaVersion == 1, catalog.version == manifest.catalogVersion else {
+                            throw CatalogRefreshError.manifestMismatch
+                        }
+                        return catalog
+                    }
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let catalog):
+                            self.catalog = catalog
+                            self.catalogStatus = "自動更新データ: \(catalog.version)"
+                        case .failure:
+                            self.catalogStatus = "更新サーバーに接続できないため、同梱カタログを使用中"
+                        }
+                        completion()
+                    }
+                }.resume()
+            } catch {
+                DispatchQueue.main.async {
+                    self.catalogStatus = "更新サーバーに接続できないため、同梱カタログを使用中"
+                    completion()
+                }
+            }
+        }.resume()
+    }
+
+    private func loadBundledCatalog() {
+        do {
+            guard let url = Bundle.main.url(forResource: "latest", withExtension: "json") else {
+                throw CatalogRefreshError.missingBundledCatalog
+            }
+            catalog = try decoder.decode(CardCatalog.self, from: Data(contentsOf: url))
+        } catch {
+            catalogStatus = "同梱カタログを読み込めません"
+        }
+    }
+
+    private func requireSuccessfulResponse(_ response: URLResponse?) throws {
+        guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
+            throw CatalogRefreshError.badResponse
+        }
+    }
+
+    private func sha256(_ data: Data) -> String {
+        SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+    }
+
+}
+
+private struct RemoteManifest: Decodable {
+    let schemaVersion: Int
+    let catalogVersion: String
+    let path: String
+    let sha256: String
+}
+
+private enum CatalogRefreshError: Error {
+    case missingBundledCatalog
+    case badResponse
+    case unsupportedSchema
+    case checksumMismatch
+    case manifestMismatch
+}
+
+final class RecommendationViewController: NSViewController {
+    private let model: MacAppModel
+    private let amountField = NSTextField(string: "10000")
+    private let merchantPopup = NSPopUpButton()
+    private let categoryPopup = NSPopUpButton()
+    private let paymentPopup = NSPopUpButton()
+    private let channelPopup = NSPopUpButton()
+    private let frequencyPopup = NSPopUpButton()
+    private let datePicker = NSDatePicker()
+    private let applicationPopup = NSPopUpButton()
+    private let applicationButton = NSButton(title: "公式申込ページを開く", target: nil, action: nil)
+    private let resultsView = NSTextView()
+    private var applicationCandidates: [CardRecommendation] = []
+
+    private let merchants = [
+        ("general", "指定なし"), ("aeon-group", "イオングループ"), ("seven-eleven", "セブン-イレブン"),
+        ("lawson", "ローソン"), ("mcdonalds", "マクドナルド"), ("mos-burger", "モスバーガー"),
+        ("kfc", "ケンタッキーフライドチキン"), ("yoshinoya", "吉野家"), ("saizeriya", "サイゼリヤ"),
+        ("gusto", "ガスト"), ("sukiya", "すき家"), ("hamazushi", "はま寿司"),
+        ("doutor", "ドトール"), ("amazon", "Amazon"), ("rakuten-market", "楽天市場")
+    ]
+    private let categories = [
+        ("general", "一般"), ("groceries", "食料品"), ("dining", "飲食店"), ("travel", "旅行"),
+        ("transport", "交通"), ("utilities", "公共料金"), ("online-shopping", "オンライン通販")
+    ]
+    private let paymentMethods: [(PaymentMethod, String)] = [
+        (.physical, "カード"), (.contactless, "カードのタッチ決済"), (.mobileContactless, "スマホのタッチ決済"),
+        (.applePay, "Apple Pay"), (.mobileOrder, "モバイルオーダー"), (.qr, "QR決済"),
+        (.online, "オンライン"), (.recurring, "継続課金")
+    ]
+    private let channels: [(PurchaseChannel, String)] = [(.inStore, "店頭"), (.online, "オンライン")]
+    private let frequencies: [(SpendFrequency, String)] = [(.once, "今回だけ"), (.monthly, "毎月"), (.quarterly, "3か月ごと"), (.annually, "毎年")]
+
+    init(model: MacAppModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+        title = "おすすめ"
+    }
+
+    required init?(coder: NSCoder) { nil }
+
+    override func loadView() {
+        let content = NSView()
+        content.translatesAutoresizingMaskIntoConstraints = false
+        let stack = NSStackView()
+        stack.orientation = .vertical
+        stack.alignment = .leading
+        stack.spacing = 14
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 24),
+            stack.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -24),
+            stack.topAnchor.constraint(equalTo: content.topAnchor, constant: 20),
+            stack.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -20)
+        ])
+
+        stack.addArrangedSubview(titleLabel("利用条件"))
+        setupPopups()
+        amountField.alignment = .right
+        amountField.widthAnchor.constraint(equalToConstant: 180).isActive = true
+        datePicker.datePickerElements = .yearMonthDay
+        datePicker.dateValue = Date()
+        let grid = NSGridView(views: [
+            [label("金額（円）"), amountField],
+            [label("店舗"), merchantPopup],
+            [label("用途"), categoryPopup],
+            [label("支払い方法"), paymentPopup],
+            [label("購入場所"), channelPopup],
+            [label("頻度"), frequencyPopup],
+            [label("利用日"), datePicker]
+        ])
+        grid.column(at: 0).xPlacement = .trailing
+        grid.column(at: 1).xPlacement = .fill
+        grid.rowSpacing = 9
+        grid.columnSpacing = 16
+        stack.addArrangedSubview(grid)
+
+        let calculateButton = NSButton(title: "一番お得なカードを調べる", target: self, action: #selector(calculate))
+        calculateButton.bezelStyle = .rounded
+        stack.addArrangedSubview(calculateButton)
+        stack.addArrangedSubview(titleLabel("比較結果"))
+
+        resultsView.isEditable = false
+        resultsView.isSelectable = true
+        resultsView.font = .systemFont(ofSize: 13)
+        resultsView.textContainerInset = NSSize(width: 12, height: 12)
+        let scroll = NSScrollView()
+        scroll.borderType = .bezelBorder
+        scroll.hasVerticalScroller = true
+        scroll.documentView = resultsView
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.heightAnchor.constraint(greaterThanOrEqualToConstant: 320).isActive = true
+        stack.addArrangedSubview(scroll)
+        scroll.widthAnchor.constraint(equalTo: stack.widthAnchor).isActive = true
+
+        let applicationRow = NSStackView()
+        applicationRow.orientation = .horizontal
+        applicationRow.alignment = .centerY
+        applicationRow.spacing = 10
+        applicationRow.addArrangedSubview(label("申込候補"))
+        applicationPopup.widthAnchor.constraint(equalToConstant: 340).isActive = true
+        applicationRow.addArrangedSubview(applicationPopup)
+        applicationButton.target = self
+        applicationButton.action = #selector(openApplicationPage)
+        applicationButton.isEnabled = false
+        applicationRow.addArrangedSubview(applicationButton)
+        stack.addArrangedSubview(applicationRow)
+        view = content
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        calculate()
+    }
+
+    @objc func calculate() {
+        let amount = Double(amountField.stringValue.filter { $0.isNumber }) ?? 0
+        guard amount > 0 else {
+            resultsView.string = "金額を入力してください。"
+            updateApplicationCandidates([])
+            return
+        }
+        let merchant = merchants[merchantPopup.indexOfSelectedItem].0
+        let category = categories[categoryPopup.indexOfSelectedItem].0
+        let intent = PurchaseIntent(
+            amountYen: amount,
+            merchantID: merchant == "general" ? nil : merchant,
+            categoryID: category,
+            paymentMethod: paymentMethods[paymentPopup.indexOfSelectedItem].0,
+            channel: channels[channelPopup.indexOfSelectedItem].0,
+            frequency: frequencies[frequencyPopup.indexOfSelectedItem].0,
+            purchaseDate: dateString(datePicker.dateValue)
+        )
+        guard let results = model.recommend(intent: intent) else {
+            resultsView.string = "カタログを読み込めません。"
+            updateApplicationCandidates([])
+            return
+        }
+        resultsView.string = resultText(title: "今使うなら", recommendations: results.owned, empty: "手持ちカードを登録してください")
+            + "\n\n"
+            + resultText(title: "新しく申し込むなら", recommendations: results.available, empty: "条件に合うカードがありません")
+        updateApplicationCandidates(Array(results.available.prefix(5)))
+    }
+
+    private func setupPopups() {
+        merchantPopup.addItems(withTitles: merchants.map(\.1))
+        categoryPopup.addItems(withTitles: categories.map(\.1))
+        paymentPopup.addItems(withTitles: paymentMethods.map(\.1))
+        channelPopup.addItems(withTitles: channels.map(\.1))
+        frequencyPopup.addItems(withTitles: frequencies.map(\.1))
+    }
+
+    private func resultText(title: String, recommendations: [CardRecommendation], empty: String) -> String {
+        var lines = [title]
+        let values = Array(recommendations.prefix(5))
+        guard !values.isEmpty else { return (lines + [empty]).joined(separator: "\n") }
+        for (index, recommendation) in values.enumerated() {
+            let benefits = recommendation.appliedBenefits.map(\.title).joined(separator: " / ")
+            lines.append("\(index + 1). \(recommendation.card.name)")
+            lines.append("   今回 \(yen(recommendation.immediateValueYen)) ・ \(String(format: "%.1f", recommendation.effectiveReturnPercent))% / 年換算 \(yen(recommendation.annualNetValueYen))")
+            if !benefits.isEmpty { lines.append("   \(benefits)") }
+            if !recommendation.warnings.isEmpty { lines.append("   確認: \(recommendation.warnings.joined(separator: "・"))") }
+        }
+        return lines.joined(separator: "\n")
+    }
+
+    private func updateApplicationCandidates(_ candidates: [CardRecommendation]) {
+        applicationCandidates = candidates
+        applicationPopup.removeAllItems()
+        applicationPopup.addItems(withTitles: candidates.map { "\($0.card.name)（今回\(yen($0.immediateValueYen))）" })
+        applicationButton.isEnabled = !candidates.isEmpty
+    }
+
+    @objc private func openApplicationPage() {
+        let index = applicationPopup.indexOfSelectedItem
+        guard applicationCandidates.indices.contains(index) else { return }
+        NSWorkspace.shared.open(applicationCandidates[index].card.applicationURL)
+    }
+}
+
+final class HoldingsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate {
+    private let model: MacAppModel
+    private let table = NSTableView()
+    private let searchField = NSSearchField()
+    private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。未掲載カードは定期的な公式サイト探索で追加されます。")
+    private var catalogLookupWorkItem: DispatchWorkItem?
+
+    init(model: MacAppModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+        title = "手持ちカード"
+    }
+
+    required init?(coder: NSCoder) { nil }
+
+    private var displayedProducts: [CardProduct] {
+        let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else { return model.products }
+        return model.products.filter {
+            $0.name.localizedCaseInsensitiveContains(query)
+                || $0.issuerName.localizedCaseInsensitiveContains(query)
+        }
+    }
+
+    override func loadView() {
+        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("held"))
+        column.title = "保有"
+        column.width = 56
+        table.addTableColumn(column)
+        let name = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("name"))
+        name.title = "カード名"
+        name.width = 300
+        table.addTableColumn(name)
+        let issuer = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("issuer"))
+        issuer.title = "発行会社"
+        issuer.width = 300
+        table.addTableColumn(issuer)
+        table.delegate = self
+        table.dataSource = self
+        table.usesAlternatingRowBackgroundColors = true
+
+        let scroll = NSScrollView()
+        scroll.documentView = table
+        scroll.hasVerticalScroller = true
+        scroll.autohidesScrollers = true
+
+        searchField.placeholderString = "カード名・発行会社を検索"
+        searchField.delegate = self
+        searchField.translatesAutoresizingMaskIntoConstraints = false
+        searchStatus.textColor = .secondaryLabelColor
+        searchStatus.lineBreakMode = .byTruncatingTail
+        let controls = NSStackView(views: [searchField])
+        controls.orientation = .horizontal
+        controls.alignment = .centerY
+        controls.spacing = 10
+        let container = NSView()
+        let stack = NSStackView(views: [controls, searchStatus, scroll])
+        stack.orientation = .vertical
+        stack.alignment = .leading
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
+            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20),
+            stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 16),
+            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -16),
+            searchField.widthAnchor.constraint(equalToConstant: 300),
+            scroll.widthAnchor.constraint(equalTo: stack.widthAnchor)
+        ])
+        view = container
+    }
+
+    func numberOfRows(in tableView: NSTableView) -> Int { displayedProducts.count }
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let column = tableColumn, displayedProducts.indices.contains(row) else { return nil }
+        let card = displayedProducts[row]
+        switch column.identifier.rawValue {
+        case "held":
+            let toggle = NSButton(checkboxWithTitle: "", target: self, action: #selector(toggleHolding(_:)))
+            toggle.state = model.isHeld(card.id) ? .on : .off
+            toggle.tag = row
+            return toggle
+        case "name":
+            return textCell(card.name)
+        default:
+            return textCell(card.issuerName)
+        }
+    }
+
+    @objc private func toggleHolding(_ sender: NSButton) {
+        guard displayedProducts.indices.contains(sender.tag) else { return }
+        model.setHeld(sender.state == .on, cardID: displayedProducts[sender.tag].id)
+    }
+
+    func reloadData() {
+        table.reloadData()
+        updateSearchStatus()
+    }
+
+    func controlTextDidChange(_ notification: Notification) {
+        table.reloadData()
+        updateSearchStatus()
+        checkPublishedCatalogForMissingCard()
+    }
+
+    private func updateSearchStatus() {
+        let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        if query.isEmpty {
+            searchStatus.stringValue = "公式確認済みのカードのみ表示します。未掲載カードは定期的な公式サイト探索で追加されます。"
+        } else if displayedProducts.isEmpty {
+            searchStatus.stringValue = "「\(query)」は現在のカタログにありません。公式サイトの自動探索・検証後に追加されます。"
+        } else {
+            searchStatus.stringValue = "\(displayedProducts.count)件。保有するカードにチェックを付けてください。"
+        }
+    }
+
+    private func checkPublishedCatalogForMissingCard() {
+        catalogLookupWorkItem?.cancel()
+        let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty, displayedProducts.isEmpty else { return }
+
+        let workItem = DispatchWorkItem { [weak self] in
+            guard let self else { return }
+            self.searchStatus.stringValue = "「\(query)」をネット上の最新カタログで確認中…"
+            self.model.refreshCatalog { [weak self] in
+                guard let self else { return }
+                self.table.reloadData()
+                self.updateSearchStatus()
+            }
+        }
+        catalogLookupWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(700), execute: workItem)
+    }
+}
+
+final class CatalogViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+    private let model: MacAppModel
+    private let table = NSTableView()
+    private let detail = NSTextView()
+
+    init(model: MacAppModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+        title = "カード一覧"
+    }
+
+    required init?(coder: NSCoder) { nil }
+
+    override func loadView() {
+        for (identifier, title, width) in [("name", "カード名", 330.0), ("fee", "年会費", 110.0), ("issuer", "発行会社", 280.0)] {
+            let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(identifier))
+            column.title = title
+            column.width = width
+            table.addTableColumn(column)
+        }
+        table.delegate = self
+        table.dataSource = self
+        table.usesAlternatingRowBackgroundColors = true
+        table.target = self
+        table.doubleAction = #selector(openOfficialPage)
+
+        let tableScroll = NSScrollView()
+        tableScroll.documentView = table
+        tableScroll.hasVerticalScroller = true
+        let detailScroll = NSScrollView()
+        detail.isEditable = false
+        detail.font = .systemFont(ofSize: 12)
+        detailScroll.documentView = detail
+        detailScroll.hasVerticalScroller = true
+        detailScroll.borderType = .bezelBorder
+        let split = NSSplitView()
+        split.isVertical = false
+        split.addArrangedSubview(tableScroll)
+        split.addArrangedSubview(detailScroll)
+        view = split
+    }
+
+    func numberOfRows(in tableView: NSTableView) -> Int { model.products.count }
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let column = tableColumn, model.products.indices.contains(row) else { return nil }
+        let card = model.products[row]
+        switch column.identifier.rawValue {
+        case "name": return textCell(card.name)
+        case "fee": return textCell(card.annualFeeYen == 0 ? "無料" : yen(card.annualFeeYen))
+        default: return textCell(card.issuerName)
+        }
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        guard model.products.indices.contains(table.selectedRow) else { return }
+        let card = model.products[table.selectedRow]
+        detail.string = "\(card.name)\n\n年会費: \(card.annualFeeYen == 0 ? "無料" : yen(card.annualFeeYen))\n国際ブランド: \(card.networks.map(\.rawValue).joined(separator: " / "))\n\n" + card.benefitRules.map { "• \($0.title)" }.joined(separator: "\n") + "\n\n公式: \(card.applicationURL.absoluteString)"
+    }
+
+    @objc private func openOfficialPage() {
+        guard model.products.indices.contains(table.selectedRow) else { return }
+        NSWorkspace.shared.open(model.products[table.selectedRow].applicationURL)
+    }
+
+    func reloadData() {
+        table.reloadData()
+        detail.string = ""
+    }
+}
+
+final class DataViewController: NSViewController {
+    private let model: MacAppModel
+    private let refreshAction: () -> Void
+    private let statusLabel = NSTextField(labelWithString: "")
+    private let countLabel = NSTextField(labelWithString: "")
+    private let heldLabel = NSTextField(labelWithString: "")
+    private let refreshButton = NSButton(title: "最新カタログを確認", target: nil, action: nil)
+
+    init(model: MacAppModel, refreshAction: @escaping () -> Void) {
+        self.model = model
+        self.refreshAction = refreshAction
+        super.init(nibName: nil, bundle: nil)
+        title = "データ"
+    }
+
+    required init?(coder: NSCoder) { nil }
+
+    override func loadView() {
+        let stack = NSStackView()
+        stack.orientation = .vertical
+        stack.alignment = .leading
+        stack.spacing = 12
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        refreshButton.target = self
+        refreshButton.action = #selector(refresh)
+        stack.addArrangedSubview(statusLabel)
+        stack.addArrangedSubview(countLabel)
+        stack.addArrangedSubview(heldLabel)
+        stack.addArrangedSubview(refreshButton)
+        stack.addArrangedSubview(textCell("保有カードはこのMac内に保存します。カード番号や利用明細は保存しません。"))
+        let container = NSView()
+        container.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 24),
+            stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 24),
+            stack.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -24)
+        ])
+        view = container
+    }
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        updateLabels()
+    }
+
+    @objc private func refresh() {
+        setRefreshing(true)
+        refreshAction()
+    }
+
+    func setRefreshing(_ refreshing: Bool) {
+        refreshButton.isEnabled = !refreshing
+        if refreshing { statusLabel.stringValue = "カタログを確認中…" }
+        else { updateLabels() }
+    }
+
+    private func updateLabels() {
+        statusLabel.stringValue = "状態: \(model.catalogStatus)"
+        countLabel.stringValue = "利用可能カード数: \(model.products.count)券種"
+        heldLabel.stringValue = "保有カード数: \(model.heldCardIDs.count)枚"
+    }
+}
+
+private func label(_ text: String) -> NSTextField {
+    let field = NSTextField(labelWithString: text)
+    field.alignment = .right
+    return field
+}
+
+private func titleLabel(_ text: String) -> NSTextField {
+    let field = NSTextField(labelWithString: text)
+    field.font = .boldSystemFont(ofSize: 16)
+    return field
+}
+
+private func textCell(_ text: String) -> NSTextField {
+    let field = NSTextField(labelWithString: text)
+    field.lineBreakMode = .byTruncatingTail
+    return field
+}
+
+private func yen(_ value: Double) -> String {
+    NumberFormatter.localizedString(from: NSNumber(value: value), number: .currency)
+}
+
+private func dateString(_ date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: date)
+}

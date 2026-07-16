@@ -1,0 +1,1631 @@
+{
+  "schemaVersion": 1,
+  "version": "20260716T133144Z",
+  "generatedAt": "2026-07-16T13:31:44.163Z",
+  "products": [
+    {
+      "id": "jcca-三菱ufjニコス-apollostation-ponta",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "apollostation Pontaクレジットカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 1375,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/apollostation_ponta/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "ponta-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-apollostation-ponta-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "ponta-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/apollostation_ponta/index.html",
+            "observedAt": "2026-07-16T13:31:38.153Z",
+            "contentHash": "5d32107a49c9de5ecefc9773c04346097d8d6f3dfeb79bb7a5071525b2da7ec5",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/apollostation_ponta/index.html",
+          "observedAt": "2026-07-16T13:31:38.153Z",
+          "contentHash": "5d32107a49c9de5ecefc9773c04346097d8d6f3dfeb79bb7a5071525b2da7ec5",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-bmw-card",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "BMW Card",
+      "networks": [
+        "visa",
+        "americanExpress"
+      ],
+      "annualFeeYen": 5238,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/bmw/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-bmw-card-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 5
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/bmw/index.html",
+            "observedAt": "2026-07-16T13:31:38.542Z",
+            "contentHash": "f372356d94dc31f05e12b0eb9ea73f5839213a219df3bd5037a990bf067580fe",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/bmw/index.html",
+          "observedAt": "2026-07-16T13:31:38.542Z",
+          "contentHash": "f372356d94dc31f05e12b0eb9ea73f5839213a219df3bd5037a990bf067580fe",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcb-card-s",
+      "issuerID": "jcb",
+      "issuerName": "株式会社ジェーシービー",
+      "name": "JCB カード S",
+      "networks": [
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_s.html",
+      "eligibilityNote": "日本国内在住で本人または配偶者に安定継続収入のある18歳以上、または高校生を除く18歳以上の学生",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcb-card-s-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_s.html",
+            "observedAt": "2026-07-16T13:31:36.876Z",
+            "contentHash": "1e31a58e7e06c265b7f39a377e96247bf30d8b249f8157a1a0225b2786d07bc4",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_s.html",
+          "observedAt": "2026-07-16T13:31:36.876Z",
+          "contentHash": "1e31a58e7e06c265b7f39a377e96247bf30d8b249f8157a1a0225b2786d07bc4",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-しんきん-jcbs",
+      "issuerID": "jcca-しんきん",
+      "issuerName": "株式会社しんきんカード",
+      "name": "JCBカードS",
+      "networks": [
+        "visa",
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_s.html",
+      "eligibilityNote": "18歳以上で、ご本人または配偶者に安定継続収入のある方。または高校生を除く18歳以上で学生の方。 追加カード電子マネー 家族 ETC オンライン入会限定! お申し込みはこちら ※弊社の営業エリアの信用金庫(関東・甲信越・北海道・沖縄地区)にお口座をお持ちの方がお申し込みいただけ",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcca-しんきん-jcbs-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_s.html",
+            "observedAt": "2026-07-16T13:31:38.304Z",
+            "contentHash": "2346f58e726ef2dd961547fa5b4d4dd2fa6249365fe201cd412bf36b06f76dc1",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_s.html",
+          "observedAt": "2026-07-16T13:31:38.304Z",
+          "contentHash": "2346f58e726ef2dd961547fa5b4d4dd2fa6249365fe201cd412bf36b06f76dc1",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-りそな-jcbカ-レスキュ-365",
+      "issuerID": "jcca-りそな",
+      "issuerName": "りそなカード株式会社",
+      "name": "JCBカーレスキュー365",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb"
+      ],
+      "annualFeeYen": 715,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.resonacard.co.jp/cards/jcb_365/",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcca-りそな-jcbカ-レスキュ-365-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.resonacard.co.jp/cards/jcb_365/",
+            "observedAt": "2026-07-16T13:31:38.222Z",
+            "contentHash": "02f07975bc9bd7f5a6c7c0287f1b72c194b987988ad2e312c817e2826b18c5e2",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.resonacard.co.jp/cards/jcb_365/",
+          "observedAt": "2026-07-16T13:31:38.222Z",
+          "contentHash": "02f07975bc9bd7f5a6c7c0287f1b72c194b987988ad2e312c817e2826b18c5e2",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-しんきん-jcbゴ-ルド",
+      "issuerID": "jcca-しんきん",
+      "issuerName": "株式会社しんきんカード",
+      "name": "JCBゴールド",
+      "networks": [
+        "visa",
+        "jcb"
+      ],
+      "annualFeeYen": 11000,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_gold.html",
+      "eligibilityNote": "20歳以上で、ご本人に安定継続収入のある方 学生の方はお申し込みいただけません。 JCBゴールド独自の審査基準により発行させていただきます。 追加カード電子マネー 家族 ETC 弊社の営業エリアの信用金庫(関東・甲信越・北海道・沖縄地区)にお口座をお持ちの方がお申し込みいただけ",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcca-しんきん-jcbゴ-ルド-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_gold.html",
+            "observedAt": "2026-07-16T13:31:38.678Z",
+            "contentHash": "0287c340ad52d01f439f469a6f48125cc600442384aad39a5278b4ef6f331c4f",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_gold.html",
+          "observedAt": "2026-07-16T13:31:38.678Z",
+          "contentHash": "0287c340ad52d01f439f469a6f48125cc600442384aad39a5278b4ef6f331c4f",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-しんきん-jcb一般",
+      "issuerID": "jcca-しんきん",
+      "issuerName": "株式会社しんきんカード",
+      "name": "JCB一般カード",
+      "networks": [
+        "visa",
+        "jcb"
+      ],
+      "annualFeeYen": 1375,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_general.html",
+      "eligibilityNote": "18歳以上で、ご本人または配偶者に安定継続収入のある方。または高校生を除く18歳以上で学生の方。 追加カード電子マネー 家族 ETC 弊社の営業エリアの信用金庫(関東・甲信越・北海道・沖縄地区)にお口座をお持ちの方がお申し込みいただけます。 お申し込みはこちら または、信用金庫",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcca-しんきん-jcb一般-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_general.html",
+            "observedAt": "2026-07-16T13:31:39.087Z",
+            "contentHash": "bcc70b2f7d7d8bd567270f11d5084b4856649e418d392678464d94126f8e25c9",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_general.html",
+          "observedAt": "2026-07-16T13:31:39.087Z",
+          "contentHash": "bcc70b2f7d7d8bd567270f11d5084b4856649e418d392678464d94126f8e25c9",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-kips",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "KIPSカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 1375,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/kips/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-kips-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 110,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/kips/index.html",
+            "observedAt": "2026-07-16T13:31:38.936Z",
+            "contentHash": "32cb12b39a4bdeb4c0b3c1670d4ac1a96308ff11e2ad3b95784107761e58e1f2",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/kips/index.html",
+          "observedAt": "2026-07-16T13:31:38.936Z",
+          "contentHash": "32cb12b39a4bdeb4c0b3c1670d4ac1a96308ff11e2ad3b95784107761e58e1f2",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-mini-card",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "MINI Card",
+      "networks": [
+        "visa",
+        "americanExpress"
+      ],
+      "annualFeeYen": 4191,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/mini/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-mini-card-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 5
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/mini/index.html",
+            "observedAt": "2026-07-16T13:31:39.336Z",
+            "contentHash": "50dc31d7143c8ba75f7aee3e50cad8a3fea2de79e98eca386d1e2d3f37e54b6c",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/mini/index.html",
+          "observedAt": "2026-07-16T13:31:39.336Z",
+          "contentHash": "50dc31d7143c8ba75f7aee3e50cad8a3fea2de79e98eca386d1e2d3f37e54b6c",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "paypay-card",
+      "issuerID": "paypay-card",
+      "issuerName": "PayPayカード株式会社",
+      "name": "PayPayカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.paypay-card.co.jp/card/normal/",
+      "eligibilityNote": "日本国内在住の満18歳以上で本人または配偶者に安定した継続収入がある方、または学生（高校生を除く）",
+      "pointProgramID": "paypay-point",
+      "benefitRules": [
+        {
+          "id": "paypay-card-base",
+          "title": "通常還元（PayPay連携・本人確認済み）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": [],
+            "enrollmentKey": "paypay-linked-and-verified",
+            "activeFrom": "2026-06-02"
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 2,
+            "pointProgramID": "paypay-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.paypay-card.co.jp/service/benefit/point/",
+            "observedAt": "2026-07-16T13:31:37.446Z",
+            "contentHash": "c736f247ce33fb65fd3e372059459b75eb1a8c3f7fe6472adb095cd58f922a84",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.paypay-card.co.jp/service/benefit/point/",
+          "observedAt": "2026-07-16T13:31:37.446Z",
+          "contentHash": "c736f247ce33fb65fd3e372059459b75eb1a8c3f7fe6472adb095cd58f922a84",
+          "freshness": "fresh"
+        },
+        {
+          "url": "https://www.paypay-card.co.jp/service/card/fee/",
+          "observedAt": "2026-07-16T13:31:37.825Z",
+          "contentHash": "db737dcffe26df6811b759e71e8272e75ebdf552f268d131aba358685de43cae",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-tepco-ゴ-ルド",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "TEPCOカード(ゴールド)",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 11000,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/tepco_gold/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "nanaco-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-tepco-ゴ-ルド-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "nanaco-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/tepco_gold/index.html",
+            "observedAt": "2026-07-16T13:31:39.733Z",
+            "contentHash": "fbf6a64a284bf4ca845e0e4b572d349036d02290e1897a2698d544fbc3db921d",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/tepco_gold/index.html",
+          "observedAt": "2026-07-16T13:31:39.733Z",
+          "contentHash": "fbf6a64a284bf4ca845e0e4b572d349036d02290e1897a2698d544fbc3db921d",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-tepco-一般",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "TEPCOカード(一般)",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 1375,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/tepco/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "nanaco-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-tepco-一般-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "nanaco-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/tepco/index.html",
+            "observedAt": "2026-07-16T13:31:40.143Z",
+            "contentHash": "e505a9da3ce56754d304541420ec77a624322ef19508bf877fea44229e2a4acd",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/tepco/index.html",
+          "observedAt": "2026-07-16T13:31:40.143Z",
+          "contentHash": "e505a9da3ce56754d304541420ec77a624322ef19508bf877fea44229e2a4acd",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-pasmo-ゴ-ルド",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "Tokyo Metro To Me CARD PASMO ゴールド",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 11000,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/tokyometro_gold_pasmo/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "nanaco-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-pasmo-ゴ-ルド-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1.2,
+            "pointProgramID": "nanaco-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold_pasmo/index.html",
+            "observedAt": "2026-07-16T13:31:40.543Z",
+            "contentHash": "1c1e7d9cb601ae0d3314d02625a12e18f6a98444712405fc142d7e6b72dd9249",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold_pasmo/index.html",
+          "observedAt": "2026-07-16T13:31:40.543Z",
+          "contentHash": "1c1e7d9cb601ae0d3314d02625a12e18f6a98444712405fc142d7e6b72dd9249",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-prime",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "Tokyo Metro To Me CARD Prime",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 2200,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/tokyometro_prime/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "nanaco-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-prime-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "nanaco-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime/index.html",
+            "observedAt": "2026-07-16T13:31:40.932Z",
+            "contentHash": "bcc2f4758deff6bf3b25fbc6f3307a1821fe911b03c8ae5aa7b91d51d29f4a3e",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime/index.html",
+          "observedAt": "2026-07-16T13:31:40.932Z",
+          "contentHash": "bcc2f4758deff6bf3b25fbc6f3307a1821fe911b03c8ae5aa7b91d51d29f4a3e",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-prime-pasmo",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "Tokyo Metro To Me CARD Prime PASMO",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 2200,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/tokyometro_prime_pasmo/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "nanaco-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-prime-pasmo-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "nanaco-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime_pasmo/index.html",
+            "observedAt": "2026-07-16T13:31:41.351Z",
+            "contentHash": "a136a59c2122ebdd3698e341a67b5898ab0cf7dde6f03c943cab05ddfca503b1",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime_pasmo/index.html",
+          "observedAt": "2026-07-16T13:31:41.351Z",
+          "contentHash": "a136a59c2122ebdd3698e341a67b5898ab0cf7dde6f03c943cab05ddfca503b1",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-ゴ-ルド",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "Tokyo Metro To Me CARD ゴールド",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 11000,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/tokyometro_gold/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "nanaco-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-tokyo-metro-to-me-card-ゴ-ルド-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1.2,
+            "pointProgramID": "nanaco-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold/index.html",
+            "observedAt": "2026-07-16T13:31:41.742Z",
+            "contentHash": "ed229bb71ddab0a3cbfbf482543dbe213e1d89d160d35f98b5fb70cc083ffdf0",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold/index.html",
+          "observedAt": "2026-07-16T13:31:41.742Z",
+          "contentHash": "ed229bb71ddab0a3cbfbf482543dbe213e1d89d160d35f98b5fb70cc083ffdf0",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-viaso",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "VIASOカード",
+      "networks": [
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/m_viaso/index.html",
+      "eligibilityNote": "[本人会員] 18歳以上でご本人または配偶者に安定した収入のある方、または18歳以上で学生の方(高校生を除く※1)。 ※1 高校卒業年度の10月1日以降のお申し込み、かつ卒業後の進路が決まっている場合は学生用のクレジットカードをお申し込みいただけます。 [家族会員] 本人会員※",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-viaso-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 5,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/m_viaso/index.html",
+            "observedAt": "2026-07-16T13:31:42.147Z",
+            "contentHash": "864021171bf90bb62eb4d0c8be1a77a5c1ba357b079e5d67473469866c47e1b4",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/m_viaso/index.html",
+          "observedAt": "2026-07-16T13:31:42.147Z",
+          "contentHash": "864021171bf90bb62eb4d0c8be1a77a5c1ba357b079e5d67473469866c47e1b4",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-九州-visaプラチナ-九州オリジナルプラチナ",
+      "issuerID": "jcca-九州",
+      "issuerName": "九州カード株式会社",
+      "name": "VISAプラチナカード (九州カードオリジナルプラチナカード)",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb",
+        "americanExpress"
+      ],
+      "annualFeeYen": 55000,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/platinum_card/",
+      "eligibilityNote": "原則として満30歳以上で安定継続収入のある方 ※九州カードが定めるプラチナカード独自の審査基準により発行させていただきます。 年会費 本会員 55,000円(税込) 家族会員 無料 ※家族会員様は、1名様限定とさせていただきます。 追加可能カード 電子マネー/タッチ決済 国際ブ",
+      "pointProgramID": "v-point",
+      "benefitRules": [
+        {
+          "id": "jcca-九州-visaプラチナ-九州オリジナルプラチナ-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 2,
+            "pointProgramID": "v-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/platinum_card/",
+            "observedAt": "2026-07-16T13:31:39.475Z",
+            "contentHash": "276802109622abc5d6f2c1be168dbd930630147e2a3a458e4b4743b50cc59629",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/platinum_card/",
+          "observedAt": "2026-07-16T13:31:39.475Z",
+          "contentHash": "276802109622abc5d6f2c1be168dbd930630147e2a3a458e4b4743b50cc59629",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "aeon-card-waon",
+      "issuerID": "aeon-card",
+      "issuerName": "イオンフィナンシャルサービス株式会社",
+      "name": "イオンカード（WAON一体型）",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+      "eligibilityNote": "18歳以上（高校生は卒業年度の1月1日以降申込可）",
+      "pointProgramID": "waon-point",
+      "benefitRules": [
+        {
+          "id": "aeon-card-waon-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "waon-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+            "observedAt": "2026-07-16T13:31:38.015Z",
+            "contentHash": "90f90ebb623c17187dc63cb07965b7879725628a0fee27d1f62fc090876406f9",
+            "freshness": "fresh"
+          }
+        },
+        {
+          "id": "aeon-card-waon-aeon-group",
+          "title": "イオングループ対象店舗で基本の2倍",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [
+              "aeon-group"
+            ],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 2,
+            "pointProgramID": "waon-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+            "observedAt": "2026-07-16T13:31:38.015Z",
+            "contentHash": "90f90ebb623c17187dc63cb07965b7879725628a0fee27d1f62fc090876406f9",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+          "observedAt": "2026-07-16T13:31:38.015Z",
+          "contentHash": "90f90ebb623c17187dc63cb07965b7879725628a0fee27d1f62fc090876406f9",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-おきぎんジェ-シ-ビ-おきぎんjcbs",
+      "issuerID": "jcca-おきぎんジェ-シ-ビ",
+      "issuerName": "株式会社おきぎんジェーシービー",
+      "name": "おきぎんJCBカードS",
+      "networks": [
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.okigin-jcb.co.jp/personal/1591934260/card_s/",
+      "eligibilityNote": "(本会員) 18歳以上で、ご本人または配偶者に安定継続収入のある方。または高校生を除く18歳以上で学生の方。一部お申し込みになれない学校があります。 お申し込み対象(家族会員) 生計を同一にする配偶者・親・子供(高校生を除く18歳以上)の方。 本会員が学生の場合は、お申し込みにな",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcca-おきぎんジェ-シ-ビ-おきぎんjcbs-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.okigin-jcb.co.jp/personal/1591934260/card_s/",
+            "observedAt": "2026-07-16T13:31:39.673Z",
+            "contentHash": "530f0febef03ae2e6b48daf200af0062bc573002d8f157d13429b0c22d7f4eac",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.okigin-jcb.co.jp/personal/1591934260/card_s/",
+          "observedAt": "2026-07-16T13:31:39.673Z",
+          "contentHash": "530f0febef03ae2e6b48daf200af0062bc573002d8f157d13429b0c22d7f4eac",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-ディノス",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "ディノスカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 2095,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/dinos/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-ディノス-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 4
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/dinos/index.html",
+            "observedAt": "2026-07-16T13:31:42.540Z",
+            "contentHash": "0dbe0861868e2d8cc5f0711ff92ebab2d519c8d07321f58420bbb2cc725add0b",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/dinos/index.html",
+          "observedAt": "2026-07-16T13:31:42.540Z",
+          "contentHash": "0dbe0861868e2d8cc5f0711ff92ebab2d519c8d07321f58420bbb2cc725add0b",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-ぴあ-nicos",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "ぴあ NICOSカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "americanExpress"
+      ],
+      "annualFeeYen": 4180,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/pia/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-ぴあ-nicos-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 4
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/pia/index.html",
+            "observedAt": "2026-07-16T13:31:42.940Z",
+            "contentHash": "a7e239f97b28a757c825ba5f3279f524b71a92c9f771f42c9e3c474d75303652",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/pia/index.html",
+          "observedAt": "2026-07-16T13:31:42.940Z",
+          "contentHash": "a7e239f97b28a757c825ba5f3279f524b71a92c9f771f42c9e3c474d75303652",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "rakuten-card",
+      "issuerID": "rakuten-card",
+      "issuerName": "楽天カード株式会社",
+      "name": "楽天カード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb",
+        "americanExpress"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.rakuten-card.co.jp/card/rakuten-card/",
+      "eligibilityNote": "18歳以上（高校生を除く）",
+      "pointProgramID": "rakuten-point",
+      "benefitRules": [
+        {
+          "id": "rakuten-card-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 100,
+            "pointsPerUnit": 1,
+            "pointProgramID": "rakuten-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.rakuten-card.co.jp/card/rakuten-card/",
+            "observedAt": "2026-07-16T13:31:37.176Z",
+            "contentHash": "0ca4c0fd560b3207ef9ec31bed204f469c9040942a032fe671c41d13a1c0d181",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.rakuten-card.co.jp/card/rakuten-card/",
+          "observedAt": "2026-07-16T13:31:37.176Z",
+          "contentHash": "0ca4c0fd560b3207ef9ec31bed204f469c9040942a032fe671c41d13a1c0d181",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-玉川高島屋scインタ-ナショナル-盲導犬育成サポ-ト",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "玉川高島屋SCカードインターナショナル[盲導犬育成サポートカード]",
+      "networks": [
+        "visa",
+        "americanExpress"
+      ],
+      "annualFeeYen": 1100,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/tamagawa_sc_supportdog/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-玉川高島屋scインタ-ナショナル-盲導犬育成サポ-ト-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 4
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/tamagawa_sc_supportdog/index.html",
+            "observedAt": "2026-07-16T13:31:43.349Z",
+            "contentHash": "36e73e8ca2b167f137f94b4ef066567e39ece71b5a7f5f09cb1ff00f7d688801",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/tamagawa_sc_supportdog/index.html",
+          "observedAt": "2026-07-16T13:31:43.349Z",
+          "contentHash": "36e73e8ca2b167f137f94b4ef066567e39ece71b5a7f5f09cb1ff00f7d688801",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-九州-九州next-クラシック",
+      "issuerID": "jcca-九州",
+      "issuerName": "九州カード株式会社",
+      "name": "九州カードNEXT クラシックカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb",
+        "americanExpress"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card_qr/",
+      "eligibilityNote": "満18歳以上でご本人に安定した収入のある方。 年会費 永年無料 家族会員年会費 家族会員 無料 ※オンライン入会申込みは1人のみ同時にお申込みいただけます。2人目以降のお申込みご希望の場合は、お手数ですが、本会員様ご入会後、入会申込書をご請求いただき、書面にてお申込みください。",
+      "pointProgramID": "v-point",
+      "benefitRules": [
+        {
+          "id": "jcca-九州-九州next-クラシック-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 2,
+            "pointProgramID": "v-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card_qr/",
+            "observedAt": "2026-07-16T13:31:40.602Z",
+            "contentHash": "6abddea00fab8ae99b2099fe2fb94ce901a1c382926878176019d0106619c1ae",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card_qr/",
+          "observedAt": "2026-07-16T13:31:40.602Z",
+          "contentHash": "6abddea00fab8ae99b2099fe2fb94ce901a1c382926878176019d0106619c1ae",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-九州-九州next-ゴ-ルド",
+      "issuerID": "jcca-九州",
+      "issuerName": "九州カード株式会社",
+      "name": "九州カードNEXT ゴールド",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb",
+        "americanExpress"
+      ],
+      "annualFeeYen": 11000,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/gold_card_qr/",
+      "eligibilityNote": "満20歳以上でご本人に安定した収入のある方。 年会費 初年度無料通常 11,000円(税込) ※1年間のショッピングご利用金額が100万円(税込)以上の場合、翌年の年会費が無料となります。 家族会員年会費 家族会員 お一人様無料お二人目より 2,200円(税込) ※オンライン入",
+      "pointProgramID": "v-point",
+      "benefitRules": [
+        {
+          "id": "jcca-九州-九州next-ゴ-ルド-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 2,
+            "pointProgramID": "v-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/gold_card_qr/",
+            "observedAt": "2026-07-16T13:31:40.992Z",
+            "contentHash": "abab3b71f41f4f3643a1532b67cc9e2a99265a6f9c241fcb5036b99ee2d5c4a5",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/gold_card_qr/",
+          "observedAt": "2026-07-16T13:31:40.992Z",
+          "contentHash": "abab3b71f41f4f3643a1532b67cc9e2a99265a6f9c241fcb5036b99ee2d5c4a5",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "smbc-card-nl",
+      "issuerID": "smbc-card",
+      "issuerName": "三井住友カード株式会社",
+      "name": "三井住友カード（NL）",
+      "networks": [
+        "visa",
+        "mastercard"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.smbc-card.com/nyukai/card/numberless.jsp",
+      "eligibilityNote": "満18歳以上（高校生を除く）",
+      "pointProgramID": "v-point",
+      "benefitRules": [
+        {
+          "id": "smbc-card-nl-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "v-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.smbc-card.com/nyukai/card/numberless.jsp",
+            "observedAt": "2026-07-16T13:31:37.311Z",
+            "contentHash": "715bd6e29cde8664abd275e3948d082021862da48c9a589a4a60bd1ae7cad659",
+            "freshness": "unavailable"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.smbc-card.com/nyukai/card/numberless.jsp",
+          "observedAt": "2026-07-16T13:31:37.311Z",
+          "contentHash": "715bd6e29cde8664abd275e3948d082021862da48c9a589a4a60bd1ae7cad659",
+          "freshness": "unavailable"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-三菱ufj",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "三菱UFJカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb",
+        "americanExpress"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/mucard/index06.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-三菱ufj-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 5
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/mucard/index06.html",
+            "observedAt": "2026-07-16T13:31:43.793Z",
+            "contentHash": "d3b5e0653e32f32fdd5e3d3c8f1e168b208204b4d183fdff5df07a60e1ae5bd8",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/mucard/index06.html",
+          "observedAt": "2026-07-16T13:31:43.793Z",
+          "contentHash": "d3b5e0653e32f32fdd5e3d3c8f1e168b208204b4d183fdff5df07a60e1ae5bd8",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-りそな-直営宿泊施設の永久利用証私学メンバ-ズ",
+      "issuerID": "jcca-りそな",
+      "issuerName": "りそなカード株式会社",
+      "name": "直営宿泊施設の永久利用証私学メンバーズカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb"
+      ],
+      "annualFeeYen": 3300,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.resonacard.co.jp/shigakucard/",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcca-りそな-直営宿泊施設の永久利用証私学メンバ-ズ-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.resonacard.co.jp/shigakucard/",
+            "observedAt": "2026-07-16T13:31:41.043Z",
+            "contentHash": "58a8d2797f5d25ead4f852da5686dc36acf6ff79521cabb6fef5e65243894eb6",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.resonacard.co.jp/shigakucard/",
+          "observedAt": "2026-07-16T13:31:41.043Z",
+          "contentHash": "58a8d2797f5d25ead4f852da5686dc36acf6ff79521cabb6fef5e65243894eb6",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-りそな-東横inn-visa",
+      "issuerID": "jcca-りそな",
+      "issuerName": "りそなカード株式会社",
+      "name": "東横INN VISAカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb"
+      ],
+      "annualFeeYen": 1375,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.resonacard.co.jp/cards/visa_toyoko/",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "v-point",
+      "benefitRules": [
+        {
+          "id": "jcca-りそな-東横inn-visa-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "v-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.resonacard.co.jp/cards/visa_toyoko/",
+            "observedAt": "2026-07-16T13:31:41.427Z",
+            "contentHash": "12ca62df85b04b39281b5a570c6fe4f1c6e83f708f02a7f5c4b9ff589a5feffe",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.resonacard.co.jp/cards/visa_toyoko/",
+          "observedAt": "2026-07-16T13:31:41.427Z",
+          "contentHash": "12ca62df85b04b39281b5a570c6fe4f1c6e83f708f02a7f5c4b9ff589a5feffe",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-三菱ufjニコス-如水会会員証",
+      "issuerID": "jcca-三菱ufjニコス",
+      "issuerName": "三菱ＵＦＪニコス株式会社",
+      "name": "如水会会員証カード",
+      "networks": [
+        "visa",
+        "mastercard"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.cr.mufg.jp/apply/card/josuikai/index.html",
+      "eligibilityNote": "申込条件は公式サイトで確認してください",
+      "pointProgramID": "三菱ufjニコス-point",
+      "benefitRules": [
+        {
+          "id": "jcca-三菱ufjニコス-如水会会員証-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 1000,
+            "pointsPerUnit": 1,
+            "pointProgramID": "三菱ufjニコス-point",
+            "defaultPointValueYen": 4
+          },
+          "source": {
+            "url": "https://www.cr.mufg.jp/apply/card/josuikai/index.html",
+            "observedAt": "2026-07-16T13:31:44.150Z",
+            "contentHash": "f65b2082e0ae68186936044723a6f502c4bc5eb57fe4742ec003ea22a3877024",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cr.mufg.jp/apply/card/josuikai/index.html",
+          "observedAt": "2026-07-16T13:31:44.150Z",
+          "contentHash": "f65b2082e0ae68186936044723a6f502c4bc5eb57fe4742ec003ea22a3877024",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "jcca-八十二-八十二jcb-s-年会費永年無料で想像以上のオトクを手にしよう",
+      "issuerID": "jcca-八十二",
+      "issuerName": "株式会社八十二カード",
+      "name": "八十二JCB カード S",
+      "networks": [
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.82card.co.jp/jcbcard/card_s/index.html",
+      "eligibilityNote": "は、本会員と生計を同一にする配偶者・親・子供(高校生をのぞく18歳以上)の方です。家族カードならポイントが合算されるため、ポイントを効率よくためることができます。 カード到着までどれくらいかかりますか? 申し込みから約1週間でお届けします。ナンバーレスならスピーディーにカード番号",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcca-八十二-八十二jcb-s-base",
+          "title": "通常還元（公式記載）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.82card.co.jp/jcbcard/card_s/index.html",
+            "observedAt": "2026-07-16T13:31:41.864Z",
+            "contentHash": "43ef8ee733ecf739cea95c60b79989c4224570e7855f67086ec39f39a13c0530",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.82card.co.jp/jcbcard/card_s/index.html",
+          "observedAt": "2026-07-16T13:31:41.864Z",
+          "contentHash": "43ef8ee733ecf739cea95c60b79989c4224570e7855f67086ec39f39a13c0530",
+          "freshness": "fresh"
+        }
+      ]
+    }
+  ]
+}

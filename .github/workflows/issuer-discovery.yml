@@ -1,0 +1,35 @@
+name: Discover issuer product pages
+
+on:
+  schedule:
+    - cron: "41 3 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: services/catalog/package-lock.json
+      - run: npm ci
+        working-directory: services/catalog
+      - run: npm run discover -- --crawl
+        working-directory: services/catalog
+      - run: npm run promote
+        working-directory: services/catalog
+      - run: npm run update
+        working-directory: services/catalog
+      - name: Commit discovery ledger
+        run: |
+          git config user.name "usecard-catalog-bot"
+          git config user.email "usecard-catalog-bot@users.noreply.github.com"
+          git add catalog/discovery catalog/config catalog/public
+          git diff --cached --quiet || git commit -m "chore(catalog): refresh issuer discovery"
+          git push

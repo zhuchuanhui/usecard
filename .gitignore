@@ -1,0 +1,9 @@
+.DS_Store
+.build/
+UseCard.app/
+DerivedData/
+node_modules/
+services/catalog/dist/
+catalog/.staging/
+ios/UseCard.xcodeproj/xcuserdata/
+*.xcuserstate

@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "version": "20260715T155503Z",
+  "generatedAt": "2026-07-15T15:55:03.114Z",
+  "products": [
+    {
+      "id": "jcb-card-s",
+      "issuerID": "jcb",
+      "issuerName": "株式会社ジェーシービー",
+      "name": "JCB カード S",
+      "networks": [
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_s.html",
+      "eligibilityNote": "日本国内在住で本人または配偶者に安定継続収入のある18歳以上、または高校生を除く18歳以上の学生",
+      "pointProgramID": "j-point",
+      "benefitRules": [
+        {
+          "id": "jcb-card-s-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "j-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_s.html",
+            "observedAt": "2026-07-15T15:55:02.523Z",
+            "contentHash": "1e31a58e7e06c265b7f39a377e96247bf30d8b249f8157a1a0225b2786d07bc4",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_s.html",
+          "observedAt": "2026-07-15T15:55:02.523Z",
+          "contentHash": "1e31a58e7e06c265b7f39a377e96247bf30d8b249f8157a1a0225b2786d07bc4",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "paypay-card",
+      "issuerID": "paypay-card",
+      "issuerName": "PayPayカード株式会社",
+      "name": "PayPayカード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.paypay-card.co.jp/card/normal/",
+      "eligibilityNote": "日本国内在住の満18歳以上で本人または配偶者に安定した継続収入がある方、または学生（高校生を除く）",
+      "pointProgramID": "paypay-point",
+      "benefitRules": [
+        {
+          "id": "paypay-card-base",
+          "title": "通常還元（PayPay連携・本人確認済み）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": [],
+            "enrollmentKey": "paypay-linked-and-verified",
+            "activeFrom": "2026-06-02"
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 2,
+            "pointProgramID": "paypay-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.paypay-card.co.jp/service/benefit/point/",
+            "observedAt": "2026-07-15T15:55:02.898Z",
+            "contentHash": "c736f247ce33fb65fd3e372059459b75eb1a8c3f7fe6472adb095cd58f922a84",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.paypay-card.co.jp/service/benefit/point/",
+          "observedAt": "2026-07-15T15:55:02.898Z",
+          "contentHash": "c736f247ce33fb65fd3e372059459b75eb1a8c3f7fe6472adb095cd58f922a84",
+          "freshness": "fresh"
+        },
+        {
+          "url": "https://www.paypay-card.co.jp/service/card/fee/",
+          "observedAt": "2026-07-15T15:55:02.887Z",
+          "contentHash": "db737dcffe26df6811b759e71e8272e75ebdf552f268d131aba358685de43cae",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "aeon-card-waon",
+      "issuerID": "aeon-card",
+      "issuerName": "イオンフィナンシャルサービス株式会社",
+      "name": "イオンカード（WAON一体型）",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+      "eligibilityNote": "18歳以上（高校生は卒業年度の1月1日以降申込可）",
+      "pointProgramID": "waon-point",
+      "benefitRules": [
+        {
+          "id": "aeon-card-waon-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "waon-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+            "observedAt": "2026-07-15T15:55:03.113Z",
+            "contentHash": "2e92cafc66aabe15c9ffe51655fe9726db81b9253158a730f31b520c4006a658",
+            "freshness": "fresh"
+          }
+        },
+        {
+          "id": "aeon-card-waon-aeon-group",
+          "title": "イオングループ対象店舗で基本の2倍",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [
+              "aeon-group"
+            ],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 2,
+            "pointProgramID": "waon-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+            "observedAt": "2026-07-15T15:55:03.113Z",
+            "contentHash": "2e92cafc66aabe15c9ffe51655fe9726db81b9253158a730f31b520c4006a658",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.aeon.co.jp/card/lineup/aeoncardwaon/",
+          "observedAt": "2026-07-15T15:55:03.113Z",
+          "contentHash": "2e92cafc66aabe15c9ffe51655fe9726db81b9253158a730f31b520c4006a658",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "rakuten-card",
+      "issuerID": "rakuten-card",
+      "issuerName": "楽天カード株式会社",
+      "name": "楽天カード",
+      "networks": [
+        "visa",
+        "mastercard",
+        "jcb",
+        "americanExpress"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.rakuten-card.co.jp/card/rakuten-card/",
+      "eligibilityNote": "18歳以上（高校生を除く）",
+      "pointProgramID": "rakuten-point",
+      "benefitRules": [
+        {
+          "id": "rakuten-card-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 100,
+            "pointsPerUnit": 1,
+            "pointProgramID": "rakuten-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.rakuten-card.co.jp/card/rakuten-card/",
+            "observedAt": "2026-07-15T15:55:02.725Z",
+            "contentHash": "33de7feb079e0dd11180f0313b6378c478f0699715b20ce393f1c41e95c3b705",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.rakuten-card.co.jp/card/rakuten-card/",
+          "observedAt": "2026-07-15T15:55:02.725Z",
+          "contentHash": "33de7feb079e0dd11180f0313b6378c478f0699715b20ce393f1c41e95c3b705",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "smbc-card-nl",
+      "issuerID": "smbc-card",
+      "issuerName": "三井住友カード株式会社",
+      "name": "三井住友カード（NL）",
+      "networks": [
+        "visa",
+        "mastercard"
+      ],
+      "annualFeeYen": 0,
+      "applicationStatus": "open",
+      "applicationURL": "https://www.smbc-card.com/nyukai/card/numberless.jsp",
+      "eligibilityNote": "満18歳以上（高校生を除く）",
+      "pointProgramID": "v-point",
+      "benefitRules": [
+        {
+          "id": "smbc-card-nl-base",
+          "title": "通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "v-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.smbc-card.com/nyukai/card/numberless.jsp",
+            "observedAt": "2026-07-15T15:55:02.773Z",
+            "contentHash": "715bd6e29cde8664abd275e3948d082021862da48c9a589a4a60bd1ae7cad659",
+            "freshness": "unavailable"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.smbc-card.com/nyukai/card/numberless.jsp",
+          "observedAt": "2026-07-15T15:55:02.773Z",
+          "contentHash": "715bd6e29cde8664abd275e3948d082021862da48c9a589a4a60bd1ae7cad659",
+          "freshness": "unavailable"
+        }
+      ]
+    }
+  ]
+}
