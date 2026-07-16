@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createHash } from "node:crypto";
-import { extractGenericProduct } from "../src/genericExtractor.js";
+import { extractGenericProduct, mergePromotedProducts } from "../src/genericExtractor.js";
+import type { CardProduct } from "../src/schema.js";
 
 test("strict generic extractor promotes a complete consumer card page", () => {
   const html = `
@@ -168,3 +169,27 @@ test("marketing copy is removed from a product heading", () => {
 
   assert.equal(product?.name, "八十二JCB カード S");
 });
+
+test("promotion retains prior verified cards missing from a temporary crawl", () => {
+  const prior = productSnapshot("prior-card", "Prior Card", "https://example.com/card/prior");
+  const refreshed = productSnapshot("fresh-card", "Fresh Card", "https://example.com/card/fresh");
+  const merged = mergePromotedProducts([prior], [refreshed]);
+
+  assert.deepEqual(merged.map((product) => product.id), ["fresh-card", "prior-card"]);
+});
+
+function productSnapshot(id: string, name: string, applicationURL: string): CardProduct {
+  return {
+    id,
+    issuerID: "sample",
+    issuerName: "Sample",
+    name,
+    networks: ["visa"],
+    annualFeeYen: 0,
+    applicationStatus: "open",
+    applicationURL,
+    eligibilityNote: "公式サイトで確認してください",
+    benefitRules: [],
+    sources: []
+  };
+}

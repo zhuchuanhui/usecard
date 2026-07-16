@@ -140,6 +140,21 @@ export async function promoteCandidates(
   };
 }
 
+export function mergePromotedProducts(
+  priorVerified: CardProduct[],
+  newlyPromoted: CardProduct[]
+): CardProduct[] {
+  const freshIDs = new Set(newlyPromoted.map((product) => product.id));
+  const freshIdentities = new Set(newlyPromoted.map(productIdentity));
+  const freshURLs = new Set(newlyPromoted.map((product) => product.applicationURL));
+  const retained = priorVerified.filter((product) =>
+    !freshIDs.has(product.id)
+      && !freshIdentities.has(productIdentity(product))
+      && !freshURLs.has(product.applicationURL)
+  );
+  return deduplicateProducts([...newlyPromoted, ...retained]);
+}
+
 export async function refreshGenericProducts(
   snapshots: CardProduct[],
   concurrency = 8
@@ -338,11 +353,15 @@ function extractEligibility(text: string): string {
 function deduplicateProducts(products: CardProduct[]): CardProduct[] {
   const values = new Map<string, CardProduct>();
   for (const product of products) {
-    const key = `${product.issuerID}:${product.name.normalize("NFKC").replace(/\s+/g, "").toLowerCase()}`;
+    const key = productIdentity(product);
     const current = values.get(key);
     if (!current || preferred(product, current)) values.set(key, product);
   }
   return [...values.values()].sort((a, b) => a.name.localeCompare(b.name, "ja"));
+}
+
+function productIdentity(product: CardProduct): string {
+  return `${product.issuerID}:${product.name.normalize("NFKC").replace(/\s+/g, "").toLowerCase()}`;
 }
 
 function preferred(candidate: CardProduct, current: CardProduct): boolean {

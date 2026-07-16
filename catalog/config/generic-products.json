@@ -1164,5 +1164,107 @@
         "freshness": "fresh"
       }
     ]
+  },
+  {
+    "id": "jcca-りそな-jcbカ-レスキュ-365",
+    "issuerID": "jcca-りそな",
+    "issuerName": "りそなカード株式会社",
+    "name": "JCBカーレスキュー365",
+    "networks": [
+      "visa",
+      "mastercard",
+      "jcb"
+    ],
+    "annualFeeYen": 715,
+    "applicationStatus": "open",
+    "applicationURL": "https://www.resonacard.co.jp/cards/jcb_365/",
+    "eligibilityNote": "申込条件は公式サイトで確認してください",
+    "pointProgramID": "j-point",
+    "benefitRules": [
+      {
+        "id": "jcca-りそな-jcbカ-レスキュ-365-base",
+        "title": "通常還元（公式記載）",
+        "stackingGroup": "base",
+        "conditions": {
+          "merchantIDs": [],
+          "categoryIDs": [],
+          "paymentMethods": [],
+          "channels": [],
+          "eligibleDaysOfMonth": []
+        },
+        "reward": {
+          "kind": "pointsPerUnit",
+          "unitAmountYen": 200,
+          "pointsPerUnit": 1,
+          "pointProgramID": "j-point",
+          "defaultPointValueYen": 1
+        },
+        "source": {
+          "url": "https://www.resonacard.co.jp/cards/jcb_365/",
+          "observedAt": "2026-07-16T15:02:21.569Z",
+          "contentHash": "02f07975bc9bd7f5a6c7c0287f1b72c194b987988ad2e312c817e2826b18c5e2",
+          "freshness": "fresh"
+        }
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.resonacard.co.jp/cards/jcb_365/",
+        "observedAt": "2026-07-16T15:02:21.569Z",
+        "contentHash": "02f07975bc9bd7f5a6c7c0287f1b72c194b987988ad2e312c817e2826b18c5e2",
+        "freshness": "fresh"
+      }
+    ]
+  },
+  {
+    "id": "jcca-りそな-東横inn-visa",
+    "issuerID": "jcca-りそな",
+    "issuerName": "りそなカード株式会社",
+    "name": "東横INN VISAカード",
+    "networks": [
+      "visa",
+      "mastercard",
+      "jcb"
+    ],
+    "annualFeeYen": 1375,
+    "applicationStatus": "open",
+    "applicationURL": "https://www.resonacard.co.jp/cards/visa_toyoko/",
+    "eligibilityNote": "申込条件は公式サイトで確認してください",
+    "pointProgramID": "v-point",
+    "benefitRules": [
+      {
+        "id": "jcca-りそな-東横inn-visa-base",
+        "title": "通常還元（公式記載）",
+        "stackingGroup": "base",
+        "conditions": {
+          "merchantIDs": [],
+          "categoryIDs": [],
+          "paymentMethods": [],
+          "channels": [],
+          "eligibleDaysOfMonth": []
+        },
+        "reward": {
+          "kind": "pointsPerUnit",
+          "unitAmountYen": 200,
+          "pointsPerUnit": 1,
+          "pointProgramID": "v-point",
+          "defaultPointValueYen": 1
+        },
+        "source": {
+          "url": "https://www.resonacard.co.jp/cards/visa_toyoko/",
+          "observedAt": "2026-07-16T15:02:23.547Z",
+          "contentHash": "12ca62df85b04b39281b5a570c6fe4f1c6e83f708f02a7f5c4b9ff589a5feffe",
+          "freshness": "fresh"
+        }
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.resonacard.co.jp/cards/visa_toyoko/",
+        "observedAt": "2026-07-16T15:02:23.547Z",
+        "contentHash": "12ca62df85b04b39281b5a570c6fe4f1c6e83f708f02a7f5c4b9ff589a5feffe",
+        "freshness": "fresh"
+      }
+    ]
   }
 ]
