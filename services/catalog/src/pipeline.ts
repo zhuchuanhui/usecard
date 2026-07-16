@@ -23,33 +23,42 @@ export interface PipelineResult {
 }
 
 export async function buildCatalog(outputRoot: string): Promise<PipelineResult> {
+  const priorProductsByID = new Map(
+    (await loadPublishedProducts(outputRoot)).map((product) => [product.id, product])
+  );
   const products: CardProduct[] = [];
   for (const definition of knownCardDefinitions) {
-    const pages = await Promise.all(
-      definition.sourceURLs.map(async (url): Promise<FetchedPage> => {
-        try {
-          return await fetchOfficialPage(url);
-        } catch (error) {
-          const fallbackText = definition.fallbackTexts?.[url];
-          if (!fallbackText) throw error;
-          return {
-            url,
-            html: "",
-            text: fallbackText,
-            hash: createHash("sha256").update(fallbackText).digest("hex"),
-            fetchedAt: new Date().toISOString(),
-            freshness: "unavailable"
-          };
-        }
-      })
-    );
-    const sources: SourceEvidence[] = pages.map((page) => ({
-      url: page.url,
-      observedAt: page.fetchedAt,
-      contentHash: page.hash,
-      freshness: page.freshness
-    }));
-    products.push(definition.build(pages, sources));
+    try {
+      const pages = await Promise.all(
+        definition.sourceURLs.map(async (url): Promise<FetchedPage> => {
+          try {
+            return await fetchOfficialPage(url);
+          } catch (error) {
+            const fallbackText = definition.fallbackTexts?.[url];
+            if (!fallbackText) throw error;
+            return {
+              url,
+              html: "",
+              text: fallbackText,
+              hash: createHash("sha256").update(fallbackText).digest("hex"),
+              fetchedAt: new Date().toISOString(),
+              freshness: "unavailable"
+            };
+          }
+        })
+      );
+      const sources: SourceEvidence[] = pages.map((page) => ({
+        url: page.url,
+        observedAt: page.fetchedAt,
+        contentHash: page.hash,
+        freshness: page.freshness
+      }));
+      products.push(definition.build(pages, sources));
+    } catch (error) {
+      const prior = priorProductsByID.get(definition.id);
+      if (!prior) throw error;
+      products.push(markUnavailable(prior));
+    }
   }
 
   const genericSnapshots = await loadGenericSnapshots(outputRoot);
@@ -115,6 +124,29 @@ async function loadGenericSnapshots(outputRoot: string): Promise<CardProduct[]> 
   } catch {
     return [];
   }
+}
+
+async function loadPublishedProducts(outputRoot: string): Promise<CardProduct[]> {
+  try {
+    const catalog = JSON.parse(await readFile(join(outputRoot, "latest.json"), "utf8")) as CardCatalog;
+    return catalog.products;
+  } catch {
+    return [];
+  }
+}
+
+function markUnavailable(snapshot: CardProduct): CardProduct {
+  const observedAt = new Date().toISOString();
+  const sources = snapshot.sources.map((source) => ({ ...source, observedAt, freshness: "unavailable" as const }));
+  const sourceByURL = new Map(sources.map((source) => [source.url, source]));
+  return {
+    ...snapshot,
+    sources,
+    benefitRules: snapshot.benefitRules.map((rule) => ({
+      ...rule,
+      source: sourceByURL.get(rule.source.url) ?? { ...rule.source, observedAt, freshness: "unavailable" }
+    }))
+  };
 }
 
 function normalizeGenericSnapshots(snapshots: CardProduct[]): CardProduct[] {
