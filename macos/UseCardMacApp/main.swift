@@ -123,26 +123,50 @@ final class MacAppModel {
             completion(.success([]))
             return
         }
-        let indexURL = remoteBaseURL.appending(path: "search-index.json")
-        URLSession.shared.dataTask(with: indexURL) { [weak self] data, response, error in
-            guard let self else { return }
-            let result: Result<[RemoteCardSearchEntry], Error> = Result {
-                if let error { throw error }
-                guard let data else { throw CatalogRefreshError.badResponse }
-                try self.requireSuccessfulResponse(response)
-                let entries = try self.decoder.decode([RemoteCardSearchEntry].self, from: data)
-                let matches = entries.filter { entry in
-                    let cardName = self.normalizedSearchText(entry.name)
-                    let issuerName = self.normalizedSearchText(entry.issuerName)
-                    return cardName.contains(normalizedQuery)
-                        || issuerName.contains(normalizedQuery)
-                        || normalizedQuery.contains(cardName)
+        let catalogProducts = catalog?.products ?? []
+        let group = DispatchGroup()
+        let lock = NSLock()
+        var indexedEntries: [RemoteCardSearchEntry] = []
+        var registryEntries: [RemoteIssuerEntry] = []
+
+        func fetch<T: Decodable>(_ url: URL, type: T.Type, assign: @escaping (T) -> Void) {
+            group.enter()
+            URLSession.shared.dataTask(with: url) { [weak self] data, response, _ in
+                defer { group.leave() }
+                guard let self, let data else { return }
+                do {
+                    try self.requireSuccessfulResponse(response)
+                    let decoded = try self.decoder.decode(T.self, from: data)
+                    lock.lock()
+                    assign(decoded)
+                    lock.unlock()
+                } catch {
+                    // A stale offline bundle can still supply known official domains.
                 }
-                var seenURLs = Set<String>()
-                return matches.filter { seenURLs.insert($0.officialURL.absoluteString).inserted }.prefix(12).map { $0 }
+            }.resume()
+        }
+
+        fetch(remoteBaseURL.appending(path: "search-index.json"), type: [RemoteCardSearchEntry].self) {
+            indexedEntries = $0
+        }
+        fetch(remoteBaseURL.appending(path: "issuers.json"), type: [RemoteIssuerEntry].self) {
+            registryEntries = $0
+        }
+
+        group.notify(queue: .global(qos: .userInitiated)) { [weak self] in
+            guard let self else { return }
+            let cached = self.cachedMatches(for: normalizedQuery, in: indexedEntries)
+            let officialIssuers = self.officialIssuers(registry: registryEntries, catalogProducts: catalogProducts)
+            self.searchOfficialWeb(
+                for: query,
+                issuers: officialIssuers,
+                catalogProducts: catalogProducts
+            ) { online in
+                let related = self.knownRelatedCandidates(for: query)
+                let candidates = self.deduplicateCandidates(related + cached + online, excluding: catalogProducts)
+                DispatchQueue.main.async { completion(.success(candidates)) }
             }
-            DispatchQueue.main.async { completion(result) }
-        }.resume()
+        }
     }
 
     fileprivate func addPendingCard(_ entry: RemoteCardSearchEntry) {
@@ -293,6 +317,251 @@ final class MacAppModel {
             .replacingOccurrences(of: #"[\\s　・()（）\[\]［］-]"#, with: "", options: .regularExpression)
     }
 
+    private func cachedMatches(for query: String, in entries: [RemoteCardSearchEntry]) -> [RemoteCardSearchEntry] {
+        let terms = relatedSearchTerms(for: query).map(normalizedSearchText)
+        return entries.filter { entry in
+            let cardName = normalizedSearchText(entry.name)
+            let issuerName = normalizedSearchText(entry.issuerName)
+            return terms.contains { term in
+                !term.isEmpty && (cardName.contains(term) || issuerName.contains(term) || term.contains(cardName))
+            }
+        }
+    }
+
+    private func knownRelatedCandidates(for query: String) -> [RemoteCardSearchEntry] {
+        let normalized = normalizedSearchText(query)
+        guard normalized.contains("三井住友カードnl") else { return [] }
+        return [
+            RemoteCardSearchEntry(
+                issuerID: "smbc-card",
+                issuerName: "三井住友カード株式会社",
+                name: "三井住友カード ゴールド（NL）",
+                officialURL: URL(string: "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp")!,
+                observedAt: ISO8601DateFormatter().string(from: Date()),
+                discovery: "公式の関連カード定義"
+            )
+        ]
+    }
+
+    private func relatedSearchTerms(for query: String) -> [String] {
+        let spacedVariant = query
+            .replacingOccurrences(of: #"[（()）]"#, with: " ", options: .regularExpression)
+            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let withoutVariant = query
+            .replacingOccurrences(of: #"[（(][^）)]*[）)]"#, with: "", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return Array(Set([query, spacedVariant, withoutVariant])).filter { !$0.isEmpty }
+    }
+
+    private func officialIssuers(
+        registry: [RemoteIssuerEntry],
+        catalogProducts: [CardProduct]
+    ) -> [OfficialIssuer] {
+        var issuers = registry.compactMap { entry -> OfficialIssuer? in
+            guard let host = canonicalHost(entry.officialURL) else { return nil }
+            return OfficialIssuer(id: entry.id, name: entry.name, host: host)
+        }
+        issuers += catalogProducts.compactMap { product -> OfficialIssuer? in
+            guard let host = canonicalHost(product.applicationURL) else { return nil }
+            return OfficialIssuer(id: product.issuerID, name: product.issuerName, host: host)
+        }
+        var seen = Set<String>()
+        return issuers.filter { seen.insert("\($0.id):\($0.host)").inserted }
+    }
+
+    private func searchOfficialWeb(
+        for query: String,
+        issuers: [OfficialIssuer],
+        catalogProducts: [CardProduct],
+        completion: @escaping ([RemoteCardSearchEntry]) -> Void
+    ) {
+        let terms = relatedSearchTerms(for: query)
+        let normalizedTerms = terms.map(normalizedSearchText)
+        let matchingIssuers = issuers.filter { issuer in
+            let issuerName = normalizedSearchText(issuer.name)
+            return normalizedTerms.contains { term in issuerName.contains(term) || term.contains(issuerName) }
+                || catalogProducts.contains { product in
+                    product.issuerID == issuer.id && normalizedTerms.contains { term in
+                        let name = normalizedSearchText(product.name)
+                        return name.contains(term) || term.contains(name)
+                    }
+                }
+        }
+        let relatedTerm = query
+            .replacingOccurrences(of: #"[（()）]"#, with: " ", options: .regularExpression)
+            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        var searchTerms: [String] = []
+        if !normalizedSearchText(relatedTerm).contains("ゴールド") {
+            searchTerms.append("\(relatedTerm) ゴールド クレジットカード 公式")
+        }
+        searchTerms.append("\(query) クレジットカード 公式")
+        for issuer in matchingIssuers.prefix(2) {
+            if !normalizedSearchText(relatedTerm).contains("ゴールド") {
+                searchTerms.append("site:\(issuer.host) \(relatedTerm) ゴールド クレジットカード")
+            }
+            searchTerms.append("site:\(issuer.host) \(relatedTerm) クレジットカード")
+        }
+        var seenTerms = Set<String>()
+        let distinctTerms = searchTerms.filter { seenTerms.insert($0).inserted }.prefix(4)
+        guard !distinctTerms.isEmpty else {
+            completion([])
+            return
+        }
+
+        let group = DispatchGroup()
+        let lock = NSLock()
+        var candidates: [RemoteCardSearchEntry] = []
+        for issuer in matchingIssuers.prefix(2) {
+            let sourceCards = catalogProducts.filter { product in
+                guard let host = self.canonicalHost(product.applicationURL) else { return false }
+                return host == issuer.host || host.hasSuffix(".\(issuer.host)")
+            }
+            let signatures = Set(sourceCards.flatMap { self.pathSignatures(for: $0.applicationURL) })
+            guard !signatures.isEmpty, let sitemapURL = self.sitemapURL(for: issuer) else { continue }
+            var sitemapRequest = URLRequest(url: sitemapURL)
+            sitemapRequest.timeoutInterval = 15
+            sitemapRequest.setValue("UseCardCatalog/1.0", forHTTPHeaderField: "User-Agent")
+            group.enter()
+            URLSession.shared.dataTask(with: sitemapRequest) { [weak self] data, response, _ in
+                defer { group.leave() }
+                guard let self, let data else { return }
+                guard (try? self.requireSuccessfulResponse(response)) != nil else { return }
+                let matchingURLs = SitemapParser.urls(from: data).filter { url in
+                    let path = url.path.lowercased()
+                    return path.contains("gold")
+                        && !path.contains("/camp/")
+                        && signatures.contains { path.contains($0) }
+                }
+                let related = matchingURLs.prefix(3).compactMap { url -> RemoteCardSearchEntry? in
+                    guard let source = sourceCards.first(where: { self.signaturesForURL($0.applicationURL, match: url) }) else {
+                        return nil
+                    }
+                    return RemoteCardSearchEntry(
+                        issuerID: source.issuerID,
+                        issuerName: source.issuerName,
+                        name: self.goldVariantName(from: source.name),
+                        officialURL: url,
+                        observedAt: ISO8601DateFormatter().string(from: Date()),
+                        discovery: "発行会社公式サイトマップ"
+                    )
+                }
+                lock.lock()
+                candidates.append(contentsOf: related)
+                lock.unlock()
+            }.resume()
+        }
+        for term in distinctTerms {
+            guard let url = bingRSSURL(for: term) else { continue }
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 15
+            request.setValue("UseCard/1.0 (+https://zhuchuanhui.github.io/usecard/)", forHTTPHeaderField: "User-Agent")
+            group.enter()
+            URLSession.shared.dataTask(with: request) { [weak self] data, response, _ in
+                defer { group.leave() }
+                guard let self, let data else { return }
+                guard (try? self.requireSuccessfulResponse(response)) != nil else { return }
+                let results = BingRSSParser.items(from: data)
+                let verified = results.compactMap { result -> RemoteCardSearchEntry? in
+                    guard self.isLikelyCardProduct(result),
+                          let issuer = self.officialIssuer(for: result.url, in: issuers) else { return nil }
+                    return RemoteCardSearchEntry(
+                        issuerID: issuer.id,
+                        issuerName: issuer.name,
+                        name: self.cleanOnlineResultTitle(result.title),
+                        officialURL: result.url,
+                        observedAt: ISO8601DateFormatter().string(from: Date()),
+                        discovery: "オンラインの公式サイト検索"
+                    )
+                }
+                lock.lock()
+                candidates.append(contentsOf: verified)
+                lock.unlock()
+            }.resume()
+        }
+        group.notify(queue: .global(qos: .userInitiated)) { [weak self] in
+            guard let self else { return }
+            completion(self.deduplicateCandidates(candidates, excluding: catalogProducts))
+        }
+    }
+
+    private func bingRSSURL(for query: String) -> URL? {
+        var components = URLComponents(string: "https://www.bing.com/search")
+        components?.queryItems = [
+            URLQueryItem(name: "format", value: "rss"),
+            URLQueryItem(name: "q", value: query)
+        ]
+        return components?.url
+    }
+
+    private func sitemapURL(for issuer: OfficialIssuer) -> URL? {
+        URL(string: "https://\(issuer.host)/sitemap.xml")
+    }
+
+    private func pathSignatures(for url: URL) -> [String] {
+        let ignored = Set(["card", "cards", "index", "html", "htm", "jsp", "php", "apply", "nyukai"])
+        return url.path.lowercased()
+            .components(separatedBy: CharacterSet.alphanumerics.inverted)
+            .filter { $0.count >= 4 && !ignored.contains($0) }
+    }
+
+    private func signaturesForURL(_ sourceURL: URL, match candidateURL: URL) -> Bool {
+        let candidatePath = candidateURL.path.lowercased()
+        return pathSignatures(for: sourceURL).contains { candidatePath.contains($0) }
+    }
+
+    private func goldVariantName(from cardName: String) -> String {
+        if let range = cardName.range(of: #"[（(]"#, options: .regularExpression) {
+            return "\(cardName[..<range.lowerBound]) ゴールド\(cardName[range.lowerBound...])"
+        }
+        return "\(cardName) ゴールド"
+    }
+
+    private func officialIssuer(for url: URL, in issuers: [OfficialIssuer]) -> OfficialIssuer? {
+        guard let host = canonicalHost(url) else { return nil }
+        return issuers.first { host == $0.host || host.hasSuffix(".\($0.host)") }
+    }
+
+    private func canonicalHost(_ url: URL) -> String? {
+        guard let host = url.host?.lowercased() else { return nil }
+        return host.hasPrefix("www.") ? String(host.dropFirst(4)) : host
+    }
+
+    private func isLikelyCardProduct(_ result: BingRSSItem) -> Bool {
+        let title = result.title.precomposedStringWithCompatibilityMapping
+        let path = result.url.path.lowercased()
+        guard title.range(of: "カード", options: .caseInsensitive) != nil
+            || title.range(of: "card", options: .caseInsensitive) != nil else { return false }
+        return !path.contains("/camp/") && !path.contains("/login") && !path.contains("/mem/")
+    }
+
+    private func cleanOnlineResultTitle(_ title: String) -> String {
+        let cleaned = title
+            .precomposedStringWithCompatibilityMapping
+            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return String(cleaned.prefix(100))
+    }
+
+    private func deduplicateCandidates(
+        _ candidates: [RemoteCardSearchEntry],
+        excluding catalogProducts: [CardProduct]
+    ) -> [RemoteCardSearchEntry] {
+        let knownURLs = Set(catalogProducts.map { $0.applicationURL.absoluteString })
+        var seen = Set<String>()
+        let unique = candidates.filter { candidate in
+            !knownURLs.contains(candidate.officialURL.absoluteString)
+                && seen.insert(candidate.officialURL.absoluteString).inserted
+        }
+        return unique.sorted { left, right in
+            let leftIsGold = left.name.localizedCaseInsensitiveContains("ゴールド")
+            let rightIsGold = right.name.localizedCaseInsensitiveContains("ゴールド")
+            if leftIsGold != rightIsGold { return leftIsGold }
+            return left.name.localizedCompare(right.name) == .orderedAscending
+        }.prefix(12).map { $0 }
+    }
+
     private static func loadPendingCards() -> [PendingCardRecord] {
         guard let data = UserDefaults.standard.data(forKey: pendingCardsKey) else { return [] }
         return (try? JSONDecoder().decode([PendingCardRecord].self, from: data)) ?? []
@@ -318,6 +587,122 @@ fileprivate struct RemoteCardSearchEntry: Decodable, Hashable {
     let name: String
     let officialURL: URL
     let observedAt: String
+    let discovery: String?
+}
+
+private struct RemoteIssuerEntry: Decodable {
+    let id: String
+    let name: String
+    let officialURL: URL
+}
+
+private struct OfficialIssuer: Hashable {
+    let id: String
+    let name: String
+    let host: String
+}
+
+private struct BingRSSItem {
+    let title: String
+    let url: URL
+}
+
+private final class BingRSSParser: NSObject, XMLParserDelegate {
+    private var items: [BingRSSItem] = []
+    private var isInItem = false
+    private var currentElement = ""
+    private var title = ""
+    private var link = ""
+
+    static func items(from data: Data) -> [BingRSSItem] {
+        let parser = XMLParser(data: data)
+        let delegate = BingRSSParser()
+        parser.delegate = delegate
+        return parser.parse() ? delegate.items : []
+    }
+
+    func parser(
+        _ parser: XMLParser,
+        didStartElement elementName: String,
+        namespaceURI: String?,
+        qualifiedName qName: String?,
+        attributes attributeDict: [String: String] = [:]
+    ) {
+        if elementName == "item" {
+            isInItem = true
+            title = ""
+            link = ""
+        }
+        if isInItem && (elementName == "title" || elementName == "link") {
+            currentElement = elementName
+        }
+    }
+
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        guard isInItem else { return }
+        if currentElement == "title" { title += string }
+        if currentElement == "link" { link += string }
+    }
+
+    func parser(
+        _ parser: XMLParser,
+        didEndElement elementName: String,
+        namespaceURI: String?,
+        qualifiedName qName: String?
+    ) {
+        if elementName == "item" {
+            if let url = URL(string: link.trimmingCharacters(in: .whitespacesAndNewlines)) {
+                items.append(BingRSSItem(title: title.trimmingCharacters(in: .whitespacesAndNewlines), url: url))
+            }
+            isInItem = false
+            currentElement = ""
+        } else if elementName == currentElement {
+            currentElement = ""
+        }
+    }
+}
+
+private final class SitemapParser: NSObject, XMLParserDelegate {
+    private var urls: [URL] = []
+    private var isInLocation = false
+    private var location = ""
+
+    static func urls(from data: Data) -> [URL] {
+        let parser = XMLParser(data: data)
+        let delegate = SitemapParser()
+        parser.delegate = delegate
+        return parser.parse() ? delegate.urls : []
+    }
+
+    func parser(
+        _ parser: XMLParser,
+        didStartElement elementName: String,
+        namespaceURI: String?,
+        qualifiedName qName: String?,
+        attributes attributeDict: [String: String] = [:]
+    ) {
+        if elementName == "loc" {
+            isInLocation = true
+            location = ""
+        }
+    }
+
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        if isInLocation { location += string }
+    }
+
+    func parser(
+        _ parser: XMLParser,
+        didEndElement elementName: String,
+        namespaceURI: String?,
+        qualifiedName qName: String?
+    ) {
+        guard elementName == "loc" else { return }
+        if let url = URL(string: location.trimmingCharacters(in: .whitespacesAndNewlines)) {
+            urls.append(url)
+        }
+        isInLocation = false
+    }
 }
 
 private struct PendingCardRecord: Codable, Hashable {
@@ -522,8 +907,8 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private let model: MacAppModel
     private let table = NSTableView()
     private let searchField = NSSearchField()
-    private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。未掲載カードは公式ページ候補から追加できます。")
-    private let officialSearchButton = NSButton(title: "公式ページから追加", target: nil, action: nil)
+    private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。検索すると関連カードをオンラインの公式サイトから探せます。")
+    private let officialSearchButton = NSButton(title: "関連カードをオンラインで探す", target: nil, action: nil)
     private var catalogLookupWorkItem: DispatchWorkItem?
 
     init(model: MacAppModel) {
@@ -633,21 +1018,21 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
         let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         if query.isEmpty {
             officialSearchButton.isEnabled = false
-            searchStatus.stringValue = "公式確認済みのカードのみ表示します。未掲載カードは公式ページ候補から追加できます。"
+            searchStatus.stringValue = "公式確認済みのカードのみ表示します。検索すると関連カードをオンラインの公式サイトから探せます。"
         } else if displayedProducts.isEmpty {
             officialSearchButton.isEnabled = true
-            searchStatus.stringValue = "「\(query)」は現在のカタログにありません。「公式ページから追加」で探索済みの公式ページを確認できます。"
+            searchStatus.stringValue = "「\(query)」は現在のカタログにありません。オンラインの公式サイトから候補を探して追加できます。"
         } else {
-            officialSearchButton.isEnabled = false
-            searchStatus.stringValue = "\(displayedProducts.count)件。保有するカードにチェックを付けてください。"
+            officialSearchButton.isEnabled = true
+            searchStatus.stringValue = "\(displayedProducts.count)件。ゴールドなどの関連カードもオンラインの公式サイトから探せます。"
         }
     }
 
     @objc private func addFromOfficialSearch() {
         let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !query.isEmpty, displayedProducts.isEmpty else { return }
+        guard !query.isEmpty else { return }
         officialSearchButton.isEnabled = false
-        searchStatus.stringValue = "「\(query)」に近い公式商品ページを確認中…"
+        searchStatus.stringValue = "「\(query)」と関連するゴールドカードをオンラインの公式サイトから確認中…"
         model.lookupOfficialCandidates(named: query) { [weak self] result in
             guard let self else { return }
             switch result {
@@ -655,7 +1040,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
                 self.presentOfficialCandidates(candidates)
             case .success:
                 self.updateSearchStatus()
-                self.searchStatus.stringValue = "「\(query)」に一致する公式商品ページ候補は未収録です。定期探索で追加を続けます。"
+                self.searchStatus.stringValue = "「\(query)」に一致する公式商品ページを見つけられませんでした。定期探索でも追加を続けます。"
             case .failure:
                 self.updateSearchStatus()
                 self.searchStatus.stringValue = "公式ページ候補を取得できませんでした。ネット接続後にもう一度お試しください。"
@@ -666,11 +1051,14 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private func presentOfficialCandidates(_ candidates: [RemoteCardSearchEntry]) {
         let alert = NSAlert()
         alert.messageText = "公式ページ候補を見つけました"
-        alert.informativeText = "追加すると保有カードとして記録します。還元条件は公式データで検証されるまで、おすすめ計算には使用しません。"
+        alert.informativeText = "発行会社の公式ドメインに一致するページだけを表示しています。追加すると保有カードとして記録します。還元条件は公式データで検証されるまで、おすすめ計算には使用しません。"
         alert.addButton(withTitle: "保有カードに追加")
         alert.addButton(withTitle: "キャンセル")
         let picker = NSPopUpButton(frame: NSRect(x: 0, y: 0, width: 430, height: 28), pullsDown: false)
-        picker.addItems(withTitles: candidates.map { "\($0.name)（\($0.issuerName)）" })
+        picker.addItems(withTitles: candidates.map { candidate in
+            let source = candidate.discovery ?? "定期探索"
+            return "[\(source)] \(candidate.name)（\(candidate.issuerName)）"
+        })
         alert.accessoryView = picker
         guard alert.runModal() == .alertFirstButtonReturn else {
             updateSearchStatus()
