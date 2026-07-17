@@ -265,6 +265,64 @@ export const knownCardDefinitions: KnownCardDefinition[] = [
     }
   },
   {
+    id: "amazon-mastercard",
+    issuerID: "smbc-card",
+    issuerName: "三井住友カード株式会社",
+    name: "Amazon Mastercard",
+    networks: ["mastercard"],
+    applicationURL: "https://www.smbc-card.com/nyukai/affiliate/amazon/index.jsp",
+    eligibilityNote: "満18歳以上（高校生を除く）。お申し込み時のAmazonプライム会員資格によりカードデザインとAmazon.co.jpでの還元率が決まります。",
+    pointProgramID: "amazon-point",
+    sourceURLs: ["https://www.smbc-card.com/nyukai/affiliate/amazon/index.jsp"],
+    fallbackTexts: {
+      "https://www.smbc-card.com/nyukai/affiliate/amazon/index.jsp": "Amazon Mastercard Amazon Prime Mastercard 年会費永年無料 Amazon.co.jpでの利用 Amazonプライム会員 2.0% プライム会員以外 1.5% Amazon.co.jp以外 1.0% Mastercard"
+    },
+    build(pages, sources) {
+      assertAnyText(pages, [/年会費.{0,100}(?:永年)?無料/], "amazon-mastercard annual fee");
+      assertAnyText(pages, [/Amazonプライム会員.{0,100}(?:2\.0?％|2\.0?%)/], "amazon-mastercard prime reward");
+      assertAnyText(pages, [/プライム会員以外.{0,100}(?:1\.5％|1\.5%)/], "amazon-mastercard non-prime reward");
+      assertAnyText(pages, [/Amazon\.co\.jp以外.{0,100}(?:1\.0?％|1\.0?%)/], "amazon-mastercard base reward");
+      const source = requiredSource(sources, 0, "amazon-mastercard");
+      return {
+        id: "amazon-mastercard",
+        issuerID: "smbc-card",
+        issuerName: "三井住友カード株式会社",
+        name: "Amazon Mastercard",
+        networks: ["mastercard"],
+        annualFeeYen: 0,
+        applicationStatus: "open",
+        applicationURL: "https://www.smbc-card.com/nyukai/affiliate/amazon/index.jsp",
+        eligibilityNote: "年会費永年無料。Amazon.co.jpではプライム会員以外で1.5%、プライム会員なら2%還元です。Prime会員かどうか未設定の場合、比較は確定する1.5%で行います。",
+        pointProgramID: "amazon-point",
+        benefitRules: [
+          cashbackRule("amazon-mastercard-base", "通常還元", 1, source),
+          cashbackRule(
+            "amazon-mastercard-amazon-bonus",
+            "Amazon.co.jpでの追加還元（プライム会員以外でも合計1.5%）",
+            0.5,
+            source,
+            { ...emptyConditions(), merchantIDs: ["amazon"], channels: ["online"] },
+            "amazon-mastercard-amazon-bonus"
+          ),
+          cashbackRule(
+            "amazon-mastercard-prime-bonus",
+            "Amazon Prime会員なら合計2%（会員資格の確認後）",
+            1,
+            source,
+            {
+              ...emptyConditions(),
+              merchantIDs: ["amazon"],
+              channels: ["online"],
+              enrollmentKey: "amazon-prime-member"
+            },
+            "amazon-mastercard-amazon-bonus"
+          )
+        ],
+        sources
+      };
+    }
+  },
+  {
     id: "saison-gold-premium",
     issuerID: "credit-saison",
     issuerName: "株式会社クレディセゾン",

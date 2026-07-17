@@ -1,5 +1,26 @@
 [
   {
+    "issuerID": "smbc-card",
+    "issuerName": "三井住友カード株式会社",
+    "aliases": [
+      "amazon",
+      "アマゾン",
+      "amazon.co.jp",
+      "prime",
+      "プライム",
+      "amazon prime",
+      "amazonプライム"
+    ],
+    "sourceURL": "https://www.smbc-card.com/nyukai/affiliate/amazon/index.jsp",
+    "observedAt": "2026-07-17T00:00:00Z",
+    "cards": [
+      {
+        "name": "Amazon Mastercard",
+        "officialURL": "https://www.smbc-card.com/nyukai/affiliate/amazon/index.jsp"
+      }
+    ]
+  },
+  {
     "issuerID": "viewcard",
     "issuerName": "株式会社ビューカード",
     "aliases": [

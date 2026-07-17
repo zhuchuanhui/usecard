@@ -170,6 +170,24 @@ final class MacAppModel {
         return (verified + pending).sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
     }
 
+    fileprivate func productsMatchingSearch(_ query: String) -> [CardProduct] {
+        let normalizedQuery = normalizedSearchText(query)
+        guard !normalizedQuery.isEmpty else { return products }
+
+        let relatedIdentities = Set(
+            officialLineupCandidates(for: query, in: bundledOfficialLineups).map {
+                cardIdentity(issuerID: $0.issuerID, name: $0.name)
+            }
+        )
+        return products.filter { product in
+            let directlyMatches = normalizedSearchText(product.name).contains(normalizedQuery)
+                || normalizedSearchText(product.issuerName).contains(normalizedQuery)
+            return directlyMatches || relatedIdentities.contains(
+                cardIdentity(issuerID: product.issuerID, name: product.name)
+            )
+        }
+    }
+
     func isHeld(_ cardID: String) -> Bool {
         heldCardIDs.contains(cardID)
     }
@@ -1882,11 +1900,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
 
     private var displayedProducts: [CardProduct] {
         let query = searchQuery
-        let normalizedQuery = normalizedCardSearchText(query)
-        let filtered = query.isEmpty ? model.products : model.products.filter {
-            normalizedCardSearchText($0.name).contains(normalizedQuery)
-                || normalizedCardSearchText($0.issuerName).contains(normalizedQuery)
-        }
+        let filtered = model.productsMatchingSearch(query)
         return filtered.sorted(by: isOrderedBefore)
     }
 

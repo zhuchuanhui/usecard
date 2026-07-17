@@ -88,6 +88,22 @@ let rakutenMarket = RecommendationEngine().rank(
 )
 precondition(rakutenMarket.owned.first?.immediateValueYen == 20)
 
+let amazon = RecommendationEngine().rank(
+    catalog: catalog,
+    intent: PurchaseIntent(
+        amountYen: 1_000,
+        merchantID: "amazon",
+        categoryID: "online-shopping",
+        paymentMethod: .online,
+        channel: .online,
+        frequency: .once,
+        purchaseDate: "2026-07-17"
+    ),
+    holdings: [UserHolding(cardID: "amazon-mastercard")]
+)
+precondition(amazon.owned.first?.card.id == "amazon-mastercard")
+precondition(amazon.owned.first?.immediateValueYen == 15)
+
 let alternativeSeven = AlternativePaymentRecommendationEngine().rank(
     catalog: alternativePayments,
     intent: PurchaseIntent(
