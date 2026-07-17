@@ -940,6 +940,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private let model: MacAppModel
     private let table = NSTableView()
     private let searchField = NSSearchField()
+    private let pasteButton = NSButton(title: "ペースト", target: nil, action: nil)
     private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。検索すると関連カードをオンラインの公式サイトから探せます。")
     private let officialSearchButton = NSButton(title: "公式候補リストを表示", target: nil, action: nil)
     private var catalogLookupWorkItem: DispatchWorkItem?
@@ -986,12 +987,14 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
         searchField.placeholderString = "カード名・発行会社を検索"
         searchField.delegate = self
         searchField.translatesAutoresizingMaskIntoConstraints = false
+        pasteButton.target = self
+        pasteButton.action = #selector(pasteCardName)
         officialSearchButton.target = self
         officialSearchButton.action = #selector(addFromOfficialSearch)
         officialSearchButton.isEnabled = false
         searchStatus.textColor = .secondaryLabelColor
         searchStatus.lineBreakMode = .byTruncatingTail
-        let controls = NSStackView(views: [searchField, officialSearchButton])
+        let controls = NSStackView(views: [searchField, pasteButton, officialSearchButton])
         controls.orientation = .horizontal
         controls.alignment = .centerY
         controls.spacing = 10
@@ -1042,6 +1045,20 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     }
 
     func controlTextDidChange(_ notification: Notification) {
+        applySearchChange()
+    }
+
+    @objc private func pasteCardName() {
+        guard let value = NSPasteboard.general.string(forType: .string) else {
+            searchStatus.stringValue = "クリップボードに貼り付けられる文字がありません。"
+            return
+        }
+        searchField.stringValue = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        applySearchChange()
+        view.window?.makeFirstResponder(searchField)
+    }
+
+    private func applySearchChange() {
         table.reloadData()
         updateSearchStatus()
         checkPublishedCatalogForMissingCard()
