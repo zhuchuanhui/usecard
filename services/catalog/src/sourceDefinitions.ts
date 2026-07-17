@@ -207,6 +207,64 @@ export const knownCardDefinitions: KnownCardDefinition[] = [
     }
   },
   {
+    id: "olive-flexible-pay-gold",
+    issuerID: "smbc-card",
+    issuerName: "三井住友カード株式会社",
+    name: "Oliveフレキシブルペイ ゴールド",
+    networks: ["visa"],
+    applicationURL: "https://www.smbc-card.com/olive_flexible_pay/card/index.jsp",
+    eligibilityNote: "日本国内在住の満20歳以上で本人に安定継続収入のある方（クレジットモード）",
+    pointProgramID: "v-point",
+    sourceURLs: [
+      "https://www.smbc-card.com/olive_flexible_pay/card/index.jsp",
+      "https://faq-nyukai.smbc-card.com/--69969b97f2e8a6717b2ae9d4"
+    ],
+    fallbackTexts: {
+      "https://www.smbc-card.com/olive_flexible_pay/card/index.jsp": "Oliveフレキシブルペイ ゴールド 年会費 5,500円 Vポイント 通常 ご利用金額200円(税込)につき1ポイント Visa 年間100万円のご利用で翌年度以降の年会費永年無料 クレジットモード 満20歳以上 安定継続収入",
+      "https://faq-nyukai.smbc-card.com/--69969b97f2e8a6717b2ae9d4": "Oliveフレキシブルペイ 一般・ゴールドについて、クレジットモードでは8%ポイント還元、デビットモードでは1.5%ポイント還元。対象のコンビニ・飲食店で、スマホのVisaのタッチ決済・Mastercardタッチ決済またはモバイルオーダーで支払うと、ご利用金額200円(税込)につき8%ポイント還元"
+    },
+    build(pages, sources) {
+      assertAnyText(pages, [/200円.{0,40}1ポイント/, /200円.{0,40}8%ポイント還元/], "olive-flexible-pay-gold rewards");
+      const baseSource = requiredSource(sources, 0, "olive-flexible-pay-gold");
+      return {
+        id: "olive-flexible-pay-gold",
+        issuerID: "smbc-card",
+        issuerName: "三井住友カード株式会社",
+        name: "Oliveフレキシブルペイ ゴールド",
+        networks: ["visa"],
+        annualFeeYen: 5_500,
+        applicationStatus: "open",
+        applicationURL: "https://www.smbc-card.com/olive_flexible_pay/card/index.jsp",
+        eligibilityNote: "日本国内在住の満20歳以上で本人に安定継続収入のある方（クレジットモード）。年間100万円利用で翌年度以降の年会費が永年無料となる条件は公式ページで確認してください。",
+        pointProgramID: "v-point",
+        benefitRules: [
+          pointsRule("olive-flexible-pay-gold-base", "通常還元", "v-point", 200, 1, baseSource),
+          pointsRule(
+            "olive-flexible-pay-gold-eligible-store-mobile-payment",
+            "対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダー（クレジットモード・通常還元に追加）",
+            "v-point",
+            200,
+            15,
+            requiredSource(sources, 1, "olive-flexible-pay-gold eligible stores"),
+            {
+              ...emptyConditions(),
+              merchantIDs: [
+                "seicomart", "seven-eleven", "poplar", "ministop", "lawson",
+                "mcdonalds", "mos-burger", "kfc", "yoshinoya", "saizeriya",
+                "gusto", "bamiya", "syabuyo", "jonathan", "yumean", "sukiya",
+                "hamazushi", "cocos", "doutor", "excelsior", "kappazushi"
+              ],
+              paymentMethods: ["mobileContactless", "applePay", "mobileOrder"],
+              activeFrom: "2026-02-01"
+            },
+            "olive-flexible-pay-gold-eligible-store-mobile-payment-bonus"
+          )
+        ],
+        sources
+      };
+    }
+  },
+  {
     id: "saison-gold-premium",
     issuerID: "credit-saison",
     issuerName: "株式会社クレディセゾン",

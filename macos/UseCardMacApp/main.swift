@@ -1882,9 +1882,10 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
 
     private var displayedProducts: [CardProduct] {
         let query = searchQuery
+        let normalizedQuery = normalizedCardSearchText(query)
         let filtered = query.isEmpty ? model.products : model.products.filter {
-            $0.name.localizedCaseInsensitiveContains(query)
-                || $0.issuerName.localizedCaseInsensitiveContains(query)
+            normalizedCardSearchText($0.name).contains(normalizedQuery)
+                || normalizedCardSearchText($0.issuerName).contains(normalizedQuery)
         }
         return filtered.sorted(by: isOrderedBefore)
     }
@@ -2426,6 +2427,13 @@ private func highlightedTextCell(_ text: String, matching query: String) -> NSTe
     return field
 }
 
+private func normalizedCardSearchText(_ value: String) -> String {
+    value
+        .precomposedStringWithCompatibilityMapping
+        .lowercased()
+        .replacingOccurrences(of: #"[\s　・()（）\[\]［］-]"#, with: "", options: .regularExpression)
+}
+
 private func highlightedText(_ text: String, matching query: String) -> NSAttributedString {
     let regularFont = NSFont.systemFont(ofSize: NSFont.systemFontSize)
     let result = NSMutableAttributedString(
@@ -2457,7 +2465,7 @@ private func highlightedText(_ text: String, matching query: String) -> NSAttrib
 
 private func highlightTerms(for query: String) -> [String] {
     var terms = [query]
-    let normalized = query.precomposedStringWithCompatibilityMapping.lowercased()
+    let normalized = normalizedCardSearchText(query)
     if normalized.contains("saison") || query.contains("セゾン") {
         terms.append("SAISON")
         terms.append("セゾン")
@@ -2465,6 +2473,11 @@ private func highlightTerms(for query: String) -> [String] {
     if normalized.contains("view") || query.contains("ビュー") {
         terms.append("VIEW")
         terms.append("ビュー")
+    }
+    if normalized.contains("olive") {
+        terms.append("Olive")
+        terms.append("フレキシブルペイ")
+        if normalized.contains("ゴールド") { terms.append("ゴールド") }
     }
     return Array(Set(terms.filter { !$0.isEmpty }))
 }
