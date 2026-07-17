@@ -157,14 +157,19 @@ final class MacAppModel {
             guard let self else { return }
             let cached = self.cachedMatches(for: normalizedQuery, in: indexedEntries)
             let officialIssuers = self.officialIssuers(registry: registryEntries, catalogProducts: catalogProducts)
-            self.searchOfficialWeb(
-                for: query,
-                issuers: officialIssuers,
-                catalogProducts: catalogProducts
-            ) { online in
-                let related = self.knownRelatedCandidates(for: query)
-                let candidates = self.deduplicateCandidates(related + cached + online, excluding: catalogProducts)
-                DispatchQueue.main.async { completion(.success(candidates)) }
+            self.fetchSaisonLineupCandidates(for: query) { saisonLineup in
+                self.searchOfficialWeb(
+                    for: query,
+                    issuers: officialIssuers,
+                    catalogProducts: catalogProducts
+                ) { online in
+                    let related = self.knownRelatedCandidates(for: query)
+                    let candidates = self.deduplicateCandidates(
+                        related + saisonLineup + cached + online,
+                        excluding: catalogProducts
+                    )
+                    DispatchQueue.main.async { completion(.success(candidates)) }
+                }
             }
         }
     }
@@ -314,7 +319,7 @@ final class MacAppModel {
         value
             .precomposedStringWithCompatibilityMapping
             .lowercased()
-            .replacingOccurrences(of: #"[\\s　・()（）\[\]［］-]"#, with: "", options: .regularExpression)
+            .replacingOccurrences(of: #"[\s　・()（）\[\]［］-]"#, with: "", options: .regularExpression)
     }
 
     private func cachedMatches(for query: String, in entries: [RemoteCardSearchEntry]) -> [RemoteCardSearchEntry] {
@@ -341,7 +346,7 @@ final class MacAppModel {
                 discovery: "公式の関連カード定義"
             ))
         }
-        if normalized.count >= 3 && (normalized.contains("saison") || "saison".contains(normalized) || normalized.contains("セゾン")) {
+        if isSaisonQuery(query) {
             candidates.append(RemoteCardSearchEntry(
                 issuerID: "credit-saison",
                 issuerName: "株式会社クレディセゾン",
@@ -352,6 +357,84 @@ final class MacAppModel {
             ))
         }
         return candidates
+    }
+
+    private func isSaisonQuery(_ query: String) -> Bool {
+        let normalized = normalizedSearchText(query)
+        guard normalized.count >= 3 else { return false }
+        return normalized.contains("saison")
+            || "saison".contains(normalized)
+            || normalized.contains("セゾン")
+            || "セゾン".contains(normalized)
+    }
+
+    private func fetchSaisonLineupCandidates(
+        for query: String,
+        completion: @escaping ([RemoteCardSearchEntry]) -> Void
+    ) {
+        guard isSaisonQuery(query) else {
+            completion([])
+            return
+        }
+
+        let lineupURL = URL(string: "https://www.saisoncard.co.jp/creditcard/lineup/")!
+        var request = URLRequest(url: lineupURL)
+        request.setValue("UseCard/1.0 (official card catalog lookup)", forHTTPHeaderField: "User-Agent")
+        URLSession.shared.dataTask(with: request) { [weak self] data, response, _ in
+            guard let self, let data else {
+                completion([])
+                return
+            }
+            guard (try? self.requireSuccessfulResponse(response)) != nil else {
+                completion([])
+                return
+            }
+            completion(self.parseSaisonLineupCandidates(from: data))
+        }.resume()
+    }
+
+    private func parseSaisonLineupCandidates(from data: Data) -> [RemoteCardSearchEntry] {
+        guard let html = String(data: data, encoding: .utf8),
+              let expression = try? NSRegularExpression(
+                pattern: #"<a\s+[^>]*href="([^"]*/creditcard/lineup/[^"?#]+/?)[^"]*"[^>]*>([^<]+)</a>"#,
+                options: [.caseInsensitive]
+              ) else {
+            return []
+        }
+
+        let pageURL = URL(string: "https://www.saisoncard.co.jp/creditcard/lineup/")!
+        let htmlRange = NSRange(html.startIndex..<html.endIndex, in: html)
+        var seenURLs = Set<String>()
+        var candidates: [RemoteCardSearchEntry] = []
+        expression.enumerateMatches(in: html, options: [], range: htmlRange) { match, _, _ in
+            guard let match,
+                  let hrefRange = Range(match.range(at: 1), in: html),
+                  let nameRange = Range(match.range(at: 2), in: html),
+                  let officialURL = URL(string: String(html[hrefRange]), relativeTo: pageURL)?.absoluteURL else {
+                return
+            }
+            let name = self.decodedHTMLText(String(html[nameRange]))
+            guard !name.isEmpty, seenURLs.insert(officialURL.absoluteString).inserted else { return }
+            candidates.append(RemoteCardSearchEntry(
+                issuerID: "credit-saison",
+                issuerName: "株式会社クレディセゾン",
+                name: name,
+                officialURL: officialURL,
+                observedAt: ISO8601DateFormatter().string(from: Date()),
+                discovery: "公式ラインナップ"
+            ))
+        }
+        return candidates
+    }
+
+    private func decodedHTMLText(_ text: String) -> String {
+        text
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+            .replacingOccurrences(of: "&#39;", with: "'")
+            .replacingOccurrences(of: "&quot;", with: "\"")
+            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func relatedSearchTerms(for query: String) -> [String] {
@@ -584,14 +667,14 @@ final class MacAppModel {
                 && seen.insert(candidate.officialURL.absoluteString).inserted
         }
         return unique.sorted { left, right in
-            let leftPriority = left.discovery?.contains("公式の") == true ? 0 : 1
-            let rightPriority = right.discovery?.contains("公式の") == true ? 0 : 1
+            let leftPriority = left.discovery?.contains("公式") == true ? 0 : 1
+            let rightPriority = right.discovery?.contains("公式") == true ? 0 : 1
             if leftPriority != rightPriority { return leftPriority < rightPriority }
             let leftIsGold = left.name.localizedCaseInsensitiveContains("ゴールド")
             let rightIsGold = right.name.localizedCaseInsensitiveContains("ゴールド")
             if leftIsGold != rightIsGold { return leftIsGold }
             return left.name.localizedCompare(right.name) == .orderedAscending
-        }.prefix(12).map { $0 }
+        }
     }
 
     private static func loadPendingCards() -> [PendingCardRecord] {
@@ -1082,7 +1165,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
         let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return }
         officialSearchButton.isEnabled = false
-        searchStatus.stringValue = "「\(query)」と関連するゴールドカードをオンラインの公式サイトから確認中…"
+        searchStatus.stringValue = "「\(query)」の公式カード一覧を確認中…"
         model.lookupOfficialCandidates(named: query) { [weak self] result in
             guard let self else { return }
             switch result {
@@ -1100,8 +1183,12 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
 
     private func presentOfficialCandidates(_ candidates: [RemoteCardSearchEntry]) {
         let alert = NSAlert()
-        alert.messageText = "公式ページ候補を見つけました"
-        alert.informativeText = "発行会社の公式ドメインに一致するページだけを表示しています。追加すると保有カードとして記録します。還元条件は公式データで検証されるまで、おすすめ計算には使用しません。"
+        let previewCount = 8
+        let preview = candidates.prefix(previewCount).map { "・\($0.name)" }.joined(separator: "\n")
+        let remaining = candidates.count - previewCount
+        let suffix = remaining > 0 ? "\nほか\(remaining)件" : ""
+        alert.messageText = "公式ページ候補（\(candidates.count)件）"
+        alert.informativeText = "発行会社の公式ドメインに一致するページだけを表示しています。\n\n候補一覧:\n\(preview)\(suffix)\n\n下の一覧から1枚を選んで追加できます。還元条件は公式データで検証されるまで、おすすめ計算には使用しません。"
         alert.addButton(withTitle: "保有カードに追加")
         alert.addButton(withTitle: "キャンセル")
         let picker = NSPopUpButton(frame: NSRect(x: 0, y: 0, width: 430, height: 28), pullsDown: false)
