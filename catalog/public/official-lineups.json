@@ -1,0 +1,82 @@
+[
+  {
+    "issuerID": "viewcard",
+    "issuerName": "株式会社ビューカード",
+    "aliases": ["view", "ビュー", "ビューカード"],
+    "sourceURL": "https://www.jreast.co.jp/card/first/index.html",
+    "observedAt": "2026-07-17T00:00:00Z",
+    "cards": [
+      {
+        "name": "ビューカード スタンダード",
+        "officialURL": "https://www.jreast.co.jp/card/first/viewcardstandard.html"
+      },
+      {
+        "name": "ビューカード スタンダード（リボ払い専用）",
+        "officialURL": "https://www.jreast.co.jp/card/first/rev.html"
+      },
+      {
+        "name": "ビューカード ゴールド",
+        "officialURL": "https://www.jreast.co.jp/card/first/viewcardgold/"
+      },
+      {
+        "name": "JRE CARD",
+        "officialURL": "https://www.jreast.co.jp/card/first/jrecard.html"
+      },
+      {
+        "name": "ルミネカード",
+        "officialURL": "https://www.jreast.co.jp/card/first/lumine.html"
+      },
+      {
+        "name": "JALカードSuica 普通カード",
+        "officialURL": "https://www.jreast.co.jp/card/first/jalsuica/"
+      },
+      {
+        "name": "JALカードSuica CLUB-Aカード",
+        "officialURL": "https://www.jreast.co.jp/card/first/jalsuica/"
+      },
+      {
+        "name": "JALカードSuica CLUB-Aゴールドカード",
+        "officialURL": "https://www.jreast.co.jp/card/first/jalsuicagold/"
+      },
+      {
+        "name": "大人の休日倶楽部ミドルカード",
+        "officialURL": "https://www.jreast.co.jp/card/first/otokyumiddle.html"
+      },
+      {
+        "name": "大人の休日倶楽部ジパングカード",
+        "officialURL": "https://www.jreast.co.jp/card/first/otokyu.html"
+      },
+      {
+        "name": "ビックカメラSuicaカード",
+        "officialURL": "https://www.jreast.co.jp/card/first/bic/"
+      }
+    ]
+  },
+  {
+    "issuerID": "viewcard-partners",
+    "issuerName": "ビューカード提携各社",
+    "aliases": ["view", "ビュー", "ビューカード", "suica"],
+    "sourceURL": "https://www.jreast.co.jp/card/first/type2/",
+    "observedAt": "2026-07-17T00:00:00Z",
+    "cards": [
+      {
+        "issuerID": "aeon-bank",
+        "issuerName": "株式会社イオン銀行",
+        "name": "イオンSuicaカード",
+        "officialURL": "https://www.aeon.co.jp/rd/aaqr/?qr=700003"
+      },
+      {
+        "issuerID": "yokohama-bank",
+        "issuerName": "株式会社横浜銀行",
+        "name": "横浜バンクカードSuica",
+        "officialURL": "https://www.boy.co.jp/kojin/bankcard/index.html"
+      },
+      {
+        "issuerID": "smbc-card",
+        "issuerName": "三井住友カード株式会社",
+        "name": "ANA VISA Suicaカード",
+        "officialURL": "https://www.smbc-card.com/nyukai/affiliate/anasuica/index.jsp"
+      }
+    ]
+  }
+]

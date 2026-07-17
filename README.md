@@ -21,7 +21,7 @@
 - `ios/UseCardApp`: SwiftUI、SwiftData、CloudKitのiOSアプリ
 - `Sources/UseCardCore`: カタログ型と端末内推薦エンジン
 - `services/catalog`: 公式ページの収集、厳格抽出、検証、配信処理
-- `catalog/public`: アプリ配信用のmanifestとバージョン付きカタログ
+- `catalog/public`: アプリ配信用のmanifest、バージョン付きカタログ、公式ラインナップ候補
 - `catalog/discovery`: 発行会社・商品ページの探索結果と昇格レポート
 
 ## 起動
@@ -72,7 +72,7 @@ npm run promote
 npm run update
 ```
 
-`update`は全検証を通過してから`catalog/public/latest.json`、公式ページ検索用の`search-index.json`、manifestを差し替えます。公式ページが取得不能、値が欠落、還元率が異常、スキーマが不整合の場合は公開処理を失敗させ、GitHub Pages上の直前版を維持します。SMBC公式ページは現在この実行環境から403になるため、確認済み値を`unavailable`状態で保持し、アプリに再確認警告を出します。
+`update`は全検証を通過してから`catalog/public/latest.json`、公式ページ検索用の`search-index.json`、公式ラインナップ候補、manifestを差し替えます。公式ページが取得不能、値が欠落、還元率が異常、スキーマが不整合の場合は公開処理を失敗させ、GitHub Pages上の直前版を維持します。公式ラインナップは`catalog/config/official-card-lineups.json`で発行会社ごとに追加でき、未検証の候補は保有登録のみ可能でおすすめ計算には使いません。SMBC公式ページは現在この実行環境から403になるため、確認済み値を`unavailable`状態で保持し、アプリに再確認警告を出します。
 
 GitHubへ公開後は、`.github/workflows/catalog-update.yml`が6時間ごとに既知カードの仕様を検証・配信し、`.github/workflows/issuer-discovery.yml`が毎月JCCA会員会社の公式商品ページを再探索して新規カードを検証・配信します。アプリの初期配信URLは`https://zhuchuanhui.github.io/usecard/`で、設定画面から変更できます。
 

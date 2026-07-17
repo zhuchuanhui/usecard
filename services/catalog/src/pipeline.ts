@@ -23,6 +23,20 @@ export interface PipelineResult {
   registry: IssuerRegistryEntry[];
 }
 
+interface OfficialCardLineup {
+  issuerID: string;
+  issuerName: string;
+  aliases: string[];
+  sourceURL: string;
+  observedAt: string;
+  cards: Array<{
+    issuerID?: string;
+    issuerName?: string;
+    name: string;
+    officialURL: string;
+  }>;
+}
+
 export async function buildCatalog(outputRoot: string): Promise<PipelineResult> {
   const priorProductsByID = new Map(
     (await loadPublishedProducts(outputRoot)).map((product) => [product.id, product])
@@ -100,6 +114,7 @@ export async function buildCatalog(outputRoot: string): Promise<PipelineResult> 
   const catalogJSON = `${JSON.stringify(catalog, null, 2)}\n`;
   const catalogFile = `catalog-${version}.json`;
   const searchIndex = await loadCardSearchIndex(outputRoot);
+  const officialLineups = await loadOfficialCardLineups(outputRoot);
   const sha256 = createHash("sha256").update(catalogJSON).digest("hex");
   const manifest: CatalogManifest = {
     schemaVersion: 1,
@@ -115,7 +130,7 @@ export async function buildCatalog(outputRoot: string): Promise<PipelineResult> 
     }
   };
 
-  await publishAtomically(outputRoot, catalogFile, catalogJSON, manifest, registry, searchIndex);
+  await publishAtomically(outputRoot, catalogFile, catalogJSON, manifest, registry, searchIndex, officialLineups);
   return { catalog, manifest, registry };
 }
 
@@ -135,6 +150,15 @@ async function loadCardSearchIndex(outputRoot: string): Promise<CardSearchIndexE
   } catch {
     return [];
   }
+}
+
+async function loadOfficialCardLineups(outputRoot: string): Promise<OfficialCardLineup[]> {
+  const path = resolve(outputRoot, "../config/official-card-lineups.json");
+  const lineups = JSON.parse(await readFile(path, "utf8")) as unknown;
+  if (!Array.isArray(lineups)) {
+    throw new Error("official-card-lineups.json must contain an array");
+  }
+  return lineups as OfficialCardLineup[];
 }
 
 async function loadPublishedProducts(outputRoot: string): Promise<CardProduct[]> {
@@ -184,7 +208,8 @@ async function publishAtomically(
   catalogJSON: string,
   manifest: CatalogManifest,
   registry: IssuerRegistryEntry[],
-  searchIndex: CardSearchIndexEntry[]
+  searchIndex: CardSearchIndexEntry[],
+  officialLineups: OfficialCardLineup[]
 ): Promise<void> {
   const root = resolve(outputRoot);
   const staging = join(dirname(root), ".staging", basename(root));
@@ -197,8 +222,9 @@ async function publishAtomically(
     await writeFile(join(staging, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
     await writeFile(join(staging, "issuers.json"), `${JSON.stringify(registry, null, 2)}\n`);
     await writeFile(join(staging, "search-index.json"), `${JSON.stringify(searchIndex, null, 2)}\n`);
+    await writeFile(join(staging, "official-lineups.json"), `${JSON.stringify(officialLineups, null, 2)}\n`);
     await mkdir(root, { recursive: true });
-    for (const file of [catalogFile, "latest.json", "manifest.json", "issuers.json", "search-index.json"]) {
+    for (const file of [catalogFile, "latest.json", "manifest.json", "issuers.json", "search-index.json", "official-lineups.json"]) {
       await rm(join(root, file), { force: true });
       await rename(join(staging, file), join(root, file));
     }

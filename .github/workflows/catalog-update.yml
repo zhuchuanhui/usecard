@@ -41,6 +41,7 @@ jobs:
           jq -e '.schemaVersion == 1 and .productCount > 0' catalog/public/manifest.json
           jq -e '.schemaVersion == 1 and (.products | length) > 0' catalog/public/latest.json
           jq -e 'type == "array"' catalog/public/search-index.json
+          jq -e 'type == "array" and all(.[]; (.issuerID | type == "string") and (.cards | type == "array"))' catalog/public/official-lineups.json
       - name: Commit verified catalog history
         run: |
           git config user.name "usecard-catalog-bot"

@@ -17,3 +17,5 @@ swiftc \
 
 jq -e '.schemaVersion == 1 and (.products | length) > 0' catalog/public/latest.json >/dev/null
 jq -e '.schemaVersion == 1 and .productCount > 0' catalog/public/manifest.json >/dev/null
+jq -e 'type == "array" and all(.[]; (.issuerID | type == "string") and (.cards | type == "array"))' catalog/public/official-lineups.json >/dev/null
+cmp -s catalog/config/official-card-lineups.json catalog/public/official-lineups.json

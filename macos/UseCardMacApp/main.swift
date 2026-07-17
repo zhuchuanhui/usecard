@@ -69,6 +69,7 @@ final class MacAppModel {
     private static let pendingCardsKey = "jp.usecard.macos.pending-official-cards"
     private let decoder = JSONDecoder()
     private let remoteBaseURL = URL(string: "https://zhuchuanhui.github.io/usecard/")!
+    private let bundledOfficialLineups: [RemoteOfficialLineup]
 
     private(set) var catalog: CardCatalog?
     private(set) var catalogStatus = "同梱カタログを読み込みました"
@@ -76,6 +77,7 @@ final class MacAppModel {
     private var pendingCards: [PendingCardRecord]
 
     init() {
+        bundledOfficialLineups = Self.loadBundledOfficialLineups()
         let savedIDs = Set(UserDefaults.standard.stringArray(forKey: Self.heldCardIDsKey) ?? [])
         heldCardIDs = Set(savedIDs.filter { !$0.hasPrefix("manual-") })
         if heldCardIDs != savedIDs {
@@ -128,6 +130,7 @@ final class MacAppModel {
         let lock = NSLock()
         var indexedEntries: [RemoteCardSearchEntry] = []
         var registryEntries: [RemoteIssuerEntry] = []
+        var officialLineups = bundledOfficialLineups
 
         func fetch<T: Decodable>(_ url: URL, type: T.Type, assign: @escaping (T) -> Void) {
             group.enter()
@@ -152,10 +155,14 @@ final class MacAppModel {
         fetch(remoteBaseURL.appending(path: "issuers.json"), type: [RemoteIssuerEntry].self) {
             registryEntries = $0
         }
+        fetch(remoteBaseURL.appending(path: "official-lineups.json"), type: [RemoteOfficialLineup].self) {
+            officialLineups = $0
+        }
 
         group.notify(queue: .global(qos: .userInitiated)) { [weak self] in
             guard let self else { return }
             let cached = self.cachedMatches(for: normalizedQuery, in: indexedEntries)
+            let lineupCandidates = self.officialLineupCandidates(for: query, in: officialLineups)
             let officialIssuers = self.officialIssuers(registry: registryEntries, catalogProducts: catalogProducts)
             self.fetchSaisonLineupCandidates(for: query) { saisonLineup in
                 self.searchOfficialWeb(
@@ -165,7 +172,7 @@ final class MacAppModel {
                 ) { online in
                     let related = self.knownRelatedCandidates(for: query)
                     let candidates = self.deduplicateCandidates(
-                        related + saisonLineup + cached + online,
+                        related + lineupCandidates + saisonLineup + cached + online,
                         excluding: catalogProducts
                     )
                     DispatchQueue.main.async { completion(.success(candidates)) }
@@ -333,6 +340,40 @@ final class MacAppModel {
         }
     }
 
+    private func officialLineupCandidates(
+        for query: String,
+        in lineups: [RemoteOfficialLineup]
+    ) -> [RemoteCardSearchEntry] {
+        let terms = relatedSearchTerms(for: query)
+            .map(normalizedSearchText)
+            .filter { !$0.isEmpty }
+        guard !terms.isEmpty else { return [] }
+
+        return lineups.flatMap { lineup in
+            let issuerTerms = ([lineup.issuerName] + lineup.aliases)
+                .map(normalizedSearchText)
+                .filter { !$0.isEmpty }
+            let issuerMatches = terms.contains { term in
+                issuerTerms.contains { issuerTerm in
+                    issuerTerm.contains(term) || term.contains(issuerTerm)
+                }
+            }
+            return lineup.cards.compactMap { card -> RemoteCardSearchEntry? in
+                let name = normalizedSearchText(card.name)
+                let nameMatches = terms.contains { term in name.contains(term) || term.contains(name) }
+                guard issuerMatches || nameMatches else { return nil }
+                return RemoteCardSearchEntry(
+                    issuerID: card.issuerID ?? lineup.issuerID,
+                    issuerName: card.issuerName ?? lineup.issuerName,
+                    name: card.name,
+                    officialURL: card.officialURL,
+                    observedAt: lineup.observedAt,
+                    discovery: "公式ラインナップ"
+                )
+            }
+        }
+    }
+
     private func knownRelatedCandidates(for query: String) -> [RemoteCardSearchEntry] {
         let normalized = normalizedSearchText(query)
         var candidates: [RemoteCardSearchEntry] = []
@@ -477,6 +518,12 @@ final class MacAppModel {
                 name: "株式会社クレディセゾン",
                 host: "saisoncard.co.jp",
                 aliases: ["saison", "セゾン"]
+            ),
+            OfficialIssuer(
+                id: "viewcard",
+                name: "株式会社ビューカード",
+                host: "jreast.co.jp",
+                aliases: ["view", "ビュー", "ビューカード"]
             )
         ]
         var seen = Set<String>()
@@ -671,11 +718,11 @@ final class MacAppModel {
         _ candidates: [RemoteCardSearchEntry],
         excluding catalogProducts: [CardProduct]
     ) -> [RemoteCardSearchEntry] {
-        let knownURLs = Set(catalogProducts.map { $0.applicationURL.absoluteString })
+        let knownIdentities = Set(catalogProducts.map { cardIdentity(issuerID: $0.issuerID, name: $0.name) })
         var seen = Set<String>()
         let unique = candidates.filter { candidate in
-            !knownURLs.contains(candidate.officialURL.absoluteString)
-                && seen.insert(candidate.officialURL.absoluteString).inserted
+            let identity = cardIdentity(issuerID: candidate.issuerID, name: candidate.name)
+            return !knownIdentities.contains(identity) && seen.insert(identity).inserted
         }
         return unique.sorted { left, right in
             let leftPriority = left.discovery?.contains("公式") == true ? 0 : 1
@@ -691,6 +738,14 @@ final class MacAppModel {
     private static func loadPendingCards() -> [PendingCardRecord] {
         guard let data = UserDefaults.standard.data(forKey: pendingCardsKey) else { return [] }
         return (try? JSONDecoder().decode([PendingCardRecord].self, from: data)) ?? []
+    }
+
+    private static func loadBundledOfficialLineups() -> [RemoteOfficialLineup] {
+        guard let url = Bundle.main.url(forResource: "official-lineups", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else {
+            return []
+        }
+        return (try? JSONDecoder().decode([RemoteOfficialLineup].self, from: data)) ?? []
     }
 
     private func savePendingCards() {
@@ -718,6 +773,22 @@ fileprivate struct RemoteCardSearchEntry: Decodable, Hashable {
 
 private struct RemoteIssuerEntry: Decodable {
     let id: String
+    let name: String
+    let officialURL: URL
+}
+
+private struct RemoteOfficialLineup: Decodable {
+    let issuerID: String
+    let issuerName: String
+    let aliases: [String]
+    let sourceURL: URL
+    let observedAt: String
+    let cards: [RemoteOfficialLineupCard]
+}
+
+private struct RemoteOfficialLineupCard: Decodable {
+    let issuerID: String?
+    let issuerName: String?
     let name: String
     let officialURL: URL
 }
@@ -1528,6 +1599,10 @@ private func highlightTerms(for query: String) -> [String] {
     if normalized.contains("saison") || query.contains("セゾン") {
         terms.append("SAISON")
         terms.append("セゾン")
+    }
+    if normalized.contains("view") || query.contains("ビュー") {
+        terms.append("VIEW")
+        terms.append("ビュー")
     }
     return Array(Set(terms.filter { !$0.isEmpty }))
 }
