@@ -42,6 +42,7 @@ if (command === "update") {
   const input = resolve(process.cwd(), "../../catalog/discovery/candidates.json");
   const output = resolve(process.cwd(), "../../catalog/config/generic-products.json");
   const reportOutput = resolve(process.cwd(), "../../catalog/discovery/promotion-report.json");
+  const searchIndexOutput = resolve(process.cwd(), "../../catalog/discovery/card-search-index.json");
   const candidates = JSON.parse(await readFile(input, "utf8")) as ProductPageCandidate[];
   const priorVerified = await readProductSnapshots(output);
   const result = await promoteCandidates(candidates);
@@ -60,6 +61,7 @@ if (command === "update") {
   await mkdir(resolve(output, ".."), { recursive: true });
   await writeFile(output, `${JSON.stringify(products, null, 2)}\n`);
   await writeFile(reportOutput, `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(searchIndexOutput, `${JSON.stringify(result.searchIndex, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
 } else {
   console.error(`Unknown command: ${command}`);

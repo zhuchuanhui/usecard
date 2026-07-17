@@ -3,5 +3,7 @@
   "fetchedCount": 1260,
   "promotedCount": 23,
   "skippedCount": 1376,
-  "failedDomainCount": 1
+  "failedDomainCount": 1,
+  "retainedCount": 2,
+  "publishedProductCount": 25
 }

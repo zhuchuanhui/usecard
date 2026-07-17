@@ -19,8 +19,17 @@ export interface PromotionReport {
   failedDomainCount: number;
 }
 
+export interface CardSearchIndexEntry {
+  issuerID: string;
+  issuerName: string;
+  name: string;
+  officialURL: string;
+  observedAt: string;
+}
+
 export interface PromotionResult {
   products: CardProduct[];
+  searchIndex: CardSearchIndexEntry[];
   report: PromotionReport;
 }
 
@@ -98,6 +107,7 @@ export async function promoteCandidates(
 
   const groups = [...byDomain.values()];
   const promoted: CardProduct[] = [];
+  const searchIndex: CardSearchIndexEntry[] = [];
   let fetchedCount = 0;
   let failedDomainCount = 0;
   let cursor = 0;
@@ -114,6 +124,16 @@ export async function promoteCandidates(
           fetchedCount += 1;
           fetchedOnDomain += 1;
           consecutiveFailures = 0;
+          const name = extractSearchName(page.html);
+          if (name) {
+            searchIndex.push({
+              issuerID: candidate.issuerID,
+              issuerName: candidate.issuerName,
+              name,
+              officialURL: page.url,
+              observedAt: page.fetchedAt
+            });
+          }
           const product = extractGenericProduct(page, candidate);
           if (product) promoted.push(product);
         } catch {
@@ -128,8 +148,10 @@ export async function promoteCandidates(
 
   await Promise.all(Array.from({ length: Math.min(concurrency, groups.length) }, worker));
   const products = deduplicateProducts(promoted);
+  const indexed = deduplicateSearchIndex(searchIndex);
   return {
     products,
+    searchIndex: indexed,
     report: {
       candidateCount: candidates.length,
       fetchedCount,
@@ -138,6 +160,35 @@ export async function promoteCandidates(
       failedDomainCount
     }
   };
+}
+
+function extractSearchName(html: string): string | undefined {
+  const $ = cheerio.load(html);
+  const values = [
+    $("h1").first().text(),
+    $('meta[property="og:title"]').attr("content") ?? "",
+    $("title").text()
+  ];
+  for (const value of values) {
+    const cleaned = value
+      .normalize("NFKC")
+      .replace(/\s+/g, " ")
+      .split(/\s*[|｜]\s*/)[0]!
+      .replace(/^【公式】\s*/, "")
+      .trim();
+    if (cleaned.length < 3 || cleaned.length > 120) continue;
+    if (GENERIC_NAME.test(cleaned) || NON_PRODUCT_NAME.test(cleaned)) continue;
+    if (!/(?:カード|Card|VISA|Visa|Mastercard|JCB|AMEX|アメリカン)/i.test(cleaned)) continue;
+    return cleaned;
+  }
+  return undefined;
+}
+
+function deduplicateSearchIndex(entries: CardSearchIndexEntry[]): CardSearchIndexEntry[] {
+  const values = new Map(entries.map((entry) => [entry.officialURL, entry]));
+  return [...values.values()].sort((left, right) =>
+    left.name.localeCompare(right.name, "ja") || left.officialURL.localeCompare(right.officialURL)
+  );
 }
 
 export function mergePromotedProducts(

@@ -66,12 +66,14 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
 final class MacAppModel {
     private static let heldCardIDsKey = "jp.usecard.macos.held-card-ids"
     private static let retiredManualCardsKey = "jp.usecard.macos.manual-cards"
+    private static let pendingCardsKey = "jp.usecard.macos.pending-official-cards"
     private let decoder = JSONDecoder()
     private let remoteBaseURL = URL(string: "https://zhuchuanhui.github.io/usecard/")!
 
     private(set) var catalog: CardCatalog?
     private(set) var catalogStatus = "同梱カタログを読み込みました"
     private(set) var heldCardIDs: Set<String>
+    private var pendingCards: [PendingCardRecord]
 
     init() {
         let savedIDs = Set(UserDefaults.standard.stringArray(forKey: Self.heldCardIDsKey) ?? [])
@@ -80,11 +82,17 @@ final class MacAppModel {
             UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
         }
         UserDefaults.standard.removeObject(forKey: Self.retiredManualCardsKey)
+        pendingCards = Self.loadPendingCards()
         loadBundledCatalog()
     }
 
     var products: [CardProduct] {
-        (catalog?.products ?? []).sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
+        let verified = catalog?.products ?? []
+        let verifiedIdentities = Set(verified.map { cardIdentity(issuerID: $0.issuerID, name: $0.name) })
+        let pending = pendingCards
+            .filter { !verifiedIdentities.contains(cardIdentity(issuerID: $0.issuerID, name: $0.name)) }
+            .map(pendingProduct)
+        return (verified + pending).sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
     }
 
     func isHeld(_ cardID: String) -> Bool {
@@ -104,6 +112,63 @@ final class MacAppModel {
         guard let catalog else { return nil }
         let holdings = heldCardIDs.map { UserHolding(cardID: $0) }
         return RecommendationEngine().rank(catalog: catalog, intent: intent, holdings: holdings)
+    }
+
+    fileprivate func lookupOfficialCandidates(
+        named query: String,
+        completion: @escaping (Result<[RemoteCardSearchEntry], Error>) -> Void
+    ) {
+        let normalizedQuery = normalizedSearchText(query)
+        guard !normalizedQuery.isEmpty else {
+            completion(.success([]))
+            return
+        }
+        let indexURL = remoteBaseURL.appending(path: "search-index.json")
+        URLSession.shared.dataTask(with: indexURL) { [weak self] data, response, error in
+            guard let self else { return }
+            let result: Result<[RemoteCardSearchEntry], Error> = Result {
+                if let error { throw error }
+                guard let data else { throw CatalogRefreshError.badResponse }
+                try self.requireSuccessfulResponse(response)
+                let entries = try self.decoder.decode([RemoteCardSearchEntry].self, from: data)
+                let matches = entries.filter { entry in
+                    let cardName = self.normalizedSearchText(entry.name)
+                    let issuerName = self.normalizedSearchText(entry.issuerName)
+                    return cardName.contains(normalizedQuery)
+                        || issuerName.contains(normalizedQuery)
+                        || normalizedQuery.contains(cardName)
+                }
+                var seenURLs = Set<String>()
+                return matches.filter { seenURLs.insert($0.officialURL.absoluteString).inserted }.prefix(12).map { $0 }
+            }
+            DispatchQueue.main.async { completion(result) }
+        }.resume()
+    }
+
+    fileprivate func addPendingCard(_ entry: RemoteCardSearchEntry) {
+        if let verified = catalog?.products.first(where: {
+            cardIdentity(issuerID: $0.issuerID, name: $0.name) == cardIdentity(issuerID: entry.issuerID, name: entry.name)
+        }) {
+            setHeld(true, cardID: verified.id)
+            return
+        }
+        if let existing = pendingCards.first(where: {
+            cardIdentity(issuerID: $0.issuerID, name: $0.name) == cardIdentity(issuerID: entry.issuerID, name: entry.name)
+        }) {
+            setHeld(true, cardID: existing.id)
+            return
+        }
+        let pending = PendingCardRecord(
+            id: "pending-\(UUID().uuidString.lowercased())",
+            issuerID: entry.issuerID,
+            issuerName: entry.issuerName,
+            name: entry.name,
+            officialURL: entry.officialURL,
+            observedAt: entry.observedAt
+        )
+        pendingCards.append(pending)
+        savePendingCards()
+        setHeld(true, cardID: pending.id)
     }
 
     func refreshCatalog(completion: @escaping () -> Void) {
@@ -135,6 +200,7 @@ final class MacAppModel {
                         switch result {
                         case .success(let catalog):
                             self.catalog = catalog
+                            self.reconcilePendingCards()
                             self.catalogStatus = "自動更新データ: \(catalog.version)"
                         case .failure:
                             self.catalogStatus = "更新サーバーに接続できないため、同梱カタログを使用中"
@@ -157,6 +223,7 @@ final class MacAppModel {
                 throw CatalogRefreshError.missingBundledCatalog
             }
             catalog = try decoder.decode(CardCatalog.self, from: Data(contentsOf: url))
+            reconcilePendingCards()
         } catch {
             catalogStatus = "同梱カタログを読み込めません"
         }
@@ -172,6 +239,70 @@ final class MacAppModel {
         SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
     }
 
+    private func reconcilePendingCards() {
+        guard let catalog else { return }
+        var reconciled = false
+        pendingCards.removeAll { pending in
+            guard let verified = catalog.products.first(where: {
+                cardIdentity(issuerID: $0.issuerID, name: $0.name) == cardIdentity(issuerID: pending.issuerID, name: pending.name)
+            }) else {
+                return false
+            }
+            if heldCardIDs.remove(pending.id) != nil {
+                heldCardIDs.insert(verified.id)
+                UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
+            }
+            reconciled = true
+            return true
+        }
+        if reconciled { savePendingCards() }
+    }
+
+    private func pendingProduct(_ pending: PendingCardRecord) -> CardProduct {
+        CardProduct(
+            id: pending.id,
+            issuerID: pending.issuerID,
+            issuerName: pending.issuerName,
+            name: pending.name,
+            networks: [],
+            annualFeeYen: 0,
+            applicationStatus: .suspended,
+            applicationURL: pending.officialURL,
+            eligibilityNote: "公式ページを確認済みです。還元条件を検証中のため、おすすめ計算には使用しません。",
+            pointProgramID: nil,
+            benefitRules: [],
+            sources: [
+                SourceEvidence(
+                    url: pending.officialURL,
+                    observedAt: pending.observedAt,
+                    contentHash: pending.id,
+                    freshness: .stale
+                )
+            ]
+        )
+    }
+
+    private func cardIdentity(issuerID: String, name: String) -> String {
+        "\(issuerID):\(normalizedSearchText(name))"
+    }
+
+    private func normalizedSearchText(_ value: String) -> String {
+        value
+            .precomposedStringWithCompatibilityMapping
+            .lowercased()
+            .replacingOccurrences(of: #"[\\s　・()（）\[\]［］-]"#, with: "", options: .regularExpression)
+    }
+
+    private static func loadPendingCards() -> [PendingCardRecord] {
+        guard let data = UserDefaults.standard.data(forKey: pendingCardsKey) else { return [] }
+        return (try? JSONDecoder().decode([PendingCardRecord].self, from: data)) ?? []
+    }
+
+    private func savePendingCards() {
+        let data = try? JSONEncoder().encode(pendingCards)
+        UserDefaults.standard.set(data, forKey: Self.pendingCardsKey)
+    }
+
 }
 
 private struct RemoteManifest: Decodable {
@@ -179,6 +310,23 @@ private struct RemoteManifest: Decodable {
     let catalogVersion: String
     let path: String
     let sha256: String
+}
+
+fileprivate struct RemoteCardSearchEntry: Decodable, Hashable {
+    let issuerID: String
+    let issuerName: String
+    let name: String
+    let officialURL: URL
+    let observedAt: String
+}
+
+private struct PendingCardRecord: Codable, Hashable {
+    let id: String
+    let issuerID: String
+    let issuerName: String
+    let name: String
+    let officialURL: URL
+    let observedAt: String
 }
 
 private enum CatalogRefreshError: Error {
@@ -374,7 +522,8 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private let model: MacAppModel
     private let table = NSTableView()
     private let searchField = NSSearchField()
-    private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。未掲載カードは定期的な公式サイト探索で追加されます。")
+    private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。未掲載カードは公式ページ候補から追加できます。")
+    private let officialSearchButton = NSButton(title: "公式ページから追加", target: nil, action: nil)
     private var catalogLookupWorkItem: DispatchWorkItem?
 
     init(model: MacAppModel) {
@@ -419,9 +568,12 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
         searchField.placeholderString = "カード名・発行会社を検索"
         searchField.delegate = self
         searchField.translatesAutoresizingMaskIntoConstraints = false
+        officialSearchButton.target = self
+        officialSearchButton.action = #selector(addFromOfficialSearch)
+        officialSearchButton.isEnabled = false
         searchStatus.textColor = .secondaryLabelColor
         searchStatus.lineBreakMode = .byTruncatingTail
-        let controls = NSStackView(views: [searchField])
+        let controls = NSStackView(views: [searchField, officialSearchButton])
         controls.orientation = .horizontal
         controls.alignment = .centerY
         controls.spacing = 10
@@ -480,12 +632,58 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private func updateSearchStatus() {
         let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         if query.isEmpty {
-            searchStatus.stringValue = "公式確認済みのカードのみ表示します。未掲載カードは定期的な公式サイト探索で追加されます。"
+            officialSearchButton.isEnabled = false
+            searchStatus.stringValue = "公式確認済みのカードのみ表示します。未掲載カードは公式ページ候補から追加できます。"
         } else if displayedProducts.isEmpty {
-            searchStatus.stringValue = "「\(query)」は現在のカタログにありません。公式サイトの自動探索・検証後に追加されます。"
+            officialSearchButton.isEnabled = true
+            searchStatus.stringValue = "「\(query)」は現在のカタログにありません。「公式ページから追加」で探索済みの公式ページを確認できます。"
         } else {
+            officialSearchButton.isEnabled = false
             searchStatus.stringValue = "\(displayedProducts.count)件。保有するカードにチェックを付けてください。"
         }
+    }
+
+    @objc private func addFromOfficialSearch() {
+        let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty, displayedProducts.isEmpty else { return }
+        officialSearchButton.isEnabled = false
+        searchStatus.stringValue = "「\(query)」に近い公式商品ページを確認中…"
+        model.lookupOfficialCandidates(named: query) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let candidates) where !candidates.isEmpty:
+                self.presentOfficialCandidates(candidates)
+            case .success:
+                self.updateSearchStatus()
+                self.searchStatus.stringValue = "「\(query)」に一致する公式商品ページ候補は未収録です。定期探索で追加を続けます。"
+            case .failure:
+                self.updateSearchStatus()
+                self.searchStatus.stringValue = "公式ページ候補を取得できませんでした。ネット接続後にもう一度お試しください。"
+            }
+        }
+    }
+
+    private func presentOfficialCandidates(_ candidates: [RemoteCardSearchEntry]) {
+        let alert = NSAlert()
+        alert.messageText = "公式ページ候補を見つけました"
+        alert.informativeText = "追加すると保有カードとして記録します。還元条件は公式データで検証されるまで、おすすめ計算には使用しません。"
+        alert.addButton(withTitle: "保有カードに追加")
+        alert.addButton(withTitle: "キャンセル")
+        let picker = NSPopUpButton(frame: NSRect(x: 0, y: 0, width: 430, height: 28), pullsDown: false)
+        picker.addItems(withTitles: candidates.map { "\($0.name)（\($0.issuerName)）" })
+        alert.accessoryView = picker
+        guard alert.runModal() == .alertFirstButtonReturn else {
+            updateSearchStatus()
+            return
+        }
+        let index = picker.indexOfSelectedItem
+        guard candidates.indices.contains(index) else { return }
+        let candidate = candidates[index]
+        model.addPendingCard(candidate)
+        searchField.stringValue = candidate.name
+        table.reloadData()
+        searchStatus.stringValue = "「\(candidate.name)」を保有カードに追加しました。還元条件は公式データで検証中です。"
+        officialSearchButton.isEnabled = false
     }
 
     private func checkPublishedCatalogForMissingCard() {
@@ -636,7 +834,7 @@ final class DataViewController: NSViewController {
 
     private func updateLabels() {
         statusLabel.stringValue = "状態: \(model.catalogStatus)"
-        countLabel.stringValue = "利用可能カード数: \(model.products.count)券種"
+        countLabel.stringValue = "カード一覧: \(model.products.count)券種"
         heldLabel.stringValue = "保有カード数: \(model.heldCardIDs.count)枚"
     }
 }

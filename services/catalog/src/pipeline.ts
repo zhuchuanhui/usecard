@@ -6,6 +6,7 @@ import type { FetchedPage } from "./fetching.js";
 import { fetchJCCAIssuerRegistry } from "./jccaRegistry.js";
 import { knownCardDefinitions } from "./sourceDefinitions.js";
 import { refreshGenericProducts } from "./genericExtractor.js";
+import type { CardSearchIndexEntry } from "./genericExtractor.js";
 import type {
   CardCatalog,
   CardProduct,
@@ -98,6 +99,7 @@ export async function buildCatalog(outputRoot: string): Promise<PipelineResult> 
 
   const catalogJSON = `${JSON.stringify(catalog, null, 2)}\n`;
   const catalogFile = `catalog-${version}.json`;
+  const searchIndex = await loadCardSearchIndex(outputRoot);
   const sha256 = createHash("sha256").update(catalogJSON).digest("hex");
   const manifest: CatalogManifest = {
     schemaVersion: 1,
@@ -113,7 +115,7 @@ export async function buildCatalog(outputRoot: string): Promise<PipelineResult> 
     }
   };
 
-  await publishAtomically(outputRoot, catalogFile, catalogJSON, manifest, registry);
+  await publishAtomically(outputRoot, catalogFile, catalogJSON, manifest, registry, searchIndex);
   return { catalog, manifest, registry };
 }
 
@@ -121,6 +123,15 @@ async function loadGenericSnapshots(outputRoot: string): Promise<CardProduct[]> 
   const path = resolve(outputRoot, "../config/generic-products.json");
   try {
     return normalizeGenericSnapshots(JSON.parse(await readFile(path, "utf8")) as CardProduct[]);
+  } catch {
+    return [];
+  }
+}
+
+async function loadCardSearchIndex(outputRoot: string): Promise<CardSearchIndexEntry[]> {
+  const path = resolve(outputRoot, "../discovery/card-search-index.json");
+  try {
+    return JSON.parse(await readFile(path, "utf8")) as CardSearchIndexEntry[];
   } catch {
     return [];
   }
@@ -172,7 +183,8 @@ async function publishAtomically(
   catalogFile: string,
   catalogJSON: string,
   manifest: CatalogManifest,
-  registry: IssuerRegistryEntry[]
+  registry: IssuerRegistryEntry[],
+  searchIndex: CardSearchIndexEntry[]
 ): Promise<void> {
   const root = resolve(outputRoot);
   const staging = join(dirname(root), ".staging", basename(root));
@@ -184,8 +196,9 @@ async function publishAtomically(
     await writeFile(join(staging, "latest.json"), catalogJSON);
     await writeFile(join(staging, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
     await writeFile(join(staging, "issuers.json"), `${JSON.stringify(registry, null, 2)}\n`);
+    await writeFile(join(staging, "search-index.json"), `${JSON.stringify(searchIndex, null, 2)}\n`);
     await mkdir(root, { recursive: true });
-    for (const file of [catalogFile, "latest.json", "manifest.json", "issuers.json"]) {
+    for (const file of [catalogFile, "latest.json", "manifest.json", "issuers.json", "search-index.json"]) {
       await rm(join(root, file), { force: true });
       await rename(join(staging, file), join(root, file));
     }
