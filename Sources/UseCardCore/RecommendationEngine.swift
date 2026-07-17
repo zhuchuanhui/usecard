@@ -8,6 +8,36 @@ public struct RecommendationEngine: Sendable {
         intent: PurchaseIntent,
         holdings: [UserHolding]
     ) -> RecommendationBundle {
+        rank(catalog: catalog, intent: intent, holdings: holdings, including: { _ in true })
+    }
+
+    public func rankUsualSpending(
+        catalog: CardCatalog,
+        holdings: [UserHolding],
+        purchaseDate: String
+    ) -> RecommendationBundle {
+        let intent = PurchaseIntent(
+            amountYen: 10_000,
+            categoryID: "general",
+            paymentMethod: .physical,
+            channel: .inStore,
+            frequency: .once,
+            purchaseDate: purchaseDate
+        )
+        return rank(
+            catalog: catalog,
+            intent: intent,
+            holdings: holdings,
+            including: { self.isUsualSpendingRule($0) }
+        )
+    }
+
+    private func rank(
+        catalog: CardCatalog,
+        intent: PurchaseIntent,
+        holdings: [UserHolding],
+        including shouldIncludeRule: (BenefitRule) -> Bool
+    ) -> RecommendationBundle {
         let holdingsByCard = Dictionary(uniqueKeysWithValues: holdings.map { ($0.cardID, $0) })
 
         let recommendations = catalog.products.compactMap { card -> CardRecommendation? in
@@ -15,7 +45,8 @@ public struct RecommendationEngine: Sendable {
             return evaluate(
                 card: card,
                 intent: intent,
-                holding: holdingsByCard[card.id]
+                holding: holdingsByCard[card.id],
+                including: shouldIncludeRule
             )
         }
 
@@ -32,13 +63,14 @@ public struct RecommendationEngine: Sendable {
     private func evaluate(
         card: CardProduct,
         intent: PurchaseIntent,
-        holding: UserHolding?
+        holding: UserHolding?,
+        including shouldIncludeRule: (BenefitRule) -> Bool
     ) -> CardRecommendation {
         var guaranteedByGroup: [String: (BenefitRule, Double)] = [:]
         var possibleByGroup: [String: (BenefitRule, Double)] = [:]
         var warnings: [String] = []
 
-        for rule in card.benefitRules {
+        for rule in card.benefitRules where shouldIncludeRule(rule) {
             let match = matches(rule.conditions, intent: intent, holding: holding)
             guard match != .no else { continue }
 
@@ -82,6 +114,19 @@ public struct RecommendationEngine: Sendable {
             appliedBenefits: benefits,
             warnings: Array(Set(warnings)).sorted()
         )
+    }
+
+    private func isUsualSpendingRule(_ rule: BenefitRule) -> Bool {
+        let conditions = rule.conditions
+        return conditions.merchantIDs.isEmpty
+            && conditions.categoryIDs.isEmpty
+            && conditions.paymentMethods.isEmpty
+            && conditions.channels.isEmpty
+            && conditions.eligibleDaysOfMonth.isEmpty
+            && conditions.minimumPurchaseYen == nil
+            && conditions.maximumPurchaseYen == nil
+            && conditions.minimumAnnualSpendYen == nil
+            && conditions.enrollmentKey == nil
     }
 
     private enum MatchResult {

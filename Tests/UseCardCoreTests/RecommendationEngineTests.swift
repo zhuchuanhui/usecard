@@ -90,6 +90,50 @@ final class RecommendationEngineTests: XCTestCase {
         XCTAssertFalse(result.owned.first?.warnings.isEmpty ?? true)
     }
 
+    func testUsualSpendingExcludesStoreAndPaymentSpecificRewards() throws {
+        let source = sourceEvidence()
+        let card = CardProduct(
+            id: "usual",
+            issuerID: "issuer",
+            issuerName: "Issuer",
+            name: "Usual Card",
+            networks: [.visa],
+            annualFeeYen: 0,
+            applicationStatus: .open,
+            applicationURL: source.url,
+            eligibilityNote: "",
+            pointProgramID: nil,
+            benefitRules: [
+                BenefitRule(
+                    id: "usual-base",
+                    title: "通常還元",
+                    stackingGroup: "base",
+                    conditions: RuleConditions(),
+                    reward: RewardFormula(kind: .cashbackRate, ratePercent: 1),
+                    source: source
+                ),
+                BenefitRule(
+                    id: "usual-store-bonus",
+                    title: "対象店タッチ決済",
+                    stackingGroup: "store-bonus",
+                    conditions: RuleConditions(merchantIDs: ["seven-eleven"], paymentMethods: [.contactless]),
+                    reward: RewardFormula(kind: .cashbackRate, ratePercent: 6),
+                    source: source
+                )
+            ],
+            sources: [source]
+        )
+
+        let result = RecommendationEngine().rankUsualSpending(
+            catalog: CardCatalog(schemaVersion: 1, version: "test", generatedAt: "2026-07-16T00:00:00Z", products: [card]),
+            holdings: [UserHolding(cardID: card.id)],
+            purchaseDate: "2026-07-16"
+        )
+
+        XCTAssertEqual(result.owned.first?.immediateValueYen, 100)
+        XCTAssertEqual(result.owned.first?.appliedBenefits.map(\.title), ["通常還元"])
+    }
+
     func testMobileTouchBonusUsesTheSame200YenRoundingAsBasePoints() throws {
         let source = sourceEvidence()
         let card = CardProduct(

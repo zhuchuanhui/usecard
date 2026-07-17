@@ -195,6 +195,24 @@ final class MacAppModel {
         )
     }
 
+    fileprivate func recommendUsualSpending(on purchaseDate: String) -> RecommendationPresentation? {
+        guard let catalog else { return nil }
+        let holdings = heldCardIDs.map { UserHolding(cardID: $0) }
+        let verifiedIDs = Set(catalog.products.map(\.id))
+        let unverifiedHeldCards = products
+            .filter { heldCardIDs.contains($0.id) && !verifiedIDs.contains($0.id) }
+            .map(\.name)
+            .sorted { $0.localizedCompare($1) == .orderedAscending }
+        return RecommendationPresentation(
+            rankings: RecommendationEngine().rankUsualSpending(
+                catalog: catalog,
+                holdings: holdings,
+                purchaseDate: purchaseDate
+            ),
+            unverifiedHeldCardNames: unverifiedHeldCards
+        )
+    }
+
     fileprivate func lookupOfficialCandidates(
         named query: String,
         completion: @escaping (Result<[RemoteCardSearchEntry], Error>) -> Void
@@ -1020,13 +1038,18 @@ final class RecommendationViewController: NSViewController {
     }
 
     private let model: MacAppModel
-    private let amountField = NSTextField(string: "10000")
-    private let merchantPopup = NSPopUpButton()
-    private let categoryPopup = NSPopUpButton()
-    private let paymentPopup = NSPopUpButton()
-    private let channelPopup = NSPopUpButton()
-    private let frequencyPopup = NSPopUpButton()
-    private let datePicker = NSDatePicker()
+    private struct SpendPlace {
+        let title: String
+        let merchantID: String?
+        let categoryID: String
+        let channel: PurchaseChannel
+        let aliases: [String]
+    }
+
+    private let placeField = NSSearchField()
+    private let amountField = NSTextField()
+    private let spendSummary = NSTextField(labelWithString: "お店と金額が決まった時だけ、ここで比べます。")
+    private let spendToggle = NSButton(title: "お店と金額で詳しく調べる", target: nil, action: nil)
     private let applicationPopup = NSPopUpButton()
     private let applicationButton = NSButton(title: "公式申込ページを開く", target: nil, action: nil)
     private let resultStack = NSStackView()
@@ -1036,25 +1059,30 @@ final class RecommendationViewController: NSViewController {
     private var applicationCandidates: [CardRecommendation] = []
     private var isSizingScrollableContent = false
     private var shouldScrollToTop = true
+    private var isSpecificComparison = false
+    private var spendPanel: NSView?
 
-    private let merchants = [
-        ("general", "指定なし"), ("aeon-group", "イオングループ"), ("seven-eleven", "セブン-イレブン"),
-        ("lawson", "ローソン"), ("mcdonalds", "マクドナルド"), ("mos-burger", "モスバーガー"),
-        ("kfc", "ケンタッキーフライドチキン"), ("yoshinoya", "吉野家"), ("saizeriya", "サイゼリヤ"),
-        ("gusto", "ガスト"), ("sukiya", "すき家"), ("hamazushi", "はま寿司"),
-        ("doutor", "ドトール"), ("amazon", "Amazon"), ("rakuten-market", "楽天市場")
+    private let spendPlaces: [SpendPlace] = [
+        SpendPlace(title: "イオングループ", merchantID: "aeon-group", categoryID: "groceries", channel: .inStore, aliases: ["イオン", "aeon"]),
+        SpendPlace(title: "セブン-イレブン", merchantID: "seven-eleven", categoryID: "general", channel: .inStore, aliases: ["セブン", "セブンイレブン", "7-eleven"]),
+        SpendPlace(title: "ローソン", merchantID: "lawson", categoryID: "general", channel: .inStore, aliases: ["lawson"]),
+        SpendPlace(title: "マクドナルド", merchantID: "mcdonalds", categoryID: "dining", channel: .inStore, aliases: ["マック", "macdonalds"]),
+        SpendPlace(title: "モスバーガー", merchantID: "mos-burger", categoryID: "dining", channel: .inStore, aliases: ["モス", "mos"]),
+        SpendPlace(title: "ケンタッキーフライドチキン", merchantID: "kfc", categoryID: "dining", channel: .inStore, aliases: ["ケンタッキー", "kfc"]),
+        SpendPlace(title: "吉野家", merchantID: "yoshinoya", categoryID: "dining", channel: .inStore, aliases: []),
+        SpendPlace(title: "サイゼリヤ", merchantID: "saizeriya", categoryID: "dining", channel: .inStore, aliases: []),
+        SpendPlace(title: "ガスト", merchantID: "gusto", categoryID: "dining", channel: .inStore, aliases: []),
+        SpendPlace(title: "すき家", merchantID: "sukiya", categoryID: "dining", channel: .inStore, aliases: []),
+        SpendPlace(title: "はま寿司", merchantID: "hamazushi", categoryID: "dining", channel: .inStore, aliases: []),
+        SpendPlace(title: "ドトール", merchantID: "doutor", categoryID: "dining", channel: .inStore, aliases: []),
+        SpendPlace(title: "Amazon", merchantID: "amazon", categoryID: "online-shopping", channel: .online, aliases: ["アマゾン", "amazon.co.jp"]),
+        SpendPlace(title: "楽天市場", merchantID: "rakuten-market", categoryID: "online-shopping", channel: .online, aliases: ["楽天", "rakuten"]),
+        SpendPlace(title: "スーパー", merchantID: nil, categoryID: "groceries", channel: .inStore, aliases: ["食料品"]),
+        SpendPlace(title: "飲食店", merchantID: nil, categoryID: "dining", channel: .inStore, aliases: ["外食", "レストラン"]),
+        SpendPlace(title: "交通", merchantID: nil, categoryID: "transport", channel: .inStore, aliases: ["jr", "鉄道", "電車"]),
+        SpendPlace(title: "公共料金", merchantID: nil, categoryID: "utilities", channel: .inStore, aliases: ["電気", "ガス", "水道"]),
+        SpendPlace(title: "ネット通販", merchantID: nil, categoryID: "online-shopping", channel: .online, aliases: ["オンライン", "ネット"])
     ]
-    private let categories = [
-        ("general", "一般"), ("groceries", "食料品"), ("dining", "飲食店"), ("travel", "旅行"),
-        ("transport", "交通"), ("utilities", "公共料金"), ("online-shopping", "オンライン通販")
-    ]
-    private let paymentMethods: [(PaymentMethod, String)] = [
-        (.physical, "カード"), (.contactless, "カードのタッチ決済"), (.mobileContactless, "スマホのタッチ決済"),
-        (.applePay, "Apple Pay"), (.mobileOrder, "モバイルオーダー"), (.qr, "QR決済"),
-        (.online, "オンライン"), (.recurring, "継続課金")
-    ]
-    private let channels: [(PurchaseChannel, String)] = [(.inStore, "店頭"), (.online, "オンライン")]
-    private let frequencies: [(SpendFrequency, String)] = [(.once, "今回だけ"), (.monthly, "毎月"), (.quarterly, "3か月ごと"), (.annually, "毎年")]
 
     init(model: MacAppModel) {
         self.model = model
@@ -1090,19 +1118,27 @@ final class RecommendationViewController: NSViewController {
         headline.orientation = .vertical
         headline.alignment = .leading
         headline.spacing = 3
-        let heading = NSTextField(labelWithString: "支払いに、いちばん強い1枚を")
+        let heading = NSTextField(labelWithString: "いつもの支払いに、いちばん強い1枚を")
         heading.font = .systemFont(ofSize: 25, weight: .bold)
-        let subtitle = NSTextField(labelWithString: "条件に合う公式還元ルールだけで、保有カードと申込候補を比較します。")
+        let subtitle = NSTextField(labelWithString: "普段は入力不要。お店と金額が決まった時だけ、2つだけ入れてください。")
         subtitle.textColor = .secondaryLabelColor
         headline.addArrangedSubview(heading)
         headline.addArrangedSubview(subtitle)
+        spendToggle.target = self
+        spendToggle.action = #selector(toggleSpendPanel)
+        spendToggle.bezelStyle = .rounded
+        spendToggle.controlSize = .large
+        headline.addArrangedSubview(spendToggle)
         addFullWidth(headline)
 
-        setupPopups()
+        placeField.placeholderString = "どこで使う？ 例：セブン、Amazon、スーパー"
+        amountField.placeholderString = "いくら使う？（円）"
         amountField.alignment = .right
-        datePicker.datePickerElements = .yearMonthDay
-        datePicker.dateValue = Date()
-        let calculateButton = NSButton(title: "この条件で比べる", target: self, action: #selector(calculate))
+        placeField.target = self
+        placeField.action = #selector(calculateSpend)
+        amountField.target = self
+        amountField.action = #selector(calculateSpend)
+        let calculateButton = NSButton(title: "最適カードを調べる", target: self, action: #selector(calculateSpend))
         calculateButton.bezelStyle = .rounded
         calculateButton.controlSize = .large
         let conditionContent = NSStackView()
@@ -1113,26 +1149,25 @@ final class RecommendationViewController: NSViewController {
             conditionContent.addArrangedSubview(view)
             view.widthAnchor.constraint(equalTo: conditionContent.widthAnchor).isActive = true
         }
-        addConditionFullWidth(panelHeading("利用条件", detail: "店舗・支払い方法まで選ぶと、対象特典を正確に比較できます。"))
+        spendSummary.textColor = .secondaryLabelColor
+        spendSummary.font = .systemFont(ofSize: 12)
+        addConditionFullWidth(panelHeading("どこで、いくら使う？", detail: "店名と金額だけで、対象になる公式特典を比較します。"))
         addConditionFullWidth(formRow([
-            formField("金額", control: amountField),
-            formField("店舗", control: merchantPopup),
-            formField("用途", control: categoryPopup)
-        ]))
-        addConditionFullWidth(formRow([
-            formField("支払い方法", control: paymentPopup),
-            formField("購入場所", control: channelPopup),
-            formField("頻度", control: frequencyPopup)
+            formField("どこで", control: placeField),
+            formField("いくら", control: amountField)
         ]))
         let actionRow = NSStackView()
         actionRow.orientation = .horizontal
-        actionRow.alignment = .bottom
+        actionRow.alignment = .centerY
         actionRow.spacing = 12
-        actionRow.addArrangedSubview(formField("利用日", control: datePicker))
         actionRow.addArrangedSubview(calculateButton)
-        calculateButton.widthAnchor.constraint(equalToConstant: 220).isActive = true
+        calculateButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        actionRow.addArrangedSubview(spendSummary)
         addConditionFullWidth(actionRow)
-        addFullWidth(panel(containing: conditionContent, tone: .standard))
+        let comparisonPanel = panel(containing: conditionContent, tone: .standard)
+        comparisonPanel.isHidden = true
+        spendPanel = comparisonPanel
+        addFullWidth(comparisonPanel)
 
         addFullWidth(panelHeading("おすすめ", detail: "最適な1枚を先に表示し、次点だけをコンパクトに比較します。"))
         configureResultStack()
@@ -1142,7 +1177,7 @@ final class RecommendationViewController: NSViewController {
         applicationRow.orientation = .horizontal
         applicationRow.alignment = .centerY
         applicationRow.spacing = 10
-        applicationRow.addArrangedSubview(panelHeading("申込候補", detail: "公式ページを開く前に候補を切り替えられます。"))
+        applicationRow.addArrangedSubview(panelHeading("申込候補の公式ページ", detail: "候補を選んで、公式ページから申込みへ進めます。"))
         applicationPopup.widthAnchor.constraint(greaterThanOrEqualToConstant: 270).isActive = true
         applicationRow.addArrangedSubview(applicationPopup)
         applicationButton.target = self
@@ -1165,25 +1200,12 @@ final class RecommendationViewController: NSViewController {
         resizeScrollableContent()
     }
 
-    @objc func calculate() {
-        let amount = Double(amountField.stringValue.filter { $0.isNumber }) ?? 0
-        guard amount > 0 else {
-            renderMessage("金額を入力してください。", detail: "比較する利用額を入力すると、お得額と還元率を計算します。")
-            updateApplicationCandidates([])
-            return
-        }
-        let merchant = merchants[merchantPopup.indexOfSelectedItem].0
-        let category = categories[categoryPopup.indexOfSelectedItem].0
-        let intent = PurchaseIntent(
-            amountYen: amount,
-            merchantID: merchant == "general" ? nil : merchant,
-            categoryID: category,
-            paymentMethod: paymentMethods[paymentPopup.indexOfSelectedItem].0,
-            channel: channels[channelPopup.indexOfSelectedItem].0,
-            frequency: frequencies[frequencyPopup.indexOfSelectedItem].0,
-            purchaseDate: dateString(datePicker.dateValue)
-        )
-        guard let presentation = model.recommend(intent: intent) else {
+    func calculate() {
+        isSpecificComparison = false
+        spendSummary.stringValue = "お店と金額が決まった時だけ、ここで比べます。"
+        spendPanel?.isHidden = true
+        spendToggle.title = "お店と金額で詳しく調べる"
+        guard let presentation = model.recommendUsualSpending(on: dateString(Date())) else {
             renderMessage("カタログを読み込めません。", detail: "データ画面から最新カタログを確認してください。")
             updateApplicationCandidates([])
             return
@@ -1192,12 +1214,57 @@ final class RecommendationViewController: NSViewController {
         updateApplicationCandidates(Array(presentation.rankings.available.prefix(5)))
     }
 
-    private func setupPopups() {
-        merchantPopup.addItems(withTitles: merchants.map(\.1))
-        categoryPopup.addItems(withTitles: categories.map(\.1))
-        paymentPopup.addItems(withTitles: paymentMethods.map(\.1))
-        channelPopup.addItems(withTitles: channels.map(\.1))
-        frequencyPopup.addItems(withTitles: frequencies.map(\.1))
+    @objc private func calculateSpend() {
+        let amount = Double(amountField.stringValue.filter { $0.isNumber }) ?? 0
+        guard amount > 0 else {
+            renderMessage("金額を入力してください。", detail: "比較する利用額を入力すると、お得額と還元率を計算します。")
+            updateApplicationCandidates([])
+            return
+        }
+        let placeName = placeField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !placeName.isEmpty else {
+            renderMessage("お店を入力してください。", detail: "例：セブン、Amazon、スーパーのように入力すると、対象特典を確認します。")
+            updateApplicationCandidates([])
+            return
+        }
+        let matchedPlace = resolvedSpendPlace(named: placeName)
+        let place = matchedPlace ?? SpendPlace(
+            title: placeName,
+            merchantID: nil,
+            categoryID: "general",
+            channel: .inStore,
+            aliases: []
+        )
+        isSpecificComparison = true
+        if let matchedPlace {
+            spendSummary.stringValue = "\(matchedPlace.title)で \(yen(amount)) ・ 基本のカード払いで比較中"
+        } else {
+            spendSummary.stringValue = "\(placeName) の個別特典は未確認のため、通常還元で \(yen(amount)) を比較中"
+        }
+        let intent = PurchaseIntent(
+            amountYen: amount,
+            merchantID: place.merchantID,
+            categoryID: place.categoryID,
+            paymentMethod: .physical,
+            channel: place.channel,
+            frequency: .once,
+            purchaseDate: dateString(Date())
+        )
+        guard let presentation = model.recommend(intent: intent) else {
+            renderMessage("カタログを読み込めません。", detail: "データ画面から最新カタログを確認してください。")
+            updateApplicationCandidates([])
+            return
+        }
+        renderRecommendations(presentation)
+        updateApplicationCandidates(Array(presentation.rankings.available.prefix(5)))
+        scrollContentToTop()
+    }
+
+    @objc private func toggleSpendPanel() {
+        guard let spendPanel else { return }
+        spendPanel.isHidden.toggle()
+        spendToggle.title = spendPanel.isHidden ? "お店と金額で詳しく調べる" : "入力欄を閉じる"
+        scrollContentToTop()
     }
 
     private func configureResultStack() {
@@ -1218,15 +1285,15 @@ final class RecommendationViewController: NSViewController {
 
         let rankings = presentation.rankings
         addRecommendationSection(
-            title: "手持ちで、いま一番お得",
-            detail: "保有カードだけで比較",
+            title: isSpecificComparison ? "この支払いで、いちばんお得" : "普段使いで、いちばんお得",
+            detail: isSpecificComparison ? "基本のカード払いとして比較" : "通常還元だけで保有カードを比較",
             recommendations: rankings.owned,
             emptyTitle: "比較できる保有カードがありません",
             emptyDetail: "手持ちカードから公式確認済みのカードを登録すると、ここに最適な1枚を表示します。"
         )
         addRecommendationSection(
-            title: "新しく申し込むなら",
-            detail: "年会費を差し引いた候補",
+            title: isSpecificComparison ? "未保有なら、この支払いの申込候補" : "未保有なら、申込候補",
+            detail: isSpecificComparison ? "この支払いの還元と年会費を確認" : "通常還元と年会費を確認",
             recommendations: rankings.available,
             emptyTitle: "条件に合う申込候補がありません",
             emptyDetail: "条件を変えるか、カタログ更新後にもう一度比較してください。"
@@ -1270,6 +1337,12 @@ final class RecommendationViewController: NSViewController {
         contentScroll.contentView.scroll(to: NSPoint(x: 0, y: top))
         contentScroll.reflectScrolledClipView(contentScroll.contentView)
         shouldScrollToTop = false
+    }
+
+    private func scrollContentToTop() {
+        shouldScrollToTop = true
+        resizeScrollableContent()
+        scrollToTopIfNeeded()
     }
 
     private func addResultView(_ view: NSView) {
@@ -1324,7 +1397,15 @@ final class RecommendationViewController: NSViewController {
         let name = NSTextField(labelWithString: recommendation.card.name)
         name.font = .systemFont(ofSize: emphasized ? 20 : 15, weight: .semibold)
         name.lineBreakMode = .byTruncatingTail
-        let amount = NSTextField(labelWithString: "今回 \(yen(recommendation.immediateValueYen)) ・ 年換算 \(yen(recommendation.annualNetValueYen))")
+        let amountText: String
+        if isSpecificComparison {
+            amountText = "この支払いで \(yen(recommendation.immediateValueYen)) お得"
+        } else if recommendation.card.annualFeeYen == 0 {
+            amountText = "年会費 無料"
+        } else {
+            amountText = "年会費 \(yen(recommendation.card.annualFeeYen))"
+        }
+        let amount = NSTextField(labelWithString: amountText)
         amount.textColor = .secondaryLabelColor
         nameStack.addArrangedSubview(name)
         nameStack.addArrangedSubview(amount)
@@ -1335,7 +1416,7 @@ final class RecommendationViewController: NSViewController {
         let rate = NSTextField(labelWithString: String(format: "%.1f%%", recommendation.effectiveReturnPercent))
         rate.font = .monospacedDigitSystemFont(ofSize: emphasized ? 28 : 18, weight: .bold)
         rate.textColor = emphasized ? .systemIndigo : .labelColor
-        let rateCaption = NSTextField(labelWithString: "実質還元")
+        let rateCaption = NSTextField(labelWithString: isSpecificComparison ? "この支払いの還元" : "通常還元")
         rateCaption.font = .systemFont(ofSize: 11)
         rateCaption.textColor = .secondaryLabelColor
         rateStack.addArrangedSubview(rate)
@@ -1459,8 +1540,33 @@ final class RecommendationViewController: NSViewController {
     private func updateApplicationCandidates(_ candidates: [CardRecommendation]) {
         applicationCandidates = candidates
         applicationPopup.removeAllItems()
-        applicationPopup.addItems(withTitles: candidates.map { "\($0.card.name)（今回\(yen($0.immediateValueYen))）" })
+        applicationPopup.addItems(withTitles: candidates.map { candidate in
+            if isSpecificComparison {
+                return "\(candidate.card.name)（この支払い \(yen(candidate.immediateValueYen))）"
+            }
+            let fee = candidate.card.annualFeeYen == 0 ? "年会費無料" : "年会費 \(yen(candidate.card.annualFeeYen))"
+            return "\(candidate.card.name)（通常 \(String(format: "%.1f%%", candidate.effectiveReturnPercent))・\(fee)）"
+        })
         applicationButton.isEnabled = !candidates.isEmpty
+    }
+
+    private func resolvedSpendPlace(named value: String) -> SpendPlace? {
+        let query = normalizedPlaceTerm(value)
+        guard !query.isEmpty else { return nil }
+        return spendPlaces.first { place in
+            ([place.title] + place.aliases).contains { name in
+                let candidate = normalizedPlaceTerm(name)
+                return !candidate.isEmpty && (query.contains(candidate) || candidate.contains(query))
+            }
+        }
+    }
+
+    private func normalizedPlaceTerm(_ value: String) -> String {
+        value
+            .precomposedStringWithCompatibilityMapping
+            .lowercased()
+            .components(separatedBy: CharacterSet.alphanumerics.inverted)
+            .joined()
     }
 
     @objc private func openApplicationPage() {
