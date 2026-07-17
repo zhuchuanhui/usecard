@@ -34,10 +34,16 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
         tabs.addTabViewItem(tab(title: "カード一覧", image: "creditcard", controller: catalog))
         tabs.addTabViewItem(tab(title: "データ", image: "arrow.triangle.2.circlepath", controller: data))
 
-        let window = NSWindow(contentViewController: tabs)
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 1_120, height: 780),
+            styleMask: [.titled, .closable, .miniaturizable, .resizable],
+            backing: .buffered,
+            defer: false
+        )
+        window.contentViewController = tabs
         window.title = "UseCard"
         window.setContentSize(NSSize(width: 1_120, height: 780))
-        window.minSize = NSSize(width: 960, height: 660)
+        window.minSize = NSSize(width: 760, height: 480)
         window.isReleasedWhenClosed = false
         window.collectionBehavior.insert(.moveToActiveSpace)
         window.center()
@@ -977,7 +983,12 @@ final class RecommendationViewController: NSViewController {
     private let applicationPopup = NSPopUpButton()
     private let applicationButton = NSButton(title: "公式申込ページを開く", target: nil, action: nil)
     private let resultStack = NSStackView()
+    private let contentScroll = NSScrollView()
+    private let scrollDocumentView = NSView()
+    private let rootStack = NSStackView()
     private var applicationCandidates: [CardRecommendation] = []
+    private var isSizingScrollableContent = false
+    private var shouldScrollToTop = true
 
     private let merchants = [
         ("general", "指定なし"), ("aeon-group", "イオングループ"), ("seven-eleven", "セブン-イレブン"),
@@ -1007,21 +1018,22 @@ final class RecommendationViewController: NSViewController {
     required init?(coder: NSCoder) { nil }
 
     override func loadView() {
-        let content = NSView()
-        content.wantsLayer = true
-        content.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
-        let root = NSStackView()
+        contentScroll.borderType = .noBorder
+        contentScroll.drawsBackground = false
+        contentScroll.hasVerticalScroller = true
+        contentScroll.hasHorizontalScroller = false
+        contentScroll.autohidesScrollers = true
+        scrollDocumentView.wantsLayer = true
+        scrollDocumentView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        scrollDocumentView.frame = NSRect(x: 0, y: 0, width: 1_120, height: 780)
+        contentScroll.documentView = scrollDocumentView
+
+        let root = rootStack
         root.orientation = .vertical
         root.alignment = .width
         root.spacing = 14
-        root.translatesAutoresizingMaskIntoConstraints = false
-        content.addSubview(root)
-        NSLayoutConstraint.activate([
-            root.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 28),
-            root.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -28),
-            root.topAnchor.constraint(equalTo: content.topAnchor, constant: 22),
-            root.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -22)
-        ])
+        root.frame = NSRect(x: 28, y: 22, width: 1_064, height: 1)
+        scrollDocumentView.addSubview(root)
         func addFullWidth(_ view: NSView) {
             root.addArrangedSubview(view)
             view.widthAnchor.constraint(equalTo: root.widthAnchor).isActive = true
@@ -1091,12 +1103,19 @@ final class RecommendationViewController: NSViewController {
         applicationButton.isEnabled = false
         applicationRow.addArrangedSubview(applicationButton)
         addFullWidth(panel(containing: applicationRow, tone: .subdued))
-        view = content
+        view = contentScroll
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         calculate()
+        resizeScrollableContent()
+        scrollToTopIfNeeded()
+    }
+
+    override func viewDidLayout() {
+        super.viewDidLayout()
+        resizeScrollableContent()
     }
 
     @objc func calculate() {
@@ -1165,11 +1184,13 @@ final class RecommendationViewController: NSViewController {
             emptyTitle: "条件に合う申込候補がありません",
             emptyDetail: "条件を変えるか、カタログ更新後にもう一度比較してください。"
         )
+        resizeScrollableContent()
     }
 
     private func renderMessage(_ title: String, detail: String) {
         clearResultCards()
         addResultView(noticeCard(title: title, detail: detail))
+        resizeScrollableContent()
     }
 
     private func clearResultCards() {
@@ -1177,6 +1198,31 @@ final class RecommendationViewController: NSViewController {
             resultStack.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
+    }
+
+    private func resizeScrollableContent() {
+        guard !isSizingScrollableContent else { return }
+        let visibleWidth = contentScroll.contentView.bounds.width
+        guard visibleWidth > 0 else { return }
+
+        isSizingScrollableContent = true
+        defer { isSizingScrollableContent = false }
+
+        let rootWidth = max(visibleWidth - 56, 1)
+        rootStack.setFrameSize(NSSize(width: rootWidth, height: max(rootStack.frame.height, 1)))
+        rootStack.layoutSubtreeIfNeeded()
+        let rootHeight = max(rootStack.fittingSize.height, 1)
+        let documentHeight = max(contentScroll.contentView.bounds.height, rootHeight + 44)
+        scrollDocumentView.setFrameSize(NSSize(width: visibleWidth, height: documentHeight))
+        rootStack.frame = NSRect(x: 28, y: documentHeight - rootHeight - 22, width: rootWidth, height: rootHeight)
+    }
+
+    private func scrollToTopIfNeeded() {
+        guard shouldScrollToTop else { return }
+        let top = max(scrollDocumentView.bounds.height - contentScroll.contentView.bounds.height, 0)
+        contentScroll.contentView.scroll(to: NSPoint(x: 0, y: top))
+        contentScroll.reflectScrolledClipView(contentScroll.contentView)
+        shouldScrollToTop = false
     }
 
     private func addResultView(_ view: NSView) {
