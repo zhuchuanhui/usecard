@@ -10,6 +10,7 @@ application.run()
 
 final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
     private let model = MacAppModel()
+    private var mainWindow: NSWindow?
     private var holdingsController: HoldingsViewController?
     private var catalogController: CatalogViewController?
     private var recommendationController: RecommendationViewController?
@@ -37,11 +38,27 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
         window.title = "UseCard"
         window.setContentSize(NSSize(width: 1_120, height: 780))
         window.minSize = NSSize(width: 960, height: 660)
+        window.isReleasedWhenClosed = false
+        window.collectionBehavior.insert(.moveToActiveSpace)
         window.center()
-        window.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
+        mainWindow = window
+        showMainWindow()
 
         refreshCatalog()
+    }
+
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        showMainWindow()
+        return true
+    }
+
+    private func showMainWindow() {
+        guard let mainWindow else { return }
+        if mainWindow.isMiniaturized {
+            mainWindow.deminiaturize(nil)
+        }
+        mainWindow.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     private func tab(title: String, image: String, controller: NSViewController) -> NSTabViewItem {
