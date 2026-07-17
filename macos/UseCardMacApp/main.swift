@@ -35,8 +35,8 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
 
         let window = NSWindow(contentViewController: tabs)
         window.title = "UseCard"
-        window.setContentSize(NSSize(width: 1_080, height: 720))
-        window.minSize = NSSize(width: 900, height: 620)
+        window.setContentSize(NSSize(width: 1_120, height: 780))
+        window.minSize = NSSize(width: 960, height: 660)
         window.center()
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
@@ -942,6 +942,12 @@ private enum CatalogRefreshError: Error {
 }
 
 final class RecommendationViewController: NSViewController {
+    private enum PanelTone {
+        case standard
+        case emphasized
+        case subdued
+    }
+
     private let model: MacAppModel
     private let amountField = NSTextField(string: "10000")
     private let merchantPopup = NSPopUpButton()
@@ -952,7 +958,8 @@ final class RecommendationViewController: NSViewController {
     private let datePicker = NSDatePicker()
     private let applicationPopup = NSPopUpButton()
     private let applicationButton = NSButton(title: "公式申込ページを開く", target: nil, action: nil)
-    private let resultsView = NSTextView()
+    private let resultStack = NSStackView()
+    private let resultScroll = NSScrollView()
     private var applicationCandidates: [CardRecommendation] = []
 
     private let merchants = [
@@ -984,71 +991,85 @@ final class RecommendationViewController: NSViewController {
 
     override func loadView() {
         let content = NSView()
+        content.wantsLayer = true
+        content.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         content.translatesAutoresizingMaskIntoConstraints = false
-        let stack = NSStackView()
-        stack.orientation = .vertical
-        stack.alignment = .leading
-        stack.spacing = 14
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        content.addSubview(stack)
+        let root = NSStackView()
+        root.orientation = .vertical
+        root.alignment = .width
+        root.spacing = 14
+        root.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(root)
         NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 24),
-            stack.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -24),
-            stack.topAnchor.constraint(equalTo: content.topAnchor, constant: 20),
-            stack.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -20)
+            root.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 28),
+            root.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -28),
+            root.topAnchor.constraint(equalTo: content.topAnchor, constant: 22),
+            root.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -22)
         ])
 
-        stack.addArrangedSubview(titleLabel("利用条件"))
+        let headline = NSStackView()
+        headline.orientation = .vertical
+        headline.alignment = .leading
+        headline.spacing = 3
+        let heading = NSTextField(labelWithString: "支払いに、いちばん強い1枚を")
+        heading.font = .systemFont(ofSize: 25, weight: .bold)
+        let subtitle = NSTextField(labelWithString: "条件に合う公式還元ルールだけで、保有カードと申込候補を比較します。")
+        subtitle.textColor = .secondaryLabelColor
+        headline.addArrangedSubview(heading)
+        headline.addArrangedSubview(subtitle)
+        root.addArrangedSubview(headline)
+
         setupPopups()
         amountField.alignment = .right
-        amountField.widthAnchor.constraint(equalToConstant: 180).isActive = true
         datePicker.datePickerElements = .yearMonthDay
         datePicker.dateValue = Date()
-        let grid = NSGridView(views: [
-            [label("金額（円）"), amountField],
-            [label("店舗"), merchantPopup],
-            [label("用途"), categoryPopup],
-            [label("支払い方法"), paymentPopup],
-            [label("購入場所"), channelPopup],
-            [label("頻度"), frequencyPopup],
-            [label("利用日"), datePicker]
-        ])
-        grid.column(at: 0).xPlacement = .trailing
-        grid.column(at: 1).xPlacement = .fill
-        grid.rowSpacing = 9
-        grid.columnSpacing = 16
-        stack.addArrangedSubview(grid)
-
-        let calculateButton = NSButton(title: "一番お得なカードを調べる", target: self, action: #selector(calculate))
+        let calculateButton = NSButton(title: "この条件で比べる", target: self, action: #selector(calculate))
         calculateButton.bezelStyle = .rounded
-        stack.addArrangedSubview(calculateButton)
-        stack.addArrangedSubview(titleLabel("比較結果"))
+        calculateButton.controlSize = .large
+        let conditionContent = NSStackView()
+        conditionContent.orientation = .vertical
+        conditionContent.alignment = .width
+        conditionContent.spacing = 12
+        conditionContent.addArrangedSubview(panelHeading("利用条件", detail: "店舗・支払い方法まで選ぶと、対象特典を正確に比較できます。"))
+        conditionContent.addArrangedSubview(formRow([
+            formField("金額", control: amountField),
+            formField("店舗", control: merchantPopup),
+            formField("用途", control: categoryPopup)
+        ]))
+        conditionContent.addArrangedSubview(formRow([
+            formField("支払い方法", control: paymentPopup),
+            formField("購入場所", control: channelPopup),
+            formField("頻度", control: frequencyPopup)
+        ]))
+        let actionRow = NSStackView()
+        actionRow.orientation = .horizontal
+        actionRow.alignment = .bottom
+        actionRow.spacing = 12
+        actionRow.addArrangedSubview(formField("利用日", control: datePicker))
+        actionRow.addArrangedSubview(calculateButton)
+        calculateButton.widthAnchor.constraint(equalToConstant: 220).isActive = true
+        conditionContent.addArrangedSubview(actionRow)
+        root.addArrangedSubview(panel(containing: conditionContent, tone: .standard))
 
-        resultsView.isEditable = false
-        resultsView.isSelectable = true
-        resultsView.font = .systemFont(ofSize: 13)
-        resultsView.textContainerInset = NSSize(width: 12, height: 12)
-        let scroll = NSScrollView()
-        scroll.borderType = .bezelBorder
-        scroll.hasVerticalScroller = true
-        scroll.documentView = resultsView
-        scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.heightAnchor.constraint(greaterThanOrEqualToConstant: 320).isActive = true
-        stack.addArrangedSubview(scroll)
-        scroll.widthAnchor.constraint(equalTo: stack.widthAnchor).isActive = true
+        root.addArrangedSubview(panelHeading("おすすめ", detail: "最適な1枚を先に表示し、次点だけをコンパクトに比較します。"))
+        configureResultScroll()
+        root.addArrangedSubview(resultScroll)
+        let resultHeight = resultScroll.heightAnchor.constraint(greaterThanOrEqualToConstant: 230)
+        resultHeight.priority = .defaultHigh
+        resultHeight.isActive = true
 
         let applicationRow = NSStackView()
         applicationRow.orientation = .horizontal
         applicationRow.alignment = .centerY
         applicationRow.spacing = 10
-        applicationRow.addArrangedSubview(label("申込候補"))
-        applicationPopup.widthAnchor.constraint(equalToConstant: 340).isActive = true
+        applicationRow.addArrangedSubview(panelHeading("申込候補", detail: "公式ページを開く前に候補を切り替えられます。"))
+        applicationPopup.widthAnchor.constraint(greaterThanOrEqualToConstant: 270).isActive = true
         applicationRow.addArrangedSubview(applicationPopup)
         applicationButton.target = self
         applicationButton.action = #selector(openApplicationPage)
         applicationButton.isEnabled = false
         applicationRow.addArrangedSubview(applicationButton)
-        stack.addArrangedSubview(applicationRow)
+        root.addArrangedSubview(panel(containing: applicationRow, tone: .subdued))
         view = content
     }
 
@@ -1060,7 +1081,7 @@ final class RecommendationViewController: NSViewController {
     @objc func calculate() {
         let amount = Double(amountField.stringValue.filter { $0.isNumber }) ?? 0
         guard amount > 0 else {
-            resultsView.string = "金額を入力してください。"
+            renderMessage("金額を入力してください。", detail: "比較する利用額を入力すると、お得額と還元率を計算します。")
             updateApplicationCandidates([])
             return
         }
@@ -1076,21 +1097,12 @@ final class RecommendationViewController: NSViewController {
             purchaseDate: dateString(datePicker.dateValue)
         )
         guard let presentation = model.recommend(intent: intent) else {
-            resultsView.string = "カタログを読み込めません。"
+            renderMessage("カタログを読み込めません。", detail: "データ画面から最新カタログを確認してください。")
             updateApplicationCandidates([])
             return
         }
-        let results = presentation.rankings
-        let coverage = recommendationCoverageText(unverifiedHeldCardNames: presentation.unverifiedHeldCardNames)
-        let ownedEmpty = presentation.unverifiedHeldCardNames.isEmpty
-            ? "手持ちカードを登録してください"
-            : "保有カードの還元条件を確認中です。下の確認待ちカードを公式データへ昇格後に比較します。"
-        resultsView.string = coverage
-            + "\n\n"
-            + resultText(title: "今使うなら", recommendations: results.owned, empty: ownedEmpty)
-            + "\n\n"
-            + resultText(title: "新しく申し込むなら", recommendations: results.available, empty: "条件に合うカードがありません")
-        updateApplicationCandidates(Array(results.available.prefix(5)))
+        renderRecommendations(presentation)
+        updateApplicationCandidates(Array(presentation.rankings.available.prefix(5)))
     }
 
     private func setupPopups() {
@@ -1101,25 +1113,243 @@ final class RecommendationViewController: NSViewController {
         frequencyPopup.addItems(withTitles: frequencies.map(\.1))
     }
 
-    private func resultText(title: String, recommendations: [CardRecommendation], empty: String) -> String {
-        var lines = [title]
-        let values = Array(recommendations.prefix(5))
-        guard !values.isEmpty else { return (lines + [empty]).joined(separator: "\n") }
-        for (index, recommendation) in values.enumerated() {
-            let benefits = recommendation.appliedBenefits.map(\.title).joined(separator: " / ")
-            lines.append("\(index + 1). \(recommendation.card.name)")
-            lines.append("   今回 \(yen(recommendation.immediateValueYen)) ・ \(String(format: "%.1f", recommendation.effectiveReturnPercent))% / 年換算 \(yen(recommendation.annualNetValueYen))")
-            if !benefits.isEmpty { lines.append("   \(benefits)") }
-            if !recommendation.warnings.isEmpty { lines.append("   確認: \(recommendation.warnings.joined(separator: "・"))") }
-        }
-        return lines.joined(separator: "\n")
+    private func configureResultScroll() {
+        resultStack.orientation = .vertical
+        resultStack.alignment = .width
+        resultStack.spacing = 10
+        resultStack.translatesAutoresizingMaskIntoConstraints = false
+        let resultContent = NSView()
+        resultContent.translatesAutoresizingMaskIntoConstraints = false
+        resultContent.addSubview(resultStack)
+        NSLayoutConstraint.activate([
+            resultStack.leadingAnchor.constraint(equalTo: resultContent.leadingAnchor),
+            resultStack.trailingAnchor.constraint(equalTo: resultContent.trailingAnchor),
+            resultStack.topAnchor.constraint(equalTo: resultContent.topAnchor),
+            resultStack.bottomAnchor.constraint(equalTo: resultContent.bottomAnchor),
+            resultContent.widthAnchor.constraint(equalTo: resultScroll.contentView.widthAnchor)
+        ])
+        resultScroll.borderType = .noBorder
+        resultScroll.drawsBackground = false
+        resultScroll.hasVerticalScroller = true
+        resultScroll.autohidesScrollers = true
+        resultScroll.documentView = resultContent
     }
 
-    private func recommendationCoverageText(unverifiedHeldCardNames: [String]) -> String {
-        guard !unverifiedHeldCardNames.isEmpty else {
-            return "公式確認済みの還元ルールだけで比較しています。"
+    private func renderRecommendations(_ presentation: RecommendationPresentation) {
+        clearResultCards()
+        if !presentation.unverifiedHeldCardNames.isEmpty {
+            resultStack.addArrangedSubview(noticeCard(
+                title: "確認待ちの保有カード",
+                detail: "\(presentation.unverifiedHeldCardNames.joined(separator: "・")) は還元条件を検証中のため、順位に混ぜていません。"
+            ))
         }
-        return "確認待ちの保有カード（おすすめ対象外）: \(unverifiedHeldCardNames.joined(separator: "・"))\n還元率・適用条件を公式ページで検証できるまでは、順位に混ぜません。"
+
+        let rankings = presentation.rankings
+        addRecommendationSection(
+            title: "手持ちで、いま一番お得",
+            detail: "保有カードだけで比較",
+            recommendations: rankings.owned,
+            emptyTitle: "比較できる保有カードがありません",
+            emptyDetail: "手持ちカードから公式確認済みのカードを登録すると、ここに最適な1枚を表示します。"
+        )
+        addRecommendationSection(
+            title: "新しく申し込むなら",
+            detail: "年会費を差し引いた候補",
+            recommendations: rankings.available,
+            emptyTitle: "条件に合う申込候補がありません",
+            emptyDetail: "条件を変えるか、カタログ更新後にもう一度比較してください。"
+        )
+    }
+
+    private func renderMessage(_ title: String, detail: String) {
+        clearResultCards()
+        resultStack.addArrangedSubview(noticeCard(title: title, detail: detail))
+    }
+
+    private func clearResultCards() {
+        for view in resultStack.arrangedSubviews {
+            resultStack.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+    }
+
+    private func addRecommendationSection(
+        title: String,
+        detail: String,
+        recommendations: [CardRecommendation],
+        emptyTitle: String,
+        emptyDetail: String
+    ) {
+        resultStack.addArrangedSubview(panelHeading(title, detail: detail))
+        guard let primary = recommendations.first else {
+            resultStack.addArrangedSubview(noticeCard(title: emptyTitle, detail: emptyDetail))
+            return
+        }
+        resultStack.addArrangedSubview(recommendationCard(primary, rank: 1, emphasized: true))
+        for (offset, recommendation) in recommendations.dropFirst().prefix(2).enumerated() {
+            resultStack.addArrangedSubview(recommendationCard(recommendation, rank: offset + 2, emphasized: false))
+        }
+    }
+
+    private func recommendationCard(_ recommendation: CardRecommendation, rank: Int, emphasized: Bool) -> NSView {
+        let card = panel(containing: NSView(), tone: emphasized ? .emphasized : .standard)
+
+        let content = card.subviews[0]
+        let main = NSStackView()
+        main.orientation = .vertical
+        main.alignment = .width
+        main.spacing = emphasized ? 9 : 5
+        main.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(main)
+        NSLayoutConstraint.activate([
+            main.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 16),
+            main.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -16),
+            main.topAnchor.constraint(equalTo: content.topAnchor, constant: 14),
+            main.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -14)
+        ])
+
+        let summary = NSStackView()
+        summary.orientation = .horizontal
+        summary.alignment = .centerY
+        summary.spacing = 12
+        let rankLabel = NSTextField(labelWithString: "#\(rank)")
+        rankLabel.font = .monospacedDigitSystemFont(ofSize: emphasized ? 16 : 13, weight: .bold)
+        rankLabel.textColor = emphasized ? .systemIndigo : .secondaryLabelColor
+        rankLabel.setContentHuggingPriority(.required, for: .horizontal)
+        let nameStack = NSStackView()
+        nameStack.orientation = .vertical
+        nameStack.alignment = .leading
+        nameStack.spacing = 2
+        let name = NSTextField(labelWithString: recommendation.card.name)
+        name.font = .systemFont(ofSize: emphasized ? 20 : 15, weight: .semibold)
+        name.lineBreakMode = .byTruncatingTail
+        let amount = NSTextField(labelWithString: "今回 \(yen(recommendation.immediateValueYen)) ・ 年換算 \(yen(recommendation.annualNetValueYen))")
+        amount.textColor = .secondaryLabelColor
+        nameStack.addArrangedSubview(name)
+        nameStack.addArrangedSubview(amount)
+        nameStack.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        let rateStack = NSStackView()
+        rateStack.orientation = .vertical
+        rateStack.alignment = .trailing
+        let rate = NSTextField(labelWithString: String(format: "%.1f%%", recommendation.effectiveReturnPercent))
+        rate.font = .monospacedDigitSystemFont(ofSize: emphasized ? 28 : 18, weight: .bold)
+        rate.textColor = emphasized ? .systemIndigo : .labelColor
+        let rateCaption = NSTextField(labelWithString: "実質還元")
+        rateCaption.font = .systemFont(ofSize: 11)
+        rateCaption.textColor = .secondaryLabelColor
+        rateStack.addArrangedSubview(rate)
+        rateStack.addArrangedSubview(rateCaption)
+        rateStack.setContentHuggingPriority(.required, for: .horizontal)
+        summary.addArrangedSubview(rankLabel)
+        summary.addArrangedSubview(nameStack)
+        summary.addArrangedSubview(rateStack)
+        main.addArrangedSubview(summary)
+
+        let benefits = recommendation.appliedBenefits.map(\.title).joined(separator: " / ")
+        if !benefits.isEmpty {
+            let benefit = NSTextField(wrappingLabelWithString: benefits)
+            benefit.font = .systemFont(ofSize: 12, weight: .medium)
+            benefit.textColor = .secondaryLabelColor
+            main.addArrangedSubview(benefit)
+        }
+        if !recommendation.warnings.isEmpty {
+            let warning = NSTextField(wrappingLabelWithString: "要確認: \(recommendation.warnings.joined(separator: "・"))")
+            warning.font = .systemFont(ofSize: 11)
+            warning.textColor = .systemOrange
+            main.addArrangedSubview(warning)
+        }
+        return card
+    }
+
+    private func noticeCard(title: String, detail: String) -> NSView {
+        let heading = NSTextField(labelWithString: title)
+        heading.font = .systemFont(ofSize: 13, weight: .semibold)
+        let detailLabel = NSTextField(wrappingLabelWithString: detail)
+        detailLabel.font = .systemFont(ofSize: 12)
+        detailLabel.textColor = .secondaryLabelColor
+        let stack = NSStackView(views: [
+            heading,
+            detailLabel
+        ])
+        stack.orientation = .vertical
+        stack.alignment = .leading
+        stack.spacing = 4
+        return panel(containing: stack, tone: .subdued)
+    }
+
+    private func panelHeading(_ title: String, detail: String) -> NSView {
+        let heading = NSTextField(labelWithString: title)
+        heading.font = .systemFont(ofSize: 16, weight: .bold)
+        let description = NSTextField(labelWithString: detail)
+        description.font = .systemFont(ofSize: 12)
+        description.textColor = .secondaryLabelColor
+        let stack = NSStackView(views: [heading, description])
+        stack.orientation = .vertical
+        stack.alignment = .leading
+        stack.spacing = 2
+        return stack
+    }
+
+    private func formRow(_ fields: [NSView]) -> NSStackView {
+        let row = NSStackView(views: fields)
+        row.orientation = .horizontal
+        row.alignment = .top
+        row.distribution = .fillEqually
+        row.spacing = 12
+        return row
+    }
+
+    private func formField(_ title: String, control: NSView) -> NSView {
+        let caption = NSTextField(labelWithString: title)
+        caption.font = .systemFont(ofSize: 11, weight: .medium)
+        caption.textColor = .secondaryLabelColor
+        let stack = NSStackView(views: [caption, control])
+        stack.orientation = .vertical
+        stack.alignment = .width
+        stack.spacing = 4
+        control.widthAnchor.constraint(equalTo: stack.widthAnchor).isActive = true
+        return stack
+    }
+
+    private func panel(containing content: NSView, tone: PanelTone) -> NSView {
+        let panel = NSView()
+        panel.wantsLayer = true
+        panel.layer?.backgroundColor = panelBackgroundColor(for: tone).cgColor
+        panel.layer?.cornerRadius = 14
+        panel.layer?.masksToBounds = true
+        panel.layer?.borderWidth = 1
+        panel.layer?.borderColor = panelBorderColor(for: tone).cgColor
+        content.translatesAutoresizingMaskIntoConstraints = false
+        panel.addSubview(content)
+        NSLayoutConstraint.activate([
+            content.leadingAnchor.constraint(equalTo: panel.leadingAnchor, constant: 16),
+            content.trailingAnchor.constraint(equalTo: panel.trailingAnchor, constant: -16),
+            content.topAnchor.constraint(equalTo: panel.topAnchor, constant: 14),
+            content.bottomAnchor.constraint(equalTo: panel.bottomAnchor, constant: -14)
+        ])
+        return panel
+    }
+
+    private func panelBackgroundColor(for tone: PanelTone) -> NSColor {
+        switch tone {
+        case .standard:
+            return NSColor.controlBackgroundColor
+        case .emphasized:
+            return NSColor.systemIndigo.withAlphaComponent(0.11)
+        case .subdued:
+            return NSColor.secondarySystemFill
+        }
+    }
+
+    private func panelBorderColor(for tone: PanelTone) -> NSColor {
+        switch tone {
+        case .standard:
+            return NSColor.separatorColor.withAlphaComponent(0.35)
+        case .emphasized:
+            return NSColor.systemIndigo.withAlphaComponent(0.45)
+        case .subdued:
+            return NSColor.separatorColor.withAlphaComponent(0.22)
+        }
     }
 
     private func updateApplicationCandidates(_ candidates: [CardRecommendation]) {
