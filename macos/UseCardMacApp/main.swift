@@ -1037,7 +1037,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     required init?(coder: NSCoder) { nil }
 
     private var displayedProducts: [CardProduct] {
-        let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        let query = searchQuery
         guard !query.isEmpty else { return model.products }
         return model.products.filter {
             $0.name.localizedCaseInsensitiveContains(query)
@@ -1111,9 +1111,9 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
             toggle.tag = row
             return toggle
         case "name":
-            return textCell(card.name)
+            return highlightedTextCell(card.name, matching: searchQuery)
         default:
-            return textCell(card.issuerName)
+            return highlightedTextCell(card.issuerName, matching: searchQuery)
         }
     }
 
@@ -1148,7 +1148,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     }
 
     private func updateSearchStatus() {
-        let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        let query = searchQuery
         if query.isEmpty {
             officialSearchButton.isEnabled = false
             searchStatus.stringValue = "公式確認済みのカードのみ表示します。検索すると関連カードをオンラインの公式サイトから探せます。"
@@ -1183,27 +1183,21 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
 
     private func presentOfficialCandidates(_ candidates: [RemoteCardSearchEntry]) {
         let alert = NSAlert()
-        let previewCount = 8
-        let preview = candidates.prefix(previewCount).map { "・\($0.name)" }.joined(separator: "\n")
-        let remaining = candidates.count - previewCount
-        let suffix = remaining > 0 ? "\nほか\(remaining)件" : ""
         alert.messageText = "公式ページ候補（\(candidates.count)件）"
-        alert.informativeText = "発行会社の公式ドメインに一致するページだけを表示しています。\n\n候補一覧:\n\(preview)\(suffix)\n\n下の一覧から1枚を選んで追加できます。還元条件は公式データで検証されるまで、おすすめ計算には使用しません。"
-        alert.addButton(withTitle: "保有カードに追加")
+        alert.informativeText = "発行会社の公式ドメインに一致するページだけを表示しています。下のリストはスクロールでき、検索語に一致する箇所をハイライトしています。"
+        let addButton = alert.addButton(withTitle: "保有カードに追加")
         alert.addButton(withTitle: "キャンセル")
-        let picker = NSPopUpButton(frame: NSRect(x: 0, y: 0, width: 430, height: 28), pullsDown: false)
-        picker.addItems(withTitles: candidates.map { candidate in
-            let source = candidate.discovery ?? "定期探索"
-            return "[\(source)] \(candidate.name)（\(candidate.issuerName)）"
-        })
-        alert.accessoryView = picker
+        let candidateList = OfficialCandidateListView(candidates: candidates, query: searchQuery)
+        addButton.isEnabled = false
+        candidateList.selectionDidChange = { isSelected in
+            addButton.isEnabled = isSelected
+        }
+        alert.accessoryView = candidateList
         guard alert.runModal() == .alertFirstButtonReturn else {
             updateSearchStatus()
             return
         }
-        let index = picker.indexOfSelectedItem
-        guard candidates.indices.contains(index) else { return }
-        let candidate = candidates[index]
+        guard let candidate = candidateList.selectedCandidate else { return }
         model.addPendingCard(candidate)
         searchField.stringValue = candidate.name
         table.reloadData()
@@ -1227,6 +1221,65 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
         }
         catalogLookupWorkItem = workItem
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(700), execute: workItem)
+    }
+
+    private var searchQuery: String {
+        searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
+private final class OfficialCandidateListView: NSView, NSTableViewDataSource, NSTableViewDelegate {
+    private let candidates: [RemoteCardSearchEntry]
+    private let query: String
+    private let table = NSTableView()
+    var selectionDidChange: ((Bool) -> Void)?
+
+    init(candidates: [RemoteCardSearchEntry], query: String) {
+        self.candidates = candidates
+        self.query = query
+        super.init(frame: NSRect(x: 0, y: 0, width: 600, height: 320))
+
+        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("candidate"))
+        column.width = 600
+        table.addTableColumn(column)
+        table.headerView = nil
+        table.rowHeight = 29
+        table.usesAlternatingRowBackgroundColors = true
+        table.delegate = self
+        table.dataSource = self
+
+        let scroll = NSScrollView()
+        scroll.documentView = table
+        scroll.hasVerticalScroller = true
+        scroll.autohidesScrollers = true
+        scroll.borderType = .bezelBorder
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(scroll)
+        NSLayoutConstraint.activate([
+            scroll.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scroll.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scroll.topAnchor.constraint(equalTo: topAnchor),
+            scroll.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+
+    required init?(coder: NSCoder) { nil }
+
+    var selectedCandidate: RemoteCardSearchEntry? {
+        candidates.indices.contains(table.selectedRow) ? candidates[table.selectedRow] : nil
+    }
+
+    func numberOfRows(in tableView: NSTableView) -> Int { candidates.count }
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard candidates.indices.contains(row) else { return nil }
+        let candidate = candidates[row]
+        let source = candidate.discovery ?? "定期探索"
+        return highlightedTextCell("[\(source)] \(candidate.name)（\(candidate.issuerName)）", matching: query)
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        selectionDidChange?(selectedCandidate != nil)
     }
 }
 
@@ -1380,6 +1433,52 @@ private func textCell(_ text: String) -> NSTextField {
     let field = NSTextField(labelWithString: text)
     field.lineBreakMode = .byTruncatingTail
     return field
+}
+
+private func highlightedTextCell(_ text: String, matching query: String) -> NSTextField {
+    let field = NSTextField(labelWithString: "")
+    field.lineBreakMode = .byTruncatingTail
+    field.attributedStringValue = highlightedText(text, matching: query)
+    return field
+}
+
+private func highlightedText(_ text: String, matching query: String) -> NSAttributedString {
+    let regularFont = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+    let result = NSMutableAttributedString(
+        string: text,
+        attributes: [
+            .font: regularFont,
+            .foregroundColor: NSColor.labelColor
+        ]
+    )
+    guard !query.isEmpty else { return result }
+
+    let source = text as NSString
+    for term in highlightTerms(for: query) {
+        var searchRange = NSRange(location: 0, length: source.length)
+        while searchRange.length > 0 {
+            let match = source.range(of: term, options: [.caseInsensitive], range: searchRange)
+            guard match.location != NSNotFound else { break }
+            result.addAttributes([
+                .font: NSFont.boldSystemFont(ofSize: NSFont.systemFontSize),
+                .foregroundColor: NSColor.black,
+                .backgroundColor: NSColor.systemYellow.withAlphaComponent(0.65)
+            ], range: match)
+            let nextLocation = match.location + match.length
+            searchRange = NSRange(location: nextLocation, length: source.length - nextLocation)
+        }
+    }
+    return result
+}
+
+private func highlightTerms(for query: String) -> [String] {
+    var terms = [query]
+    let normalized = query.precomposedStringWithCompatibilityMapping.lowercased()
+    if normalized.contains("saison") || query.contains("セゾン") {
+        terms.append("SAISON")
+        terms.append("セゾン")
+    }
+    return Array(Set(terms.filter { !$0.isEmpty }))
 }
 
 private func yen(_ value: Double) -> String {
