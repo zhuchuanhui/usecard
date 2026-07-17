@@ -58,6 +58,7 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
             mainWindow.deminiaturize(nil)
         }
         mainWindow.makeKeyAndOrderFront(nil)
+        mainWindow.orderFrontRegardless()
         NSApp.activate(ignoringOtherApps: true)
     }
 
@@ -976,7 +977,6 @@ final class RecommendationViewController: NSViewController {
     private let applicationPopup = NSPopUpButton()
     private let applicationButton = NSButton(title: "公式申込ページを開く", target: nil, action: nil)
     private let resultStack = NSStackView()
-    private let resultScroll = NSScrollView()
     private var applicationCandidates: [CardRecommendation] = []
 
     private let merchants = [
@@ -1010,7 +1010,6 @@ final class RecommendationViewController: NSViewController {
         let content = NSView()
         content.wantsLayer = true
         content.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
-        content.translatesAutoresizingMaskIntoConstraints = false
         let root = NSStackView()
         root.orientation = .vertical
         root.alignment = .width
@@ -1023,6 +1022,10 @@ final class RecommendationViewController: NSViewController {
             root.topAnchor.constraint(equalTo: content.topAnchor, constant: 22),
             root.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -22)
         ])
+        func addFullWidth(_ view: NSView) {
+            root.addArrangedSubview(view)
+            view.widthAnchor.constraint(equalTo: root.widthAnchor).isActive = true
+        }
 
         let headline = NSStackView()
         headline.orientation = .vertical
@@ -1034,7 +1037,7 @@ final class RecommendationViewController: NSViewController {
         subtitle.textColor = .secondaryLabelColor
         headline.addArrangedSubview(heading)
         headline.addArrangedSubview(subtitle)
-        root.addArrangedSubview(headline)
+        addFullWidth(headline)
 
         setupPopups()
         amountField.alignment = .right
@@ -1047,13 +1050,17 @@ final class RecommendationViewController: NSViewController {
         conditionContent.orientation = .vertical
         conditionContent.alignment = .width
         conditionContent.spacing = 12
-        conditionContent.addArrangedSubview(panelHeading("利用条件", detail: "店舗・支払い方法まで選ぶと、対象特典を正確に比較できます。"))
-        conditionContent.addArrangedSubview(formRow([
+        func addConditionFullWidth(_ view: NSView) {
+            conditionContent.addArrangedSubview(view)
+            view.widthAnchor.constraint(equalTo: conditionContent.widthAnchor).isActive = true
+        }
+        addConditionFullWidth(panelHeading("利用条件", detail: "店舗・支払い方法まで選ぶと、対象特典を正確に比較できます。"))
+        addConditionFullWidth(formRow([
             formField("金額", control: amountField),
             formField("店舗", control: merchantPopup),
             formField("用途", control: categoryPopup)
         ]))
-        conditionContent.addArrangedSubview(formRow([
+        addConditionFullWidth(formRow([
             formField("支払い方法", control: paymentPopup),
             formField("購入場所", control: channelPopup),
             formField("頻度", control: frequencyPopup)
@@ -1065,15 +1072,12 @@ final class RecommendationViewController: NSViewController {
         actionRow.addArrangedSubview(formField("利用日", control: datePicker))
         actionRow.addArrangedSubview(calculateButton)
         calculateButton.widthAnchor.constraint(equalToConstant: 220).isActive = true
-        conditionContent.addArrangedSubview(actionRow)
-        root.addArrangedSubview(panel(containing: conditionContent, tone: .standard))
+        addConditionFullWidth(actionRow)
+        addFullWidth(panel(containing: conditionContent, tone: .standard))
 
-        root.addArrangedSubview(panelHeading("おすすめ", detail: "最適な1枚を先に表示し、次点だけをコンパクトに比較します。"))
-        configureResultScroll()
-        root.addArrangedSubview(resultScroll)
-        let resultHeight = resultScroll.heightAnchor.constraint(greaterThanOrEqualToConstant: 230)
-        resultHeight.priority = .defaultHigh
-        resultHeight.isActive = true
+        addFullWidth(panelHeading("おすすめ", detail: "最適な1枚を先に表示し、次点だけをコンパクトに比較します。"))
+        configureResultStack()
+        addFullWidth(resultStack)
 
         let applicationRow = NSStackView()
         applicationRow.orientation = .horizontal
@@ -1086,7 +1090,7 @@ final class RecommendationViewController: NSViewController {
         applicationButton.action = #selector(openApplicationPage)
         applicationButton.isEnabled = false
         applicationRow.addArrangedSubview(applicationButton)
-        root.addArrangedSubview(panel(containing: applicationRow, tone: .subdued))
+        addFullWidth(panel(containing: applicationRow, tone: .subdued))
         view = content
     }
 
@@ -1130,32 +1134,17 @@ final class RecommendationViewController: NSViewController {
         frequencyPopup.addItems(withTitles: frequencies.map(\.1))
     }
 
-    private func configureResultScroll() {
+    private func configureResultStack() {
         resultStack.orientation = .vertical
         resultStack.alignment = .width
         resultStack.spacing = 10
-        resultStack.translatesAutoresizingMaskIntoConstraints = false
-        let resultContent = NSView()
-        resultContent.translatesAutoresizingMaskIntoConstraints = false
-        resultContent.addSubview(resultStack)
-        NSLayoutConstraint.activate([
-            resultStack.leadingAnchor.constraint(equalTo: resultContent.leadingAnchor),
-            resultStack.trailingAnchor.constraint(equalTo: resultContent.trailingAnchor),
-            resultStack.topAnchor.constraint(equalTo: resultContent.topAnchor),
-            resultStack.bottomAnchor.constraint(equalTo: resultContent.bottomAnchor),
-            resultContent.widthAnchor.constraint(equalTo: resultScroll.contentView.widthAnchor)
-        ])
-        resultScroll.borderType = .noBorder
-        resultScroll.drawsBackground = false
-        resultScroll.hasVerticalScroller = true
-        resultScroll.autohidesScrollers = true
-        resultScroll.documentView = resultContent
+        resultStack.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
 
     private func renderRecommendations(_ presentation: RecommendationPresentation) {
         clearResultCards()
         if !presentation.unverifiedHeldCardNames.isEmpty {
-            resultStack.addArrangedSubview(noticeCard(
+            addResultView(noticeCard(
                 title: "確認待ちの保有カード",
                 detail: "\(presentation.unverifiedHeldCardNames.joined(separator: "・")) は還元条件を検証中のため、順位に混ぜていません。"
             ))
@@ -1180,7 +1169,7 @@ final class RecommendationViewController: NSViewController {
 
     private func renderMessage(_ title: String, detail: String) {
         clearResultCards()
-        resultStack.addArrangedSubview(noticeCard(title: title, detail: detail))
+        addResultView(noticeCard(title: title, detail: detail))
     }
 
     private func clearResultCards() {
@@ -1190,6 +1179,11 @@ final class RecommendationViewController: NSViewController {
         }
     }
 
+    private func addResultView(_ view: NSView) {
+        resultStack.addArrangedSubview(view)
+        view.widthAnchor.constraint(equalTo: resultStack.widthAnchor).isActive = true
+    }
+
     private func addRecommendationSection(
         title: String,
         detail: String,
@@ -1197,15 +1191,12 @@ final class RecommendationViewController: NSViewController {
         emptyTitle: String,
         emptyDetail: String
     ) {
-        resultStack.addArrangedSubview(panelHeading(title, detail: detail))
+        addResultView(panelHeading(title, detail: detail))
         guard let primary = recommendations.first else {
-            resultStack.addArrangedSubview(noticeCard(title: emptyTitle, detail: emptyDetail))
+            addResultView(noticeCard(title: emptyTitle, detail: emptyDetail))
             return
         }
-        resultStack.addArrangedSubview(recommendationCard(primary, rank: 1, emphasized: true))
-        for (offset, recommendation) in recommendations.dropFirst().prefix(2).enumerated() {
-            resultStack.addArrangedSubview(recommendationCard(recommendation, rank: offset + 2, emphasized: false))
-        }
+        addResultView(recommendationCard(primary, rank: 1, emphasized: true))
     }
 
     private func recommendationCard(_ recommendation: CardRecommendation, rank: Int, emphasized: Bool) -> NSView {
@@ -1261,6 +1252,7 @@ final class RecommendationViewController: NSViewController {
         summary.addArrangedSubview(nameStack)
         summary.addArrangedSubview(rateStack)
         main.addArrangedSubview(summary)
+        summary.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
 
         let benefits = recommendation.appliedBenefits.map(\.title).joined(separator: " / ")
         if !benefits.isEmpty {
@@ -1268,12 +1260,14 @@ final class RecommendationViewController: NSViewController {
             benefit.font = .systemFont(ofSize: 12, weight: .medium)
             benefit.textColor = .secondaryLabelColor
             main.addArrangedSubview(benefit)
+            benefit.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
         }
         if !recommendation.warnings.isEmpty {
             let warning = NSTextField(wrappingLabelWithString: "要確認: \(recommendation.warnings.joined(separator: "・"))")
             warning.font = .systemFont(ofSize: 11)
             warning.textColor = .systemOrange
             main.addArrangedSubview(warning)
+            warning.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
         }
         return card
     }
