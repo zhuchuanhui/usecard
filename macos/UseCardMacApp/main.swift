@@ -1038,6 +1038,8 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。検索すると関連カードをオンラインの公式サイトから探せます。")
     private let officialSearchButton = NSButton(title: "公式候補リストを表示", target: nil, action: nil)
     private var catalogLookupWorkItem: DispatchWorkItem?
+    private var sortKey = "name"
+    private var sortAscending = true
 
     init(model: MacAppModel) {
         self.model = model
@@ -1049,29 +1051,33 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
 
     private var displayedProducts: [CardProduct] {
         let query = searchQuery
-        guard !query.isEmpty else { return model.products }
-        return model.products.filter {
+        let filtered = query.isEmpty ? model.products : model.products.filter {
             $0.name.localizedCaseInsensitiveContains(query)
                 || $0.issuerName.localizedCaseInsensitiveContains(query)
         }
+        return filtered.sorted(by: isOrderedBefore)
     }
 
     override func loadView() {
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("held"))
         column.title = "保有"
         column.width = 56
+        column.sortDescriptorPrototype = NSSortDescriptor(key: "held", ascending: true)
         table.addTableColumn(column)
         let name = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("name"))
         name.title = "カード名"
         name.width = 300
+        name.sortDescriptorPrototype = NSSortDescriptor(key: "name", ascending: true)
         table.addTableColumn(name)
         let issuer = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("issuer"))
         issuer.title = "発行会社"
         issuer.width = 300
+        issuer.sortDescriptorPrototype = NSSortDescriptor(key: "issuer", ascending: true)
         table.addTableColumn(issuer)
         table.delegate = self
         table.dataSource = self
         table.usesAlternatingRowBackgroundColors = true
+        table.sortDescriptors = [NSSortDescriptor(key: sortKey, ascending: sortAscending)]
 
         let scroll = NSScrollView()
         scroll.documentView = table
@@ -1140,6 +1146,17 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
 
     func controlTextDidChange(_ notification: Notification) {
         applySearchChange()
+    }
+
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        guard let descriptor = tableView.sortDescriptors.first,
+              let key = descriptor.key,
+              ["held", "name", "issuer"].contains(key) else {
+            return
+        }
+        sortKey = key
+        sortAscending = descriptor.ascending
+        table.reloadData()
     }
 
     @objc private func pasteCardName() {
@@ -1236,6 +1253,29 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
 
     private var searchQuery: String {
         searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func isOrderedBefore(_ left: CardProduct, _ right: CardProduct) -> Bool {
+        let comparison: ComparisonResult
+        switch sortKey {
+        case "held":
+            let leftHeld = model.isHeld(left.id)
+            let rightHeld = model.isHeld(right.id)
+            if leftHeld != rightHeld {
+                return sortAscending ? !leftHeld : leftHeld
+            }
+            comparison = left.name.localizedCompare(right.name)
+        case "issuer":
+            comparison = left.issuerName.localizedCompare(right.issuerName)
+        default:
+            comparison = left.name.localizedCompare(right.name)
+        }
+        if comparison == .orderedSame {
+            return sortAscending
+                ? left.name.localizedCompare(right.name) == .orderedAscending
+                : left.name.localizedCompare(right.name) == .orderedDescending
+        }
+        return sortAscending ? comparison == .orderedAscending : comparison == .orderedDescending
     }
 }
 
