@@ -330,17 +330,28 @@ final class MacAppModel {
 
     private func knownRelatedCandidates(for query: String) -> [RemoteCardSearchEntry] {
         let normalized = normalizedSearchText(query)
-        guard normalized.contains("三井住友カードnl") else { return [] }
-        return [
-            RemoteCardSearchEntry(
+        var candidates: [RemoteCardSearchEntry] = []
+        if normalized.contains("三井住友カードnl") {
+            candidates.append(RemoteCardSearchEntry(
                 issuerID: "smbc-card",
                 issuerName: "三井住友カード株式会社",
                 name: "三井住友カード ゴールド（NL）",
                 officialURL: URL(string: "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp")!,
                 observedAt: ISO8601DateFormatter().string(from: Date()),
                 discovery: "公式の関連カード定義"
-            )
-        ]
+            ))
+        }
+        if normalized.count >= 3 && (normalized.contains("saison") || "saison".contains(normalized) || normalized.contains("セゾン")) {
+            candidates.append(RemoteCardSearchEntry(
+                issuerID: "credit-saison",
+                issuerName: "株式会社クレディセゾン",
+                name: "SAISON GOLD Premium",
+                officialURL: URL(string: "https://www.saisoncard.co.jp/creditcard/lineup/102/")!,
+                observedAt: ISO8601DateFormatter().string(from: Date()),
+                discovery: "公式のカード定義"
+            ))
+        }
+        return candidates
     }
 
     private func relatedSearchTerms(for query: String) -> [String] {
@@ -360,12 +371,20 @@ final class MacAppModel {
     ) -> [OfficialIssuer] {
         var issuers = registry.compactMap { entry -> OfficialIssuer? in
             guard let host = canonicalHost(entry.officialURL) else { return nil }
-            return OfficialIssuer(id: entry.id, name: entry.name, host: host)
+            return OfficialIssuer(id: entry.id, name: entry.name, host: host, aliases: [])
         }
         issuers += catalogProducts.compactMap { product -> OfficialIssuer? in
             guard let host = canonicalHost(product.applicationURL) else { return nil }
-            return OfficialIssuer(id: product.issuerID, name: product.issuerName, host: host)
+            return OfficialIssuer(id: product.issuerID, name: product.issuerName, host: host, aliases: [])
         }
+        issuers += [
+            OfficialIssuer(
+                id: "credit-saison",
+                name: "株式会社クレディセゾン",
+                host: "saisoncard.co.jp",
+                aliases: ["saison", "セゾン"]
+            )
+        ]
         var seen = Set<String>()
         return issuers.filter { seen.insert("\($0.id):\($0.host)").inserted }
     }
@@ -380,7 +399,14 @@ final class MacAppModel {
         let normalizedTerms = terms.map(normalizedSearchText)
         let matchingIssuers = issuers.filter { issuer in
             let issuerName = normalizedSearchText(issuer.name)
-            return normalizedTerms.contains { term in issuerName.contains(term) || term.contains(issuerName) }
+            return normalizedTerms.contains { term in
+                issuerName.contains(term)
+                    || term.contains(issuerName)
+                    || issuer.aliases.contains { alias in
+                        let normalizedAlias = self.normalizedSearchText(alias)
+                        return term.count >= 3 && (normalizedAlias.contains(term) || term.contains(normalizedAlias))
+                    }
+            }
                 || catalogProducts.contains { product in
                     product.issuerID == issuer.id && normalizedTerms.contains { term in
                         let name = normalizedSearchText(product.name)
@@ -533,7 +559,10 @@ final class MacAppModel {
         let path = result.url.path.lowercased()
         guard title.range(of: "カード", options: .caseInsensitive) != nil
             || title.range(of: "card", options: .caseInsensitive) != nil else { return false }
-        return !path.contains("/camp/") && !path.contains("/login") && !path.contains("/mem/")
+        return !path.contains("/camp/")
+            && !path.contains("/login")
+            && !path.contains("/mem/")
+            && !path.contains("/customer-support/")
     }
 
     private func cleanOnlineResultTitle(_ title: String) -> String {
@@ -555,6 +584,9 @@ final class MacAppModel {
                 && seen.insert(candidate.officialURL.absoluteString).inserted
         }
         return unique.sorted { left, right in
+            let leftPriority = left.discovery?.contains("公式の") == true ? 0 : 1
+            let rightPriority = right.discovery?.contains("公式の") == true ? 0 : 1
+            if leftPriority != rightPriority { return leftPriority < rightPriority }
             let leftIsGold = left.name.localizedCaseInsensitiveContains("ゴールド")
             let rightIsGold = right.name.localizedCaseInsensitiveContains("ゴールド")
             if leftIsGold != rightIsGold { return leftIsGold }
@@ -600,6 +632,7 @@ private struct OfficialIssuer: Hashable {
     let id: String
     let name: String
     let host: String
+    let aliases: [String]
 }
 
 private struct BingRSSItem {
@@ -908,7 +941,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private let table = NSTableView()
     private let searchField = NSSearchField()
     private let searchStatus = NSTextField(labelWithString: "公式確認済みのカードのみ表示します。検索すると関連カードをオンラインの公式サイトから探せます。")
-    private let officialSearchButton = NSButton(title: "関連カードをオンラインで探す", target: nil, action: nil)
+    private let officialSearchButton = NSButton(title: "公式候補リストを表示", target: nil, action: nil)
     private var catalogLookupWorkItem: DispatchWorkItem?
 
     init(model: MacAppModel) {
