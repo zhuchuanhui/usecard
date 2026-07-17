@@ -19,6 +19,7 @@ swiftc \
 
 cp "$ROOT/macos/UseCardMacApp/Info.plist" "$STAGING/Contents/Info.plist"
 cp "$ROOT/macos/UseCardMacApp/Resources/UseCard.icns" "$STAGING/Contents/Resources/UseCard.icns"
+cp "$ROOT/macos/UseCardMacApp/Resources/UseCardNight.icns" "$STAGING/Contents/Resources/UseCardNight.icns"
 cp "$ROOT/catalog/public/latest.json" "$STAGING/Contents/Resources/latest.json"
 cp "$ROOT/catalog/public/official-lineups.json" "$STAGING/Contents/Resources/official-lineups.json"
 plutil -lint "$STAGING/Contents/Info.plist" >/dev/null

@@ -8,6 +8,35 @@ application.delegate = appDelegate
 application.setActivationPolicy(.regular)
 application.run()
 
+fileprivate enum UseCardIconStyle: String {
+    case standard
+    case night
+
+    static let defaultsKey = "jp.usecard.macos.app-icon-style"
+
+    var label: String {
+        switch self {
+        case .standard: "通常"
+        case .night: "夜"
+        }
+    }
+
+    var resourceName: String {
+        switch self {
+        case .standard: "UseCard"
+        case .night: "UseCardNight"
+        }
+    }
+
+    static var saved: UseCardIconStyle {
+        guard let rawValue = UserDefaults.standard.string(forKey: defaultsKey),
+              let style = UseCardIconStyle(rawValue: rawValue) else {
+            return .standard
+        }
+        return style
+    }
+}
+
 final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
     private let model = MacAppModel()
     private var mainWindow: NSWindow?
@@ -17,13 +46,20 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
     private var dataController: DataViewController?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        applyApplicationIcon(UseCardIconStyle.saved, persist: false)
+
         let tabs = NSTabViewController()
         tabs.tabStyle = .toolbar
 
         let recommendation = RecommendationViewController(model: model)
         let holdings = HoldingsViewController(model: model)
         let catalog = CatalogViewController(model: model)
-        let data = DataViewController(model: model) { [weak self] in self?.refreshCatalog() }
+        let data = DataViewController(
+            model: model,
+            iconStyle: UseCardIconStyle.saved,
+            refreshAction: { [weak self] in self?.refreshCatalog() },
+            changeIconAction: { [weak self] style in self?.applyApplicationIcon(style) }
+        )
         recommendationController = recommendation
         holdingsController = holdings
         catalogController = catalog
@@ -84,6 +120,17 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
             self.recommendationController?.calculate()
             self.dataController?.setRefreshing(false)
         }
+    }
+
+    private func applyApplicationIcon(_ style: UseCardIconStyle, persist: Bool = true) {
+        if persist {
+            UserDefaults.standard.set(style.rawValue, forKey: UseCardIconStyle.defaultsKey)
+        }
+        guard let iconURL = Bundle.main.url(forResource: style.resourceName, withExtension: "icns"),
+              let icon = NSImage(contentsOf: iconURL) else {
+            return
+        }
+        NSApp.applicationIconImage = icon
     }
 }
 
@@ -1838,16 +1885,27 @@ final class CatalogViewController: NSViewController, NSTableViewDataSource, NSTa
 final class DataViewController: NSViewController {
     private let model: MacAppModel
     private let refreshAction: () -> Void
+    private let changeIconAction: (UseCardIconStyle) -> Void
     private let statusLabel = NSTextField(labelWithString: "")
     private let countLabel = NSTextField(labelWithString: "")
     private let heldLabel = NSTextField(labelWithString: "")
     private let refreshButton = NSButton(title: "最新カタログを確認", target: nil, action: nil)
+    private let iconPicker = NSSegmentedControl(labels: [UseCardIconStyle.standard.label, UseCardIconStyle.night.label], trackingMode: .selectOne, target: nil, action: nil)
+    private let standardIconPreview = NSImageView()
+    private let nightIconPreview = NSImageView()
 
-    init(model: MacAppModel, refreshAction: @escaping () -> Void) {
+    fileprivate init(
+        model: MacAppModel,
+        iconStyle: UseCardIconStyle,
+        refreshAction: @escaping () -> Void,
+        changeIconAction: @escaping (UseCardIconStyle) -> Void
+    ) {
         self.model = model
         self.refreshAction = refreshAction
+        self.changeIconAction = changeIconAction
         super.init(nibName: nil, bundle: nil)
         title = "データ"
+        iconPicker.selectedSegment = iconStyle == .night ? 1 : 0
     }
 
     required init?(coder: NSCoder) { nil }
@@ -1860,11 +1918,15 @@ final class DataViewController: NSViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         refreshButton.target = self
         refreshButton.action = #selector(refresh)
+        iconPicker.target = self
+        iconPicker.action = #selector(changeIcon)
+        iconPicker.segmentStyle = .rounded
         stack.addArrangedSubview(statusLabel)
         stack.addArrangedSubview(countLabel)
         stack.addArrangedSubview(heldLabel)
         stack.addArrangedSubview(refreshButton)
         stack.addArrangedSubview(textCell("保有カードはこのMac内に保存します。カード番号や利用明細は保存しません。"))
+        stack.addArrangedSubview(iconSection())
         let container = NSView()
         container.addSubview(stack)
         NSLayoutConstraint.activate([
@@ -1885,6 +1947,11 @@ final class DataViewController: NSViewController {
         refreshAction()
     }
 
+    @objc private func changeIcon() {
+        let style: UseCardIconStyle = iconPicker.selectedSegment == 1 ? .night : .standard
+        changeIconAction(style)
+    }
+
     func setRefreshing(_ refreshing: Bool) {
         refreshButton.isEnabled = !refreshing
         if refreshing { statusLabel.stringValue = "カタログを確認中…" }
@@ -1895,6 +1962,51 @@ final class DataViewController: NSViewController {
         statusLabel.stringValue = "状態: \(model.catalogStatus)"
         countLabel.stringValue = "カード一覧: \(model.products.count)券種"
         heldLabel.stringValue = "保有カード数: \(model.heldCardIDs.count)枚"
+    }
+
+    private func iconSection() -> NSView {
+        let section = NSStackView()
+        section.orientation = .vertical
+        section.alignment = .leading
+        section.spacing = 8
+        section.addArrangedSubview(titleLabel("アプリアイコン"))
+
+        let previews = NSStackView()
+        previews.orientation = .horizontal
+        previews.alignment = .top
+        previews.spacing = 12
+        previews.addArrangedSubview(iconPreview(style: .standard, imageView: standardIconPreview))
+        previews.addArrangedSubview(iconPreview(style: .night, imageView: nightIconPreview))
+        section.addArrangedSubview(previews)
+        section.addArrangedSubview(iconPicker)
+        section.addArrangedSubview(textCell("Dockのアイコンをすぐ切り替えます。選択は次回起動後も保持されます。"))
+        return section
+    }
+
+    private func iconPreview(style: UseCardIconStyle, imageView: NSImageView) -> NSView {
+        imageView.image = iconImage(for: style)
+        imageView.imageScaling = .scaleProportionallyUpOrDown
+        imageView.wantsLayer = true
+        imageView.layer?.cornerRadius = 12
+        imageView.layer?.masksToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 72),
+            imageView.heightAnchor.constraint(equalToConstant: 72)
+        ])
+
+        let stack = NSStackView()
+        stack.orientation = .vertical
+        stack.alignment = .centerX
+        stack.spacing = 4
+        stack.addArrangedSubview(imageView)
+        stack.addArrangedSubview(textCell(style.label))
+        return stack
+    }
+
+    private func iconImage(for style: UseCardIconStyle) -> NSImage? {
+        guard let url = Bundle.main.url(forResource: style.resourceName, withExtension: "icns") else { return nil }
+        return NSImage(contentsOf: url)
     }
 }
 
