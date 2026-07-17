@@ -2,7 +2,11 @@
   {
     "issuerID": "viewcard",
     "issuerName": "株式会社ビューカード",
-    "aliases": ["view", "ビュー", "ビューカード"],
+    "aliases": [
+      "view",
+      "ビュー",
+      "ビューカード"
+    ],
     "sourceURL": "https://www.jreast.co.jp/card/first/index.html",
     "observedAt": "2026-07-17T00:00:00Z",
     "cards": [
@@ -55,7 +59,12 @@
   {
     "issuerID": "viewcard-partners",
     "issuerName": "ビューカード提携各社",
-    "aliases": ["view", "ビュー", "ビューカード", "suica"],
+    "aliases": [
+      "view",
+      "ビュー",
+      "ビューカード",
+      "suica"
+    ],
     "sourceURL": "https://www.jreast.co.jp/card/first/type2/",
     "observedAt": "2026-07-17T00:00:00Z",
     "cards": [

@@ -110,10 +110,18 @@ final class MacAppModel {
         UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
     }
 
-    func recommend(intent: PurchaseIntent) -> RecommendationBundle? {
+    fileprivate func recommend(intent: PurchaseIntent) -> RecommendationPresentation? {
         guard let catalog else { return nil }
         let holdings = heldCardIDs.map { UserHolding(cardID: $0) }
-        return RecommendationEngine().rank(catalog: catalog, intent: intent, holdings: holdings)
+        let verifiedIDs = Set(catalog.products.map(\.id))
+        let unverifiedHeldCards = products
+            .filter { heldCardIDs.contains($0.id) && !verifiedIDs.contains($0.id) }
+            .map(\.name)
+            .sorted { $0.localizedCompare($1) == .orderedAscending }
+        return RecommendationPresentation(
+            rankings: RecommendationEngine().rank(catalog: catalog, intent: intent, holdings: holdings),
+            unverifiedHeldCardNames: unverifiedHeldCards
+        )
     }
 
     fileprivate func lookupOfficialCandidates(
@@ -230,6 +238,9 @@ final class MacAppModel {
                         guard catalog.schemaVersion == 1, catalog.version == manifest.catalogVersion else {
                             throw CatalogRefreshError.manifestMismatch
                         }
+                        if let current = self.catalog, catalog.version < current.version {
+                            throw CatalogRefreshError.olderThanBundledCatalog
+                        }
                         return catalog
                     }
                     DispatchQueue.main.async {
@@ -238,8 +249,12 @@ final class MacAppModel {
                             self.catalog = catalog
                             self.reconcilePendingCards()
                             self.catalogStatus = "自動更新データ: \(catalog.version)"
-                        case .failure:
-                            self.catalogStatus = "更新サーバーに接続できないため、同梱カタログを使用中"
+                case .failure(let error):
+                    if case CatalogRefreshError.olderThanBundledCatalog = error {
+                        self.catalogStatus = "同梱カタログが配信版より新しいため、同梱版を使用中"
+                    } else {
+                        self.catalogStatus = "更新サーバーに接続できないため、同梱カタログを使用中"
+                    }
                         }
                         completion()
                     }
@@ -755,6 +770,11 @@ final class MacAppModel {
 
 }
 
+private struct RecommendationPresentation {
+    let rankings: RecommendationBundle
+    let unverifiedHeldCardNames: [String]
+}
+
 private struct RemoteManifest: Decodable {
     let schemaVersion: Int
     let catalogVersion: String
@@ -918,6 +938,7 @@ private enum CatalogRefreshError: Error {
     case unsupportedSchema
     case checksumMismatch
     case manifestMismatch
+    case olderThanBundledCatalog
 }
 
 final class RecommendationViewController: NSViewController {
@@ -1054,12 +1075,19 @@ final class RecommendationViewController: NSViewController {
             frequency: frequencies[frequencyPopup.indexOfSelectedItem].0,
             purchaseDate: dateString(datePicker.dateValue)
         )
-        guard let results = model.recommend(intent: intent) else {
+        guard let presentation = model.recommend(intent: intent) else {
             resultsView.string = "カタログを読み込めません。"
             updateApplicationCandidates([])
             return
         }
-        resultsView.string = resultText(title: "今使うなら", recommendations: results.owned, empty: "手持ちカードを登録してください")
+        let results = presentation.rankings
+        let coverage = recommendationCoverageText(unverifiedHeldCardNames: presentation.unverifiedHeldCardNames)
+        let ownedEmpty = presentation.unverifiedHeldCardNames.isEmpty
+            ? "手持ちカードを登録してください"
+            : "保有カードの還元条件を確認中です。下の確認待ちカードを公式データへ昇格後に比較します。"
+        resultsView.string = coverage
+            + "\n\n"
+            + resultText(title: "今使うなら", recommendations: results.owned, empty: ownedEmpty)
             + "\n\n"
             + resultText(title: "新しく申し込むなら", recommendations: results.available, empty: "条件に合うカードがありません")
         updateApplicationCandidates(Array(results.available.prefix(5)))
@@ -1085,6 +1113,13 @@ final class RecommendationViewController: NSViewController {
             if !recommendation.warnings.isEmpty { lines.append("   確認: \(recommendation.warnings.joined(separator: "・"))") }
         }
         return lines.joined(separator: "\n")
+    }
+
+    private func recommendationCoverageText(unverifiedHeldCardNames: [String]) -> String {
+        guard !unverifiedHeldCardNames.isEmpty else {
+            return "公式確認済みの還元ルールだけで比較しています。"
+        }
+        return "確認待ちの保有カード（おすすめ対象外）: \(unverifiedHeldCardNames.joined(separator: "・"))\n還元率・適用条件を公式ページで検証できるまでは、順位に混ぜません。"
     }
 
     private func updateApplicationCandidates(_ candidates: [CardRecommendation]) {

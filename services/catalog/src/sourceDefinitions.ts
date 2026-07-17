@@ -44,7 +44,8 @@ function pointsRule(
   points: number,
   source: SourceEvidence,
   conditions = emptyConditions(),
-  stackingGroup = "base"
+  stackingGroup = "base",
+  defaultPointValueYen = 1
 ): BenefitRule {
   return {
     id,
@@ -56,7 +57,7 @@ function pointsRule(
       unitAmountYen: unit,
       pointsPerUnit: points,
       pointProgramID: programID,
-      defaultPointValueYen: 1
+      defaultPointValueYen
     },
     source
   };
@@ -148,6 +149,149 @@ export const knownCardDefinitions: KnownCardDefinition[] = [
       )
     ]
   ),
+  {
+    id: "smbc-card-gold-nl",
+    issuerID: "smbc-card",
+    issuerName: "三井住友カード株式会社",
+    name: "三井住友カード ゴールド（NL）",
+    networks: ["visa", "mastercard"],
+    applicationURL: "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp",
+    eligibilityNote: "満20歳以上で本人に安定継続収入のある方",
+    pointProgramID: "v-point",
+    sourceURLs: [
+      "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp",
+      "https://www.smbc-card.com/nyukai/merit/proper_p5.jsp"
+    ],
+    fallbackTexts: {
+      "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp": "三井住友カード ゴールド（NL） 年会費 5,500円 Vポイント 通常 ご利用金額200円(税込)につき1ポイント 国際ブランド Visa Mastercard 年間100万円のご利用で翌年以降の年会費永年無料",
+      "https://www.smbc-card.com/nyukai/merit/proper_p5.jsp": "対象のコンビニ・飲食店で、スマホのVisaのタッチ決済・Mastercardタッチ決済またはモバイルオーダーで支払うと、ご利用金額200円(税込)につき7%ポイント還元。通常のポイント分0.5%に加えて+6.5%ポイント還元。セブン-イレブン ローソン マクドナルド モスバーガー ケンタッキーフライドチキン 吉野家 サイゼリヤ ガスト すき家 はま寿司 ドトールコーヒーショップ"
+    },
+    build(pages, sources) {
+      assertAnyText(pages, [/200円.{0,40}1ポイント/, /200円.{0,40}7%ポイント還元/], "smbc-card-gold-nl rewards");
+      const baseSource = requiredSource(sources, 0, "smbc-card-gold-nl");
+      return {
+        id: "smbc-card-gold-nl",
+        issuerID: "smbc-card",
+        issuerName: "三井住友カード株式会社",
+        name: "三井住友カード ゴールド（NL）",
+        networks: ["visa", "mastercard"],
+        annualFeeYen: 5_500,
+        applicationStatus: "open",
+        applicationURL: "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp",
+        eligibilityNote: "満20歳以上で本人に安定継続収入のある方。年間100万円利用で翌年以降の年会費が永年無料となる条件は公式ページで確認してください。",
+        pointProgramID: "v-point",
+        benefitRules: [
+          pointsRule("smbc-card-gold-nl-base", "通常還元", "v-point", 200, 1, baseSource),
+          pointsRule(
+            "smbc-card-gold-nl-eligible-store-mobile-payment",
+            "対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダー（通常還元に追加）",
+            "v-point",
+            200,
+            13,
+            requiredSource(sources, 1, "smbc-card-gold-nl eligible stores"),
+            {
+              ...emptyConditions(),
+              merchantIDs: [
+                "seicomart", "seven-eleven", "poplar", "ministop", "lawson",
+                "mcdonalds", "mos-burger", "kfc", "yoshinoya", "saizeriya",
+                "gusto", "bamiya", "syabuyo", "jonathan", "yumean", "sukiya",
+                "hamazushi", "cocos", "doutor", "excelsior", "kappazushi"
+              ],
+              paymentMethods: ["mobileContactless", "applePay", "mobileOrder"]
+            },
+            "smbc-eligible-store-mobile-payment-bonus"
+          )
+        ],
+        sources
+      };
+    }
+  },
+  {
+    id: "saison-gold-premium",
+    issuerID: "credit-saison",
+    issuerName: "株式会社クレディセゾン",
+    name: "SAISON GOLD Premium",
+    networks: ["visa", "jcb", "americanExpress"],
+    applicationURL: "https://www.saisoncard.co.jp/creditcard/lineup/102/",
+    eligibilityNote: "申込条件は公式サイトで確認してください",
+    pointProgramID: "permanent-point",
+    sourceURLs: ["https://www.saisoncard.co.jp/creditcard/lineup/102/"],
+    fallbackTexts: {
+      "https://www.saisoncard.co.jp/creditcard/lineup/102/": "SAISON GOLD Premium 年会費 11,000円 身近なお店で最大5%ポイント還元 年間利用額30万円以下でポイント還元率2.5% マクドナルド モスバーガー すき家"
+    },
+    build(pages, sources) {
+      assertAnyText(pages, [/ポイントアップショップ/, /ポイント還元率2\.5%/], "saison-gold-premium rewards");
+      const source = requiredSource(sources, 0, "saison-gold-premium");
+      return {
+        id: "saison-gold-premium",
+        issuerID: "credit-saison",
+        issuerName: "株式会社クレディセゾン",
+        name: "SAISON GOLD Premium",
+        networks: ["visa", "jcb", "americanExpress"],
+        annualFeeYen: 11_000,
+        applicationStatus: "open",
+        applicationURL: "https://www.saisoncard.co.jp/creditcard/lineup/102/",
+        eligibilityNote: "ポイントアップショップの還元率は年間利用額により変動します。最新のレベルはセゾンPortalで確認してください。",
+        pointProgramID: "permanent-point",
+        benefitRules: [
+          cashbackRule("saison-gold-premium-base", "通常還元（永久不滅ポイントを1ポイント5円相当で利用する場合）", 0.5, source),
+          cashbackRule(
+            "saison-gold-premium-point-up-shops",
+            "ポイントアップショップ（通常還元に追加・基本レベル）",
+            2,
+            source,
+            { ...emptyConditions(), merchantIDs: ["mcdonalds", "mos-burger", "sukiya"] },
+            "saison-gold-premium-point-up-shops"
+          )
+        ],
+        sources
+      };
+    }
+  },
+  {
+    id: "mizuho-mileage-club-card-saison",
+    issuerID: "credit-saison",
+    issuerName: "株式会社クレディセゾン",
+    name: "みずほマイレージクラブカードセゾン",
+    networks: ["visa", "jcb", "americanExpress"],
+    applicationURL: "https://www.saisoncard.co.jp/creditcard/lineup/064/",
+    eligibilityNote: "申込条件は公式サイトで確認してください",
+    pointProgramID: "permanent-point",
+    sourceURLs: ["https://www.saisoncard.co.jp/creditcard/lineup/064/"],
+    fallbackTexts: {
+      "https://www.saisoncard.co.jp/creditcard/lineup/064/": "みずほマイレージクラブカードセゾン 年会費無料 永久不滅ポイント 1ヵ月のショッピングご利用総額1,000円(税込)ごとに1ポイント パートナー企業で永久不滅ポイント通常の2倍"
+    },
+    build(pages, sources) {
+      assertAnyText(pages, [/1,000円.{0,40}1ポイント/, /永久不滅ポイント/], "mizuho-mileage-club-card-saison rewards");
+      const source = requiredSource(sources, 0, "mizuho-mileage-club-card-saison");
+      return {
+        id: "mizuho-mileage-club-card-saison",
+        issuerID: "credit-saison",
+        issuerName: "株式会社クレディセゾン",
+        name: "みずほマイレージクラブカードセゾン",
+        networks: ["visa", "jcb", "americanExpress"],
+        annualFeeYen: 0,
+        applicationStatus: "open",
+        applicationURL: "https://www.saisoncard.co.jp/creditcard/lineup/064/",
+        eligibilityNote: "永久不滅ポイントを1ポイント5円相当で利用する場合の比較です。パートナー企業での上乗せ条件は公式ページで確認してください。",
+        pointProgramID: "permanent-point",
+        benefitRules: [
+          pointsRule(
+            "mizuho-mileage-club-card-saison-base",
+            "通常還元（永久不滅ポイントを1ポイント5円相当で利用する場合）",
+            "permanent-point",
+            1_000,
+            1,
+            source,
+            emptyConditions(),
+            "base",
+            5
+          )
+        ],
+        sources
+      };
+    }
+  },
   freePointsCard(
     {
       id: "smbc-card-nl",
