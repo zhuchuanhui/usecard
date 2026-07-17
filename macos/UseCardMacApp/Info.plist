@@ -8,6 +8,8 @@
     <string>UseCard</string>
     <key>CFBundleExecutable</key>
     <string>UseCard</string>
+    <key>CFBundleIconFile</key>
+    <string>UseCard.icns</string>
     <key>CFBundleIdentifier</key>
     <string>jp.usecard.macos</string>
     <key>CFBundleInfoDictionaryVersion</key>
