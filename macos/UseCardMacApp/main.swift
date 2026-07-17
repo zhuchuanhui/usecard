@@ -867,16 +867,25 @@ final class MacAppModel {
                 guard (try? self.requireSuccessfulResponse(response)) != nil else { return }
                 let results = BingRSSParser.items(from: data)
                 let verified = results.compactMap { result -> RemoteCardSearchEntry? in
-                    guard self.isLikelyCardProduct(result),
-                          let issuer = self.officialIssuer(for: result.url, in: issuers) else { return nil }
-                    return RemoteCardSearchEntry(
-                        issuerID: issuer.id,
-                        issuerName: issuer.name,
-                        name: self.cleanOnlineResultTitle(result.title),
-                        officialURL: result.url,
-                        observedAt: ISO8601DateFormatter().string(from: Date()),
-                        discovery: "オンラインの公式サイト検索"
-                    )
+                    self.onlineOfficialCandidate(for: result, query: query, issuers: issuers)
+                }
+                lock.lock()
+                candidates.append(contentsOf: verified)
+                lock.unlock()
+            }.resume()
+
+            guard let duckDuckGoURL = duckDuckGoHTMLURL(for: term) else { continue }
+            var duckDuckGoRequest = URLRequest(url: duckDuckGoURL)
+            duckDuckGoRequest.timeoutInterval = 15
+            duckDuckGoRequest.setValue("UseCard/1.0 (+https://zhuchuanhui.github.io/usecard/)", forHTTPHeaderField: "User-Agent")
+            group.enter()
+            URLSession.shared.dataTask(with: duckDuckGoRequest) { [weak self] data, response, _ in
+                defer { group.leave() }
+                guard let self, let data else { return }
+                guard (try? self.requireSuccessfulResponse(response)) != nil else { return }
+                let results = DuckDuckGoHTMLParser.items(from: data)
+                let verified = results.compactMap { result in
+                    self.onlineOfficialCandidate(for: result, query: query, issuers: issuers)
                 }
                 lock.lock()
                 candidates.append(contentsOf: verified)
@@ -895,6 +904,12 @@ final class MacAppModel {
             URLQueryItem(name: "format", value: "rss"),
             URLQueryItem(name: "q", value: query)
         ]
+        return components?.url
+    }
+
+    private func duckDuckGoHTMLURL(for query: String) -> URL? {
+        var components = URLComponents(string: "https://html.duckduckgo.com/html/")
+        components?.queryItems = [URLQueryItem(name: "q", value: query)]
         return components?.url
     }
 
@@ -936,10 +951,58 @@ final class MacAppModel {
         let path = result.url.path.lowercased()
         guard title.range(of: "カード", options: .caseInsensitive) != nil
             || title.range(of: "card", options: .caseInsensitive) != nil else { return false }
+        let productPathTerms = ["card", "credit", "nyukai", "affiliate", "apply", "lineup"]
+        guard productPathTerms.contains(where: { path.contains($0) }) else { return false }
         return !path.contains("/camp/")
             && !path.contains("/login")
             && !path.contains("/mem/")
             && !path.contains("/customer-support/")
+    }
+
+    private func onlineOfficialCandidate(
+        for result: BingRSSItem,
+        query: String,
+        issuers: [OfficialIssuer]
+    ) -> RemoteCardSearchEntry? {
+        guard isLikelyCardProduct(result) else { return nil }
+        let observedAt = ISO8601DateFormatter().string(from: Date())
+        if let issuer = officialIssuer(for: result.url, in: issuers) {
+            return RemoteCardSearchEntry(
+                issuerID: issuer.id,
+                issuerName: issuer.name,
+                name: cleanOnlineResultTitle(result.title),
+                officialURL: result.url,
+                observedAt: observedAt,
+                discovery: "オンラインの公式サイト検索"
+            )
+        }
+
+        // Co-branded cards may be published on a partner domain before that
+        // partner reaches the issuer registry. These candidates stay pending-only.
+        guard let host = canonicalHost(result.url), isLikelyOfficialBrandDomain(host, for: query) else {
+            return nil
+        }
+        let issuerID = "online-" + host.replacingOccurrences(
+            of: #"[^a-z0-9]+"#,
+            with: "-",
+            options: .regularExpression
+        )
+        return RemoteCardSearchEntry(
+            issuerID: issuerID,
+            issuerName: host,
+            name: cleanOnlineResultTitle(result.title),
+            officialURL: result.url,
+            observedAt: observedAt,
+            discovery: "オンライン公式候補（発行会社確認中）"
+        )
+    }
+
+    private func isLikelyOfficialBrandDomain(_ host: String, for query: String) -> Bool {
+        let compactHost = host.replacingOccurrences(of: ".", with: "")
+        let terms = relatedSearchTerms(for: query)
+            .map(normalizedSearchText)
+            .filter { $0.count >= 3 }
+        return terms.contains { compactHost.contains($0) }
     }
 
     private func cleanOnlineResultTitle(_ title: String) -> String {
@@ -961,14 +1024,19 @@ final class MacAppModel {
             return !knownIdentities.contains(identity) && seen.insert(identity).inserted
         }
         return unique.sorted { left, right in
-            let leftPriority = left.discovery?.contains("公式") == true ? 0 : 1
-            let rightPriority = right.discovery?.contains("公式") == true ? 0 : 1
+            let leftPriority = candidatePriority(left)
+            let rightPriority = candidatePriority(right)
             if leftPriority != rightPriority { return leftPriority < rightPriority }
             let leftIsGold = left.name.localizedCaseInsensitiveContains("ゴールド")
             let rightIsGold = right.name.localizedCaseInsensitiveContains("ゴールド")
             if leftIsGold != rightIsGold { return leftIsGold }
             return left.name.localizedCompare(right.name) == .orderedAscending
         }
+    }
+
+    private func candidatePriority(_ candidate: RemoteCardSearchEntry) -> Int {
+        if candidate.discovery?.contains("確認中") == true { return 2 }
+        return candidate.discovery?.contains("公式") == true ? 0 : 1
     }
 
     private static func loadPendingCards() -> [PendingCardRecord] {
@@ -1099,6 +1167,44 @@ private final class BingRSSParser: NSObject, XMLParserDelegate {
         } else if elementName == currentElement {
             currentElement = ""
         }
+    }
+}
+
+private enum DuckDuckGoHTMLParser {
+    static func items(from data: Data) -> [BingRSSItem] {
+        guard let html = String(data: data, encoding: .utf8),
+              let expression = try? NSRegularExpression(
+                pattern: #"<a[^>]*class=\"[^\"]*result__a[^\"]*\"[^>]*href=\"([^\"]+)\"[^>]*>(.*?)</a>"#,
+                options: [.caseInsensitive, .dotMatchesLineSeparators]
+              ) else {
+            return []
+        }
+        let range = NSRange(html.startIndex..<html.endIndex, in: html)
+        var results: [BingRSSItem] = []
+        expression.enumerateMatches(in: html, options: [], range: range) { match, _, _ in
+            guard let match,
+                  let hrefRange = Range(match.range(at: 1), in: html),
+                  let titleRange = Range(match.range(at: 2), in: html) else {
+                return
+            }
+            let href = String(html[hrefRange]).replacingOccurrences(of: "&amp;", with: "&")
+            guard let redirectURL = URL(string: href, relativeTo: URL(string: "https://duckduckgo.com")!),
+                  let destination = URLComponents(url: redirectURL.absoluteURL, resolvingAgainstBaseURL: false)?
+                    .queryItems?
+                    .first(where: { $0.name == "uddg" })?
+                    .value,
+                  let url = URL(string: destination) else {
+                return
+            }
+            let title = String(html[titleRange])
+                .replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
+                .replacingOccurrences(of: "&amp;", with: "&")
+                .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !title.isEmpty else { return }
+            results.append(BingRSSItem(title: title, url: url))
+        }
+        return results
     }
 }
 
@@ -2058,7 +2164,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private func presentOfficialCandidates(_ candidates: [RemoteCardSearchEntry]) {
         let alert = NSAlert()
         alert.messageText = "公式ページ候補（\(candidates.count)件）"
-        alert.informativeText = "発行会社の公式ドメインに一致するページだけを表示しています。下のリストはスクロールでき、検索語に一致する箇所をハイライトしています。"
+        alert.informativeText = "発行会社の公式ドメインに一致する候補を優先して表示します。発行会社確認中の候補は保有登録のみ可能で、おすすめ計算には使いません。下のリストはスクロールでき、検索語に一致する箇所をハイライトしています。"
         let addButton = alert.addButton(withTitle: "保有カードに追加")
         alert.addButton(withTitle: "キャンセル")
         let candidateList = OfficialCandidateListView(candidates: candidates, query: searchQuery)
@@ -2082,15 +2188,33 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private func checkPublishedCatalogForMissingCard() {
         catalogLookupWorkItem?.cancel()
         let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !query.isEmpty, displayedProducts.isEmpty else { return }
+        guard normalizedCardSearchText(query).count >= 3, displayedProducts.isEmpty else { return }
 
         let workItem = DispatchWorkItem { [weak self] in
             guard let self else { return }
             self.searchStatus.stringValue = "「\(query)」をネット上の最新カタログで確認中…"
             self.model.refreshCatalog { [weak self] in
                 guard let self else { return }
+                guard self.searchQuery == query else { return }
                 self.table.reloadData()
-                self.updateSearchStatus()
+                guard self.displayedProducts.isEmpty else {
+                    self.updateSearchStatus()
+                    return
+                }
+                self.searchStatus.stringValue = "「\(query)」のオンライン公式候補を探しています…"
+                self.model.lookupOfficialCandidates(named: query) { [weak self] result in
+                    guard let self, self.searchQuery == query, self.displayedProducts.isEmpty else { return }
+                    switch result {
+                    case .success(let candidates) where !candidates.isEmpty:
+                        self.presentOfficialCandidates(candidates)
+                    case .success:
+                        self.updateSearchStatus()
+                        self.searchStatus.stringValue = "「\(query)」に一致する公式商品ページを見つけられませんでした。定期探索でも追加を続けます。"
+                    case .failure:
+                        self.updateSearchStatus()
+                        self.searchStatus.stringValue = "オンラインの公式候補を取得できませんでした。ネット接続後にもう一度お試しください。"
+                    }
+                }
             }
         }
         catalogLookupWorkItem = workItem

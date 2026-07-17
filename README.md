@@ -76,7 +76,7 @@ npm run promote
 npm run update
 ```
 
-`update`は全検証を通過してから`catalog/public/latest.json`、公式ページ検索用の`search-index.json`、公式ラインナップ候補、電子マネー・コード決済カタログ、manifestを差し替えます。公式ページが取得不能、値が欠落、還元率が異常、スキーマが不整合の場合は公開処理を失敗させ、GitHub Pages上の直前版を維持します。公式ラインナップは`catalog/config/official-card-lineups.json`、カード以外の定常還元ルールは`catalog/config/payment-alternatives.json`で管理します。公式ラインナップの`aliases`にはブランド名・提携先・会員サービス名を登録でき、たとえばAmazon／アマゾン／Prime／プライムのどの検索でも同じ公式カードを候補として表示します。未検証のカード候補は保有登録のみ可能でおすすめ計算には使用しません。SMBC公式ページは現在この実行環境から403になるため、確認済み値を`unavailable`状態で保持し、アプリに再確認警告を出します。
+`update`は全検証を通過してから`catalog/public/latest.json`、公式ページ検索用の`search-index.json`、公式ラインナップ候補、電子マネー・コード決済カタログ、manifestを差し替えます。公式ページが取得不能、値が欠落、還元率が異常、スキーマが不整合の場合は公開処理を失敗させ、GitHub Pages上の直前版を維持します。公式ラインナップは`catalog/config/official-card-lineups.json`、カード以外の定常還元ルールは`catalog/config/payment-alternatives.json`で管理します。公式ラインナップの`aliases`にはブランド名・提携先・会員サービス名を登録でき、たとえばAmazon／アマゾン／Prime／プライムのどの検索でも同じ公式カードを候補として表示します。アプリではカタログにない3文字以上の検索語も自動で公式サイトを探し、発行会社の公式ドメインを優先した候補を表示します。提携先の公式ドメインしか見つからない候補は保有登録だけ可能にし、還元条件が検証されるまでおすすめ計算には使用しません。SMBC公式ページは現在この実行環境から403になるため、確認済み値を`unavailable`状態で保持し、アプリに再確認警告を出します。
 
 GitHubへ公開後は、`.github/workflows/catalog-update.yml`が6時間ごとに既知カードの仕様を検証・配信し、`.github/workflows/issuer-discovery.yml`が毎月JCCA会員会社の公式商品ページを再探索して新規カードを検証・配信します。アプリの初期配信URLは`https://zhuchuanhui.github.io/usecard/`で、設定画面から変更できます。
 
