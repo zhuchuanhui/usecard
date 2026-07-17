@@ -1409,6 +1409,8 @@ final class CatalogViewController: NSViewController, NSTableViewDataSource, NSTa
     private let model: MacAppModel
     private let table = NSTableView()
     private let detail = NSTextView()
+    private var sortKey = "name"
+    private var sortAscending = true
 
     init(model: MacAppModel) {
         self.model = model
@@ -1423,6 +1425,7 @@ final class CatalogViewController: NSViewController, NSTableViewDataSource, NSTa
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(identifier))
             column.title = title
             column.width = width
+            column.sortDescriptorPrototype = NSSortDescriptor(key: identifier, ascending: true)
             table.addTableColumn(column)
         }
         table.delegate = self
@@ -1430,6 +1433,7 @@ final class CatalogViewController: NSViewController, NSTableViewDataSource, NSTa
         table.usesAlternatingRowBackgroundColors = true
         table.target = self
         table.doubleAction = #selector(openOfficialPage)
+        table.sortDescriptors = [NSSortDescriptor(key: sortKey, ascending: sortAscending)]
 
         let tableScroll = NSScrollView()
         tableScroll.documentView = table
@@ -1447,11 +1451,15 @@ final class CatalogViewController: NSViewController, NSTableViewDataSource, NSTa
         view = split
     }
 
-    func numberOfRows(in tableView: NSTableView) -> Int { model.products.count }
+    private var displayedProducts: [CardProduct] {
+        model.products.sorted(by: isOrderedBefore)
+    }
+
+    func numberOfRows(in tableView: NSTableView) -> Int { displayedProducts.count }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let column = tableColumn, model.products.indices.contains(row) else { return nil }
-        let card = model.products[row]
+        guard let column = tableColumn, displayedProducts.indices.contains(row) else { return nil }
+        let card = displayedProducts[row]
         switch column.identifier.rawValue {
         case "name": return textCell(card.name)
         case "fee": return textCell(card.annualFeeYen == 0 ? "無料" : yen(card.annualFeeYen))
@@ -1459,20 +1467,49 @@ final class CatalogViewController: NSViewController, NSTableViewDataSource, NSTa
         }
     }
 
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        guard let descriptor = tableView.sortDescriptors.first,
+              let key = descriptor.key,
+              ["name", "fee", "issuer"].contains(key) else {
+            return
+        }
+        sortKey = key
+        sortAscending = descriptor.ascending
+        table.reloadData()
+        detail.string = ""
+    }
+
     func tableViewSelectionDidChange(_ notification: Notification) {
-        guard model.products.indices.contains(table.selectedRow) else { return }
-        let card = model.products[table.selectedRow]
+        guard displayedProducts.indices.contains(table.selectedRow) else { return }
+        let card = displayedProducts[table.selectedRow]
         detail.string = "\(card.name)\n\n年会費: \(card.annualFeeYen == 0 ? "無料" : yen(card.annualFeeYen))\n国際ブランド: \(card.networks.map(\.rawValue).joined(separator: " / "))\n\n" + card.benefitRules.map { "• \($0.title)" }.joined(separator: "\n") + "\n\n公式: \(card.applicationURL.absoluteString)"
     }
 
     @objc private func openOfficialPage() {
-        guard model.products.indices.contains(table.selectedRow) else { return }
-        NSWorkspace.shared.open(model.products[table.selectedRow].applicationURL)
+        guard displayedProducts.indices.contains(table.selectedRow) else { return }
+        NSWorkspace.shared.open(displayedProducts[table.selectedRow].applicationURL)
     }
 
     func reloadData() {
         table.reloadData()
         detail.string = ""
+    }
+
+    private func isOrderedBefore(_ left: CardProduct, _ right: CardProduct) -> Bool {
+        let comparison: ComparisonResult
+        switch sortKey {
+        case "fee":
+            if left.annualFeeYen != right.annualFeeYen {
+                return sortAscending ? left.annualFeeYen < right.annualFeeYen : left.annualFeeYen > right.annualFeeYen
+            }
+            comparison = left.name.localizedCompare(right.name)
+        case "issuer":
+            comparison = left.issuerName.localizedCompare(right.issuerName)
+        default:
+            comparison = left.name.localizedCompare(right.name)
+        }
+        if comparison == .orderedSame { return false }
+        return sortAscending ? comparison == .orderedAscending : comparison == .orderedDescending
     }
 }
 
