@@ -2,8 +2,15 @@ import Foundation
 
 let catalogURL = URL(fileURLWithPath: "catalog/public/latest.json")
 let catalog = try JSONDecoder().decode(CardCatalog.self, from: Data(contentsOf: catalogURL))
+let alternativePaymentsURL = URL(fileURLWithPath: "catalog/public/payment-alternatives.json")
+let alternativePayments = try JSONDecoder().decode(
+    AlternativePaymentCatalog.self,
+    from: Data(contentsOf: alternativePaymentsURL)
+)
 precondition(catalog.schemaVersion == 1)
 precondition(catalog.products.count >= 5)
+precondition(alternativePayments.schemaVersion == 1)
+precondition(alternativePayments.products.count >= 5)
 
 let intent = PurchaseIntent(
     amountYen: 10_000,
@@ -81,4 +88,34 @@ let rakutenMarket = RecommendationEngine().rank(
 )
 precondition(rakutenMarket.owned.first?.immediateValueYen == 20)
 
-print("UseCard smoke passed: \(catalog.products.count) products, catalog \(catalog.version)")
+let alternativeSeven = AlternativePaymentRecommendationEngine().rank(
+    catalog: alternativePayments,
+    intent: PurchaseIntent(
+        amountYen: 500,
+        merchantID: "seven-eleven",
+        categoryID: "general",
+        paymentMethod: .physical,
+        channel: .inStore,
+        frequency: .once,
+        purchaseDate: "2026-07-17"
+    )
+)
+precondition(alternativeSeven.first?.product.id == "rakuten-pay-cash")
+precondition(alternativeSeven.contains { $0.product.id == "nanaco-seven-eleven" && $0.immediateValueYen == 2 })
+
+let alternativeJREastRail = AlternativePaymentRecommendationEngine().rank(
+    catalog: alternativePayments,
+    intent: PurchaseIntent(
+        amountYen: 1_000,
+        merchantID: "jr-east-rail",
+        categoryID: "transport",
+        paymentMethod: .physical,
+        channel: .inStore,
+        frequency: .once,
+        purchaseDate: "2026-07-17"
+    )
+)
+precondition(alternativeJREastRail.first?.product.id == "mobile-suica-jre-point")
+precondition(alternativeJREastRail.first?.immediateValueYen == 20)
+
+print("UseCard smoke passed: \(catalog.products.count) cards and \(alternativePayments.products.count) payment routes, catalog \(catalog.version)")

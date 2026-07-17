@@ -232,6 +232,40 @@ final class RecommendationEngineTests: XCTestCase {
         XCTAssertEqual(onOtherDay.owned.first?.immediateValueYen, 0)
     }
 
+    func testAlternativePaymentIsRankedWithoutDoubleCountingFundingCards() throws {
+        let source = sourceEvidence()
+        let wallet = AlternativePaymentProduct(
+            id: "wallet",
+            name: "Wallet",
+            paymentLabel: "Wallet払い",
+            eligibilityNote: "対象加盟店で利用する場合",
+            benefitRules: [
+                BenefitRule(
+                    id: "wallet-base",
+                    title: "残高払いの還元",
+                    stackingGroup: "base",
+                    conditions: RuleConditions(channels: [.inStore]),
+                    reward: RewardFormula(kind: .cashbackRate, ratePercent: 1.5),
+                    source: source
+                )
+            ],
+            sources: [source]
+        )
+        let result = AlternativePaymentRecommendationEngine().rank(
+            catalog: AlternativePaymentCatalog(
+                schemaVersion: 1,
+                version: "test",
+                generatedAt: "2026-07-17T00:00:00Z",
+                products: [wallet]
+            ),
+            intent: intent(amount: 1_000)
+        )
+
+        XCTAssertEqual(result.first?.product.id, "wallet")
+        XCTAssertEqual(result.first?.immediateValueYen, 15)
+        XCTAssertEqual(result.first?.effectiveReturnPercent, 1.5)
+    }
+
     private func makeCard(id: String, annualFee: Double, reward: RewardFormula) -> CardProduct {
         let source = sourceEvidence()
         return CardProduct(

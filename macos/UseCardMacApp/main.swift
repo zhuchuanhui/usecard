@@ -143,6 +143,7 @@ final class MacAppModel {
     private let bundledOfficialLineups: [RemoteOfficialLineup]
 
     private(set) var catalog: CardCatalog?
+    private(set) var alternativePaymentCatalog: AlternativePaymentCatalog?
     private(set) var catalogStatus = "同梱カタログを読み込みました"
     private(set) var heldCardIDs: Set<String>
     private var pendingCards: [PendingCardRecord]
@@ -157,6 +158,7 @@ final class MacAppModel {
         UserDefaults.standard.removeObject(forKey: Self.retiredManualCardsKey)
         pendingCards = Self.loadPendingCards()
         loadBundledCatalog()
+        loadBundledAlternativePayments()
     }
 
     var products: [CardProduct] {
@@ -184,33 +186,109 @@ final class MacAppModel {
     fileprivate func recommend(intent: PurchaseIntent) -> RecommendationPresentation? {
         guard let catalog else { return nil }
         let holdings = heldCardIDs.map { UserHolding(cardID: $0) }
-        let verifiedIDs = Set(catalog.products.map(\.id))
-        let unverifiedHeldCards = products
-            .filter { heldCardIDs.contains($0.id) && !verifiedIDs.contains($0.id) }
-            .map(\.name)
-            .sorted { $0.localizedCompare($1) == .orderedAscending }
-        return RecommendationPresentation(
+        return makeRecommendationPresentation(
+            catalog: catalog,
             rankings: RecommendationEngine().rank(catalog: catalog, intent: intent, holdings: holdings),
-            unverifiedHeldCardNames: unverifiedHeldCards
+            paymentMethodByCardID: [:]
         )
     }
 
     fileprivate func recommendUsualSpending(on purchaseDate: String) -> RecommendationPresentation? {
         guard let catalog else { return nil }
         let holdings = heldCardIDs.map { UserHolding(cardID: $0) }
+        return makeRecommendationPresentation(
+            catalog: catalog,
+            rankings: RecommendationEngine().rankUsualSpending(
+                catalog: catalog,
+                holdings: holdings,
+                purchaseDate: purchaseDate
+            ),
+            paymentMethodByCardID: [:]
+        )
+    }
+
+    fileprivate func recommendBestPaymentMethod(
+        for intent: PurchaseIntent,
+        paymentMethods: [PaymentMethod]
+    ) -> RecommendationPresentation? {
+        guard let catalog else { return nil }
+        let holdings = heldCardIDs.map { UserHolding(cardID: $0) }
+        let engine = RecommendationEngine()
+        let methods = paymentMethods.isEmpty ? [intent.paymentMethod] : paymentMethods
+        var bestByCardID: [String: (recommendation: CardRecommendation, paymentMethod: PaymentMethod)] = [:]
+
+        for paymentMethod in methods {
+            let variant = PurchaseIntent(
+                amountYen: intent.amountYen,
+                merchantID: intent.merchantID,
+                categoryID: intent.categoryID,
+                paymentMethod: paymentMethod,
+                channel: intent.channel,
+                frequency: intent.frequency,
+                purchaseDate: intent.purchaseDate
+            )
+            let rankings = engine.rank(catalog: catalog, intent: variant, holdings: holdings)
+            for recommendation in rankings.owned + rankings.available {
+                guard let current = bestByCardID[recommendation.card.id] else {
+                    bestByCardID[recommendation.card.id] = (recommendation, paymentMethod)
+                    continue
+                }
+                if recommendationRanksBefore(recommendation, current.recommendation) {
+                    bestByCardID[recommendation.card.id] = (recommendation, paymentMethod)
+                }
+            }
+        }
+
+        let records = Array(bestByCardID.values)
+        let owned = records
+            .filter { $0.recommendation.isOwned }
+            .map(\.recommendation)
+            .sorted(by: recommendationRanksBefore)
+        let available = records
+            .filter { !$0.recommendation.isOwned }
+            .map(\.recommendation)
+            .sorted(by: recommendationRanksBefore)
+        let paymentMethodByCardID = Dictionary(
+            uniqueKeysWithValues: records.map { ($0.recommendation.card.id, $0.paymentMethod) }
+        )
+
+        return makeRecommendationPresentation(
+            catalog: catalog,
+            rankings: RecommendationBundle(owned: owned, available: available),
+            paymentMethodByCardID: paymentMethodByCardID
+        )
+    }
+
+    fileprivate func recommendAlternativePayments(for intent: PurchaseIntent) -> [AlternativePaymentRecommendation] {
+        guard let alternativePaymentCatalog else { return [] }
+        return AlternativePaymentRecommendationEngine().rank(catalog: alternativePaymentCatalog, intent: intent)
+    }
+
+    private func makeRecommendationPresentation(
+        catalog: CardCatalog,
+        rankings: RecommendationBundle,
+        paymentMethodByCardID: [String: PaymentMethod]
+    ) -> RecommendationPresentation {
         let verifiedIDs = Set(catalog.products.map(\.id))
         let unverifiedHeldCards = products
             .filter { heldCardIDs.contains($0.id) && !verifiedIDs.contains($0.id) }
             .map(\.name)
             .sorted { $0.localizedCompare($1) == .orderedAscending }
         return RecommendationPresentation(
-            rankings: RecommendationEngine().rankUsualSpending(
-                catalog: catalog,
-                holdings: holdings,
-                purchaseDate: purchaseDate
-            ),
-            unverifiedHeldCardNames: unverifiedHeldCards
+            rankings: rankings,
+            unverifiedHeldCardNames: unverifiedHeldCards,
+            paymentMethodByCardID: paymentMethodByCardID
         )
+    }
+
+    private func recommendationRanksBefore(_ left: CardRecommendation, _ right: CardRecommendation) -> Bool {
+        if left.annualNetValueYen != right.annualNetValueYen {
+            return left.annualNetValueYen > right.annualNetValueYen
+        }
+        if left.immediateValueYen != right.immediateValueYen {
+            return left.immediateValueYen > right.immediateValueYen
+        }
+        return left.card.name.localizedCompare(right.card.name) == .orderedAscending
     }
 
     fileprivate func lookupOfficialCandidates(
@@ -345,13 +423,13 @@ final class MacAppModel {
                         self.catalogStatus = "更新サーバーに接続できないため、同梱カタログを使用中"
                     }
                         }
-                        completion()
+                        self.refreshAlternativePayments(completion: completion)
                     }
                 }.resume()
             } catch {
                 DispatchQueue.main.async {
                     self.catalogStatus = "更新サーバーに接続できないため、同梱カタログを使用中"
-                    completion()
+                    self.refreshAlternativePayments(completion: completion)
                 }
             }
         }.resume()
@@ -367,6 +445,42 @@ final class MacAppModel {
         } catch {
             catalogStatus = "同梱カタログを読み込めません"
         }
+    }
+
+    private func loadBundledAlternativePayments() {
+        do {
+            guard let url = Bundle.main.url(forResource: "payment-alternatives", withExtension: "json") else {
+                throw CatalogRefreshError.missingBundledCatalog
+            }
+            let catalog = try decoder.decode(AlternativePaymentCatalog.self, from: Data(contentsOf: url))
+            guard catalog.schemaVersion == 1 else { throw CatalogRefreshError.unsupportedSchema }
+            alternativePaymentCatalog = catalog
+        } catch {
+            alternativePaymentCatalog = nil
+        }
+    }
+
+    private func refreshAlternativePayments(completion: @escaping () -> Void) {
+        let url = remoteBaseURL.appending(path: "payment-alternatives.json")
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, _ in
+            guard let self else { return }
+            let result: AlternativePaymentCatalog? = {
+                guard let data,
+                      (try? self.requireSuccessfulResponse(response)) != nil,
+                      let catalog = try? self.decoder.decode(AlternativePaymentCatalog.self, from: data),
+                      catalog.schemaVersion == 1 else {
+                    return nil
+                }
+                if let current = self.alternativePaymentCatalog, catalog.version < current.version {
+                    return nil
+                }
+                return catalog
+            }()
+            DispatchQueue.main.async {
+                if let result { self.alternativePaymentCatalog = result }
+                completion()
+            }
+        }.resume()
     }
 
     private func requireSuccessfulResponse(_ response: URLResponse?) throws {
@@ -862,6 +976,7 @@ final class MacAppModel {
 private struct RecommendationPresentation {
     let rankings: RecommendationBundle
     let unverifiedHeldCardNames: [String]
+    let paymentMethodByCardID: [String: PaymentMethod]
 }
 
 private struct RemoteManifest: Decodable {
@@ -1061,6 +1176,8 @@ final class RecommendationViewController: NSViewController {
     private var shouldScrollToTop = true
     private var isSpecificComparison = false
     private var spendPanel: NSView?
+    private var selectedPaymentMethodByCardID: [String: PaymentMethod] = [:]
+    private var alternativePaymentSourceURLs: [URL] = []
 
     private let spendPlaces: [SpendPlace] = [
         SpendPlace(title: "イオングループ", merchantID: "aeon-group", categoryID: "groceries", channel: .inStore, aliases: ["イオン", "aeon"]),
@@ -1077,6 +1194,7 @@ final class RecommendationViewController: NSViewController {
         SpendPlace(title: "ドトール", merchantID: "doutor", categoryID: "dining", channel: .inStore, aliases: []),
         SpendPlace(title: "Amazon", merchantID: "amazon", categoryID: "online-shopping", channel: .online, aliases: ["アマゾン", "amazon.co.jp"]),
         SpendPlace(title: "楽天市場", merchantID: "rakuten-market", categoryID: "online-shopping", channel: .online, aliases: ["楽天", "rakuten"]),
+        SpendPlace(title: "JR東日本の鉄道", merchantID: "jr-east-rail", categoryID: "transport", channel: .inStore, aliases: ["jr東日本", "jr east", "山手線", "京浜東北", "中央線"]),
         SpendPlace(title: "スーパー", merchantID: nil, categoryID: "groceries", channel: .inStore, aliases: ["食料品"]),
         SpendPlace(title: "飲食店", merchantID: nil, categoryID: "dining", channel: .inStore, aliases: ["外食", "レストラン"]),
         SpendPlace(title: "交通", merchantID: nil, categoryID: "transport", channel: .inStore, aliases: ["jr", "鉄道", "電車"]),
@@ -1210,8 +1328,8 @@ final class RecommendationViewController: NSViewController {
             updateApplicationCandidates([])
             return
         }
-        renderRecommendations(presentation)
-        updateApplicationCandidates(Array(presentation.rankings.available.prefix(5)))
+        renderRecommendations(presentation, alternativePayments: [])
+        updateApplicationCandidates(presentation.rankings.available)
     }
 
     @objc private func calculateSpend() {
@@ -1237,9 +1355,9 @@ final class RecommendationViewController: NSViewController {
         )
         isSpecificComparison = true
         if let matchedPlace {
-            spendSummary.stringValue = "\(matchedPlace.title)で \(yen(amount)) ・ 基本のカード払いで比較中"
+            spendSummary.stringValue = "\(matchedPlace.title)で \(yen(amount)) ・ カードとキャッシュレスを横断比較中"
         } else {
-            spendSummary.stringValue = "\(placeName) の個別特典は未確認のため、通常還元で \(yen(amount)) を比較中"
+            spendSummary.stringValue = "\(placeName) の個別特典は未確認のため、利用方法別に通常還元を \(yen(amount)) で比較中"
         }
         let intent = PurchaseIntent(
             amountYen: amount,
@@ -1250,13 +1368,17 @@ final class RecommendationViewController: NSViewController {
             frequency: .once,
             purchaseDate: dateString(Date())
         )
-        guard let presentation = model.recommend(intent: intent) else {
+        guard let presentation = model.recommendBestPaymentMethod(
+            for: intent,
+            paymentMethods: paymentMethods(for: place.channel)
+        ) else {
             renderMessage("カタログを読み込めません。", detail: "データ画面から最新カタログを確認してください。")
             updateApplicationCandidates([])
             return
         }
-        renderRecommendations(presentation)
-        updateApplicationCandidates(Array(presentation.rankings.available.prefix(5)))
+        let alternativePayments = model.recommendAlternativePayments(for: intent)
+        renderRecommendations(presentation, alternativePayments: alternativePayments)
+        updateApplicationCandidates(presentation.rankings.available)
         scrollContentToTop()
     }
 
@@ -1274,7 +1396,11 @@ final class RecommendationViewController: NSViewController {
         resultStack.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
 
-    private func renderRecommendations(_ presentation: RecommendationPresentation) {
+    private func renderRecommendations(
+        _ presentation: RecommendationPresentation,
+        alternativePayments: [AlternativePaymentRecommendation]
+    ) {
+        selectedPaymentMethodByCardID = presentation.paymentMethodByCardID
         clearResultCards()
         if !presentation.unverifiedHeldCardNames.isEmpty {
             addResultView(noticeCard(
@@ -1286,18 +1412,25 @@ final class RecommendationViewController: NSViewController {
         let rankings = presentation.rankings
         addRecommendationSection(
             title: isSpecificComparison ? "この支払いで、いちばんお得" : "普段使いで、いちばんお得",
-            detail: isSpecificComparison ? "基本のカード払いとして比較" : "通常還元だけで保有カードを比較",
+            detail: isSpecificComparison
+                ? "保有カード全\(rankings.owned.count)枚を、最適な支払い方法まで含めて比較"
+                : "通常還元だけで保有カードを比較",
             recommendations: rankings.owned,
             emptyTitle: "比較できる保有カードがありません",
             emptyDetail: "手持ちカードから公式確認済みのカードを登録すると、ここに最適な1枚を表示します。"
         )
         addRecommendationSection(
             title: isSpecificComparison ? "未保有なら、この支払いの申込候補" : "未保有なら、申込候補",
-            detail: isSpecificComparison ? "この支払いの還元と年会費を確認" : "通常還元と年会費を確認",
+            detail: isSpecificComparison
+                ? "未保有の全\(rankings.available.count)券種を、最適な支払い方法まで含めて比較"
+                : "未保有の全\(rankings.available.count)券種の通常還元と年会費を確認",
             recommendations: rankings.available,
             emptyTitle: "条件に合う申込候補がありません",
             emptyDetail: "条件を変えるか、カタログ更新後にもう一度比較してください。"
         )
+        if isSpecificComparison {
+            addAlternativePaymentSection(alternativePayments, cardRankings: rankings)
+        }
         resizeScrollableContent()
     }
 
@@ -1308,6 +1441,7 @@ final class RecommendationViewController: NSViewController {
     }
 
     private func clearResultCards() {
+        alternativePaymentSourceURLs = []
         for view in resultStack.arrangedSubviews {
             resultStack.removeArrangedSubview(view)
             view.removeFromSuperview()
@@ -1399,7 +1533,7 @@ final class RecommendationViewController: NSViewController {
         name.lineBreakMode = .byTruncatingTail
         let amountText: String
         if isSpecificComparison {
-            amountText = "この支払いで \(yen(recommendation.immediateValueYen)) お得"
+            amountText = "\(paymentMethodLabel(for: recommendation))で \(yen(recommendation.immediateValueYen)) お得"
         } else if recommendation.card.annualFeeYen == 0 {
             amountText = "年会費 無料"
         } else {
@@ -1416,7 +1550,7 @@ final class RecommendationViewController: NSViewController {
         let rate = NSTextField(labelWithString: String(format: "%.1f%%", recommendation.effectiveReturnPercent))
         rate.font = .monospacedDigitSystemFont(ofSize: emphasized ? 28 : 18, weight: .bold)
         rate.textColor = emphasized ? .systemIndigo : .labelColor
-        let rateCaption = NSTextField(labelWithString: isSpecificComparison ? "この支払いの還元" : "通常還元")
+        let rateCaption = NSTextField(labelWithString: isSpecificComparison ? "その方法での還元" : "通常還元")
         rateCaption.font = .systemFont(ofSize: 11)
         rateCaption.textColor = .secondaryLabelColor
         rateStack.addArrangedSubview(rate)
@@ -1435,6 +1569,129 @@ final class RecommendationViewController: NSViewController {
             benefit.textColor = .secondaryLabelColor
             main.addArrangedSubview(benefit)
             benefit.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
+        }
+        if !recommendation.warnings.isEmpty {
+            let warning = NSTextField(wrappingLabelWithString: "要確認: \(recommendation.warnings.joined(separator: "・"))")
+            warning.font = .systemFont(ofSize: 11)
+            warning.textColor = .systemOrange
+            main.addArrangedSubview(warning)
+            warning.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
+        }
+        return card
+    }
+
+    private func addAlternativePaymentSection(
+        _ recommendations: [AlternativePaymentRecommendation],
+        cardRankings: RecommendationBundle
+    ) {
+        addResultView(panelHeading(
+            "カード以外の支払い方法",
+            detail: "全\(recommendations.count)件を表示。残高・電子マネー単独の公式還元のみで、カードからのチャージ還元や期間限定キャンペーンは重ねていません。"
+        ))
+        guard !recommendations.isEmpty else {
+            addResultView(noticeCard(
+                title: "該当する電子マネー・コード決済がありません",
+                detail: "店名をより具体的にするか、対応する決済手段の公式データ更新後に確認してください。"
+            ))
+            return
+        }
+        let bestCardValue = (cardRankings.owned + cardRankings.available)
+            .map(\.immediateValueYen)
+            .max() ?? 0
+        if let first = recommendations.first, first.immediateValueYen > bestCardValue {
+            addResultView(noticeCard(
+                title: "条件を満たせば、カードより高い候補があります",
+                detail: "\(first.product.name) はこの金額で \(yen(first.immediateValueYen)) 相当です。下の利用条件を満たす場合だけ選んでください。"
+            ))
+        }
+        for (offset, recommendation) in recommendations.enumerated() {
+            addResultView(alternativePaymentCard(recommendation, rank: offset + 1))
+        }
+    }
+
+    private func alternativePaymentCard(
+        _ recommendation: AlternativePaymentRecommendation,
+        rank: Int
+    ) -> NSView {
+        let card = panel(containing: NSView(), tone: rank == 1 ? .standard : .subdued)
+        let content = card.subviews[0]
+        let main = NSStackView()
+        main.orientation = .vertical
+        main.alignment = .width
+        main.spacing = 5
+        main.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(main)
+        NSLayoutConstraint.activate([
+            main.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 16),
+            main.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -16),
+            main.topAnchor.constraint(equalTo: content.topAnchor, constant: 12),
+            main.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -12)
+        ])
+
+        let summary = NSStackView()
+        summary.orientation = .horizontal
+        summary.alignment = .centerY
+        summary.spacing = 10
+        let rankLabel = NSTextField(labelWithString: "#\(rank)")
+        rankLabel.font = .monospacedDigitSystemFont(ofSize: 13, weight: .bold)
+        rankLabel.textColor = .systemIndigo
+        rankLabel.setContentHuggingPriority(.required, for: .horizontal)
+        let nameStack = NSStackView()
+        nameStack.orientation = .vertical
+        nameStack.alignment = .leading
+        nameStack.spacing = 1
+        let name = NSTextField(labelWithString: recommendation.product.name)
+        name.font = .systemFont(ofSize: 16, weight: .semibold)
+        let method = NSTextField(labelWithString: recommendation.product.paymentLabel)
+        method.font = .systemFont(ofSize: 12)
+        method.textColor = .secondaryLabelColor
+        nameStack.addArrangedSubview(name)
+        nameStack.addArrangedSubview(method)
+        let valueStack = NSStackView()
+        valueStack.orientation = .vertical
+        valueStack.alignment = .trailing
+        let value = NSTextField(labelWithString: "\(yen(recommendation.immediateValueYen)) お得")
+        value.font = .monospacedDigitSystemFont(ofSize: 17, weight: .bold)
+        value.textColor = .systemIndigo
+        let rate = NSTextField(labelWithString: String(format: "%.1f%%", recommendation.effectiveReturnPercent))
+        rate.font = .systemFont(ofSize: 11)
+        rate.textColor = .secondaryLabelColor
+        valueStack.addArrangedSubview(value)
+        valueStack.addArrangedSubview(rate)
+        valueStack.setContentHuggingPriority(.required, for: .horizontal)
+        summary.addArrangedSubview(rankLabel)
+        summary.addArrangedSubview(nameStack)
+        summary.addArrangedSubview(valueStack)
+        main.addArrangedSubview(summary)
+        summary.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
+
+        let benefits = recommendation.appliedBenefits.map(\.title).joined(separator: " / ")
+        if !benefits.isEmpty {
+            let benefit = NSTextField(wrappingLabelWithString: benefits)
+            benefit.font = .systemFont(ofSize: 12, weight: .medium)
+            benefit.textColor = .secondaryLabelColor
+            main.addArrangedSubview(benefit)
+            benefit.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
+        }
+        let condition = NSTextField(wrappingLabelWithString: "条件: \(recommendation.product.eligibilityNote)")
+        condition.font = .systemFont(ofSize: 11)
+        condition.textColor = .secondaryLabelColor
+        main.addArrangedSubview(condition)
+        condition.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
+        if let note = recommendation.product.calculationNote {
+            let calculation = NSTextField(wrappingLabelWithString: "計算: \(note)")
+            calculation.font = .systemFont(ofSize: 11)
+            calculation.textColor = .secondaryLabelColor
+            main.addArrangedSubview(calculation)
+            calculation.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
+        }
+        if let source = recommendation.appliedBenefits.first?.sourceURL {
+            alternativePaymentSourceURLs.append(source)
+            let sourceButton = NSButton(title: "公式ルールを開く", target: self, action: #selector(openAlternativePaymentSource(_:)))
+            sourceButton.bezelStyle = .inline
+            sourceButton.font = .systemFont(ofSize: 11, weight: .medium)
+            sourceButton.tag = alternativePaymentSourceURLs.count - 1
+            main.addArrangedSubview(sourceButton)
         }
         if !recommendation.warnings.isEmpty {
             let warning = NSTextField(wrappingLabelWithString: "要確認: \(recommendation.warnings.joined(separator: "・"))")
@@ -1542,7 +1799,7 @@ final class RecommendationViewController: NSViewController {
         applicationPopup.removeAllItems()
         applicationPopup.addItems(withTitles: candidates.map { candidate in
             if isSpecificComparison {
-                return "\(candidate.card.name)（この支払い \(yen(candidate.immediateValueYen))）"
+                return "\(candidate.card.name)（\(paymentMethodLabel(for: candidate))で \(yen(candidate.immediateValueYen))）"
             }
             let fee = candidate.card.annualFeeYen == 0 ? "年会費無料" : "年会費 \(yen(candidate.card.annualFeeYen))"
             return "\(candidate.card.name)（通常 \(String(format: "%.1f%%", candidate.effectiveReturnPercent))・\(fee)）"
@@ -1567,6 +1824,34 @@ final class RecommendationViewController: NSViewController {
             .lowercased()
             .components(separatedBy: CharacterSet.alphanumerics.inverted)
             .joined()
+    }
+
+    private func paymentMethods(for channel: PurchaseChannel) -> [PaymentMethod] {
+        switch channel {
+        case .inStore:
+            return [.physical, .contactless, .mobileContactless, .applePay, .mobileOrder, .qr]
+        case .online:
+            return [.online, .applePay]
+        }
+    }
+
+    private func paymentMethodLabel(for recommendation: CardRecommendation) -> String {
+        let method = selectedPaymentMethodByCardID[recommendation.card.id] ?? .physical
+        return switch method {
+        case .physical: "カード払い"
+        case .contactless: "カードのタッチ決済"
+        case .mobileContactless: "スマホのタッチ決済"
+        case .applePay: "Apple Pay"
+        case .mobileOrder: "モバイルオーダー"
+        case .qr: "QR決済"
+        case .online: "オンライン決済"
+        case .recurring: "継続課金"
+        }
+    }
+
+    @objc private func openAlternativePaymentSource(_ sender: NSButton) {
+        guard alternativePaymentSourceURLs.indices.contains(sender.tag) else { return }
+        NSWorkspace.shared.open(alternativePaymentSourceURLs[sender.tag])
     }
 
     @objc private func openApplicationPage() {

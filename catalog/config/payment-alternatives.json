@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "version": "2026-07-17",
+  "generatedAt": "2026-07-17T09:00:00Z",
+  "products": [
+    {
+      "id": "mobile-suica-jre-point",
+      "name": "モバイルSuica（JRE POINT登録）",
+      "paymentLabel": "モバイルSuicaをタッチ",
+      "eligibilityNote": "JRE POINT WEBサイトに登録したモバイルSuicaで、JR東日本の鉄道を利用する場合に限ります。",
+      "calculationNote": "50円ごとに1ポイント（1ポイント=1円）として計算しています。",
+      "benefitRules": [
+        {
+          "id": "mobile-suica-jr-east-rail",
+          "title": "JR東日本の鉄道利用",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": ["jr-east-rail"],
+            "categoryIDs": ["transport"],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 50,
+            "pointsPerUnit": 1,
+            "pointProgramID": "jre-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.jrepoint.jp/information/suica/",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "jrepoint-mobile-suica-20260717",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.jrepoint.jp/information/suica/",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "jrepoint-mobile-suica-20260717",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "nanaco-seven-eleven",
+      "name": "nanaco",
+      "paymentLabel": "nanacoで支払う",
+      "eligibilityNote": "nanacoで支払えるセブン-イレブンの対象商品に限ります。公共料金、たばこ、金券類などは対象外です。",
+      "calculationNote": "税抜200円ごとに1ポイントのため、税込入力額からの表示は概算です。",
+      "benefitRules": [
+        {
+          "id": "nanaco-seven-base",
+          "title": "セブン-イレブンでnanaco支払い",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": ["seven-eleven"],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "nanaco-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.nanaco-net.jp/how-to/save_point/shopping.html",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "nanaco-shopping-20260717",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.nanaco-net.jp/how-to/save_point/item.html",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "nanaco-eligible-items-20260717",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "waon",
+      "name": "電子マネーWAON",
+      "paymentLabel": "WAONで支払う",
+      "eligibilityNote": "WAONを利用できる加盟店で、ポイント対象の商品を購入する場合に限ります。イオングループの対象店では所有者情報登録が必要です。",
+      "calculationNote": "通常は税込200円ごとに1ポイント、イオングループ対象店では基本の2倍として計算しています。",
+      "benefitRules": [
+        {
+          "id": "waon-standard",
+          "title": "WAON加盟店での通常ポイント",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "waon-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.waon.net/s/about/point/",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "waon-standard-20260717",
+            "freshness": "fresh"
+          }
+        },
+        {
+          "id": "waon-aeon-group",
+          "title": "イオングループ対象店の基本2倍",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": ["aeon-group"],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 100,
+            "pointsPerUnit": 1,
+            "pointProgramID": "waon-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.waon.net/waon_point/",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "waon-aeon-group-20260717",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.waon.net/s/about/point/",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "waon-standard-20260717",
+          "freshness": "fresh"
+        },
+        {
+          "url": "https://www.waon.net/waon_point/",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "waon-aeon-group-20260717",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "paypay-balance",
+      "name": "PayPay残高",
+      "paymentLabel": "PayPay残高で支払う",
+      "eligibilityNote": "PayPay対応店で、PayPay残高またはPayPayポイントを使ってアプリ払いする場合に限ります。",
+      "calculationNote": "PayPayステップの基本付与率0.5%のみです。クーポン、ポイントアップ店、PayPayクレジットは別条件のため重ねていません。",
+      "benefitRules": [
+        {
+          "id": "paypay-balance-base",
+          "title": "PayPay残高・ポイントでのアプリ払い",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "cashbackRate",
+            "ratePercent": 0.5,
+            "pointProgramID": "paypay-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://paypay.ne.jp/article/reward-rate/",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "paypay-reward-rate-20260717",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://paypay.ne.jp/article/reward-rate/",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "paypay-reward-rate-20260717",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "rakuten-pay-cash",
+      "name": "楽天ペイ（楽天キャッシュ）",
+      "paymentLabel": "楽天ペイ残高で支払う",
+      "eligibilityNote": "楽天ペイのコード・QR・セルフ払いに対応する店舗で、楽天キャッシュ残高を使う場合に限ります。",
+      "calculationNote": "公式が案内する最大1.5%の定常還元を表示しています。対象外店舗・支払い方法があります。クレジットカードからのチャージ還元は別計算です。",
+      "benefitRules": [
+        {
+          "id": "rakuten-pay-cash-base",
+          "title": "楽天キャッシュでのコード・QR・セルフ払い（最大）",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "cashbackRate",
+            "ratePercent": 1.5,
+            "pointProgramID": "rakuten-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://cash.rakuten.co.jp/howto/point/",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "rakuten-pay-cash-20260717",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://cash.rakuten.co.jp/howto/point/",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "rakuten-pay-cash-20260717",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "d-pay-balance",
+      "name": "d払い",
+      "paymentLabel": "d払いで支払う",
+      "eligibilityNote": "d払い対応店で、d払い残高または電話料金合算払いなどの対象の支払い方法を使う場合に限ります。",
+      "calculationNote": "基本還元率0.5%のみです。dカード支払い特典、会員ランク、キャンペーンは別条件のため重ねていません。",
+      "benefitRules": [
+        {
+          "id": "d-pay-base",
+          "title": "d払いの基本還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "d-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://service.smt.docomo.ne.jp/keitai_payment/app/help/detail/0008.html",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "d-pay-base-20260717",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://service.smt.docomo.ne.jp/keitai_payment/app/help/detail/0008.html",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "d-pay-base-20260717",
+          "freshness": "fresh"
+        }
+      ]
+    },
+    {
+      "id": "au-pay-balance",
+      "name": "au PAY残高",
+      "paymentLabel": "au PAY残高で支払う",
+      "eligibilityNote": "au PAY対応店で、au PAY残高を使う場合に限ります。",
+      "calculationNote": "通常還元0.5%のみです。ポイントアップ店、キャンペーン、au PAYカードの還元は別条件のため重ねていません。",
+      "benefitRules": [
+        {
+          "id": "au-pay-base",
+          "title": "au PAYの通常還元",
+          "stackingGroup": "base",
+          "conditions": {
+            "merchantIDs": [],
+            "categoryIDs": [],
+            "paymentMethods": [],
+            "channels": ["inStore"],
+            "eligibleDaysOfMonth": []
+          },
+          "reward": {
+            "kind": "pointsPerUnit",
+            "unitAmountYen": 200,
+            "pointsPerUnit": 1,
+            "pointProgramID": "ponta-point",
+            "defaultPointValueYen": 1
+          },
+          "source": {
+            "url": "https://www.au.com/content/dam/au-com/catalog/pdf/au_catalog_auvaluelink-moneyact2_a03421eabdf1fd86.pdf",
+            "observedAt": "2026-07-17T09:00:00Z",
+            "contentHash": "au-pay-base-20260717",
+            "freshness": "fresh"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.au.com/content/dam/au-com/catalog/pdf/au_catalog_auvaluelink-moneyact2_a03421eabdf1fd86.pdf",
+          "observedAt": "2026-07-17T09:00:00Z",
+          "contentHash": "au-pay-base-20260717",
+          "freshness": "fresh"
+        }
+      ]
+    }
+  ]
+}

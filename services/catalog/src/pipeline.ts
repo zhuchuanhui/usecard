@@ -115,6 +115,7 @@ export async function buildCatalog(outputRoot: string): Promise<PipelineResult> 
   const catalogFile = `catalog-${version}.json`;
   const searchIndex = await loadCardSearchIndex(outputRoot);
   const officialLineups = await loadOfficialCardLineups(outputRoot);
+  const alternativePayments = await loadAlternativePaymentCatalog(outputRoot);
   const sha256 = createHash("sha256").update(catalogJSON).digest("hex");
   const manifest: CatalogManifest = {
     schemaVersion: 1,
@@ -130,7 +131,16 @@ export async function buildCatalog(outputRoot: string): Promise<PipelineResult> 
     }
   };
 
-  await publishAtomically(outputRoot, catalogFile, catalogJSON, manifest, registry, searchIndex, officialLineups);
+  await publishAtomically(
+    outputRoot,
+    catalogFile,
+    catalogJSON,
+    manifest,
+    registry,
+    searchIndex,
+    officialLineups,
+    alternativePayments
+  );
   return { catalog, manifest, registry };
 }
 
@@ -159,6 +169,35 @@ async function loadOfficialCardLineups(outputRoot: string): Promise<OfficialCard
     throw new Error("official-card-lineups.json must contain an array");
   }
   return lineups as OfficialCardLineup[];
+}
+
+async function loadAlternativePaymentCatalog(outputRoot: string): Promise<unknown> {
+  const path = resolve(outputRoot, "../config/payment-alternatives.json");
+  const catalog = JSON.parse(await readFile(path, "utf8")) as unknown;
+  if (!isAlternativePaymentCatalog(catalog)) {
+    throw new Error("payment-alternatives.json must contain a versioned payment catalog");
+  }
+  return catalog;
+}
+
+function isAlternativePaymentCatalog(value: unknown): value is {
+  schemaVersion: number;
+  version: string;
+  products: unknown[];
+} {
+  if (!value || typeof value !== "object") return false;
+  const catalog = value as Record<string, unknown>;
+  return catalog.schemaVersion === 1
+    && typeof catalog.version === "string"
+    && Array.isArray(catalog.products)
+    && catalog.products.every((product) => {
+      if (!product || typeof product !== "object") return false;
+      const record = product as Record<string, unknown>;
+      return typeof record.id === "string"
+        && typeof record.name === "string"
+        && Array.isArray(record.benefitRules)
+        && Array.isArray(record.sources);
+    });
 }
 
 async function loadPublishedProducts(outputRoot: string): Promise<CardProduct[]> {
@@ -209,7 +248,8 @@ async function publishAtomically(
   manifest: CatalogManifest,
   registry: IssuerRegistryEntry[],
   searchIndex: CardSearchIndexEntry[],
-  officialLineups: OfficialCardLineup[]
+  officialLineups: OfficialCardLineup[],
+  alternativePayments: unknown
 ): Promise<void> {
   const root = resolve(outputRoot);
   const staging = join(dirname(root), ".staging", basename(root));
@@ -223,8 +263,17 @@ async function publishAtomically(
     await writeFile(join(staging, "issuers.json"), `${JSON.stringify(registry, null, 2)}\n`);
     await writeFile(join(staging, "search-index.json"), `${JSON.stringify(searchIndex, null, 2)}\n`);
     await writeFile(join(staging, "official-lineups.json"), `${JSON.stringify(officialLineups, null, 2)}\n`);
+    await writeFile(join(staging, "payment-alternatives.json"), `${JSON.stringify(alternativePayments, null, 2)}\n`);
     await mkdir(root, { recursive: true });
-    for (const file of [catalogFile, "latest.json", "manifest.json", "issuers.json", "search-index.json", "official-lineups.json"]) {
+    for (const file of [
+      catalogFile,
+      "latest.json",
+      "manifest.json",
+      "issuers.json",
+      "search-index.json",
+      "official-lineups.json",
+      "payment-alternatives.json"
+    ]) {
       await rm(join(root, file), { force: true });
       await rename(join(staging, file), join(root, file));
     }

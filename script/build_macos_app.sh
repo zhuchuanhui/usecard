@@ -12,6 +12,7 @@ swiftc \
   -target arm64-apple-macosx14.0 \
   "$ROOT/Sources/UseCardCore/Models.swift" \
   "$ROOT/Sources/UseCardCore/RecommendationEngine.swift" \
+  "$ROOT/Sources/UseCardCore/AlternativePayments.swift" \
   "$ROOT/macos/UseCardMacApp/main.swift" \
   -framework AppKit \
   -framework CryptoKit \
@@ -22,6 +23,7 @@ cp "$ROOT/macos/UseCardMacApp/Resources/UseCard.icns" "$STAGING/Contents/Resourc
 cp "$ROOT/macos/UseCardMacApp/Resources/UseCardNight.icns" "$STAGING/Contents/Resources/UseCardNight.icns"
 cp "$ROOT/catalog/public/latest.json" "$STAGING/Contents/Resources/latest.json"
 cp "$ROOT/catalog/public/official-lineups.json" "$STAGING/Contents/Resources/official-lineups.json"
+cp "$ROOT/catalog/public/payment-alternatives.json" "$STAGING/Contents/Resources/payment-alternatives.json"
 plutil -lint "$STAGING/Contents/Info.plist" >/dev/null
 codesign --force --sign - "$STAGING" >/dev/null
 

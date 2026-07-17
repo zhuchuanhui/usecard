@@ -11,6 +11,7 @@ mkdir -p .build/manual
 swiftc \
   Sources/UseCardCore/Models.swift \
   Sources/UseCardCore/RecommendationEngine.swift \
+  Sources/UseCardCore/AlternativePayments.swift \
   Tools/UseCardSmoke/main.swift \
   -o .build/manual/usecard-smoke
 .build/manual/usecard-smoke
@@ -19,3 +20,5 @@ jq -e '.schemaVersion == 1 and (.products | length) > 0' catalog/public/latest.j
 jq -e '.schemaVersion == 1 and .productCount > 0' catalog/public/manifest.json >/dev/null
 jq -e 'type == "array" and all(.[]; (.issuerID | type == "string") and (.cards | type == "array"))' catalog/public/official-lineups.json >/dev/null
 cmp -s catalog/config/official-card-lineups.json catalog/public/official-lineups.json
+jq -e '.schemaVersion == 1 and (.products | length) > 0' catalog/public/payment-alternatives.json >/dev/null
+cmp -s catalog/config/payment-alternatives.json catalog/public/payment-alternatives.json
