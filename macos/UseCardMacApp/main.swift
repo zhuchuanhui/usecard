@@ -372,11 +372,6 @@ final class MacAppModel {
         for query: String,
         completion: @escaping ([RemoteCardSearchEntry]) -> Void
     ) {
-        guard isSaisonQuery(query) else {
-            completion([])
-            return
-        }
-
         let lineupURL = URL(string: "https://www.saisoncard.co.jp/creditcard/lineup/")!
         var request = URLRequest(url: lineupURL)
         request.setValue("UseCard/1.0 (official card catalog lookup)", forHTTPHeaderField: "User-Agent")
@@ -389,8 +384,24 @@ final class MacAppModel {
                 completion([])
                 return
             }
-            completion(self.parseSaisonLineupCandidates(from: data))
+            let lineup = self.parseSaisonLineupCandidates(from: data)
+            completion(self.matchingSaisonLineupCandidates(lineup, for: query))
         }.resume()
+    }
+
+    private func matchingSaisonLineupCandidates(
+        _ candidates: [RemoteCardSearchEntry],
+        for query: String
+    ) -> [RemoteCardSearchEntry] {
+        if isSaisonQuery(query) { return candidates }
+        let terms = relatedSearchTerms(for: query)
+            .map(normalizedSearchText)
+            .filter { !$0.isEmpty }
+        guard !terms.isEmpty else { return [] }
+        return candidates.filter { candidate in
+            let candidateName = normalizedSearchText(candidate.name)
+            return terms.contains { candidateName.contains($0) }
+        }
     }
 
     private func parseSaisonLineupCandidates(from data: Data) -> [RemoteCardSearchEntry] {
