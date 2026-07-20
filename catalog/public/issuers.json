@@ -4,796 +4,796 @@
     "name": "NTTファイナンス株式会社",
     "officialURL": "https://www.ntt-finance.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "tracked-paypay-card",
     "name": "PayPayカード株式会社",
     "officialURL": "https://www.paypay-card.co.jp",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:00.858Z"
+    "discoveredAt": "2026-07-20T09:36:37.011Z"
   },
   {
     "id": "jcca-あおぎんサ-ビス",
     "name": "あおぎんカードサービス株式会社",
     "officialURL": "http://www.aogin-cs.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-アメリカン-エキスプレス-インタ-ナショナル-inc",
     "name": "アメリカン・エキスプレス・インターナショナル，Inc．",
     "officialURL": "https://www.americanexpress.com/jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "tracked-aeon-card",
     "name": "イオンフィナンシャルサービス株式会社",
     "officialURL": "https://www.aeon.co.jp",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:00.858Z"
+    "discoveredAt": "2026-07-20T09:36:37.011Z"
   },
   {
     "id": "jcca-きたぎんユ-シ",
     "name": "きたぎんユーシー株式会社",
     "officialURL": "http://www.echna.ne.jp/~kuc/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-きらぼしjcb",
     "name": "きらぼしＪＣＢ株式会社",
     "officialURL": "https://www.kiraboshijcb.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-きらやか",
     "name": "きらやかカード株式会社",
     "officialURL": "http://www.kirayaka-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-しまぎんユ-シ",
     "name": "しまぎんユーシーカード株式会社",
     "officialURL": "http://www.s-uccard.com/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-スルガ",
     "name": "スルガカード株式会社",
     "officialURL": "https://www.suruga-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-たいこう",
     "name": "たいこうカード株式会社",
     "officialURL": "https://www.taikobank.jp/personal/creditcard.php",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-ちばぎん",
     "name": "ちばぎんカード株式会社",
     "officialURL": "https://www.chibagincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-トマト",
     "name": "トマトカード株式会社",
     "officialURL": "https://www.tomatocard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-トモニ",
     "name": "トモニカード株式会社",
     "officialURL": "http://www.tomonycard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-ひろぎんサ-ビス",
     "name": "ひろぎんクレジットサービス株式会社",
     "officialURL": "https://www.hirogin-cs.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-フィデア",
     "name": "フィデアカード株式会社",
     "officialURL": "http://www.fideacard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-みちのく",
     "name": "みちのくカード株式会社",
     "officialURL": "http://www.michinoku-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-むさしの",
     "name": "むさしのカード株式会社",
     "officialURL": "https://www.musashino-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-もみじ",
     "name": "もみじカード株式会社",
     "officialURL": "http://www.momiji-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-やまぎんサ-ビス",
     "name": "やまぎんカードサービス株式会社",
     "officialURL": "https://www.yamagin-cs.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-ユ-シ",
     "name": "ユーシーカード株式会社",
     "officialURL": "https://www2.uccard.co.jp/uc/uccard/user/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-りそな",
     "name": "りそなカード株式会社",
     "officialURL": "https://www.resonacard.co.jp/",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-阿波銀",
     "name": "阿波銀カード株式会社",
     "officialURL": "http://www.awagin-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "tracked-rakuten-card",
     "name": "楽天カード株式会社",
     "officialURL": "https://www.rakuten-card.co.jp",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:00.858Z"
+    "discoveredAt": "2026-07-20T09:36:37.011Z"
   },
   {
     "id": "jcca-ffg",
     "name": "株式会社FFGカード",
     "officialURL": "https://www.ffgcard.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-okbペイメントプラット",
     "name": "株式会社ＯＫＢペイメントプラット",
     "officialURL": "https://www.okbpp.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-いよぎんディ-シ",
     "name": "株式会社いよぎんディーシーカード",
     "officialURL": "https://www.iyogindc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-いわぎんサ-ビス",
     "name": "株式会社いわぎんクレジットサービス",
     "officialURL": "https://www3.vpass.ne.jp/mem/top/index.jsp?cc=031",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-いわぎんディ-シ",
     "name": "株式会社いわぎんディーシーカード",
     "officialURL": "http://www.iwagindc.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "tracked-epos-card",
     "name": "株式会社エポスカード",
     "officialURL": "https://www.eposcard.co.jp",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:00.858Z"
+    "discoveredAt": "2026-07-20T09:36:37.011Z"
   },
   {
     "id": "jcca-おきぎんジェ-シ-ビ",
     "name": "株式会社おきぎんジェーシービー",
     "officialURL": "https://www.okigin-jcb.co.jp/",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "tracked-orico",
     "name": "株式会社オリエントコーポレーション",
     "officialURL": "https://www.orico.co.jp",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:00.858Z"
+    "discoveredAt": "2026-07-20T09:36:37.011Z"
   },
   {
     "id": "tracked-credit-saison",
     "name": "株式会社クレディセゾン",
     "officialURL": "https://www.saisoncard.co.jp",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:00.858Z"
+    "discoveredAt": "2026-07-20T09:36:37.011Z"
   },
   {
     "id": "jcca-ごうぎん",
     "name": "株式会社ごうぎんクレジット",
     "officialURL": "https://www.g-credit.com/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-ジェ-シ-ビ",
     "name": "株式会社ジェーシービー",
     "officialURL": "https://www.global.jcb/ja/",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-しがぎんジェ-シ-ビ",
     "name": "株式会社しがぎんジェーシービー",
     "officialURL": "https://www.shigaginjcb.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-しんきん",
     "name": "株式会社しんきんカード",
     "officialURL": "https://www.shinkincard.co.jp/",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-とちぎん-サ-ビス",
     "name": "株式会社とちぎんカード・サービス",
     "officialURL": "https://www.tochigin-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-とりぎんサ-ビス",
     "name": "株式会社とりぎんカードサービス",
     "officialURL": "https://www.tottoribank.co.jp/jcb_card/index.html",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-ふくぎんリ-ス",
     "name": "株式会社ふくぎんリース&クレジット",
     "officialURL": "https://www.fukuginlease-credit.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-みなと",
     "name": "株式会社みなとカード",
     "officialURL": "https://www.minatocard.com/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-めぶき",
     "name": "株式会社めぶきカード",
     "officialURL": "https://www.mebuki-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-やまぎん",
     "name": "株式会社やまぎんカード",
     "officialURL": "https://www.yamagincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-りゅうぎんディ-シ",
     "name": "株式会社りゅうぎんディーシー",
     "officialURL": "http://www.ryugindc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-愛銀ディ-シ",
     "name": "株式会社愛銀ディーシーカード",
     "officialURL": "http://www.aigindc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-愛媛ジェ-シ-ビ",
     "name": "株式会社愛媛ジェーシービー",
     "officialURL": "https://www.ehime-jcb.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-紀陽",
     "name": "株式会社紀陽カード",
     "officialURL": "https://www.kiyocard.co.jp/index.html",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-紀陽ディ-シ",
     "name": "株式会社紀陽カードディーシー",
     "officialURL": "https://www.kiyocard.co.jp/index.html",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-京葉銀",
     "name": "株式会社京葉銀カード",
     "officialURL": "https://www.keiyogin-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-近畿しんきん",
     "name": "株式会社近畿しんきんカード",
     "officialURL": "http://www.kinki-shinkincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-九州しんきん",
     "name": "株式会社九州しんきんカード",
     "officialURL": "http://www.kyushu-shinkincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-群銀",
     "name": "株式会社群銀カード",
     "officialURL": "http://www.gungin-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-高知",
     "name": "株式会社高知カード",
     "officialURL": "http://www.kochicard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-札幌北洋",
     "name": "株式会社札幌北洋カード",
     "officialURL": "http://www.sapporohokuyocard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-三十三",
     "name": "株式会社三十三カード",
     "officialURL": "https://www.33bank.co.jp/33card/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-四国しんきん",
     "name": "株式会社四国しんきんカード",
     "officialURL": "https://www.shikokuvisa.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-滋賀ディ-シ",
     "name": "株式会社滋賀ディーシーカード",
     "officialURL": "https://www.shigadc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-鹿児島",
     "name": "株式会社鹿児島カード",
     "officialURL": "https://www.kagoshimacard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-七十七",
     "name": "株式会社七十七カード",
     "officialURL": "http://www.77card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-秋田ジェ-シ-ビ",
     "name": "株式会社秋田ジェーシービーカード",
     "officialURL": "http://www.akita-jcb.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-秋田国際",
     "name": "株式会社秋田国際カード",
     "officialURL": "https://www3.vpass.ne.jp/home/akigin",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-十六",
     "name": "株式会社十六カード",
     "officialURL": "http://www.16card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-大東サ-ビス",
     "name": "株式会社大東クレジットサービス",
     "officialURL": "http://www.daito-credit.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-大分",
     "name": "株式会社大分カード",
     "officialURL": "https://www.oitacard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-池田泉州dc",
     "name": "株式会社池田泉州ＤＣ",
     "officialURL": "https://www.si-card.jp/dc/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-池田泉州jcb",
     "name": "株式会社池田泉州ＪＣＢ",
     "officialURL": "https://www.si-card.jp/jcb/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-池田泉州vc",
     "name": "株式会社池田泉州ＶＣ",
     "officialURL": "https://www.si-card.jp/visa/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-中京",
     "name": "株式会社中京カード",
     "officialURL": "http://www.chukyocard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-中国しんきん",
     "name": "株式会社中国しんきんカード",
     "officialURL": "https://www.chugoku-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-中部しんきん",
     "name": "株式会社中部しんきんカード",
     "officialURL": "https://www.chubu-shinkincard.com/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-東京サ-ビス",
     "name": "株式会社東京クレジットサービス",
     "officialURL": "https://www.tokyo-card.co.jp/card/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-東邦",
     "name": "株式会社東邦カード",
     "officialURL": "http://tohocard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-東北ジェ-シ-ビ",
     "name": "株式会社東北ジェーシービーカード",
     "officialURL": "https://www.tohoku-jcb.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-東北しんきん",
     "name": "株式会社東北しんきんカード",
     "officialURL": "https://www3.vpass.ne.jp/mem/top/index.jsp?cc=017",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-八十二",
     "name": "株式会社八十二カード",
     "officialURL": "https://www.82card.co.jp/",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-百五",
     "name": "株式会社百五カード",
     "officialURL": "https://www.105card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-百十四ジェ-シ-ビ",
     "name": "株式会社百十四ジェーシービーカード",
     "officialURL": "https://www.114card.jp/jcb/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-百十四ディ-シ",
     "name": "株式会社百十四ディーシーカード",
     "officialURL": "https://www.114card.jp/dc/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-福井",
     "name": "株式会社福井カード",
     "officialURL": "https://www.fukuicard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-福岡銀行",
     "name": "株式会社福岡銀行",
     "officialURL": "https://www.fukuokabank.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-北国サ-ビス",
     "name": "株式会社北国クレジットサービス",
     "officialURL": "https://www.hokkokucard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-北陸",
     "name": "株式会社北陸カード",
     "officialURL": "https://www.hokurikucard.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-名古屋エム-シ",
     "name": "株式会社名古屋エム・シーカード",
     "officialURL": "http://www.nagoyamccard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-名古屋",
     "name": "株式会社名古屋カード",
     "officialURL": "https://www.nagoya-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-労金サ-ビス",
     "name": "株式会社労金カードサービス",
     "officialURL": "http://www.rokincardservice.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-宮銀",
     "name": "宮銀カード株式会社",
     "officialURL": "https://miyagincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-京銀サ-ビス",
     "name": "京銀カードサービス株式会社",
     "officialURL": "http://www.kyotojcb.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-京都サ-ビス",
     "name": "京都クレジットサービス株式会社",
     "officialURL": "http://www.kyotodc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-九州",
     "name": "九州カード株式会社",
     "officialURL": "https://www.kyushu-card.co.jp/",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-三井住友",
     "name": "三井住友カード株式会社",
     "officialURL": "https://www.smbc-card.com/index.jsp",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-三井住友トラストクラブ",
     "name": "三井住友トラストクラブ株式会社",
     "officialURL": "https://www.sumitclub.jp/ja/corporate_site.html",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-三菱ufjニコス",
     "name": "三菱ＵＦＪニコス株式会社",
     "officialURL": "https://www.cr.mufg.jp/",
     "status": "tracked",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-山梨中銀ディ-シ",
     "name": "山梨中銀ディーシーカード株式会社",
     "officialURL": "https://www.yamanashidc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-商工中金",
     "name": "商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-清水リ-ス",
     "name": "清水リース＆カード株式会社",
     "officialURL": "https://www.shimizubank.co.jp/aboutus/group/slc/card/index.html",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-静銀",
     "name": "静銀カード株式会社",
     "officialURL": "https://shizugin-card.shizuokabank.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-第一ライフペイメント",
     "name": "第一ライフペイメント株式会社",
     "officialURL": "https://www.ds-card.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-第三サ-ビス",
     "name": "第三カードサービス株式会社",
     "officialURL": "http://www.daisancard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-第四ディ-シ",
     "name": "第四ディーシーカード株式会社",
     "officialURL": "https://www.daishidc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-第四北越ジェ-シ-ビ",
     "name": "第四北越ジェーシービーカード株式会社",
     "officialURL": "https://www.dh-jcb.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-中銀",
     "name": "中銀カード株式会社",
     "officialURL": "http://www.chugincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-朝日生命サ-ビス",
     "name": "朝日生命カードサービス株式会社",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-長野",
     "name": "長野カード株式会社",
     "officialURL": "http://www.naganocard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-東京海上日動ファイナンス",
     "name": "東京海上日動ファイナンス株式会社",
     "officialURL": "https://www.tmarinecard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-東日本銀ジェ-シ-ビ",
     "name": "東日本銀ジェーシービーカード株式会社",
     "officialURL": "http://www.jcbgroup.jp/higashinippon-fc.html",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-東和",
     "name": "東和カード株式会社",
     "officialURL": "https://www.towacard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-道銀",
     "name": "道銀カード株式会社",
     "officialURL": "https://www.dogincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-南都サ-ビス",
     "name": "南都カードサービス株式会社",
     "officialURL": "https://www.nantocard.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-南都ディ-シ",
     "name": "南都ディーシーカード株式会社",
     "officialURL": "https://www.nantocard.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-肥銀",
     "name": "肥銀カード株式会社",
     "officialURL": "https://www.higincard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-菱信ディ-シ",
     "name": "菱信ディーシーカード株式会社",
     "officialURL": "https://www.ryoshindc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-富山ファ-スト-ディ-シ",
     "name": "富山ファースト・ディーシー株式会社",
     "officialURL": "http://www.toyamadc.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-福邦",
     "name": "福邦カード株式会社",
     "officialURL": "https://www.fukuhocard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   },
   {
     "id": "jcca-北越",
     "name": "北越カード株式会社",
     "officialURL": "https://www.hokuetsucard.co.jp/",
     "status": "needsProductAdapter",
-    "discoveredAt": "2026-07-20T04:09:02.999Z"
+    "discoveredAt": "2026-07-20T09:36:39.371Z"
   }
 ]
