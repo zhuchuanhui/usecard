@@ -383,7 +383,7 @@ private struct AlternativePaymentSection: View {
     let recommendations: [AlternativePaymentRecommendation]
 
     var body: some View {
-        Section("カード以外の支払い") {
+        Section {
             if recommendations.isEmpty {
                 Text("この条件で確認できるカード以外の支払いはありません")
                     .foregroundStyle(.secondary)
@@ -398,6 +398,8 @@ private struct AlternativePaymentSection: View {
                     }
                 }
             }
+        } header: {
+            Text("カード以外の支払い")
         } footer: {
             Text("カードからのチャージ還元や期間限定キャンペーンは二重計上していません。利用前に公式ルールを確認してください。")
         }
