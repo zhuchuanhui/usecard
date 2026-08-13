@@ -9,7 +9,6 @@ struct RecommendationView: View {
     @State private var amountYen = 10_000.0
     @State private var merchantID = "general"
     @State private var categoryID = "general"
-    @State private var paymentMethod = PaymentMethod.physical
     @State private var channel = PurchaseChannel.inStore
     @State private var frequency = SpendFrequency.once
     @State private var purchaseDate = Date()
@@ -129,17 +128,6 @@ struct RecommendationView: View {
                     }
                     .pickerStyle(.segmented)
 
-                    Picker("支払い方法", selection: $paymentMethod) {
-                        Text("カード").tag(PaymentMethod.physical)
-                        Text("カードのタッチ決済").tag(PaymentMethod.contactless)
-                        Text("スマホのタッチ決済").tag(PaymentMethod.mobileContactless)
-                        Text("Apple Pay").tag(PaymentMethod.applePay)
-                        Text("モバイルオーダー").tag(PaymentMethod.mobileOrder)
-                        Text("QR決済").tag(PaymentMethod.qr)
-                        Text("オンライン").tag(PaymentMethod.online)
-                        Text("継続課金").tag(PaymentMethod.recurring)
-                    }
-
                     Picker("頻度", selection: $frequency) {
                         Text("今回だけ").tag(SpendFrequency.once)
                         Text("毎月").tag(SpendFrequency.monthly)
@@ -194,7 +182,7 @@ struct RecommendationView: View {
             amountYen: amountYen,
             merchantID: merchantID == "general" ? nil : merchantID,
             categoryID: categoryID,
-            paymentMethod: paymentMethod,
+            paymentMethod: .physical,
             channel: channel,
             frequency: frequency,
             purchaseDate: Self.dateFormatter.string(from: purchaseDate)
