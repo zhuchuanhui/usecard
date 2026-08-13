@@ -26,7 +26,7 @@ struct CatalogView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     HStack {
-                        Text(product.annualFeeYen == 0 ? "年会費無料" : "年会費 \(product.annualFeeYen, format: .currency(code: "JPY"))")
+                        Text(product.annualFeeYen == 0 ? "年会費無料" : "年会費 \(product.annualFeeYen.formatted(.currency(code: "JPY")))")
                         Spacer()
                         if product.sources.contains(where: { $0.freshness != .fresh }) {
                             Label("要確認", systemImage: "exclamationmark.triangle")
@@ -128,7 +128,7 @@ private extension RewardFormula {
         case .pointsPerUnit:
             "\((unitAmountYen ?? 0).formatted(.number))円ごとに\((pointsPerUnit ?? 0).formatted(.number))ポイント"
         case .fixedYen:
-            "\(fixedYen ?? 0, format: .currency(code: "JPY"))相当"
+            "\((fixedYen ?? 0).formatted(.currency(code: "JPY")))相当"
         }
     }
 }
