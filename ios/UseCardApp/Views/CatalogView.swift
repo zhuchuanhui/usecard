@@ -126,7 +126,7 @@ private extension RewardFormula {
         case .cashbackRate:
             "\((ratePercent ?? 0).formatted(.number))%還元"
         case .pointsPerUnit:
-            "\(unitAmountYen ?? 0, format: .number)円ごとに\(pointsPerUnit ?? 0, format: .number)ポイント"
+            "\((unitAmountYen ?? 0).formatted(.number))円ごとに\((pointsPerUnit ?? 0).formatted(.number))ポイント"
         case .fixedYen:
             "\(fixedYen ?? 0, format: .currency(code: "JPY"))相当"
         }
