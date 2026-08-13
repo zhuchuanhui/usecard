@@ -14,33 +14,66 @@ struct CatalogView: View {
         }
     }
 
+    private var onlineCandidates: [OnlineCardCandidate] {
+        guard !searchText.isEmpty else { return [] }
+        let verifiedURLs = Set((catalogStore.catalog?.products ?? []).map { $0.applicationURL.absoluteString })
+        return catalogStore.onlineCandidates.filter { candidate in
+            !verifiedURLs.contains(candidate.officialURL.absoluteString)
+                && (candidate.name.localizedCaseInsensitiveContains(searchText)
+                || candidate.issuerName.localizedCaseInsensitiveContains(searchText)
+                || candidate.aliases.contains { $0.localizedCaseInsensitiveContains(searchText) })
+        }
+        .prefix(50)
+        .map { $0 }
+    }
+
     var body: some View {
-        List(products) { product in
-            NavigationLink {
-                ProductDetailView(product: product)
-            } label: {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(product.name)
-                        .font(.headline)
-                    Text(product.issuerName)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    HStack {
-                        Text(product.annualFeeYen == 0 ? "年会費無料" : "年会費 \(product.annualFeeYen.formatted(.currency(code: "JPY")))")
-                        Spacer()
-                        if product.sources.contains(where: { $0.freshness != .fresh }) {
-                            Label("要確認", systemImage: "exclamationmark.triangle")
-                                .foregroundStyle(.orange)
+        List {
+            Section("収録カード") {
+                ForEach(products) { product in
+                    NavigationLink {
+                        ProductDetailView(product: product)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(product.name)
+                                .font(.headline)
+                            Text(product.issuerName)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            HStack {
+                                Text(product.annualFeeYen == 0 ? "年会費無料" : "年会費 \(product.annualFeeYen.formatted(.currency(code: "JPY")))")
+                                Spacer()
+                                if product.sources.contains(where: { $0.freshness != .fresh }) {
+                                    Label("要確認", systemImage: "exclamationmark.triangle")
+                                        .foregroundStyle(.orange)
+                                }
+                            }
+                            .font(.caption)
                         }
                     }
-                    .font(.caption)
+                }
+            }
+
+            if !onlineCandidates.isEmpty {
+                Section("オンライン公式候補") {
+                    ForEach(onlineCandidates) { candidate in
+                        Link(destination: candidate.officialURL) {
+                            VStack(alignment: .leading, spacing: 3) {
+                                Label(candidate.name, systemImage: "network")
+                                    .foregroundStyle(.primary)
+                                Text("\(candidate.issuerName)・公式ページで確認")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
                 }
             }
         }
         .searchable(text: $searchText, prompt: "カード名・発行会社")
         .navigationTitle("カード検索")
         .overlay {
-            if products.isEmpty && catalogStore.catalog != nil {
+            if products.isEmpty && onlineCandidates.isEmpty && catalogStore.catalog != nil {
                 ContentUnavailableView.search(text: searchText)
             }
         }

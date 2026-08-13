@@ -14,6 +14,7 @@
 		410C2ADA0ECD14FCE064D6A7 /* CatalogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD99F560EB76588CAA7A663 /* CatalogStore.swift */; };
 		4D1FD43BB2C00064CBE28518 /* UseCardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951C55D8F9FEF3A131BB4F3F /* UseCardApp.swift */; };
 		553F1EA392B824F63854D662 /* RecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8655C36184345E4C28BF6C9A /* RecommendationView.swift */; };
+		6970ECC86CAE73BF84009CAB /* official-lineups.json in Resources */ = {isa = PBXBuildFile; fileRef = FB284B03672D35EDDBA1FC74 /* official-lineups.json */; };
 		6A1E07D9AAF68C9B4FFA8CBB /* HoldingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D9FC3571F3BA5C3B167FC /* HoldingsView.swift */; };
 		6A4F1A1FBBA6331246FB2FC5 /* CatalogClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532AF77703973468A7997BDD /* CatalogClient.swift */; };
 		6F0BB091C9CDA5C77174C909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DCAB272172DE5C8317F1735 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		83149C4F523DC1A088D52FE5 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8901160BE27422CABCF48F6 /* RootView.swift */; };
 		996F692C4E531437CF1F404B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632AB573C5DC715C300F19BA /* SettingsView.swift */; };
 		CCFD37C64479E41911631126 /* UseCardCore in Frameworks */ = {isa = PBXBuildFile; productRef = F77478896704D71271E06650 /* UseCardCore */; };
+		F0E5F070334F446070AFC7E3 /* search-index.json in Resources */ = {isa = PBXBuildFile; fileRef = E76E3DE81B4B0C19908A16CA /* search-index.json */; };
 		F26C38D41C6322950039B605 /* payment-alternatives.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CD61687E746A7E3E1A3BBC8 /* payment-alternatives.json */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +55,10 @@
 		BB7A12CE02C2BBFE3194898A /* UseCard.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UseCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEBCE95FE14B6C5A73DB83C2 /* RecommendationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationSupport.swift; sourceTree = "<group>"; };
 		D475D877EC5AF519E8C663FB /* CatalogDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDecodingTests.swift; sourceTree = "<group>"; };
+		E76E3DE81B4B0C19908A16CA /* search-index.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "search-index.json"; sourceTree = "<group>"; };
 		E8901160BE27422CABCF48F6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F94A3C820A00DE1A8D26EF68 /* UseCardTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UseCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB284B03672D35EDDBA1FC74 /* official-lineups.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "official-lineups.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				A32B10D6D40A7AAD16B4C3D5 /* latest.json */,
+				FB284B03672D35EDDBA1FC74 /* official-lineups.json */,
 				3CD61687E746A7E3E1A3BBC8 /* payment-alternatives.json */,
+				E76E3DE81B4B0C19908A16CA /* search-index.json */,
 			);
 			path = public;
 			sourceTree = "<group>";
@@ -279,7 +285,9 @@
 			files = (
 				6F0BB091C9CDA5C77174C909 /* Assets.xcassets in Resources */,
 				086DC269EC013394744351FA /* latest.json in Resources */,
+				6970ECC86CAE73BF84009CAB /* official-lineups.json in Resources */,
 				F26C38D41C6322950039B605 /* payment-alternatives.json in Resources */,
+				F0E5F070334F446070AFC7E3 /* search-index.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

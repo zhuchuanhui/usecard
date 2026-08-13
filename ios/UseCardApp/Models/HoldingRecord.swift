@@ -10,12 +10,16 @@ final class HoldingRecord {
     var hasAnnualSpendEstimate: Bool = false
     var pointValueYen: Double = 1
     var createdAt: Date = Date()
+    var pendingName: String?
+    var pendingIssuerName: String?
+    var pendingOfficialURLString: String?
 
     init(
         cardID: String,
         enrolledBenefitKeys: Set<String> = [],
         annualSpendYen: Double? = nil,
-        pointValueYen: Double = 1
+        pointValueYen: Double = 1,
+        pendingCandidate: OnlineCardCandidate? = nil
     ) {
         self.cardID = cardID
         self.enrolledBenefitKeysJSON = Self.encode(enrolledBenefitKeys)
@@ -23,6 +27,14 @@ final class HoldingRecord {
         self.hasAnnualSpendEstimate = annualSpendYen != nil
         self.pointValueYen = pointValueYen
         self.createdAt = Date()
+        self.pendingName = pendingCandidate?.name
+        self.pendingIssuerName = pendingCandidate?.issuerName
+        self.pendingOfficialURLString = pendingCandidate?.officialURL.absoluteString
+    }
+
+    var pendingOfficialURL: URL? {
+        guard let pendingOfficialURLString else { return nil }
+        return URL(string: pendingOfficialURLString)
     }
 
     var enrolledBenefitKeys: Set<String> {

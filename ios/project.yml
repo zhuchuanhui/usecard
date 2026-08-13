@@ -17,6 +17,10 @@ targets:
         buildPhase: resources
       - path: ../catalog/public/payment-alternatives.json
         buildPhase: resources
+      - path: ../catalog/public/search-index.json
+        buildPhase: resources
+      - path: ../catalog/public/official-lineups.json
+        buildPhase: resources
     dependencies:
       - package: UseCardCore
         product: UseCardCore

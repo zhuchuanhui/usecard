@@ -9,6 +9,7 @@ final class CatalogStore {
 
     var catalog: CardCatalog?
     var alternativePaymentCatalog: AlternativePaymentCatalog?
+    var onlineCandidates: [OnlineCardCandidate] = []
     var source: CatalogSource = .bundled
     var warning: String?
     var errorMessage: String?
@@ -27,6 +28,7 @@ final class CatalogStore {
             let result = try await client.load(remoteBaseURL: remoteURL)
             catalog = result.catalog
             alternativePaymentCatalog = result.alternativePaymentCatalog
+            onlineCandidates = result.onlineCandidates
             source = result.source
             warning = result.warning
             errorMessage = nil
