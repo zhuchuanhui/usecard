@@ -8,6 +8,7 @@ final class CatalogStore {
     static let defaultEndpoint = "https://zhuchuanhui.github.io/usecard/"
 
     var catalog: CardCatalog?
+    var alternativePaymentCatalog: AlternativePaymentCatalog?
     var source: CatalogSource = .bundled
     var warning: String?
     var errorMessage: String?
@@ -25,6 +26,7 @@ final class CatalogStore {
         do {
             let result = try await client.load(remoteBaseURL: remoteURL)
             catalog = result.catalog
+            alternativePaymentCatalog = result.alternativePaymentCatalog
             source = result.source
             warning = result.warning
             errorMessage = nil

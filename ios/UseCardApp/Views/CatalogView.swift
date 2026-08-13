@@ -124,7 +124,7 @@ private extension RewardFormula {
     var summary: String {
         switch kind {
         case .cashbackRate:
-            "\(ratePercent ?? 0, format: .number)%還元"
+            "\((ratePercent ?? 0).formatted(.number))%還元"
         case .pointsPerUnit:
             "\(unitAmountYen ?? 0, format: .number)円ごとに\(pointsPerUnit ?? 0, format: .number)ポイント"
         case .fixedYen:

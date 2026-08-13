@@ -13,6 +13,7 @@ struct CatalogManifest: Decodable {
 
 struct CatalogLoadResult {
     let catalog: CardCatalog
+    let alternativePaymentCatalog: AlternativePaymentCatalog
     let source: CatalogSource
     let warning: String?
 }
@@ -27,8 +28,14 @@ actor CatalogClient {
 
     func load(remoteBaseURL: URL?) async throws -> CatalogLoadResult {
         let bundled = try loadBundledCatalog()
+        let bundledAlternatives = try loadBundledAlternativePayments()
         guard let remoteBaseURL else {
-            return CatalogLoadResult(catalog: bundled, source: .bundled, warning: nil)
+            return CatalogLoadResult(
+                catalog: bundled,
+                alternativePaymentCatalog: bundledAlternatives,
+                source: .bundled,
+                warning: nil
+            )
         }
 
         do {
@@ -46,10 +53,20 @@ actor CatalogClient {
             guard remote.schemaVersion == 1, remote.version == manifest.catalogVersion else {
                 throw CatalogClientError.manifestMismatch
             }
-            return CatalogLoadResult(catalog: remote, source: .remote, warning: nil)
+            let remoteAlternatives = try await loadAlternativePayments(
+                from: remoteBaseURL,
+                fallback: bundledAlternatives
+            )
+            return CatalogLoadResult(
+                catalog: remote,
+                alternativePaymentCatalog: remoteAlternatives,
+                source: .remote,
+                warning: nil
+            )
         } catch {
             return CatalogLoadResult(
                 catalog: bundled,
+                alternativePaymentCatalog: bundledAlternatives,
                 source: .bundled,
                 warning: "更新データを取得できないため、同梱版を使用しています"
             )
@@ -61,6 +78,31 @@ actor CatalogClient {
             throw CatalogClientError.missingBundledCatalog
         }
         return try decoder.decode(CardCatalog.self, from: Data(contentsOf: url))
+    }
+
+    private func loadBundledAlternativePayments() throws -> AlternativePaymentCatalog {
+        guard let url = Bundle.main.url(forResource: "payment-alternatives", withExtension: "json") else {
+            throw CatalogClientError.missingBundledCatalog
+        }
+        let catalog = try decoder.decode(AlternativePaymentCatalog.self, from: Data(contentsOf: url))
+        guard catalog.schemaVersion == 1 else { throw CatalogClientError.unsupportedSchema }
+        return catalog
+    }
+
+    private func loadAlternativePayments(
+        from baseURL: URL,
+        fallback: AlternativePaymentCatalog
+    ) async throws -> AlternativePaymentCatalog {
+        do {
+            let url = baseURL.appending(path: "payment-alternatives.json")
+            let (data, response) = try await URLSession.shared.data(from: url)
+            try requireSuccess(response)
+            let catalog = try decoder.decode(AlternativePaymentCatalog.self, from: data)
+            guard catalog.schemaVersion == 1 else { throw CatalogClientError.unsupportedSchema }
+            return catalog
+        } catch {
+            return fallback
+        }
     }
 
     private func requireSuccess(_ response: URLResponse) throws {

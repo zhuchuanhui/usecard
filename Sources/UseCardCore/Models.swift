@@ -302,4 +302,9 @@ public struct CardRecommendation: Codable, Hashable, Identifiable, Sendable {
 public struct RecommendationBundle: Codable, Sendable {
     public let owned: [CardRecommendation]
     public let available: [CardRecommendation]
+
+    public init(owned: [CardRecommendation], available: [CardRecommendation]) {
+        self.owned = owned
+        self.available = available
+    }
 }
