@@ -39,11 +39,15 @@ fileprivate enum UseCardIconStyle: String {
 
 final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
     private let model = MacAppModel()
+    private let automaticRefreshInterval: TimeInterval = 6 * 60 * 60
     private var mainWindow: NSWindow?
     private var holdingsController: HoldingsViewController?
     private var catalogController: CatalogViewController?
     private var recommendationController: RecommendationViewController?
     private var dataController: DataViewController?
+    private var refreshTimer: Timer?
+    private var refreshInFlight = false
+    private var lastRefreshAt: Date?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         applyApplicationIcon(UseCardIconStyle.saved, persist: false)
@@ -52,7 +56,12 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
         tabs.tabStyle = .toolbar
 
         let recommendation = RecommendationViewController(model: model)
-        let holdings = HoldingsViewController(model: model)
+        let holdings = HoldingsViewController(
+            model: model,
+            holdingsChangedAction: { [weak self] in
+                self?.recommendationController?.calculate()
+            }
+        )
         let catalog = CatalogViewController(model: model)
         let data = DataViewController(
             model: model,
@@ -86,7 +95,16 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
         mainWindow = window
         showMainWindow()
 
-        refreshCatalog()
+        refreshCatalog(force: true)
+        scheduleAutomaticRefresh()
+    }
+
+    func applicationDidBecomeActive(_ notification: Notification) {
+        refreshCatalogIfStale()
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        refreshTimer?.invalidate()
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -111,10 +129,33 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
         return item
     }
 
-    private func refreshCatalog() {
+    private func scheduleAutomaticRefresh() {
+        refreshTimer?.invalidate()
+        let timer = Timer(timeInterval: 60 * 60, repeats: true) { [weak self] _ in
+            self?.refreshCatalogIfStale()
+        }
+        refreshTimer = timer
+        RunLoop.main.add(timer, forMode: .common)
+    }
+
+    private func refreshCatalogIfStale() {
+        guard lastRefreshAt.map({ Date().timeIntervalSince($0) >= automaticRefreshInterval }) ?? true else {
+            return
+        }
+        refreshCatalog(force: false)
+    }
+
+    private func refreshCatalog(force: Bool = true) {
+        guard !refreshInFlight else { return }
+        if !force, let lastRefreshAt, Date().timeIntervalSince(lastRefreshAt) < automaticRefreshInterval {
+            return
+        }
+        refreshInFlight = true
         dataController?.setRefreshing(true)
         model.refreshCatalog { [weak self] in
             guard let self else { return }
+            self.lastRefreshAt = Date()
+            self.refreshInFlight = false
             self.holdingsController?.reloadData()
             self.catalogController?.reloadData()
             self.recommendationController?.calculate()
@@ -1285,6 +1326,11 @@ final class RecommendationViewController: NSViewController {
         let aliases: [String]
     }
 
+    private struct AutomaticPlaceRecommendation {
+        let place: SpendPlace
+        let presentation: RecommendationPresentation
+    }
+
     private let placeField = NSSearchField()
     private let amountField = NSTextField()
     private let spendSummary = NSTextField(labelWithString: "お店と金額が決まった時だけ、ここで比べます。")
@@ -1325,6 +1371,15 @@ final class RecommendationViewController: NSViewController {
         SpendPlace(title: "公共料金", merchantID: nil, categoryID: "utilities", channel: .inStore, aliases: ["電気", "ガス", "水道"]),
         SpendPlace(title: "ネット通販", merchantID: nil, categoryID: "online-shopping", channel: .online, aliases: ["オンライン", "ネット"])
     ]
+
+    private let automaticPlaceIDs: Set<String> = [
+        "seven-eleven",
+        "amazon",
+        "aeon-group",
+        "rakuten-market",
+        "jr-east-rail"
+    ]
+    private let automaticComparisonAmountYen = 10_000.0
 
     init(model: MacAppModel) {
         self.model = model
@@ -1452,7 +1507,11 @@ final class RecommendationViewController: NSViewController {
             updateApplicationCandidates([])
             return
         }
-        renderRecommendations(presentation, alternativePayments: [])
+        renderRecommendations(
+            presentation,
+            alternativePayments: [],
+            automaticPlaces: automaticPlaceRecommendations()
+        )
         updateApplicationCandidates(presentation.rankings.available)
     }
 
@@ -1501,7 +1560,7 @@ final class RecommendationViewController: NSViewController {
             return
         }
         let alternativePayments = model.recommendAlternativePayments(for: intent)
-        renderRecommendations(presentation, alternativePayments: alternativePayments)
+        renderRecommendations(presentation, alternativePayments: alternativePayments, automaticPlaces: [])
         updateApplicationCandidates(presentation.rankings.available)
         scrollContentToTop()
     }
@@ -1522,7 +1581,8 @@ final class RecommendationViewController: NSViewController {
 
     private func renderRecommendations(
         _ presentation: RecommendationPresentation,
-        alternativePayments: [AlternativePaymentRecommendation]
+        alternativePayments: [AlternativePaymentRecommendation],
+        automaticPlaces: [AutomaticPlaceRecommendation] = []
     ) {
         selectedPaymentMethodByCardID = presentation.paymentMethodByCardID
         clearResultCards()
@@ -1552,10 +1612,100 @@ final class RecommendationViewController: NSViewController {
             emptyTitle: "条件に合う申込候補がありません",
             emptyDetail: "条件を変えるか、カタログ更新後にもう一度比較してください。"
         )
+        if !automaticPlaces.isEmpty && !isSpecificComparison {
+            addAutomaticPlaceSection(automaticPlaces)
+        }
         if isSpecificComparison {
             addAlternativePaymentSection(alternativePayments, cardRankings: rankings)
         }
         resizeScrollableContent()
+    }
+
+    private func automaticPlaceRecommendations() -> [AutomaticPlaceRecommendation] {
+        spendPlaces
+            .filter { automaticPlaceIDs.contains($0.merchantID ?? "") }
+            .compactMap { place in
+                let intent = PurchaseIntent(
+                    amountYen: automaticComparisonAmountYen,
+                    merchantID: place.merchantID,
+                    categoryID: place.categoryID,
+                    paymentMethod: .physical,
+                    channel: place.channel,
+                    frequency: .once,
+                    purchaseDate: dateString(Date())
+                )
+                guard let presentation = model.recommendBestPaymentMethod(
+                    for: intent,
+                    paymentMethods: paymentMethods(for: place.channel)
+                ) ?? model.recommend(intent: intent) else {
+                    return nil
+                }
+                return AutomaticPlaceRecommendation(place: place, presentation: presentation)
+            }
+    }
+
+    private func addAutomaticPlaceSection(_ recommendations: [AutomaticPlaceRecommendation]) {
+        addResultView(panelHeading(
+            "利用先ごとの自動おすすめ",
+            detail: "金額入力なしで、今日の主要な利用先を公式条件から先回りして比較しています。"
+        ))
+        let row = NSStackView()
+        row.orientation = .horizontal
+        row.alignment = .top
+        row.distribution = .fillEqually
+        row.spacing = 10
+        for recommendation in recommendations {
+            row.addArrangedSubview(automaticPlaceCard(recommendation))
+        }
+        addResultView(row)
+    }
+
+    private func automaticPlaceCard(_ recommendation: AutomaticPlaceRecommendation) -> NSView {
+        let rankings = recommendation.presentation.rankings
+        let selected = rankings.owned.first ?? rankings.available.first
+        let tone: PanelTone = rankings.owned.first == nil ? .subdued : .standard
+        let content = NSStackView()
+        content.orientation = .vertical
+        content.alignment = .width
+        content.spacing = 4
+
+        let place = NSTextField(labelWithString: recommendation.place.title)
+        place.font = .systemFont(ofSize: 13, weight: .bold)
+        content.addArrangedSubview(place)
+
+        guard let selected else {
+            content.addArrangedSubview(textCell("比較できるカードなし"))
+            return panel(containing: content, tone: tone)
+        }
+
+        let ownership = selected.isOwned ? "保有カード" : "未保有の申込候補"
+        let ownershipLabel = NSTextField(labelWithString: ownership)
+        ownershipLabel.font = .systemFont(ofSize: 11, weight: .medium)
+        ownershipLabel.textColor = .secondaryLabelColor
+        content.addArrangedSubview(ownershipLabel)
+
+        let name = NSTextField(wrappingLabelWithString: selected.card.name)
+        name.font = .systemFont(ofSize: 15, weight: .semibold)
+        content.addArrangedSubview(name)
+
+        let method = NSTextField(labelWithString: paymentMethodLabel(
+            for: selected,
+            mapping: recommendation.presentation.paymentMethodByCardID
+        ))
+        method.font = .systemFont(ofSize: 11)
+        method.textColor = .secondaryLabelColor
+        content.addArrangedSubview(method)
+
+        let value = NSTextField(labelWithString: "\(yen(selected.immediateValueYen)) お得")
+        value.font = .monospacedDigitSystemFont(ofSize: 18, weight: .bold)
+        value.textColor = .systemIndigo
+        content.addArrangedSubview(value)
+
+        let note = NSTextField(labelWithString: "1万円利用時の概算")
+        note.font = .systemFont(ofSize: 10)
+        note.textColor = .tertiaryLabelColor
+        content.addArrangedSubview(note)
+        return panel(containing: content, tone: tone)
     }
 
     private func renderMessage(_ title: String, detail: String) {
@@ -1960,7 +2110,14 @@ final class RecommendationViewController: NSViewController {
     }
 
     private func paymentMethodLabel(for recommendation: CardRecommendation) -> String {
-        let method = selectedPaymentMethodByCardID[recommendation.card.id] ?? .physical
+        paymentMethodLabel(for: recommendation, mapping: selectedPaymentMethodByCardID)
+    }
+
+    private func paymentMethodLabel(
+        for recommendation: CardRecommendation,
+        mapping: [String: PaymentMethod]
+    ) -> String {
+        let method = mapping[recommendation.card.id] ?? .physical
         return switch method {
         case .physical: "カード払い"
         case .contactless: "カードのタッチ決済"
@@ -1987,6 +2144,7 @@ final class RecommendationViewController: NSViewController {
 
 final class HoldingsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate {
     private let model: MacAppModel
+    private let holdingsChangedAction: () -> Void
     private let table = NSTableView()
     private let searchField = NSSearchField()
     private let pasteButton = NSButton(title: "ペースト", target: nil, action: nil)
@@ -1996,8 +2154,9 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     private var sortKey = "name"
     private var sortAscending = true
 
-    init(model: MacAppModel) {
+    init(model: MacAppModel, holdingsChangedAction: @escaping () -> Void = {}) {
         self.model = model
+        self.holdingsChangedAction = holdingsChangedAction
         super.init(nibName: nil, bundle: nil)
         title = "手持ちカード"
     }
@@ -2089,6 +2248,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
     @objc private func toggleHolding(_ sender: NSButton) {
         guard displayedProducts.indices.contains(sender.tag) else { return }
         model.setHeld(sender.state == .on, cardID: displayedProducts[sender.tag].id)
+        holdingsChangedAction()
     }
 
     func reloadData() {
@@ -2179,6 +2339,7 @@ final class HoldingsViewController: NSViewController, NSTableViewDataSource, NST
         }
         guard let candidate = candidateList.selectedCandidate else { return }
         model.addPendingCard(candidate)
+        holdingsChangedAction()
         searchField.stringValue = candidate.name
         table.reloadData()
         searchStatus.stringValue = "「\(candidate.name)」を保有カードに追加しました。還元条件は公式データで検証中です。"
@@ -2455,6 +2616,7 @@ final class DataViewController: NSViewController {
         stack.addArrangedSubview(countLabel)
         stack.addArrangedSubview(heldLabel)
         stack.addArrangedSubview(refreshButton)
+        stack.addArrangedSubview(textCell("カタログは起動時・復帰時・6時間ごとに自動更新し、おすすめも自動で再計算します。"))
         stack.addArrangedSubview(textCell("保有カードはこのMac内に保存します。カード番号や利用明細は保存しません。"))
         stack.addArrangedSubview(iconSection())
         let container = NSView()
