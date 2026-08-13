@@ -113,7 +113,7 @@ private struct CardPickerView: View {
     private var filteredCandidates: [OnlineCardCandidate] {
         guard !searchText.isEmpty else { return [] }
         let verifiedURLs = Set(products.map { $0.applicationURL.absoluteString })
-        candidates.filter { candidate in
+        return candidates.filter { candidate in
             !excludedCandidateURLs.contains(candidate.officialURL.absoluteString)
                 && !verifiedURLs.contains(candidate.officialURL.absoluteString)
                 && (searchText.isEmpty
