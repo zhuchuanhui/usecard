@@ -2703,7 +2703,7 @@ final class DataViewController: NSViewController {
         stack.addArrangedSubview(heldLabel)
         stack.addArrangedSubview(refreshButton)
         stack.addArrangedSubview(textCell("カタログは起動時・復帰時・6時間ごとに自動更新し、おすすめも自動で再計算します。"))
-        stack.addArrangedSubview(textCell("保有カードは同じApple AccountのiPhoneとiCloudで共有します。カード番号や利用明細は保存しません。"))
+        stack.addArrangedSubview(textCell("同じApple Account・同じTeamで署名した版は、保有カードをiPhoneとiCloudで共有します。署名なしのローカル起動ではこのMacに保存します。カード番号や利用明細は保存しません。"))
         stack.addArrangedSubview(iconSection())
         let container = NSView()
         container.addSubview(stack)
