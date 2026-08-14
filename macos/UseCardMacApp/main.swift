@@ -100,6 +100,10 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
+        if model.refreshSharedHoldings() {
+            holdingsController?.reloadData()
+            recommendationController?.calculate()
+        }
         refreshCatalogIfStale()
     }
 
@@ -180,6 +184,7 @@ final class MacAppModel {
     private static let retiredManualCardsKey = "jp.usecard.macos.manual-cards"
     private static let pendingCardsKey = "jp.usecard.macos.pending-official-cards"
     private let decoder = JSONDecoder()
+    private let sharedHoldingsStore = SharedHoldingsStore()
     private let remoteBaseURL = URL(string: "https://zhuchuanhui.github.io/usecard/")!
     private let bundledOfficialLineups: [RemoteOfficialLineup]
 
@@ -198,6 +203,7 @@ final class MacAppModel {
         }
         UserDefaults.standard.removeObject(forKey: Self.retiredManualCardsKey)
         pendingCards = Self.loadPendingCards()
+        refreshSharedHoldings()
         loadBundledCatalog()
         loadBundledAlternativePayments()
     }
@@ -236,10 +242,88 @@ final class MacAppModel {
     func setHeld(_ isHeld: Bool, cardID: String) {
         if isHeld {
             heldCardIDs.insert(cardID)
+            sharedHoldingsStore.upsert(sharedHolding(for: cardID))
         } else {
             heldCardIDs.remove(cardID)
+            sharedHoldingsStore.remove(cardID: cardID)
         }
         UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
+    }
+
+    @discardableResult
+    func refreshSharedHoldings() -> Bool {
+        sharedHoldingsStore.synchronize()
+        let records = Dictionary(
+            uniqueKeysWithValues: sharedHoldingsStore.records().map { ($0.cardID, $0) }
+        )
+        let oldIDs = heldCardIDs
+        let oldPending = pendingCards
+
+        for record in records.values {
+            if record.isDeleted {
+                heldCardIDs.remove(record.cardID)
+                pendingCards.removeAll { $0.id == record.cardID }
+                continue
+            }
+
+            heldCardIDs.insert(record.cardID)
+            guard let pendingName = record.pendingName,
+                  let issuerName = record.pendingIssuerName,
+                  let officialURLString = record.pendingOfficialURLString,
+                  let officialURL = URL(string: officialURLString) else {
+                continue
+            }
+            let pending = PendingCardRecord(
+                id: record.cardID,
+                issuerID: record.pendingIssuerID ?? "shared",
+                issuerName: issuerName,
+                name: pendingName,
+                officialURL: officialURL,
+                observedAt: ISO8601DateFormatter().string(from: record.updatedAt)
+            )
+            if let index = pendingCards.firstIndex(where: { $0.id == record.cardID }) {
+                pendingCards[index] = pending
+            } else {
+                pendingCards.append(pending)
+            }
+        }
+
+        let remoteIDs = Set(records.keys)
+        for cardID in heldCardIDs where !remoteIDs.contains(cardID) {
+            sharedHoldingsStore.upsert(sharedHolding(for: cardID))
+        }
+
+        UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
+        savePendingCards()
+        return oldIDs != heldCardIDs || oldPending != pendingCards
+    }
+
+    private func sharedHolding(for cardID: String) -> SharedHoldingRecord {
+        let existing = sharedHoldingsStore.records().first { $0.cardID == cardID && !$0.isDeleted }
+        if let pending = pendingCards.first(where: { $0.id == cardID }) {
+            return SharedHoldingRecord(
+                cardID: cardID,
+                pendingIssuerID: pending.issuerID,
+                pendingName: pending.name,
+                pendingIssuerName: pending.issuerName,
+                pendingOfficialURLString: pending.officialURL.absoluteString,
+                enrolledBenefitKeys: existing?.enrolledBenefitKeys,
+                annualSpendYen: existing?.annualSpendYen,
+                hasAnnualSpendEstimate: existing?.hasAnnualSpendEstimate,
+                pointValueYen: existing?.pointValueYen,
+                createdAt: existing?.createdAt ?? Date(),
+                updatedAt: Date()
+            )
+        }
+        return SharedHoldingRecord(
+            cardID: cardID,
+            enrolledBenefitKeys: existing?.enrolledBenefitKeys,
+            annualSpendYen: existing?.annualSpendYen,
+            hasAnnualSpendEstimate: existing?.hasAnnualSpendEstimate,
+            pointValueYen: existing?.pointValueYen,
+            createdAt: existing?.createdAt ?? Date(),
+            updatedAt: Date()
+        )
     }
 
     fileprivate func recommend(intent: PurchaseIntent) -> RecommendationPresentation? {
@@ -562,7 +646,9 @@ final class MacAppModel {
                 return false
             }
             if heldCardIDs.remove(pending.id) != nil {
+                sharedHoldingsStore.remove(cardID: pending.id)
                 heldCardIDs.insert(verified.id)
+                sharedHoldingsStore.upsert(SharedHoldingRecord(cardID: verified.id, updatedAt: Date()))
                 UserDefaults.standard.set(Array(heldCardIDs).sorted(), forKey: Self.heldCardIDsKey)
             }
             reconciled = true
@@ -2617,7 +2703,7 @@ final class DataViewController: NSViewController {
         stack.addArrangedSubview(heldLabel)
         stack.addArrangedSubview(refreshButton)
         stack.addArrangedSubview(textCell("カタログは起動時・復帰時・6時間ごとに自動更新し、おすすめも自動で再計算します。"))
-        stack.addArrangedSubview(textCell("保有カードはこのMac内に保存します。カード番号や利用明細は保存しません。"))
+        stack.addArrangedSubview(textCell("保有カードは同じApple AccountのiPhoneとiCloudで共有します。カード番号や利用明細は保存しません。"))
         stack.addArrangedSubview(iconSection())
         let container = NSView()
         container.addSubview(stack)

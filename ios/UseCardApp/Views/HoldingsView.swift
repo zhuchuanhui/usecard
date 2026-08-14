@@ -7,6 +7,7 @@ struct HoldingsView: View {
     @Query(sort: \HoldingRecord.createdAt) private var holdings: [HoldingRecord]
     let catalogStore: CatalogStore
     @State private var isAdding = false
+    private let sharedHoldingsStore = SharedHoldingsStore()
 
     var body: some View {
         List {
@@ -68,14 +69,18 @@ struct HoldingsView: View {
                     excludedIDs: Set(holdings.map(\.cardID)),
                     excludedCandidateURLs: Set(holdings.compactMap(\.pendingOfficialURLString))
                 ) { product in
-                    modelContext.insert(HoldingRecord(cardID: product.id))
+                    let holding = HoldingRecord(cardID: product.id)
+                    modelContext.insert(holding)
+                    sharedHoldingsStore.upsert(holding.sharedRecord())
                     try? modelContext.save()
                     isAdding = false
                 } onSelectCandidate: { candidate in
-                    modelContext.insert(HoldingRecord(
+                    let holding = HoldingRecord(
                         cardID: "pending-\(UUID().uuidString.lowercased())",
                         pendingCandidate: candidate
-                    ))
+                    )
+                    modelContext.insert(holding)
+                    sharedHoldingsStore.upsert(holding.sharedRecord())
                     try? modelContext.save()
                     isAdding = false
                 }
@@ -85,10 +90,13 @@ struct HoldingsView: View {
 
     private func delete(at offsets: IndexSet) {
         for index in offsets {
-            modelContext.delete(holdings[index])
+            let holding = holdings[index]
+            sharedHoldingsStore.remove(cardID: holding.cardID)
+            modelContext.delete(holding)
         }
         try? modelContext.save()
     }
+
 }
 
 private struct CardPickerView: View {

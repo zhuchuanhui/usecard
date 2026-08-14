@@ -1,6 +1,6 @@
 # UseCard
 
-手持ちのクレジットカードを記録し、金額・店舗・用途・支払い方法から一番お得なカードを計算するSwiftUIアプリです。保有情報は端末と本人のCloudKit private databaseに保存し、カード番号や利用明細は扱いません。
+手持ちのクレジットカードを記録し、金額・店舗・用途・支払い方法から一番お得なカードを計算するアプリです。保有情報は同じApple AccountのiPhone・Mac間でiCloudに共有し、カード番号や利用明細は扱いません。
 
 ## 現在できること
 
@@ -28,12 +28,13 @@
 
 ## 起動
 
-必要なものはXcode、Apple Developerアカウント、iOS 17以上です。現在の環境にはXcode本体がないため、プロジェクト生成と共有ロジックの検証まで完了しており、シミュレータ起動はXcode導入後に行います。
+必要なものはXcode、iOS 17以上、iCloudにサインインしたApple Accountです。自分の端末で開発・実機テストするだけなら無料のApple Accountでも始められますが、TestFlightやApp Storeで配信するにはApple Developer Program（年間99米ドル、現地通貨相当）が必要です。
 
 1. Xcodeで `ios/UseCard.xcodeproj` を開きます。
 2. `UseCard`ターゲットのSigning Teamを選択します。
-3. Bundle IDまたはCloudKit containerを変更する場合は、`ios/UseCardApp/UseCard.entitlements`の`iCloud.jp.usecard.app`も同時に変更します。
-4. iPhoneシミュレータまたは実機で`UseCard`スキームを実行します。
+3. `UseCard`ターゲットのSigning Teamを選択します。iCloudのCloudKitとキーバリューストアが同じTeamで有効になります。
+4. Bundle IDまたはCloudKit containerを変更する場合は、`ios/UseCardApp/UseCard.entitlements`の`iCloud.jp.usecard.app`と共有キーバリューストア設定も同時に変更します。
+5. iPhoneシミュレータまたは実機で`UseCard`スキームを実行します。
 
 プロジェクト定義を変更した場合は再生成します。
 
@@ -49,7 +50,7 @@ XcodeがないMacでも、Apple Silicon・macOS 14以降なら次のコマンド
 ./script/run_macos_app.sh
 ```
 
-生成先はプロジェクト直下の`UseCard.app`です。macOS版はSwiftのAppKitで実装しており、保有カードをこのMac内に保存します。iOS版のSwiftUI／CloudKit版とは保有情報を同期しません。カタログは同梱版を必ず利用でき、GitHub Pagesを公開すると起動時と「データ」タブから検証済みの更新版を取得します。
+生成先はプロジェクト直下の`UseCard.app`です。macOS版はSwiftのAppKitで実装しており、保有カードはiOS版と共通のiCloudキーバリューストアへ保存します。同じApple Accountで、追加・削除・検証待ちカード・利用額の目安・特典登録が端末間に反映されます。署名なしでローカル起動した場合はiCloudを使えないため、そのMacのローカル保存へフォールバックします。カタログは同梱版を必ず利用でき、GitHub Pagesを公開すると起動時と「データ」タブから検証済みの更新版を取得します。
 
 「手持ちカード」タブではカード名・発行会社名だけで、公式確認済みの最新カタログを検索します。検索に一致しない場合もネット上の公開済みカタログを自動で再確認します。さらに「関連カードをオンラインで探す」を押すと、入力したカード名とゴールドなどの関連語でオンライン検索し、JCCAの発行会社一覧または既知カードの公式ドメインに一致するページだけを候補として表示します。還元率や年会費を手入力する機能は設けません。候補を選ぶと保有カードへ追加でき、この状態は「検証中」として記録されます。年会費・通常還元・申込導線を同じ公式ページで検証できて次回カタログに昇格するまで、おすすめ計算には使用しません。
 

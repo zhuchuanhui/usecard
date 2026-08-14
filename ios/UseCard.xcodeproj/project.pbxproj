@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		060D31370796AD09F103DCBF /* RecommendationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE95FE14B6C5A73DB83C2 /* RecommendationSupport.swift */; };
 		086DC269EC013394744351FA /* latest.json in Resources */ = {isa = PBXBuildFile; fileRef = A32B10D6D40A7AAD16B4C3D5 /* latest.json */; };
+		1AC525531DE53BFAAA4DA6BD /* SharedHoldingsBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168E7FA238B5C37FB05067E /* SharedHoldingsBootstrap.swift */; };
 		1C49E09B9BF6E3CB258BC5DE /* CatalogDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475D877EC5AF519E8C663FB /* CatalogDecodingTests.swift */; };
 		2585E977DB52D102C67866A0 /* HoldingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2A52C64D2A082A0F22B0AF /* HoldingRecord.swift */; };
 		410C2ADA0ECD14FCE064D6A7 /* CatalogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD99F560EB76588CAA7A663 /* CatalogStore.swift */; };
@@ -48,6 +49,7 @@
 		6D2A52C64D2A082A0F22B0AF /* HoldingRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingRecord.swift; sourceTree = "<group>"; };
 		6DCAB272172DE5C8317F1735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8655C36184345E4C28BF6C9A /* RecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationView.swift; sourceTree = "<group>"; };
+		9168E7FA238B5C37FB05067E /* SharedHoldingsBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHoldingsBootstrap.swift; sourceTree = "<group>"; };
 		951C55D8F9FEF3A131BB4F3F /* UseCardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCardApp.swift; sourceTree = "<group>"; };
 		A0A45B03CDAF953DF133D5D3 /* UseCard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UseCard.entitlements; sourceTree = "<group>"; };
 		A32B10D6D40A7AAD16B4C3D5 /* latest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = latest.json; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				8655C36184345E4C28BF6C9A /* RecommendationView.swift */,
 				E8901160BE27422CABCF48F6 /* RootView.swift */,
 				632AB573C5DC715C300F19BA /* SettingsView.swift */,
+				9168E7FA238B5C37FB05067E /* SharedHoldingsBootstrap.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				553F1EA392B824F63854D662 /* RecommendationView.swift in Sources */,
 				83149C4F523DC1A088D52FE5 /* RootView.swift in Sources */,
 				996F692C4E531437CF1F404B /* SettingsView.swift in Sources */,
+				1AC525531DE53BFAAA4DA6BD /* SharedHoldingsBootstrap.swift in Sources */,
 				4D1FD43BB2C00064CBE28518 /* UseCardApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

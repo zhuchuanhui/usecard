@@ -27,6 +27,7 @@ struct RootView: View {
             }
             .tabItem { Label("設定", systemImage: "gearshape") }
         }
+        .background(SharedHoldingsBootstrap())
         .task {
             await catalogStore.load(endpoint: catalogBaseURL)
         }

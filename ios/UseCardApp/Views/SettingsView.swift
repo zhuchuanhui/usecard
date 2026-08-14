@@ -36,6 +36,12 @@ struct SettingsView: View {
                 .disabled(catalogStore.isLoading)
             }
 
+            Section("端末間同期") {
+                Text("保有カード、検証待ちカード、利用額の目安、特典登録はiCloudで同じApple Accountの端末間に共有します。")
+                Text("iCloudにサインインしていない場合は、その端末だけに保存されます。")
+                    .foregroundStyle(.secondary)
+            }
+
             if let warning = catalogStore.warning {
                 Section("更新状態") {
                     Label(warning, systemImage: "exclamationmark.triangle")

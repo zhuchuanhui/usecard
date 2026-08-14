@@ -11,6 +11,7 @@ final class HoldingRecord {
     var pointValueYen: Double = 1
     var createdAt: Date = Date()
     var pendingName: String?
+    var pendingIssuerID: String?
     var pendingIssuerName: String?
     var pendingOfficialURLString: String?
 
@@ -28,6 +29,7 @@ final class HoldingRecord {
         self.pointValueYen = pointValueYen
         self.createdAt = Date()
         self.pendingName = pendingCandidate?.name
+        self.pendingIssuerID = pendingCandidate?.issuerID
         self.pendingIssuerName = pendingCandidate?.issuerName
         self.pendingOfficialURLString = pendingCandidate?.officialURL.absoluteString
     }
@@ -35,6 +37,32 @@ final class HoldingRecord {
     var pendingOfficialURL: URL? {
         guard let pendingOfficialURLString else { return nil }
         return URL(string: pendingOfficialURLString)
+    }
+
+    convenience init(sharedRecord: SharedHoldingRecord) {
+        self.init(
+            cardID: sharedRecord.cardID,
+            enrolledBenefitKeys: sharedRecord.enrolledBenefitKeys ?? [],
+            annualSpendYen: sharedRecord.annualSpendYen,
+            pointValueYen: sharedRecord.pointValueYen ?? 1,
+            pendingCandidate: sharedRecord.pendingName.map {
+                OnlineCardCandidate(
+                    issuerID: sharedRecord.pendingIssuerID ?? "shared",
+                    issuerName: sharedRecord.pendingIssuerName ?? "発行会社確認中",
+                    name: $0,
+                    officialURL: URL(string: sharedRecord.pendingOfficialURLString ?? "https://example.com")!,
+                    observedAt: ISO8601DateFormatter().string(from: sharedRecord.updatedAt),
+                    aliases: []
+                )
+            }
+        )
+        createdAt = sharedRecord.createdAt
+        if let hasAnnualSpendEstimate = sharedRecord.hasAnnualSpendEstimate {
+            self.hasAnnualSpendEstimate = hasAnnualSpendEstimate
+        }
+        pendingIssuerName = sharedRecord.pendingIssuerName
+        pendingIssuerID = sharedRecord.pendingIssuerID
+        pendingOfficialURLString = sharedRecord.pendingOfficialURLString
     }
 
     var enrolledBenefitKeys: Set<String> {
@@ -60,6 +88,22 @@ final class HoldingRecord {
             enrolledBenefitKeys: enrolledBenefitKeys,
             annualSpendYen: hasAnnualSpendEstimate ? annualSpendYen : nil,
             pointValueOverrides: overrides
+        )
+    }
+
+    func sharedRecord(updatedAt: Date = Date()) -> SharedHoldingRecord {
+        SharedHoldingRecord(
+            cardID: cardID,
+            pendingIssuerID: pendingIssuerID,
+            pendingName: pendingName,
+            pendingIssuerName: pendingIssuerName,
+            pendingOfficialURLString: pendingOfficialURLString,
+            enrolledBenefitKeys: enrolledBenefitKeys,
+            annualSpendYen: hasAnnualSpendEstimate ? annualSpendYen : nil,
+            hasAnnualSpendEstimate: hasAnnualSpendEstimate,
+            pointValueYen: pointValueYen,
+            createdAt: createdAt,
+            updatedAt: updatedAt
         )
     }
 
