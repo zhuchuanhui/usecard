@@ -1,0 +1,36 @@
+name: Release macOS DMG
+
+on:
+  push:
+    tags:
+      - "v[0-9]*"
+      - "[0-9]*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Build versioned DMG
+        run: ./script/build_macos_dmg.sh
+      - name: Verify tag, app, and DMG versions match
+        run: |
+          VERSION=$(./script/resolve_app_version.sh)
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' UseCard.app/Contents/Info.plist)" = "$VERSION"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' UseCard.app/Contents/Info.plist)" = "$VERSION"
+          test -f "$PWD/dist/UseCard-$VERSION.dmg"
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DMG="dist/UseCard-$(./script/resolve_app_version.sh).dmg"
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$DMG" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" "$DMG" --generate-notes
+          fi

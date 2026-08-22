@@ -1,6 +1,7 @@
 .DS_Store
 .build/
 UseCard.app/
+dist/
 DerivedData/
 node_modules/
 services/catalog/dist/

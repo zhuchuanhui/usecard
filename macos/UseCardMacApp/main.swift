@@ -2664,6 +2664,7 @@ final class DataViewController: NSViewController {
     private let refreshAction: () -> Void
     private let changeIconAction: (UseCardIconStyle) -> Void
     private let statusLabel = NSTextField(labelWithString: "")
+    private let versionLabel = NSTextField(labelWithString: "")
     private let countLabel = NSTextField(labelWithString: "")
     private let heldLabel = NSTextField(labelWithString: "")
     private let refreshButton = NSButton(title: "最新カタログを確認", target: nil, action: nil)
@@ -2699,6 +2700,7 @@ final class DataViewController: NSViewController {
         iconPicker.action = #selector(changeIcon)
         iconPicker.segmentStyle = .rounded
         stack.addArrangedSubview(statusLabel)
+        stack.addArrangedSubview(versionLabel)
         stack.addArrangedSubview(countLabel)
         stack.addArrangedSubview(heldLabel)
         stack.addArrangedSubview(refreshButton)
@@ -2737,6 +2739,8 @@ final class DataViewController: NSViewController {
     }
 
     private func updateLabels() {
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "不明"
+        versionLabel.stringValue = "アプリバージョン: \(version)"
         statusLabel.stringValue = "状態: \(model.catalogStatus)"
         countLabel.stringValue = "カード一覧: \(model.products.count)券種"
         heldLabel.stringValue = "保有カード数: \(model.heldCardIDs.count)枚"
