@@ -7,6 +7,8 @@ cd "$ROOT"
 npm --prefix services/catalog run typecheck
 npm --prefix services/catalog test
 
+test -s catalog/public/index.html
+
 mkdir -p .build/manual
 swiftc \
   Sources/UseCardCore/Models.swift \

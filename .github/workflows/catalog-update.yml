@@ -38,6 +38,7 @@ jobs:
         working-directory: services/catalog
       - name: Verify published files
         run: |
+          test -s catalog/public/index.html
           jq -e '.schemaVersion == 1 and .productCount > 0' catalog/public/manifest.json
           jq -e '.schemaVersion == 1 and (.products | length) > 0' catalog/public/latest.json
           jq -e 'type == "array"' catalog/public/search-index.json

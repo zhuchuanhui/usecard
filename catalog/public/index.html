@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UseCardの検証済みカード情報とmacOS版ダウンロード">
+  <title>UseCard</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", sans-serif;
+      background: #090d1a;
+      color: #f7f8ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 50% 0, #292080 0, #10152d 38%, #090d1a 74%); }
+    main { width: min(760px, 100%); margin: 0 auto; padding: 56px 20px 36px; }
+    .mark { display: grid; place-items: center; width: 74px; height: 74px; border-radius: 21px; background: linear-gradient(145deg, #5546ff, #171b55); box-shadow: 0 18px 54px #5845ff55; font-size: 34px; }
+    h1 { margin: 22px 0 8px; font-size: clamp(38px, 8vw, 62px); letter-spacing: -.04em; }
+    .lead { margin: 0; color: #c9cbed; font-size: 17px; line-height: 1.75; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 22px; }
+    a.button { display: inline-flex; min-height: 46px; align-items: center; padding: 0 18px; border-radius: 12px; color: white; background: #675cff; text-decoration: none; font-weight: 700; }
+    a.button.secondary { color: #e6e7ff; background: #ffffff16; border: 1px solid #ffffff24; }
+    .panel { margin-top: 18px; padding: 18px; border: 1px solid #ffffff1f; border-radius: 16px; background: #ffffff0c; backdrop-filter: blur(16px); }
+    .row { display: flex; justify-content: space-between; gap: 20px; padding: 9px 0; border-bottom: 1px solid #ffffff12; }
+    .row:last-child { border-bottom: 0; }
+    .label { color: #aeb2db; }
+    .value { text-align: right; font-weight: 650; overflow-wrap: anywhere; }
+    .note { margin-top: 24px; color: #9599bd; font-size: 13px; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true">✦</div>
+    <h1>UseCard</h1>
+    <p class="lead">手持ちカードと利用先から、お得な支払い方を比較するアプリです。カード情報は公式ページで確認できた内容だけを掲載します。</p>
+
+    <div class="actions">
+      <a class="button" href="https://github.com/zhuchuanhui/usecard/releases/latest">macOS版をダウンロード</a>
+      <a class="button secondary" href="latest.json">カード一覧データを見る</a>
+    </div>
+
+    <section class="panel" aria-label="カード情報の更新状態">
+      <div class="row"><span class="label">配信状態</span><span class="value" id="status">確認中…</span></div>
+      <div class="row"><span class="label">収録カード</span><span class="value" id="count">—</span></div>
+      <div class="row"><span class="label">最終更新</span><span class="value" id="updated">—</span></div>
+    </section>
+
+    <p class="note">カード番号、名義、有効期限、セキュリティコード、利用明細は収集・保存しません。還元条件は変更される場合があるため、利用・申込前にカード会社の公式ページも確認してください。</p>
+  </main>
+  <script>
+    fetch("manifest.json", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error("manifest unavailable");
+        return response.json();
+      })
+      .then((manifest) => {
+        document.querySelector("#status").textContent = "正常";
+        document.querySelector("#count").textContent = `${manifest.productCount}券種`;
+        document.querySelector("#updated").textContent = new Intl.DateTimeFormat("ja-JP", {
+          dateStyle: "medium",
+          timeStyle: "short",
+          timeZone: "Asia/Tokyo"
+        }).format(new Date(manifest.generatedAt));
+      })
+      .catch(() => {
+        document.querySelector("#status").textContent = "更新情報を取得できません";
+      });
+  </script>
+</body>
+</html>
