@@ -1,0 +1,10 @@
+{
+  "name": "UseCard Web",
+  "short_name": "UseCard",
+  "description": "手持ちカードと利用先から、お得な支払い方を比較します。",
+  "start_url": "./#recommend",
+  "display": "standalone",
+  "background_color": "#090c18",
+  "theme_color": "#11152f",
+  "lang": "ja"
+}

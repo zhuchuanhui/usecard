@@ -39,6 +39,12 @@ jobs:
       - name: Verify published files
         run: |
           test -s catalog/public/index.html
+          test -s catalog/public/styles.css
+          test -s catalog/public/app.js
+          test -s catalog/public/manifest.webmanifest
+          test -s catalog/public/service-worker.js
+          node --check catalog/public/app.js
+          jq -e '.name == "UseCard Web" and .display == "standalone"' catalog/public/manifest.webmanifest
           jq -e '.schemaVersion == 1 and .productCount > 0' catalog/public/manifest.json
           jq -e '.schemaVersion == 1 and (.products | length) > 0' catalog/public/latest.json
           jq -e 'type == "array"' catalog/public/search-index.json

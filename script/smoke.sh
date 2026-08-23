@@ -8,6 +8,12 @@ npm --prefix services/catalog run typecheck
 npm --prefix services/catalog test
 
 test -s catalog/public/index.html
+test -s catalog/public/styles.css
+test -s catalog/public/app.js
+test -s catalog/public/manifest.webmanifest
+test -s catalog/public/service-worker.js
+node --check catalog/public/app.js
+jq -e '.name == "UseCard Web" and .display == "standalone"' catalog/public/manifest.webmanifest >/dev/null
 
 mkdir -p .build/manual
 swiftc \

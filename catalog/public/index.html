@@ -2,70 +2,82 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="UseCardの検証済みカード情報とmacOS版ダウンロード">
-  <title>UseCard</title>
-  <style>
-    :root {
-      color-scheme: light dark;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", sans-serif;
-      background: #090d1a;
-      color: #f7f8ff;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 50% 0, #292080 0, #10152d 38%, #090d1a 74%); }
-    main { width: min(760px, 100%); margin: 0 auto; padding: 56px 20px 36px; }
-    .mark { display: grid; place-items: center; width: 74px; height: 74px; border-radius: 21px; background: linear-gradient(145deg, #5546ff, #171b55); box-shadow: 0 18px 54px #5845ff55; font-size: 34px; }
-    h1 { margin: 22px 0 8px; font-size: clamp(38px, 8vw, 62px); letter-spacing: -.04em; }
-    .lead { margin: 0; color: #c9cbed; font-size: 17px; line-height: 1.75; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 22px; }
-    a.button { display: inline-flex; min-height: 46px; align-items: center; padding: 0 18px; border-radius: 12px; color: white; background: #675cff; text-decoration: none; font-weight: 700; }
-    a.button.secondary { color: #e6e7ff; background: #ffffff16; border: 1px solid #ffffff24; }
-    .panel { margin-top: 18px; padding: 18px; border: 1px solid #ffffff1f; border-radius: 16px; background: #ffffff0c; backdrop-filter: blur(16px); }
-    .row { display: flex; justify-content: space-between; gap: 20px; padding: 9px 0; border-bottom: 1px solid #ffffff12; }
-    .row:last-child { border-bottom: 0; }
-    .label { color: #aeb2db; }
-    .value { text-align: right; font-weight: 650; overflow-wrap: anywhere; }
-    .note { margin-top: 24px; color: #9599bd; font-size: 13px; line-height: 1.7; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#11152f">
+  <meta name="description" content="手持ちカードと利用先から、お得な支払い方を比較するUseCard Web版">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <title>UseCard Web</title>
 </head>
 <body>
+  <header class="app-header">
+    <a class="brand" href="#recommend" aria-label="UseCard おすすめへ">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span><strong>UseCard</strong><small>WEB</small></span>
+    </a>
+    <div class="header-status"><span class="status-dot" aria-hidden="true"></span><span id="catalog-status">カード情報を読込中</span></div>
+  </header>
+
+  <nav class="tab-nav" aria-label="メインメニュー">
+    <button class="tab-button active" data-tab="recommend" aria-current="page">おすすめ</button>
+    <button class="tab-button" data-tab="holdings">手持ち <span id="holding-count-badge">0</span></button>
+    <button class="tab-button" data-tab="catalog">カード一覧</button>
+  </nav>
+
   <main>
-    <div class="mark" aria-hidden="true">✦</div>
-    <h1>UseCard</h1>
-    <p class="lead">手持ちカードと利用先から、お得な支払い方を比較するアプリです。カード情報は公式ページで確認できた内容だけを掲載します。</p>
-
-    <div class="actions">
-      <a class="button" href="https://github.com/zhuchuanhui/usecard/releases/latest">macOS版をダウンロード</a>
-      <a class="button secondary" href="latest.json">カード一覧データを見る</a>
-    </div>
-
-    <section class="panel" aria-label="カード情報の更新状態">
-      <div class="row"><span class="label">配信状態</span><span class="value" id="status">確認中…</span></div>
-      <div class="row"><span class="label">収録カード</span><span class="value" id="count">—</span></div>
-      <div class="row"><span class="label">最終更新</span><span class="value" id="updated">—</span></div>
+    <section id="recommend" class="tab-panel active" aria-labelledby="recommend-title">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">店名と金額だけ</p>
+          <h1 id="recommend-title">今、一番お得な<br>払い方がわかる。</h1>
+          <p>カード、スマホタッチ、Apple Pay、Suicaやnanacoまで横断して比較します。</p>
+        </div>
+        <form id="recommend-form" class="recommend-form">
+          <label>どこで使いますか
+            <select id="merchant-select" required>
+              <option value="general">指定なし</option><option value="seven-eleven">セブン-イレブン</option>
+              <option value="lawson">ローソン</option><option value="amazon">Amazon</option>
+              <option value="rakuten-market">楽天市場</option><option value="aeon-group">イオングループ</option>
+              <option value="jr-east-rail">JR東日本の鉄道</option><option value="mcdonalds">マクドナルド</option>
+              <option value="mos-burger">モスバーガー</option><option value="kfc">ケンタッキーフライドチキン</option>
+              <option value="yoshinoya">吉野家</option><option value="saizeriya">サイゼリヤ</option>
+              <option value="gusto">ガスト</option><option value="sukiya">すき家</option>
+              <option value="hamazushi">はま寿司</option><option value="doutor">ドトール</option>
+            </select>
+          </label>
+          <label>いくら使いますか
+            <span class="amount-field"><span>¥</span><input id="amount-input" type="number" inputmode="numeric" min="1" step="1" value="1000" required></span>
+          </label>
+          <button class="primary-button" type="submit">一番お得な払い方を調べる</button>
+        </form>
+      </div>
+      <div id="recommend-empty" class="empty-state compact"><span aria-hidden="true">↗</span><p>利用先と金額を選ぶと、ここにおすすめが表示されます。</p></div>
+      <div id="recommend-results" class="results" hidden></div>
     </section>
 
-    <p class="note">カード番号、名義、有効期限、セキュリティコード、利用明細は収集・保存しません。還元条件は変更される場合があるため、利用・申込前にカード会社の公式ページも確認してください。</p>
+    <section id="holdings" class="tab-panel" aria-labelledby="holdings-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">MY CARDS</p><h1 id="holdings-title">手持ちカード</h1></div><p>追加したカードはこの端末のブラウザに保存され、おすすめへすぐ反映されます。</p></div>
+      <label class="search-field"><span aria-hidden="true">⌕</span><input id="holding-search" type="search" placeholder="カード名・発行会社で検索"></label>
+      <div id="holdings-list" class="card-list"></div>
+      <div id="holdings-empty" class="empty-state"><span aria-hidden="true">＋</span><h2>手持ちカードを追加</h2><p>下のカード候補から追加するか、カード一覧で検索してください。</p><button class="secondary-button" data-open-tab="catalog">カード一覧を開く</button></div>
+      <div id="holding-candidates" class="candidate-section"></div>
+    </section>
+
+    <section id="catalog" class="tab-panel" aria-labelledby="catalog-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">VERIFIED CATALOG</p><h1 id="catalog-title">カード一覧</h1></div><p id="catalog-summary">公式情報を確認済みのカードを読み込んでいます。</p></div>
+      <div class="catalog-tools">
+        <label class="search-field"><span aria-hidden="true">⌕</span><input id="catalog-search" type="search" placeholder="カード名・発行会社で検索"></label>
+        <label class="sort-field">並べ順<select id="catalog-sort"><option value="name">カード名</option><option value="issuer">発行会社</option><option value="fee-low">年会費が安い順</option><option value="fee-high">年会費が高い順</option><option value="held">保有カードを先頭</option></select></label>
+      </div>
+      <div id="catalog-list" class="card-list"></div>
+    </section>
   </main>
-  <script>
-    fetch("manifest.json", { cache: "no-store" })
-      .then((response) => {
-        if (!response.ok) throw new Error("manifest unavailable");
-        return response.json();
-      })
-      .then((manifest) => {
-        document.querySelector("#status").textContent = "正常";
-        document.querySelector("#count").textContent = `${manifest.productCount}券種`;
-        document.querySelector("#updated").textContent = new Intl.DateTimeFormat("ja-JP", {
-          dateStyle: "medium",
-          timeStyle: "short",
-          timeZone: "Asia/Tokyo"
-        }).format(new Date(manifest.generatedAt));
-      })
-      .catch(() => {
-        document.querySelector("#status").textContent = "更新情報を取得できません";
-      });
-  </script>
+
+  <footer><p>カード番号、名義、有効期限、セキュリティコード、利用明細は保存しません。</p><a href="https://github.com/zhuchuanhui/usecard/releases/latest">macOS版</a><a href="latest.json">配信データ</a></footer>
+
+  <template id="card-template">
+    <article class="card-row"><div class="card-main"><div class="card-title-line"><h3></h3><span class="held-chip">保有</span></div><p class="issuer"></p><div class="card-meta"></div></div><div class="card-actions"><button class="holding-button" type="button"></button><a class="official-link" target="_blank" rel="noopener noreferrer">公式 ↗</a></div></article>
+  </template>
+  <script src="app.js?v=2" defer></script>
 </body>
 </html>
