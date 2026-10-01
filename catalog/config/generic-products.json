@@ -35,7 +35,7 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/apollostation_ponta/index.html",
-          "observedAt": "2026-09-01T08:59:10.936Z",
+          "observedAt": "2026-10-01T10:29:44.176Z",
           "contentHash": "5d32107a49c9de5ecefc9773c04346097d8d6f3dfeb79bb7a5071525b2da7ec5",
           "freshness": "fresh"
         }
@@ -44,7 +44,7 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/apollostation_ponta/index.html",
-        "observedAt": "2026-09-01T08:59:10.936Z",
+        "observedAt": "2026-10-01T10:29:44.176Z",
         "contentHash": "5d32107a49c9de5ecefc9773c04346097d8d6f3dfeb79bb7a5071525b2da7ec5",
         "freshness": "fresh"
       }
@@ -85,7 +85,7 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/bmw/index.html",
-          "observedAt": "2026-09-01T08:59:13.009Z",
+          "observedAt": "2026-10-01T10:29:46.187Z",
           "contentHash": "f372356d94dc31f05e12b0eb9ea73f5839213a219df3bd5037a990bf067580fe",
           "freshness": "fresh"
         }
@@ -94,7 +94,7 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/bmw/index.html",
-        "observedAt": "2026-09-01T08:59:13.009Z",
+        "observedAt": "2026-10-01T10:29:46.187Z",
         "contentHash": "f372356d94dc31f05e12b0eb9ea73f5839213a219df3bd5037a990bf067580fe",
         "freshness": "fresh"
       }
@@ -135,7 +135,7 @@
         },
         "source": {
           "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_s.html",
-          "observedAt": "2026-09-01T08:59:25.021Z",
+          "observedAt": "2026-10-01T10:29:59.066Z",
           "contentHash": "2346f58e726ef2dd961547fa5b4d4dd2fa6249365fe201cd412bf36b06f76dc1",
           "freshness": "fresh"
         }
@@ -144,8 +144,59 @@
     "sources": [
       {
         "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_s.html",
-        "observedAt": "2026-09-01T08:59:25.021Z",
+        "observedAt": "2026-10-01T10:29:59.066Z",
         "contentHash": "2346f58e726ef2dd961547fa5b4d4dd2fa6249365fe201cd412bf36b06f76dc1",
+        "freshness": "fresh"
+      }
+    ]
+  },
+  {
+    "id": "jcca-八十二-jcbsとjcbwの違い",
+    "issuerID": "jcca-八十二",
+    "issuerName": "株式会社八十二カード",
+    "name": "JCBカードSとJCBカードWの違い",
+    "networks": [
+      "visa",
+      "mastercard",
+      "jcb"
+    ],
+    "annualFeeYen": 0,
+    "applicationStatus": "open",
+    "applicationURL": "https://www.82card.co.jp/blog/blog_202608-5/jcb-card-s-vs-w.html",
+    "eligibilityNote": "18歳以上(高校生を除く。本人または配偶者に安定継続収入のある方、または学生)18〜39歳入会限定 ポイント還元率0.5%(200円につき1ポイント)1.0%(200円につき2ポイント) 優待店での最大倍率最大20倍(最大10.0%)最大21倍(最大10.5%) 海外旅行傷害保険",
+    "pointProgramID": "j-point",
+    "benefitRules": [
+      {
+        "id": "jcca-八十二-jcbsとjcbwの違い-base",
+        "title": "通常還元（公式記載）",
+        "stackingGroup": "base",
+        "conditions": {
+          "merchantIDs": [],
+          "categoryIDs": [],
+          "paymentMethods": [],
+          "channels": [],
+          "eligibleDaysOfMonth": []
+        },
+        "reward": {
+          "kind": "pointsPerUnit",
+          "unitAmountYen": 200,
+          "pointsPerUnit": 1,
+          "pointProgramID": "j-point",
+          "defaultPointValueYen": 1
+        },
+        "source": {
+          "url": "https://www.82card.co.jp/blog/blog_202608-5/jcb-card-s-vs-w.html",
+          "observedAt": "2026-10-01T10:29:31.485Z",
+          "contentHash": "357c275f3026a7f14647ae36fa88893f7154b27f9d049241f7dbee657e3c800e",
+          "freshness": "fresh"
+        }
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.82card.co.jp/blog/blog_202608-5/jcb-card-s-vs-w.html",
+        "observedAt": "2026-10-01T10:29:31.485Z",
+        "contentHash": "357c275f3026a7f14647ae36fa88893f7154b27f9d049241f7dbee657e3c800e",
         "freshness": "fresh"
       }
     ]
@@ -236,7 +287,7 @@
         },
         "source": {
           "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_gold.html",
-          "observedAt": "2026-09-01T08:59:24.666Z",
+          "observedAt": "2026-10-01T10:29:58.674Z",
           "contentHash": "0287c340ad52d01f439f469a6f48125cc600442384aad39a5278b4ef6f331c4f",
           "freshness": "fresh"
         }
@@ -245,7 +296,7 @@
     "sources": [
       {
         "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_gold.html",
-        "observedAt": "2026-09-01T08:59:24.666Z",
+        "observedAt": "2026-10-01T10:29:58.674Z",
         "contentHash": "0287c340ad52d01f439f469a6f48125cc600442384aad39a5278b4ef6f331c4f",
         "freshness": "fresh"
       }
@@ -286,7 +337,7 @@
         },
         "source": {
           "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_general.html",
-          "observedAt": "2026-09-01T08:59:23.820Z",
+          "observedAt": "2026-10-01T10:29:57.867Z",
           "contentHash": "bcc70b2f7d7d8bd567270f11d5084b4856649e418d392678464d94126f8e25c9",
           "freshness": "fresh"
         }
@@ -295,7 +346,7 @@
     "sources": [
       {
         "url": "https://www.shinkincard.co.jp/application/card/jcb/jcb_general.html",
-        "observedAt": "2026-09-01T08:59:23.820Z",
+        "observedAt": "2026-10-01T10:29:57.867Z",
         "contentHash": "bcc70b2f7d7d8bd567270f11d5084b4856649e418d392678464d94126f8e25c9",
         "freshness": "fresh"
       }
@@ -337,7 +388,7 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/kips/index.html",
-          "observedAt": "2026-09-01T08:59:25.608Z",
+          "observedAt": "2026-10-01T10:29:58.614Z",
           "contentHash": "32cb12b39a4bdeb4c0b3c1670d4ac1a96308ff11e2ad3b95784107761e58e1f2",
           "freshness": "fresh"
         }
@@ -346,7 +397,7 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/kips/index.html",
-        "observedAt": "2026-09-01T08:59:25.608Z",
+        "observedAt": "2026-10-01T10:29:58.614Z",
         "contentHash": "32cb12b39a4bdeb4c0b3c1670d4ac1a96308ff11e2ad3b95784107761e58e1f2",
         "freshness": "fresh"
       }
@@ -387,7 +438,7 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/mini/index.html",
-          "observedAt": "2026-09-01T08:59:32.492Z",
+          "observedAt": "2026-10-01T10:30:05.448Z",
           "contentHash": "50dc31d7143c8ba75f7aee3e50cad8a3fea2de79e98eca386d1e2d3f37e54b6c",
           "freshness": "fresh"
         }
@@ -396,7 +447,7 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/mini/index.html",
-        "observedAt": "2026-09-01T08:59:32.492Z",
+        "observedAt": "2026-10-01T10:30:05.448Z",
         "contentHash": "50dc31d7143c8ba75f7aee3e50cad8a3fea2de79e98eca386d1e2d3f37e54b6c",
         "freshness": "fresh"
       }
@@ -438,7 +489,7 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/tepco_gold/index.html",
-          "observedAt": "2026-09-01T08:59:55.873Z",
+          "observedAt": "2026-10-01T10:30:28.639Z",
           "contentHash": "fbf6a64a284bf4ca845e0e4b572d349036d02290e1897a2698d544fbc3db921d",
           "freshness": "fresh"
         }
@@ -447,7 +498,7 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/tepco_gold/index.html",
-        "observedAt": "2026-09-01T08:59:55.873Z",
+        "observedAt": "2026-10-01T10:30:28.639Z",
         "contentHash": "fbf6a64a284bf4ca845e0e4b572d349036d02290e1897a2698d544fbc3db921d",
         "freshness": "fresh"
       }
@@ -489,7 +540,7 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/tepco/index.html",
-          "observedAt": "2026-09-01T08:59:56.669Z",
+          "observedAt": "2026-10-01T10:30:29.449Z",
           "contentHash": "e505a9da3ce56754d304541420ec77a624322ef19508bf877fea44229e2a4acd",
           "freshness": "fresh"
         }
@@ -498,7 +549,7 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/tepco/index.html",
-        "observedAt": "2026-09-01T08:59:56.669Z",
+        "observedAt": "2026-10-01T10:30:29.449Z",
         "contentHash": "e505a9da3ce56754d304541420ec77a624322ef19508bf877fea44229e2a4acd",
         "freshness": "fresh"
       }
@@ -540,8 +591,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold_pasmo/index.html",
-          "observedAt": "2026-09-01T08:59:57.068Z",
-          "contentHash": "1c1e7d9cb601ae0d3314d02625a12e18f6a98444712405fc142d7e6b72dd9249",
+          "observedAt": "2026-10-01T10:30:29.823Z",
+          "contentHash": "6d7a3ae52d69da67dd773ab65c277d39458b1b7517ac9abb1988b0004f2d8279",
           "freshness": "fresh"
         }
       }
@@ -549,8 +600,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold_pasmo/index.html",
-        "observedAt": "2026-09-01T08:59:57.068Z",
-        "contentHash": "1c1e7d9cb601ae0d3314d02625a12e18f6a98444712405fc142d7e6b72dd9249",
+        "observedAt": "2026-10-01T10:30:29.823Z",
+        "contentHash": "6d7a3ae52d69da67dd773ab65c277d39458b1b7517ac9abb1988b0004f2d8279",
         "freshness": "fresh"
       }
     ]
@@ -591,8 +642,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime/index.html",
-          "observedAt": "2026-09-01T08:59:58.282Z",
-          "contentHash": "bcc2f4758deff6bf3b25fbc6f3307a1821fe911b03c8ae5aa7b91d51d29f4a3e",
+          "observedAt": "2026-10-01T10:30:31.062Z",
+          "contentHash": "bd446633c7c34421bdf76b5f2ce90cb23afb30e2df0544d3a6f08c6875f0b045",
           "freshness": "fresh"
         }
       }
@@ -600,8 +651,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime/index.html",
-        "observedAt": "2026-09-01T08:59:58.282Z",
-        "contentHash": "bcc2f4758deff6bf3b25fbc6f3307a1821fe911b03c8ae5aa7b91d51d29f4a3e",
+        "observedAt": "2026-10-01T10:30:31.062Z",
+        "contentHash": "bd446633c7c34421bdf76b5f2ce90cb23afb30e2df0544d3a6f08c6875f0b045",
         "freshness": "fresh"
       }
     ]
@@ -642,8 +693,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime_pasmo/index.html",
-          "observedAt": "2026-09-01T08:59:57.862Z",
-          "contentHash": "a136a59c2122ebdd3698e341a67b5898ab0cf7dde6f03c943cab05ddfca503b1",
+          "observedAt": "2026-10-01T10:30:30.837Z",
+          "contentHash": "8fb8b547e0b98514afda1d08c3736a60245b8690ed09d5ea07c6f8fcd390b852",
           "freshness": "fresh"
         }
       }
@@ -651,8 +702,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/tokyometro_prime_pasmo/index.html",
-        "observedAt": "2026-09-01T08:59:57.862Z",
-        "contentHash": "a136a59c2122ebdd3698e341a67b5898ab0cf7dde6f03c943cab05ddfca503b1",
+        "observedAt": "2026-10-01T10:30:30.837Z",
+        "contentHash": "8fb8b547e0b98514afda1d08c3736a60245b8690ed09d5ea07c6f8fcd390b852",
         "freshness": "fresh"
       }
     ]
@@ -693,8 +744,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold/index.html",
-          "observedAt": "2026-09-01T08:59:57.465Z",
-          "contentHash": "ed229bb71ddab0a3cbfbf482543dbe213e1d89d160d35f98b5fb70cc083ffdf0",
+          "observedAt": "2026-10-01T10:30:30.258Z",
+          "contentHash": "f26a6cbdf3f43959174e3f51f58b93ebcc842eac7fe62edd63febfc5ac878e0a",
           "freshness": "fresh"
         }
       }
@@ -702,8 +753,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/tokyometro_gold/index.html",
-        "observedAt": "2026-09-01T08:59:57.465Z",
-        "contentHash": "ed229bb71ddab0a3cbfbf482543dbe213e1d89d160d35f98b5fb70cc083ffdf0",
+        "observedAt": "2026-10-01T10:30:30.258Z",
+        "contentHash": "f26a6cbdf3f43959174e3f51f58b93ebcc842eac7fe62edd63febfc5ac878e0a",
         "freshness": "fresh"
       }
     ]
@@ -743,7 +794,7 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/m_viaso/index.html",
-          "observedAt": "2026-09-01T08:59:26.128Z",
+          "observedAt": "2026-10-01T10:29:59.012Z",
           "contentHash": "752ddf33da1c69737288aba2d26464a4b7bbf977937837ef5a796ad908032b24",
           "freshness": "fresh"
         }
@@ -752,7 +803,7 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/m_viaso/index.html",
-        "observedAt": "2026-09-01T08:59:26.128Z",
+        "observedAt": "2026-10-01T10:29:59.012Z",
         "contentHash": "752ddf33da1c69737288aba2d26464a4b7bbf977937837ef5a796ad908032b24",
         "freshness": "fresh"
       }
@@ -795,8 +846,8 @@
         },
         "source": {
           "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/platinum_card/",
-          "observedAt": "2026-09-01T08:59:38.388Z",
-          "contentHash": "d789789b2259c5dcc75cde04b2fd52de8dca3b868b4c62285c5aea4104ed6899",
+          "observedAt": "2026-10-01T10:30:12.621Z",
+          "contentHash": "b330fed26a9acb7492ebf2b1e83712a69af2cdef721171af8adf3ef299bb027b",
           "freshness": "fresh"
         }
       }
@@ -804,8 +855,8 @@
     "sources": [
       {
         "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/platinum_card/",
-        "observedAt": "2026-09-01T08:59:38.388Z",
-        "contentHash": "d789789b2259c5dcc75cde04b2fd52de8dca3b868b4c62285c5aea4104ed6899",
+        "observedAt": "2026-10-01T10:30:12.621Z",
+        "contentHash": "b330fed26a9acb7492ebf2b1e83712a69af2cdef721171af8adf3ef299bb027b",
         "freshness": "fresh"
       }
     ]
@@ -844,8 +895,8 @@
         },
         "source": {
           "url": "https://www.okigin-jcb.co.jp/personal/1591934260/card_s/",
-          "observedAt": "2026-09-01T08:59:20.829Z",
-          "contentHash": "82f7499df6de7f2d472ffd05c97a9eb1d9cb57ee956c0ceae8a6b54030b903b7",
+          "observedAt": "2026-10-01T10:29:52.371Z",
+          "contentHash": "66c7ac5bfae4adbae5afb9ac6407d49955c66159991a935ccb5f739af815b3cb",
           "freshness": "fresh"
         }
       }
@@ -853,8 +904,8 @@
     "sources": [
       {
         "url": "https://www.okigin-jcb.co.jp/personal/1591934260/card_s/",
-        "observedAt": "2026-09-01T08:59:20.829Z",
-        "contentHash": "82f7499df6de7f2d472ffd05c97a9eb1d9cb57ee956c0ceae8a6b54030b903b7",
+        "observedAt": "2026-10-01T10:29:52.371Z",
+        "contentHash": "66c7ac5bfae4adbae5afb9ac6407d49955c66159991a935ccb5f739af815b3cb",
         "freshness": "fresh"
       }
     ]
@@ -892,7 +943,7 @@
         },
         "source": {
           "url": "https://www.kyushu-card.co.jp/",
-          "observedAt": "2026-09-01T08:59:39.698Z",
+          "observedAt": "2026-10-01T10:30:14.166Z",
           "contentHash": "762be7b704313609968c974ec566a63d4932f6387e696f869beaa492194f70c0",
           "freshness": "fresh"
         }
@@ -901,7 +952,7 @@
     "sources": [
       {
         "url": "https://www.kyushu-card.co.jp/",
-        "observedAt": "2026-09-01T08:59:39.698Z",
+        "observedAt": "2026-10-01T10:30:14.166Z",
         "contentHash": "762be7b704313609968c974ec566a63d4932f6387e696f869beaa492194f70c0",
         "freshness": "fresh"
       }
@@ -943,8 +994,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/dinos/index.html",
-          "observedAt": "2026-09-01T08:59:14.237Z",
-          "contentHash": "0dbe0861868e2d8cc5f0711ff92ebab2d519c8d07321f58420bbb2cc725add0b",
+          "observedAt": "2026-10-01T10:29:47.389Z",
+          "contentHash": "108dec8e561762b6b4db7662017beaa4cea456229d0c2cd7c379d18508a708c3",
           "freshness": "fresh"
         }
       }
@@ -952,8 +1003,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/dinos/index.html",
-        "observedAt": "2026-09-01T08:59:14.237Z",
-        "contentHash": "0dbe0861868e2d8cc5f0711ff92ebab2d519c8d07321f58420bbb2cc725add0b",
+        "observedAt": "2026-10-01T10:29:47.389Z",
+        "contentHash": "108dec8e561762b6b4db7662017beaa4cea456229d0c2cd7c379d18508a708c3",
         "freshness": "fresh"
       }
     ]
@@ -994,8 +1045,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/pia/index.html",
-          "observedAt": "2026-09-01T08:59:48.617Z",
-          "contentHash": "a7e239f97b28a757c825ba5f3279f524b71a92c9f771f42c9e3c474d75303652",
+          "observedAt": "2026-10-01T10:30:21.426Z",
+          "contentHash": "6ffd934574477ce469ad75fe9cd2207c47ac8096ada2a15a3ba6ff14bd2f395d",
           "freshness": "fresh"
         }
       }
@@ -1003,8 +1054,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/pia/index.html",
-        "observedAt": "2026-09-01T08:59:48.617Z",
-        "contentHash": "a7e239f97b28a757c825ba5f3279f524b71a92c9f771f42c9e3c474d75303652",
+        "observedAt": "2026-10-01T10:30:21.426Z",
+        "contentHash": "6ffd934574477ce469ad75fe9cd2207c47ac8096ada2a15a3ba6ff14bd2f395d",
         "freshness": "fresh"
       }
     ]
@@ -1044,8 +1095,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/tamagawa_sc_supportdog/index.html",
-          "observedAt": "2026-09-01T08:59:55.467Z",
-          "contentHash": "36e73e8ca2b167f137f94b4ef066567e39ece71b5a7f5f09cb1ff00f7d688801",
+          "observedAt": "2026-10-01T10:30:28.229Z",
+          "contentHash": "c2d0abc02103b4f208922751c8788c785636a76e05cc43c412f5b2c7a1fe7822",
           "freshness": "fresh"
         }
       }
@@ -1053,8 +1104,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/tamagawa_sc_supportdog/index.html",
-        "observedAt": "2026-09-01T08:59:55.467Z",
-        "contentHash": "36e73e8ca2b167f137f94b4ef066567e39ece71b5a7f5f09cb1ff00f7d688801",
+        "observedAt": "2026-10-01T10:30:28.229Z",
+        "contentHash": "c2d0abc02103b4f208922751c8788c785636a76e05cc43c412f5b2c7a1fe7822",
         "freshness": "fresh"
       }
     ]
@@ -1096,7 +1147,7 @@
         },
         "source": {
           "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card_qr/",
-          "observedAt": "2026-09-01T08:59:32.765Z",
+          "observedAt": "2026-10-01T10:30:07.012Z",
           "contentHash": "6abddea00fab8ae99b2099fe2fb94ce901a1c382926878176019d0106619c1ae",
           "freshness": "fresh"
         }
@@ -1105,7 +1156,7 @@
     "sources": [
       {
         "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card_qr/",
-        "observedAt": "2026-09-01T08:59:32.765Z",
+        "observedAt": "2026-10-01T10:30:07.012Z",
         "contentHash": "6abddea00fab8ae99b2099fe2fb94ce901a1c382926878176019d0106619c1ae",
         "freshness": "fresh"
       }
@@ -1148,7 +1199,7 @@
         },
         "source": {
           "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/gold_card_qr/",
-          "observedAt": "2026-09-01T08:59:37.585Z",
+          "observedAt": "2026-10-01T10:30:11.822Z",
           "contentHash": "abab3b71f41f4f3643a1532b67cc9e2a99265a6f9c241fcb5036b99ee2d5c4a5",
           "freshness": "fresh"
         }
@@ -1157,7 +1208,7 @@
     "sources": [
       {
         "url": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/gold_card_qr/",
-        "observedAt": "2026-09-01T08:59:37.585Z",
+        "observedAt": "2026-10-01T10:30:11.822Z",
         "contentHash": "abab3b71f41f4f3643a1532b67cc9e2a99265a6f9c241fcb5036b99ee2d5c4a5",
         "freshness": "fresh"
       }
@@ -1200,8 +1251,8 @@
         },
         "source": {
           "url": "https://www.cr.mufg.jp/apply/card/mucard/index06.html",
-          "observedAt": "2026-09-01T08:59:34.493Z",
-          "contentHash": "bd4b6cc0455e32a8bc2da15d40efc2d5c78a52d182865800ecf14d86e5972ecd",
+          "observedAt": "2026-10-01T10:30:07.446Z",
+          "contentHash": "2a406edc510e2a0afc9d10e7f9936bb1eea39ad12ca838eb4a613d5c4b0d8df5",
           "freshness": "fresh"
         }
       }
@@ -1209,8 +1260,8 @@
     "sources": [
       {
         "url": "https://www.cr.mufg.jp/apply/card/mucard/index06.html",
-        "observedAt": "2026-09-01T08:59:34.493Z",
-        "contentHash": "bd4b6cc0455e32a8bc2da15d40efc2d5c78a52d182865800ecf14d86e5972ecd",
+        "observedAt": "2026-10-01T10:30:07.446Z",
+        "contentHash": "2a406edc510e2a0afc9d10e7f9936bb1eea39ad12ca838eb4a613d5c4b0d8df5",
         "freshness": "fresh"
       }
     ]
@@ -1272,6 +1323,8 @@
     "issuerName": "株式会社八十二カード",
     "name": "八十二JCB カード S",
     "networks": [
+      "visa",
+      "mastercard",
       "jcb"
     ],
     "annualFeeYen": 0,
@@ -1300,8 +1353,8 @@
         },
         "source": {
           "url": "https://www.82card.co.jp/jcbcard/card_s/index.html",
-          "observedAt": "2026-09-01T08:58:57.206Z",
-          "contentHash": "894edff4a641621eea00b9049f5b83a0207e37ef8cb0d7eeae43352e98893d2c",
+          "observedAt": "2026-10-01T10:29:33.880Z",
+          "contentHash": "096c8c55b8447a27cf024a28ec8ae3c6c63dbe34dd756ab2fbfd3b258558f3a1",
           "freshness": "fresh"
         }
       }
@@ -1309,8 +1362,8 @@
     "sources": [
       {
         "url": "https://www.82card.co.jp/jcbcard/card_s/index.html",
-        "observedAt": "2026-09-01T08:58:57.206Z",
-        "contentHash": "894edff4a641621eea00b9049f5b83a0207e37ef8cb0d7eeae43352e98893d2c",
+        "observedAt": "2026-10-01T10:29:33.880Z",
+        "contentHash": "096c8c55b8447a27cf024a28ec8ae3c6c63dbe34dd756ab2fbfd3b258558f3a1",
         "freshness": "fresh"
       }
     ]

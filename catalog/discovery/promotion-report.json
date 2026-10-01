@@ -1,9 +1,9 @@
 {
-  "candidateCount": 1420,
-  "fetchedCount": 1279,
-  "promotedCount": 24,
-  "skippedCount": 1396,
+  "candidateCount": 1431,
+  "fetchedCount": 1291,
+  "promotedCount": 25,
+  "skippedCount": 1406,
   "failedDomainCount": 1,
   "retainedCount": 2,
-  "publishedProductCount": 26
+  "publishedProductCount": 27
 }
