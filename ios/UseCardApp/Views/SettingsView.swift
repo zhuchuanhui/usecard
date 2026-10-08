@@ -2,6 +2,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("catalogBaseURL") private var catalogBaseURL = CatalogStore.defaultEndpoint
+    @AppStorage("appLanguage") private var appLanguage = "system"
+    @Environment(\.appLanguage) private var language
     let catalogStore: CatalogStore
 
     private var unavailableSourceCount: Int {
@@ -13,50 +15,64 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Section("カード情報") {
-                LabeledContent("データ元", value: catalogStore.source.rawValue)
-                LabeledContent("バージョン", value: catalogStore.catalog?.version ?? "未読込")
-                LabeledContent("収録カード", value: "\(catalogStore.catalog?.products.count ?? 0)券種")
-                LabeledContent("再確認が必要", value: "\(unavailableSourceCount)件")
+            Section {
+                Picker(language.text("settings.language"), selection: $appLanguage) {
+                    Text(language.text("settings.language.system")).tag("system")
+                    Text(language.text("settings.language.japanese")).tag("ja")
+                    Text(language.text("settings.language.english")).tag("en")
+                    Text(language.text("settings.language.simplifiedChinese")).tag("zh-Hans")
+                    Text(language.text("settings.language.traditionalChinese")).tag("zh-Hant")
+                }
+                .onChange(of: appLanguage) { _, value in
+                    let identifier = value == "system" ? "system" : value
+                    NotificationCenter.default.post(name: .useCardLanguageChanged, object: identifier)
+                }
+            }
+            Section(language.text("settings.cardInformation")) {
+                LabeledContent(language.text("settings.dataSource"), value: language.text(catalogStore.source == .bundled ? "settings.source.bundled" : "settings.source.remote"))
+                LabeledContent(language.text("settings.version"), value: catalogStore.catalog?.version ?? language.text("common.notLoaded"))
+                LabeledContent(language.text("catalog.includedCards"), value: language.format("settings.cardCountFormat", catalogStore.catalog?.products.count ?? 0))
+                LabeledContent(language.text("settings.needsReview"), value: language.format("settings.itemCountFormat", unavailableSourceCount))
                 if let generatedAt = catalogStore.catalog?.generatedAt {
-                    LabeledContent("生成日時", value: generatedAt)
+                    LabeledContent(language.text("settings.generatedAt"), value: generatedAt)
                 }
             }
 
-            Section("自動更新") {
-                TextField("配信URL", text: $catalogBaseURL)
+            Section(language.text("settings.automaticUpdates")) {
+                TextField(language.text("settings.catalogURL"), text: $catalogBaseURL)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .keyboardType(.URL)
                 Button {
                     Task { await catalogStore.load(endpoint: catalogBaseURL) }
                 } label: {
-                    Label("今すぐ更新", systemImage: "arrow.clockwise")
+                    Label(language.text("settings.refreshNow"), systemImage: "arrow.clockwise")
                 }
                 .disabled(catalogStore.isLoading)
             }
 
-            Section("端末間同期") {
-                Text("保有カード、検証待ちカード、利用額の目安、特典登録はiCloudで同じApple Accountの端末間に共有します。")
-                Text("iCloudにサインインしていない場合は、その端末だけに保存されます。")
+            Section(language.text("settings.sync")) {
+                Text(language.text("settings.syncDescription"))
+                Text(language.text("settings.localOnlyDescription"))
                     .foregroundStyle(.secondary)
             }
 
             if let warning = catalogStore.warning {
-                Section("更新状態") {
+                Section(language.text("settings.updateStatus")) {
                     Label(warning, systemImage: "exclamationmark.triangle")
                         .foregroundStyle(.orange)
                 }
             }
 
-            Section("プライバシー") {
-                Text("保存するのはカード商品、特典登録状態、利用額の目安だけです。カード番号、名義、セキュリティコード、利用明細は保存しません。")
+            Section(language.text("settings.privacy")) {
+                Text(language.text("settings.privacyDescription"))
             }
 
-            Section("注意") {
-                Text("このアプリの計算は参考情報です。還元条件、対象外取引、申込条件は利用前に各カード会社の公式サイトで確認してください。")
+            Section(language.text("settings.notice")) {
+                Text(language.text("settings.noticeDescription"))
             }
         }
-        .navigationTitle("設定")
+        .navigationTitle(language.text("tab.settings"))
+        .navigationBarTitleDisplayMode(.large)
     }
 }

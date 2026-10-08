@@ -36,6 +36,8 @@ targets:
         INFOPLIST_FILE: UseCardApp/Info.plist
         CODE_SIGN_ENTITLEMENTS: UseCardApp/UseCard.entitlements
         DEVELOPMENT_TEAM: ""
+        INFOPLIST_KEY_CFBundleDevelopmentRegion: ja
+        INFOPLIST_KEY_CFBundleLocalizations: "ja en zh-Hans zh-Hant"
     scheme:
       testTargets:
         - UseCardTests

@@ -3,6 +3,7 @@ import SwiftUI
 import UseCardCore
 
 struct RecommendationView: View {
+    @Environment(\.appLanguage) private var language
     @Query(sort: \HoldingRecord.createdAt) private var holdingRecords: [HoldingRecord]
     let catalogStore: CatalogStore
 
@@ -24,11 +25,11 @@ struct RecommendationView: View {
 
     private var automaticPlaces: [AutomaticPlace] {
         [
-            AutomaticPlace(id: "aeon-group", title: "イオングループ", categoryID: "groceries", channel: .inStore),
-            AutomaticPlace(id: "seven-eleven", title: "セブン-イレブン", categoryID: "general", channel: .inStore),
-            AutomaticPlace(id: "amazon", title: "Amazon", categoryID: "online-shopping", channel: .online),
-            AutomaticPlace(id: "rakuten-market", title: "楽天市場", categoryID: "online-shopping", channel: .online),
-            AutomaticPlace(id: "jr-east-rail", title: "JR東日本の鉄道", categoryID: "transport", channel: .inStore)
+            AutomaticPlace(id: "aeon-group", categoryID: "groceries", channel: .inStore),
+            AutomaticPlace(id: "seven-eleven", categoryID: "general", channel: .inStore),
+            AutomaticPlace(id: "amazon", categoryID: "online-shopping", channel: .online),
+            AutomaticPlace(id: "rakuten-market", categoryID: "online-shopping", channel: .online),
+            AutomaticPlace(id: "jr-east-rail", categoryID: "transport", channel: .inStore)
         ]
     }
 
@@ -74,9 +75,9 @@ struct RecommendationView: View {
 
             Section {
                 if catalogStore.catalog == nil {
-                    ProgressView("カード情報を読み込み中")
+                    ProgressView(language.text("recommendation.loading"))
                 } else {
-                    Text("金額入力なしで、主要な利用先を1万円利用時の条件で先回り比較しています。")
+                    Text(language.text("recommendation.intro"))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     ForEach(automaticRecommendations) { recommendation in
@@ -84,89 +85,89 @@ struct RecommendationView: View {
                     }
                 }
             } header: {
-                Text("いつものおすすめ")
+                Text(language.text("recommendation.usual"))
             } footer: {
-                Text("実際の金額や日付が決まった時は、下の詳細比較で再計算してください。")
+                Text(language.text("recommendation.footer"))
             }
 
             Section {
-                DisclosureGroup("利用先・金額を指定して詳しく比較", isExpanded: $isDetailedExpanded) {
-                    TextField("金額", value: $amountYen, format: .currency(code: "JPY"))
+                DisclosureGroup(language.text("recommendation.detailPrompt"), isExpanded: $isDetailedExpanded) {
+                    TextField(language.text("field.amount"), value: $amountYen, format: .currency(code: "JPY"))
                         .keyboardType(.numberPad)
 
-                    Picker("店舗", selection: $merchantID) {
-                        Text("指定なし").tag("general")
-                        Text("イオングループ").tag("aeon-group")
-                        Text("セブン-イレブン").tag("seven-eleven")
-                        Text("ローソン").tag("lawson")
-                        Text("マクドナルド").tag("mcdonalds")
-                        Text("モスバーガー").tag("mos-burger")
-                        Text("ケンタッキーフライドチキン").tag("kfc")
-                        Text("吉野家").tag("yoshinoya")
-                        Text("サイゼリヤ").tag("saizeriya")
-                        Text("ガスト").tag("gusto")
-                        Text("すき家").tag("sukiya")
-                        Text("はま寿司").tag("hamazushi")
-                        Text("ドトール").tag("doutor")
+                    Picker(language.text("field.merchant"), selection: $merchantID) {
+                        Text(language.text("merchant.none")).tag("general")
+                        Text(language.text("place.aeon-group")).tag("aeon-group")
+                        Text(language.text("place.seven-eleven")).tag("seven-eleven")
+                        Text(language.text("place.lawson")).tag("lawson")
+                        Text(language.text("place.mcdonalds")).tag("mcdonalds")
+                        Text(language.text("place.mos-burger")).tag("mos-burger")
+                        Text(language.text("place.kfc")).tag("kfc")
+                        Text(language.text("place.yoshinoya")).tag("yoshinoya")
+                        Text(language.text("place.saizeriya")).tag("saizeriya")
+                        Text(language.text("place.gusto")).tag("gusto")
+                        Text(language.text("place.sukiya")).tag("sukiya")
+                        Text(language.text("place.hamazushi")).tag("hamazushi")
+                        Text(language.text("place.doutor")).tag("doutor")
                         Text("Amazon").tag("amazon")
-                        Text("楽天市場").tag("rakuten-market")
+                        Text(language.text("place.rakuten-market")).tag("rakuten-market")
                     }
 
-                    Picker("用途", selection: $categoryID) {
-                        Text("一般").tag("general")
-                        Text("食料品").tag("groceries")
-                        Text("飲食店").tag("dining")
-                        Text("旅行").tag("travel")
-                        Text("交通").tag("transport")
-                        Text("公共料金").tag("utilities")
-                        Text("オンライン通販").tag("online-shopping")
+                    Picker(language.text("field.category"), selection: $categoryID) {
+                        Text(language.text("category.general")).tag("general")
+                        Text(language.text("category.groceries")).tag("groceries")
+                        Text(language.text("category.dining")).tag("dining")
+                        Text(language.text("category.travel")).tag("travel")
+                        Text(language.text("category.transport")).tag("transport")
+                        Text(language.text("category.utilities")).tag("utilities")
+                        Text(language.text("category.online")).tag("online-shopping")
                     }
 
-                    Picker("購入場所", selection: $channel) {
-                        Text("店頭").tag(PurchaseChannel.inStore)
-                        Text("オンライン").tag(PurchaseChannel.online)
+                    Picker(language.text("field.channel"), selection: $channel) {
+                        Text(language.text("channel.inStore")).tag(PurchaseChannel.inStore)
+                        Text(language.text("channel.online")).tag(PurchaseChannel.online)
                     }
                     .pickerStyle(.segmented)
 
-                    Picker("頻度", selection: $frequency) {
-                        Text("今回だけ").tag(SpendFrequency.once)
-                        Text("毎月").tag(SpendFrequency.monthly)
-                        Text("3か月ごと").tag(SpendFrequency.quarterly)
-                        Text("毎年").tag(SpendFrequency.annually)
+                    Picker(language.text("field.frequency"), selection: $frequency) {
+                        Text(language.text("frequency.once")).tag(SpendFrequency.once)
+                        Text(language.text("frequency.monthly")).tag(SpendFrequency.monthly)
+                        Text(language.text("frequency.quarterly")).tag(SpendFrequency.quarterly)
+                        Text(language.text("frequency.annually")).tag(SpendFrequency.annually)
                     }
 
-                    DatePicker("利用日", selection: $purchaseDate, displayedComponents: .date)
+                    DatePicker(language.text("field.purchaseDate"), selection: $purchaseDate, displayedComponents: .date)
 
                     Button {
                         calculate()
                     } label: {
-                        Label("一番お得なカードを調べる", systemImage: "sparkles")
+                        Label(language.text("recommendation.calculate"), systemImage: "sparkles")
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
                     .disabled(catalogStore.catalog == nil || amountYen <= 0)
                 }
             } header: {
-                Text("必要な時だけ詳しく比較")
+                Text(language.text("recommendation.detailHeader"))
             }
 
             if let detailedResult {
                 RecommendationSection(
-                    title: "今使うなら",
-                    emptyMessage: "条件に合う手持ちカードがありません",
+                    title: language.text("recommendation.ownedSection"),
+                    emptyMessage: language.text("recommendation.noOwned"),
                     items: detailedResult.bundle.owned,
                     paymentMethodByCardID: detailedResult.paymentMethodByCardID
                 )
                 RecommendationSection(
-                    title: "新しく申し込むなら",
-                    emptyMessage: "条件に合う申込可能カードがありません",
+                    title: language.text("recommendation.availableSection"),
+                    emptyMessage: language.text("recommendation.noAvailable"),
                     items: detailedResult.bundle.available,
                     paymentMethodByCardID: detailedResult.paymentMethodByCardID
                 )
                 AlternativePaymentSection(recommendations: alternativeRecommendations)
             }
         }
-        .navigationTitle("おすすめ")
+        .navigationTitle(language.text("tab.recommendations"))
         .onChange(of: holdingIDs) { _, _ in
             if detailedResult != nil { calculate() }
         }
@@ -226,7 +227,6 @@ struct RecommendationView: View {
 
 private struct AutomaticPlace: Identifiable {
     let id: String
-    let title: String
     let categoryID: String
     let channel: PurchaseChannel
 }
@@ -241,15 +241,16 @@ private struct AutomaticPlaceRecommendation: Identifiable {
 }
 
 private struct AutomaticPlaceRow: View {
+    @Environment(\.appLanguage) private var language
     let recommendation: AutomaticPlaceRecommendation
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text(recommendation.place.title)
+                Text(language.text("place.\(recommendation.place.id)"))
                     .font(.headline)
                 Spacer()
-                Text("1万円基準")
+                Text(language.text("recommendation.basis"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -261,7 +262,7 @@ private struct AutomaticPlaceRow: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(card.card.name)
                             .font(.subheadline.weight(.semibold))
-                        Text("\(card.isOwned ? "保有カード" : "申込候補")・\(paymentMethodLabel(recommendation.paymentMethod))")
+                        Text("\(language.text(card.isOwned ? "recommendation.owned" : "recommendation.candidate"))・\(paymentMethodLabel(recommendation.paymentMethod))")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -271,13 +272,13 @@ private struct AutomaticPlaceRow: View {
                         .foregroundStyle(.tint)
                 }
             } else {
-                Text("カードで比較できる情報がありません")
+                Text(language.text("recommendation.noCardData"))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
 
             if let alternative = recommendation.alternative {
-                Text("カード以外: \(alternative.product.paymentLabel)・約\(yen(alternative.immediateValueYen))")
+                Text("\(language.text("recommendation.otherPayment")): \(alternative.product.paymentLabel)・\(language.text("recommendation.about"))\(yen(alternative.immediateValueYen))")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -287,15 +288,15 @@ private struct AutomaticPlaceRow: View {
 
     private func paymentMethodLabel(_ method: PaymentMethod?) -> String {
         switch method {
-        case .physical: "カード払い"
-        case .contactless: "カードのタッチ決済"
-        case .mobileContactless: "スマホのタッチ決済"
+        case .physical: language.text("payment.physical")
+        case .contactless: language.text("payment.contactless")
+        case .mobileContactless: language.text("payment.mobileContactless")
         case .applePay: "Apple Pay"
-        case .mobileOrder: "モバイルオーダー"
-        case .qr: "QR決済"
-        case .online: "オンライン決済"
-        case .recurring: "継続課金"
-        case nil: "支払い方法確認中"
+        case .mobileOrder: language.text("payment.mobileOrder")
+        case .qr: language.text("payment.qr")
+        case .online: language.text("payment.online")
+        case .recurring: language.text("payment.recurring")
+        case nil: language.text("payment.unknown")
         }
     }
 
@@ -305,6 +306,7 @@ private struct AutomaticPlaceRow: View {
 }
 
 private struct RecommendationSection: View {
+    @Environment(\.appLanguage) private var language
     let title: String
     let emptyMessage: String
     let items: [CardRecommendation]
@@ -333,7 +335,7 @@ private struct RecommendationSection: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(item.card.name)
                                     .font(.headline)
-                                Text("今回 \(item.immediateValueYen.formatted(.currency(code: "JPY")))・\(item.effectiveReturnPercent.formatted(.number.precision(.fractionLength(1))))%")
+                                Text(language.format("recommendation.resultFormat", item.immediateValueYen.formatted(.currency(code: "JPY")), item.effectiveReturnPercent.formatted(.number.precision(.fractionLength(1)))) )
                                     .font(.subheadline)
                                 if let method = paymentMethodByCardID[item.card.id] {
                                     Text(paymentMethodLabel(method))
@@ -341,7 +343,7 @@ private struct RecommendationSection: View {
                                         .foregroundStyle(.secondary)
                                 }
                                 if item.possibleImmediateValueYen > item.immediateValueYen {
-                                    Text("条件達成時 最大\(item.possibleImmediateValueYen.formatted(.currency(code: "JPY")))")
+                                    Text(language.format("recommendation.maximumFormat", item.possibleImmediateValueYen.formatted(.currency(code: "JPY"))))
                                         .font(.caption)
                                         .foregroundStyle(.orange)
                                 }
@@ -355,25 +357,26 @@ private struct RecommendationSection: View {
 
     private func paymentMethodLabel(_ method: PaymentMethod) -> String {
         switch method {
-        case .physical: "カード払い"
-        case .contactless: "カードのタッチ決済"
-        case .mobileContactless: "スマホのタッチ決済"
+        case .physical: language.text("payment.physical")
+        case .contactless: language.text("payment.contactless")
+        case .mobileContactless: language.text("payment.mobileContactless")
         case .applePay: "Apple Pay"
-        case .mobileOrder: "モバイルオーダー"
-        case .qr: "QR決済"
-        case .online: "オンライン決済"
-        case .recurring: "継続課金"
+        case .mobileOrder: language.text("payment.mobileOrder")
+        case .qr: language.text("payment.qr")
+        case .online: language.text("payment.online")
+        case .recurring: language.text("payment.recurring")
         }
     }
 }
 
 private struct AlternativePaymentSection: View {
+    @Environment(\.appLanguage) private var language
     let recommendations: [AlternativePaymentRecommendation]
 
     var body: some View {
         Section {
             if recommendations.isEmpty {
-                Text("この条件で確認できるカード以外の支払いはありません")
+                Text(language.text("recommendation.noAlternative"))
                     .foregroundStyle(.secondary)
             } else {
                 ForEach(Array(recommendations.prefix(10))) { recommendation in
@@ -387,9 +390,9 @@ private struct AlternativePaymentSection: View {
                 }
             }
         } header: {
-            Text("カード以外の支払い")
+            Text(language.text("recommendation.alternativeHeader"))
         } footer: {
-            Text("カードからのチャージ還元や期間限定キャンペーンは二重計上していません。利用前に公式ルールを確認してください。")
+            Text(language.text("recommendation.alternativeFooter"))
         }
     }
 
@@ -398,7 +401,7 @@ private struct AlternativePaymentSection: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(recommendation.product.name)
                     .font(.headline)
-                Text(recommendation.product.paymentLabel)
+                Text(language.text("payment.\(recommendation.product.id)"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Text(recommendation.product.eligibilityNote)
@@ -419,21 +422,22 @@ private struct AlternativePaymentSection: View {
 }
 
 private struct RecommendationDetailView: View {
+    @Environment(\.appLanguage) private var language
     let recommendation: CardRecommendation
     let paymentMethod: PaymentMethod?
 
     var body: some View {
         List {
-            Section("計算結果") {
-                LabeledContent("今回の還元", value: recommendation.immediateValueYen, format: .currency(code: "JPY"))
-                LabeledContent("実質還元率", value: recommendation.effectiveReturnPercent, format: .percent.scale(1).precision(.fractionLength(1)))
-                LabeledContent("年換算・年会費控除後", value: recommendation.annualNetValueYen, format: .currency(code: "JPY"))
+            Section(language.text("recommendation.result")) {
+                LabeledContent(language.text("recommendation.immediateValue"), value: recommendation.immediateValueYen, format: .currency(code: "JPY"))
+                LabeledContent(language.text("recommendation.effectiveRate"), value: recommendation.effectiveReturnPercent, format: .percent.scale(1).precision(.fractionLength(1)))
+                LabeledContent(language.text("recommendation.annualValue"), value: recommendation.annualNetValueYen, format: .currency(code: "JPY"))
                 if let paymentMethod {
-                    LabeledContent("おすすめの支払い方法", value: paymentMethodLabel(paymentMethod))
+                    LabeledContent(language.text("recommendation.bestPaymentMethod"), value: paymentMethodLabel(paymentMethod))
                 }
             }
 
-            Section("適用された特典") {
+            Section(language.text("recommendation.appliedBenefits")) {
                 ForEach(recommendation.appliedBenefits) { benefit in
                     Link(destination: benefit.sourceURL) {
                         LabeledContent(benefit.title, value: benefit.valueYen, format: .currency(code: "JPY"))
@@ -442,7 +446,7 @@ private struct RecommendationDetailView: View {
             }
 
             if !recommendation.warnings.isEmpty {
-                Section("確認事項") {
+                Section(language.text("recommendation.checkpoints")) {
                     ForEach(recommendation.warnings, id: \.self) { warning in
                         Label(warning, systemImage: "exclamationmark.triangle")
                             .foregroundStyle(.orange)
@@ -451,9 +455,9 @@ private struct RecommendationDetailView: View {
             }
 
             Section {
-                Link("公式サイトで確認", destination: recommendation.card.applicationURL)
+                Link(language.text("link.officialSite"), destination: recommendation.card.applicationURL)
             } footer: {
-                Text("還元条件は変更される場合があります。申込・利用前に必ず公式情報を確認してください。")
+                Text(language.text("recommendation.officialTermsNote"))
             }
         }
         .navigationTitle(recommendation.card.name)
@@ -462,14 +466,14 @@ private struct RecommendationDetailView: View {
 
     private func paymentMethodLabel(_ method: PaymentMethod) -> String {
         switch method {
-        case .physical: "カード払い"
-        case .contactless: "カードのタッチ決済"
-        case .mobileContactless: "スマホのタッチ決済"
+        case .physical: language.text("payment.physical")
+        case .contactless: language.text("payment.contactless")
+        case .mobileContactless: language.text("payment.mobileContactless")
         case .applePay: "Apple Pay"
-        case .mobileOrder: "モバイルオーダー"
-        case .qr: "QR決済"
-        case .online: "オンライン決済"
-        case .recurring: "継続課金"
+        case .mobileOrder: language.text("payment.mobileOrder")
+        case .qr: language.text("payment.qr")
+        case .online: language.text("payment.online")
+        case .recurring: language.text("payment.recurring")
         }
     }
 }

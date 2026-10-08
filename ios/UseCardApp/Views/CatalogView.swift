@@ -2,6 +2,7 @@ import SwiftUI
 import UseCardCore
 
 struct CatalogView: View {
+    @Environment(\.appLanguage) private var language
     let catalogStore: CatalogStore
     @State private var searchText = ""
 
@@ -13,6 +14,7 @@ struct CatalogView: View {
                 || $0.issuerName.localizedCaseInsensitiveContains(searchText)
         }
     }
+
 
     private var onlineCandidates: [OnlineCardCandidate] {
         guard !searchText.isEmpty else { return [] }
@@ -29,7 +31,7 @@ struct CatalogView: View {
 
     var body: some View {
         List {
-            Section("収録カード") {
+            Section(language.text("catalog.includedCards")) {
                 ForEach(products) { product in
                     NavigationLink {
                         ProductDetailView(product: product)
@@ -41,10 +43,10 @@ struct CatalogView: View {
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                             HStack {
-                                Text(product.annualFeeYen == 0 ? "年会費無料" : "年会費 \(product.annualFeeYen.formatted(.currency(code: "JPY")))")
+                                Text(product.annualFeeYen == 0 ? language.text("catalog.noAnnualFee") : language.format("catalog.annualFeeFormat", product.annualFeeYen.formatted(.currency(code: "JPY"))))
                                 Spacer()
                                 if product.sources.contains(where: { $0.freshness != .fresh }) {
-                                    Label("要確認", systemImage: "exclamationmark.triangle")
+                                    Label(language.text("catalog.needsReview"), systemImage: "exclamationmark.triangle")
                                         .foregroundStyle(.orange)
                                 }
                             }
@@ -55,13 +57,13 @@ struct CatalogView: View {
             }
 
             if !onlineCandidates.isEmpty {
-                Section("オンライン公式候補") {
+                Section(language.text("catalog.onlineCandidates")) {
                     ForEach(onlineCandidates) { candidate in
                         Link(destination: candidate.officialURL) {
                             VStack(alignment: .leading, spacing: 3) {
                                 Label(candidate.name, systemImage: "network")
                                     .foregroundStyle(.primary)
-                                Text("\(candidate.issuerName)・公式ページで確認")
+                                Text("\(candidate.issuerName)・\(language.text("catalog.officialPage"))")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -70,8 +72,8 @@ struct CatalogView: View {
                 }
             }
         }
-        .searchable(text: $searchText, prompt: "カード名・発行会社")
-        .navigationTitle("カード検索")
+        .searchable(text: $searchText, prompt: language.text("catalog.searchPrompt"))
+        .navigationTitle(language.text("tab.catalog"))
         .overlay {
             if products.isEmpty && onlineCandidates.isEmpty && catalogStore.catalog != nil {
                 ContentUnavailableView.search(text: searchText)
@@ -81,31 +83,32 @@ struct CatalogView: View {
 }
 
 struct ProductDetailView: View {
+    @Environment(\.appLanguage) private var language
     let product: CardProduct
 
     var body: some View {
         List {
-            Section("基本情報") {
-                LabeledContent("発行会社", value: product.issuerName)
+            Section(language.text("catalog.basicInfo")) {
+                LabeledContent(language.text("catalog.issuer"), value: product.issuerName)
                 LabeledContent(
-                    "年会費",
+                    language.text("catalog.annualFee"),
                     value: product.annualFeeYen == 0
-                        ? "無料"
+                        ? language.text("catalog.free")
                         : product.annualFeeYen.formatted(.currency(code: "JPY"))
                 )
-                LabeledContent("国際ブランド", value: product.networks.map(\.displayName).joined(separator: " / "))
+                LabeledContent(language.text("catalog.network"), value: product.networks.map(\.displayName).joined(separator: " / "))
                 Text(product.eligibilityNote)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
 
-            Section("還元ルール") {
+            Section(language.text("catalog.rewardRules")) {
                 ForEach(product.benefitRules) { rule in
                     Link(destination: rule.source.url) {
                         VStack(alignment: .leading, spacing: 3) {
                             Text(rule.title)
                                 .foregroundStyle(.primary)
-                            Text(rule.reward.summary)
+                            Text(rule.reward.summary(language: language))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -113,13 +116,13 @@ struct ProductDetailView: View {
                 }
             }
 
-            Section("公式情報") {
+            Section(language.text("catalog.officialInformation")) {
                 ForEach(product.sources, id: \.url) { source in
                     Link(destination: source.url) {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(source.url.host() ?? source.url.absoluteString)
-                                Text("確認: \(source.observedAt)")
+                                Text(language.format("catalog.checkedAtFormat", source.observedAt))
                                     .font(.caption2)
                                     .foregroundStyle(.secondary)
                             }
@@ -132,7 +135,7 @@ struct ProductDetailView: View {
             }
 
             Section {
-                Link("申込ページを開く", destination: product.applicationURL)
+                Link(language.text("link.openApplication"), destination: product.applicationURL)
             }
         }
         .navigationTitle(product.name)
@@ -154,14 +157,14 @@ private extension CardNetwork {
 }
 
 private extension RewardFormula {
-    var summary: String {
+    func summary(language: AppLanguage) -> String {
         switch kind {
         case .cashbackRate:
-            "\((ratePercent ?? 0).formatted(.number))%還元"
+            language.format("reward.cashbackFormat", (ratePercent ?? 0).formatted(.number))
         case .pointsPerUnit:
-            "\((unitAmountYen ?? 0).formatted(.number))円ごとに\((pointsPerUnit ?? 0).formatted(.number))ポイント"
+            language.format("reward.pointsFormat", (unitAmountYen ?? 0).formatted(.number), (pointsPerUnit ?? 0).formatted(.number))
         case .fixedYen:
-            "\((fixedYen ?? 0).formatted(.currency(code: "JPY")))相当"
+            language.format("reward.fixedFormat", (fixedYen ?? 0).formatted(.currency(code: "JPY")))
         }
     }
 }

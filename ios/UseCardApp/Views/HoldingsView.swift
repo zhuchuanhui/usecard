@@ -3,6 +3,7 @@ import SwiftUI
 import UseCardCore
 
 struct HoldingsView: View {
+    @Environment(\.appLanguage) private var language
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \HoldingRecord.createdAt) private var holdings: [HoldingRecord]
     let catalogStore: CatalogStore
@@ -13,9 +14,9 @@ struct HoldingsView: View {
         List {
             if holdings.isEmpty {
                 ContentUnavailableView(
-                    "カードがありません",
+                    language.text("holdings.empty"),
                     systemImage: "creditcard",
-                    description: Text("右上の＋から手持ちカードを追加してください。")
+                    description: Text(language.text("holdings.emptyDescription"))
                 )
             } else {
                 ForEach(holdings) { holding in
@@ -38,25 +39,25 @@ struct HoldingsView: View {
                             VStack(alignment: .leading, spacing: 3) {
                                 Text(pendingName)
                                     .font(.headline)
-                                Text("\(holding.pendingIssuerName ?? "発行会社確認中")・検証待ち")
+                                Text("\(holding.pendingIssuerName ?? language.text("holdings.issuerPending"))・\(language.text("holdings.pending"))")
                                     .font(.caption)
                                     .foregroundStyle(.orange)
                             }
                         }
                     } else {
-                        Label("カタログにないカード（\(holding.cardID)）", systemImage: "exclamationmark.triangle")
+                        Label(language.format("holdings.missingCardFormat", holding.cardID), systemImage: "exclamationmark.triangle")
                     }
                 }
                 .onDelete(perform: delete)
             }
         }
-        .navigationTitle("手持ちカード")
+        .navigationTitle(language.text("tab.holdings"))
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     isAdding = true
                 } label: {
-                    Label("追加", systemImage: "plus")
+                    Label(language.text("action.add"), systemImage: "plus")
                 }
                 .disabled(catalogStore.catalog == nil)
             }
@@ -100,6 +101,7 @@ struct HoldingsView: View {
 }
 
 private struct CardPickerView: View {
+    @Environment(\.appLanguage) private var language
     @Environment(\.dismiss) private var dismiss
     let products: [CardProduct]
     let candidates: [OnlineCardCandidate]
@@ -135,7 +137,7 @@ private struct CardPickerView: View {
 
     var body: some View {
         List {
-            Section("収録カード") {
+            Section(language.text("catalog.includedCards")) {
                 ForEach(filteredProducts) { product in
                     Button {
                         onSelect(product)
@@ -151,7 +153,7 @@ private struct CardPickerView: View {
                 }
             }
             if !filteredCandidates.isEmpty {
-                Section("オンライン公式候補") {
+                Section(language.text("catalog.onlineCandidates")) {
                     ForEach(filteredCandidates) { candidate in
                         Button {
                             onSelectCandidate(candidate)
@@ -159,7 +161,7 @@ private struct CardPickerView: View {
                             VStack(alignment: .leading, spacing: 3) {
                                 Label(candidate.name, systemImage: "network")
                                     .foregroundStyle(.primary)
-                                Text("\(candidate.issuerName)・公式ページから検証待ちで追加")
+                                Text("\(candidate.issuerName)・\(language.text("holdings.addPendingDescription"))")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -168,25 +170,26 @@ private struct CardPickerView: View {
                 }
             }
         }
-        .searchable(text: $searchText, prompt: "カード名・発行会社")
-        .navigationTitle("カードを追加")
+        .searchable(text: $searchText, prompt: language.text("catalog.searchPrompt"))
+        .navigationTitle(language.text("holdings.addCard"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("閉じる") { dismiss() }
+                Button(language.text("action.close")) { dismiss() }
             }
         }
     }
 }
 
 private struct HoldingDetailView: View {
+    @Environment(\.appLanguage) private var language
     @Bindable var holding: HoldingRecord
     let card: CardProduct
 
     private var enrollmentOptions: [(key: String, label: String)] {
         switch card.id {
         case "paypay-card":
-            [("paypay-linked-and-verified", "PayPay連携・本人確認済み")]
+            [("paypay-linked-and-verified", language.text("benefit.paypayVerified"))]
         default:
             []
         }
@@ -194,18 +197,18 @@ private struct HoldingDetailView: View {
 
     var body: some View {
         Form {
-            Section("利用状況") {
-                Toggle("年間利用額を入力する", isOn: $holding.hasAnnualSpendEstimate)
+            Section(language.text("holdings.usage")) {
+                Toggle(language.text("holdings.enterAnnualSpend"), isOn: $holding.hasAnnualSpendEstimate)
                 if holding.hasAnnualSpendEstimate {
                     TextField(
-                        "年間利用額",
+                        language.text("holdings.annualSpend"),
                         value: $holding.annualSpendYen,
                         format: .currency(code: "JPY")
                     )
                     .keyboardType(.numberPad)
                 }
                 TextField(
-                    "1ポイントの価値",
+                    language.text("holdings.pointValue"),
                     value: $holding.pointValueYen,
                     format: .currency(code: "JPY")
                 )
@@ -213,7 +216,7 @@ private struct HoldingDetailView: View {
             }
 
             if !enrollmentOptions.isEmpty {
-                Section("登録済み特典") {
+                Section(language.text("holdings.enrolledBenefits")) {
                     ForEach(enrollmentOptions, id: \.key) { option in
                         Toggle(
                             option.label,
@@ -231,7 +234,7 @@ private struct HoldingDetailView: View {
             }
 
             Section {
-                Link("公式サイトを開く", destination: card.applicationURL)
+                Link(language.text("link.openOfficialSite"), destination: card.applicationURL)
             }
         }
         .navigationTitle(card.name)
@@ -240,23 +243,24 @@ private struct HoldingDetailView: View {
 }
 
 private struct PendingHoldingDetailView: View {
+    @Environment(\.appLanguage) private var language
     let holding: HoldingRecord
 
     var body: some View {
         List {
-            Section("カード") {
-                LabeledContent("カード名", value: holding.pendingName ?? "不明")
-                LabeledContent("発行会社", value: holding.pendingIssuerName ?? "確認中")
-                Label("還元条件を公式データで検証中です", systemImage: "clock.badge.exclamationmark")
+            Section(language.text("holdings.card")) {
+                LabeledContent(language.text("catalog.cardName"), value: holding.pendingName ?? language.text("common.unknown"))
+                LabeledContent(language.text("catalog.issuer"), value: holding.pendingIssuerName ?? language.text("common.checking"))
+                Label(language.text("holdings.verificationInProgress"), systemImage: "clock.badge.exclamationmark")
                     .foregroundStyle(.orange)
             }
             if let url = holding.pendingOfficialURL {
                 Section {
-                    Link("公式ページを開く", destination: url)
+                    Link(language.text("link.openOfficialPage"), destination: url)
                 }
             }
         }
-        .navigationTitle(holding.pendingName ?? "検証待ちカード")
+        .navigationTitle(holding.pendingName ?? language.text("holdings.pendingCard"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

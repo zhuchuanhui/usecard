@@ -8,6 +8,24 @@ application.delegate = appDelegate
 application.setActivationPolicy(.regular)
 application.run()
 
+private enum MacAppLanguage: String, CaseIterable {
+    case japanese = "ja"
+    case english = "en"
+    case simplifiedChinese = "zh-Hans"
+    case traditionalChinese = "zh-Hant"
+
+    static let defaultsKey = "jp.usecard.macos.language"
+
+    var name: String {
+        switch self {
+        case .japanese: "日本語"
+        case .english: "English"
+        case .simplifiedChinese: "简体中文"
+        case .traditionalChinese: "繁體中文"
+        }
+    }
+}
+
 fileprivate enum UseCardIconStyle: String {
     case standard
     case night
@@ -51,7 +69,6 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         applyApplicationIcon(UseCardIconStyle.saved, persist: false)
-
         let tabs = NSTabViewController()
         tabs.tabStyle = .toolbar
 
@@ -63,6 +80,7 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
             }
         )
         let catalog = CatalogViewController(model: model)
+        let settings = MacSettingsViewController()
         let data = DataViewController(
             model: model,
             iconStyle: UseCardIconStyle.saved,
@@ -78,6 +96,7 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
         tabs.addTabViewItem(tab(title: "手持ちカード", image: "wallet.pass", controller: holdings))
         tabs.addTabViewItem(tab(title: "カード一覧", image: "creditcard", controller: catalog))
         tabs.addTabViewItem(tab(title: "データ", image: "arrow.triangle.2.circlepath", controller: data))
+        tabs.addTabViewItem(tab(title: "設定", image: "gearshape", controller: settings))
 
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1_120, height: 780),
@@ -176,6 +195,42 @@ final class UseCardMacAppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         NSApp.applicationIconImage = icon
+    }
+}
+
+private final class MacSettingsViewController: NSViewController {
+    private let languagePicker = NSPopUpButton()
+    private let restartNote = NSTextField(labelWithString: "言語の変更はアプリを再起動すると反映されます。")
+
+    override func loadView() {
+        let heading = NSTextField(labelWithString: "表示言語")
+        heading.font = .boldSystemFont(ofSize: 16)
+        MacAppLanguage.allCases.forEach { languagePicker.addItem(withTitle: $0.name) }
+        let current = UserDefaults.standard.string(forKey: MacAppLanguage.defaultsKey) ?? "ja"
+        languagePicker.selectItem(at: MacAppLanguage.allCases.firstIndex(where: { $0.rawValue == current }) ?? 0)
+        languagePicker.target = self
+        languagePicker.action = #selector(changeLanguage)
+        restartNote.textColor = .secondaryLabelColor
+
+        let stack = NSStackView(views: [heading, languagePicker, restartNote])
+        stack.orientation = .vertical
+        stack.alignment = .leading
+        stack.spacing = 14
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        let container = NSView()
+        container.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 24),
+            stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 24),
+            stack.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -24)
+        ])
+        view = container
+    }
+
+    @objc private func changeLanguage() {
+        let language = MacAppLanguage.allCases[languagePicker.indexOfSelectedItem]
+        UserDefaults.standard.set(language.rawValue, forKey: MacAppLanguage.defaultsKey)
+        restartNote.stringValue = "次回起動時に\(language.name)で表示します。"
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05BBA3535534CEF8E39825E6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5F76DA280169CBD030B6AF /* Localizable.strings */; };
 		060D31370796AD09F103DCBF /* RecommendationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE95FE14B6C5A73DB83C2 /* RecommendationSupport.swift */; };
 		086DC269EC013394744351FA /* latest.json in Resources */ = {isa = PBXBuildFile; fileRef = A32B10D6D40A7AAD16B4C3D5 /* latest.json */; };
 		1AC525531DE53BFAAA4DA6BD /* SharedHoldingsBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168E7FA238B5C37FB05067E /* SharedHoldingsBootstrap.swift */; };
@@ -41,7 +42,9 @@
 /* Begin PBXFileReference section */
 		25682858731DE953100C2670 /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		25C0404A8922C1A259DE7B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		383E533A780133F074BBCDD4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3CD61687E746A7E3E1A3BBC8 /* payment-alternatives.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "payment-alternatives.json"; sourceTree = "<group>"; };
+		4F70DD82FA4C952977FBE356 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4FD99F560EB76588CAA7A663 /* CatalogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogStore.swift; sourceTree = "<group>"; };
 		5268F37F60E4B3646A044D3F /* usecard */ = {isa = PBXFileReference; lastKnownFileType = folder; name = usecard; path = ..; sourceTree = SOURCE_ROOT; };
 		532AF77703973468A7997BDD /* CatalogClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogClient.swift; sourceTree = "<group>"; };
@@ -56,11 +59,13 @@
 		B22D9FC3571F3BA5C3B167FC /* HoldingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsView.swift; sourceTree = "<group>"; };
 		BB7A12CE02C2BBFE3194898A /* UseCard.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UseCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEBCE95FE14B6C5A73DB83C2 /* RecommendationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationSupport.swift; sourceTree = "<group>"; };
+		D15D2E34D5AFD177DC2351DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D475D877EC5AF519E8C663FB /* CatalogDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDecodingTests.swift; sourceTree = "<group>"; };
 		E76E3DE81B4B0C19908A16CA /* search-index.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "search-index.json"; sourceTree = "<group>"; };
 		E8901160BE27422CABCF48F6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F94A3C820A00DE1A8D26EF68 /* UseCardTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UseCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB284B03672D35EDDBA1FC74 /* official-lineups.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "official-lineups.json"; sourceTree = "<group>"; };
+		FFCD55A3C1DF21A7A7FE4F5C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +152,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6C7DE3F9857507F1BE1F7350 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D5F76DA280169CBD030B6AF /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		9E1DCA56D89CE11A46DAAE41 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +177,7 @@
 				A0A45B03CDAF953DF133D5D3 /* UseCard.entitlements */,
 				951C55D8F9FEF3A131BB4F3F /* UseCardApp.swift */,
 				9E1DCA56D89CE11A46DAAE41 /* Models */,
+				6C7DE3F9857507F1BE1F7350 /* Resources */,
 				1DCCDDCA47BC860DDFE6F3BF /* Services */,
 				34045B1BEE55DBA35941F84F /* Stores */,
 				ED3F3CD5D978CE0CA2AEA140 /* Views */,
@@ -264,6 +278,9 @@
 			knownRegions = (
 				Base,
 				en,
+				ja,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 397DDE6C0F18B50B209C6A1D;
 			minimizedProjectReferenceProxies = 1;
@@ -287,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F0BB091C9CDA5C77174C909 /* Assets.xcassets in Resources */,
+				05BBA3535534CEF8E39825E6 /* Localizable.strings in Resources */,
 				086DC269EC013394744351FA /* latest.json in Resources */,
 				6970ECC86CAE73BF84009CAB /* official-lineups.json in Resources */,
 				F26C38D41C6322950039B605 /* payment-alternatives.json in Resources */,
@@ -332,6 +350,20 @@
 			targetProxy = A448E543D6DC2ABF32D6A874 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8D5F76DA280169CBD030B6AF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D15D2E34D5AFD177DC2351DB /* en */,
+				4F70DD82FA4C952977FBE356 /* ja */,
+				FFCD55A3C1DF21A7A7FE4F5C /* zh-Hans */,
+				383E533A780133F074BBCDD4 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		151B323D36BC5C4AE3098A76 /* Release */ = {
@@ -496,6 +528,8 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = UseCardApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = ja;
+				INFOPLIST_KEY_CFBundleLocalizations = "ja en zh-Hans zh-Hant";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -520,6 +554,8 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = UseCardApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = ja;
+				INFOPLIST_KEY_CFBundleLocalizations = "ja en zh-Hans zh-Hant";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RootView: View {
+    @Environment(\.appLanguage) private var language
     @AppStorage("catalogBaseURL") private var catalogBaseURL = CatalogStore.defaultEndpoint
     @Environment(\.scenePhase) private var scenePhase
     @State private var catalogStore = CatalogStore()
@@ -10,22 +11,22 @@ struct RootView: View {
             NavigationStack {
                 RecommendationView(catalogStore: catalogStore)
             }
-            .tabItem { Label("おすすめ", systemImage: "sparkles") }
+            .tabItem { Label(language.text("tab.recommendations"), systemImage: "sparkles") }
 
             NavigationStack {
                 HoldingsView(catalogStore: catalogStore)
             }
-            .tabItem { Label("手持ち", systemImage: "creditcard") }
+            .tabItem { Label(language.text("tab.holdings"), systemImage: "creditcard") }
 
             NavigationStack {
                 CatalogView(catalogStore: catalogStore)
             }
-            .tabItem { Label("カード検索", systemImage: "magnifyingglass") }
+            .tabItem { Label(language.text("tab.catalog"), systemImage: "magnifyingglass") }
 
             NavigationStack {
                 SettingsView(catalogStore: catalogStore)
             }
-            .tabItem { Label("設定", systemImage: "gearshape") }
+            .tabItem { Label(language.text("tab.settings"), systemImage: "gearshape") }
         }
         .background(SharedHoldingsBootstrap())
         .task {
