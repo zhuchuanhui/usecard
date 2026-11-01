@@ -4,4528 +4,4465 @@
     "issuerName": "南都ディーシーカード株式会社",
     "name": "〈ナント〉Cotoca ICキャッシュカード一体型",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-visa/visa-cotoca/",
-    "observedAt": "2026-10-01T10:29:58.204Z"
+    "observedAt": "2026-11-01T10:52:15.525Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "〈ナント〉Cotoca クレジットカード単体型",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-visa/visa-cotoca-single-credit/",
-    "observedAt": "2026-10-01T10:29:56.645Z"
+    "observedAt": "2026-11-01T10:52:14.422Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "〈ナント〉Cotocaゴールド ICキャッシュカード一体型",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-visa/visa-cotocagold/",
-    "observedAt": "2026-10-01T10:29:59.293Z"
+    "observedAt": "2026-11-01T10:52:16.644Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "〈ナント〉Cotocaゴールド クレジットカード単体型",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-visa/visa-cotoca-gold-single-credit/",
-    "observedAt": "2026-10-01T10:29:55.561Z"
+    "observedAt": "2026-11-01T10:52:13.300Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "〈やまぎん〉デビットJCB",
     "officialURL": "https://www.yamagin-cs.co.jp/jcbcard/debit.html",
-    "observedAt": "2026-10-01T10:30:10.325Z"
+    "observedAt": "2026-11-01T10:52:29.438Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "「TEPCOカード」会員の皆さまへ",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tepco/guidance/index.html",
-    "observedAt": "2026-10-01T10:30:29.023Z"
+    "observedAt": "2026-11-01T10:52:41.532Z"
   },
   {
     "issuerID": "jcca-nttファイナンス",
     "issuerName": "NTTファイナンス株式会社",
     "name": "「おまとめ請求」解約に伴うクレジットカード引落し",
     "officialURL": "https://www.ntt-finance.co.jp/billing/service/omatome/creditpayment.html",
-    "observedAt": "2026-10-01T10:29:47.333Z"
+    "observedAt": "2026-11-01T10:52:03.832Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "「クレジットカードのご利用に関する重要なご連絡」",
     "officialURL": "https://www.cr.mufg.jp/credit/announce/use_attention.html",
-    "observedAt": "2026-10-01T10:30:57.132Z"
+    "observedAt": "2026-11-01T10:53:09.757Z"
   },
   {
     "issuerID": "jcca-とりぎんサ-ビス",
     "issuerName": "株式会社とりぎんカードサービス",
     "name": "「クレジットカードのショッピング枠の現金化」禁止について",
     "officialURL": "https://www.tottoribank.co.jp/jcb_card/other/kinshi/index.html",
-    "observedAt": "2026-10-01T10:30:07.661Z"
+    "observedAt": "2026-11-01T10:52:28.263Z"
   },
   {
     "issuerID": "jcca-ちばぎん",
     "issuerName": "ちばぎんカード株式会社",
     "name": "「クレジットカード番号等の適切な管理」に関するご案内",
     "officialURL": "https://www.chibagincard.co.jp/card-number/",
-    "observedAt": "2026-10-01T10:29:32.963Z"
-  },
-  {
-    "issuerID": "jcca-アメリカン-エキスプレス-インタ-ナショナル-inc",
-    "issuerName": "アメリカン・エキスプレス・インターナショナル，Inc．",
-    "name": "「ミラーデザイン」 プラチナ‧カードの期間限定カードデザイン",
-    "officialURL": "https://www.americanexpress.com/ja-jp/benefits/metal-card/mirror/",
-    "observedAt": "2026-10-01T10:29:28.845Z"
+    "observedAt": "2026-11-01T10:51:44.788Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "「九州カードNEXT」でお得にお買い物!対象となる店舗をご紹介",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20240701/",
-    "observedAt": "2026-10-01T10:31:24.547Z"
+    "observedAt": "2026-11-01T10:53:38.726Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "【株式会社三十三カード】 ロードサービス",
     "officialURL": "https://www.33bank.co.jp/33card/card_kind/vj_road.html",
-    "observedAt": "2026-10-01T10:29:31.628Z"
+    "observedAt": "2026-11-01T10:51:44.340Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "【株式会社三十三カード】 ロードサービス/詳細",
     "officialURL": "https://www.33bank.co.jp/33card/card_kind/vj_road_more.html",
-    "observedAt": "2026-10-01T10:29:31.217Z"
+    "observedAt": "2026-11-01T10:51:43.941Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "【株式会社三十三カード】 三十三カード「キャッシュレス・消費者還元事業」特設サイト",
     "officialURL": "https://www.33bank.co.jp/33card/cashless/index.html",
-    "observedAt": "2026-10-01T10:29:32.028Z"
+    "observedAt": "2026-11-01T10:51:44.741Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "【株式会社三十三カード】 法人カードのご案内",
     "officialURL": "https://www.33bank.co.jp/33card/corp/index.html",
-    "observedAt": "2026-10-01T10:29:32.415Z"
+    "observedAt": "2026-11-01T10:51:45.143Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "【必見】クレジットカードのお得&便利な活用法。「なんとなく使っている」だけではもったいない!",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/nd/20220101/",
-    "observedAt": "2026-10-01T10:30:38.852Z"
+    "observedAt": "2026-11-01T10:52:53.106Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114Jizile(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/jizile.html",
-    "observedAt": "2026-10-01T10:29:40.495Z"
+    "observedAt": "2026-11-01T10:51:57.624Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114カード(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/normal.html",
-    "observedAt": "2026-10-01T10:29:42.296Z"
+    "observedAt": "2026-11-01T10:52:00.566Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114カード2[リボ払い専用](個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/revo.html",
-    "observedAt": "2026-10-01T10:29:43.259Z"
+    "observedAt": "2026-11-01T10:52:02.194Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114カードエスプリ(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/espri.html",
-    "observedAt": "2026-10-01T10:29:36.450Z"
+    "observedAt": "2026-11-01T10:51:51.924Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114カードエスプリニューズ(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/espri-new.html",
-    "observedAt": "2026-10-01T10:29:35.207Z"
+    "observedAt": "2026-11-01T10:51:50.406Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114カードニューズ(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/normal-new.html",
-    "observedAt": "2026-10-01T10:29:41.328Z"
+    "observedAt": "2026-11-01T10:51:59.071Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114ゴールドカード(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/gold.html",
-    "observedAt": "2026-10-01T10:29:39.722Z"
+    "observedAt": "2026-11-01T10:51:56.323Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114ゴールドカードヴァン(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/gold-vingt.html",
-    "observedAt": "2026-10-01T10:29:38.752Z"
+    "observedAt": "2026-11-01T10:51:54.704Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114法人カード(法人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/corp.html",
-    "observedAt": "2026-10-01T10:29:33.504Z"
+    "observedAt": "2026-11-01T10:51:47.384Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "114法人ゴールドカード(法人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/corp-gold.html",
-    "observedAt": "2026-10-01T10:29:31.214Z"
+    "observedAt": "2026-11-01T10:51:44.398Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "1枚では足りない? 2枚目のクレジットカードを選ぶコツとは",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20250601/",
-    "observedAt": "2026-10-01T10:31:28.552Z"
+    "observedAt": "2026-11-01T10:53:42.723Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "apollostation Pontaクレジットカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/apollostation_ponta/index.html",
-    "observedAt": "2026-10-01T10:29:44.176Z"
+    "observedAt": "2026-11-01T10:51:56.216Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "apollostation スターレックス カード【スタープライズコース】",
     "officialURL": "https://www.cr.mufg.jp/apply/card/apollostation_starlex_star/index.html",
-    "observedAt": "2026-10-01T10:29:44.689Z"
+    "observedAt": "2026-11-01T10:51:56.768Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "apollostation スターレックス ゴールドカード【スタープライズコース】",
     "officialURL": "https://www.cr.mufg.jp/apply/card/shellstarlex_gold_star/index.html",
-    "observedAt": "2026-10-01T10:30:23.819Z"
+    "observedAt": "2026-11-01T10:52:36.315Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "BMW Card",
     "officialURL": "https://www.cr.mufg.jp/apply/card/bmw/index.html",
-    "observedAt": "2026-10-01T10:29:46.187Z"
+    "observedAt": "2026-11-01T10:51:58.990Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "bnr_credit-card",
     "officialURL": "https://www.tohoku-jcb.co.jp/bnr_credit-card/",
-    "observedAt": "2026-10-01T10:30:09.009Z"
+    "observedAt": "2026-11-01T10:52:24.182Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "bnr_credit-card_pc",
     "officialURL": "https://www.tohoku-jcb.co.jp/bnr_credit-card_pc/",
-    "observedAt": "2026-10-01T10:30:07.191Z"
+    "observedAt": "2026-11-01T10:52:23.027Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "bnr_credit-card_sp",
     "officialURL": "https://www.tohoku-jcb.co.jp/bnr_credit-card_sp/",
-    "observedAt": "2026-10-01T10:30:08.099Z"
+    "observedAt": "2026-11-01T10:52:23.611Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "bnr_debit-card",
     "officialURL": "https://www.tohoku-jcb.co.jp/bnr_debit-card/",
-    "observedAt": "2026-10-01T10:30:11.707Z"
+    "observedAt": "2026-11-01T10:52:25.895Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "bnr_debit-card_pc",
     "officialURL": "https://www.tohoku-jcb.co.jp/bnr_debit-card_pc/",
-    "observedAt": "2026-10-01T10:30:09.897Z"
+    "observedAt": "2026-11-01T10:52:24.744Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "bnr_debit-card_sp",
     "officialURL": "https://www.tohoku-jcb.co.jp/bnr_debit-card_sp/",
-    "observedAt": "2026-10-01T10:30:10.791Z"
+    "observedAt": "2026-11-01T10:52:25.326Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "card_lineup",
     "officialURL": "https://www.tohoku-jcb.co.jp/card_lineup/",
-    "observedAt": "2026-10-01T10:30:12.656Z"
+    "observedAt": "2026-11-01T10:52:26.467Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "card-face_dummy",
     "officialURL": "https://www.tohoku-jcb.co.jp/card-face_dummy/",
-    "observedAt": "2026-10-01T10:30:13.537Z"
+    "observedAt": "2026-11-01T10:52:27.045Z"
   },
   {
     "issuerID": "jcca-okbペイメントプラット",
     "issuerName": "株式会社ＯＫＢペイメントプラット",
     "name": "CARDゴールドカード",
     "officialURL": "https://www.okbpp.jp/card/gold.html",
-    "observedAt": "2026-10-01T10:29:50.251Z"
+    "observedAt": "2026-11-01T10:52:07.596Z"
   },
   {
     "issuerID": "jcca-okbペイメントプラット",
     "issuerName": "株式会社ＯＫＢペイメントプラット",
     "name": "CARD一般カード",
     "officialURL": "https://www.okbpp.jp/card/ippan.html",
-    "observedAt": "2026-10-01T10:29:50.849Z"
+    "observedAt": "2026-11-01T10:52:08.269Z"
   },
   {
     "issuerID": "jcca-okbペイメントプラット",
     "issuerName": "株式会社ＯＫＢペイメントプラット",
     "name": "CARD法人カード",
     "officialURL": "https://www.okbpp.jp/card/houjin.html",
-    "observedAt": "2026-10-01T10:29:50.564Z"
+    "observedAt": "2026-11-01T10:52:08.017Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "CATHAY PACIFIC MUFG CARD Platinum American Express® Card",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/cathay_pacific/index.html",
-    "observedAt": "2026-10-01T10:29:35.440Z"
+    "observedAt": "2026-11-01T10:51:47.113Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "DC ETCカード(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/etc.html",
-    "observedAt": "2026-10-01T10:29:37.548Z"
+    "observedAt": "2026-11-01T10:51:53.388Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "DCコーポレートカード(法人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/corp-gold2.html",
-    "observedAt": "2026-10-01T10:29:32.313Z"
+    "observedAt": "2026-11-01T10:51:45.931Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ENEOS CBカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/synergy/index.html",
-    "observedAt": "2026-10-01T10:30:26.617Z"
+    "observedAt": "2026-11-01T10:52:39.104Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ENEOS CBカード値引特典と年会費システムについて",
     "officialURL": "https://www.cr.mufg.jp/apply/card/synergy/pop_01.html",
-    "observedAt": "2026-10-01T10:30:27.014Z"
+    "observedAt": "2026-11-01T10:52:39.502Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ENEOSカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/eneos/index.html",
-    "observedAt": "2026-10-01T10:29:48.196Z"
+    "observedAt": "2026-11-01T10:52:00.952Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ETC カード",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/etc_card/",
-    "observedAt": "2026-10-01T10:30:11.398Z"
+    "observedAt": "2026-11-01T10:52:25.383Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ETCカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/etc/index.html",
-    "observedAt": "2026-10-01T10:29:48.594Z"
+    "observedAt": "2026-11-01T10:52:01.344Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ETCカード",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/add/etc/index.html",
-    "observedAt": "2026-10-01T10:31:26.359Z"
+    "observedAt": "2026-11-01T10:53:38.991Z"
   },
   {
     "issuerID": "jcca-めぶき",
     "issuerName": "株式会社めぶきカード",
     "name": "ETCカード",
     "officialURL": "https://www.mebuki-card.co.jp/credit_card/etc.html",
-    "observedAt": "2026-10-01T10:29:44.355Z"
+    "observedAt": "2026-11-01T10:51:57.801Z"
   },
   {
     "issuerID": "jcca-りゅうぎんディ-シ",
     "issuerName": "株式会社りゅうぎんディーシー",
     "name": "ETCカード",
     "officialURL": "https://www.ryugindc.co.jp/cardlineup/dc_etc/",
-    "observedAt": "2026-10-01T10:29:35.176Z"
+    "observedAt": "2026-11-01T10:51:47.724Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "ETCカード/個人名表示タイプ(利用者限定型)",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_etc_corp_i.html",
-    "observedAt": "2026-10-01T10:30:00.276Z"
+    "observedAt": "2026-11-01T10:52:15.482Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "ETCカード/社名表示タイプ(共同利用型)",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_etc_corp.html",
-    "observedAt": "2026-10-01T10:30:00.728Z"
+    "observedAt": "2026-11-01T10:52:15.901Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ETCカードのお申し込み",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/support/etc/index.html",
-    "observedAt": "2026-10-01T10:31:56.370Z"
+    "observedAt": "2026-11-01T10:54:09.538Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ETCカードのお申し込みについて",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/contact/etc/index.html",
-    "observedAt": "2026-10-01T10:31:04.338Z"
+    "observedAt": "2026-11-01T10:53:16.953Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ETCカードのお申込方法",
     "officialURL": "https://www.cr.mufg.jp/apply/card/etc/select001/index.html",
-    "observedAt": "2026-10-01T10:29:48.996Z"
+    "observedAt": "2026-11-01T10:52:01.757Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "ETCスルーカード/法人",
     "officialURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_etc_corp.html",
-    "observedAt": "2026-10-01T10:29:56.661Z"
+    "observedAt": "2026-11-01T10:52:11.889Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "f-JOY(エフジョイ)VISAカード(福岡商業施設提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/standard/fjoy/",
-    "observedAt": "2026-10-01T10:30:14.806Z"
+    "observedAt": "2026-11-01T10:52:29.093Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "GDO・ゴールド・アメリカン・エキスプレス・カード",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/gdo_gold/index.html",
-    "observedAt": "2026-10-01T10:29:35.898Z"
+    "observedAt": "2026-11-01T10:51:47.667Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "GDO・プラチナ・アメリカン・エキスプレス・カード",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/gdo_platinum/index.html",
-    "observedAt": "2026-10-01T10:29:36.236Z"
+    "observedAt": "2026-11-01T10:51:48.102Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "GDOカード ゴールド Visa",
     "officialURL": "https://www.cr.mufg.jp/apply/card/gdo_mufgcard_gold/index.html",
-    "observedAt": "2026-10-01T10:29:50.593Z"
+    "observedAt": "2026-11-01T10:52:03.377Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "GDOカード(ゴールド)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/gdo_gold/index.html",
-    "observedAt": "2026-10-01T10:29:50.190Z"
+    "observedAt": "2026-11-01T10:52:02.987Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "GDOカード(一般)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/gdo/index.html",
-    "observedAt": "2026-10-01T10:29:50.995Z"
+    "observedAt": "2026-11-01T10:52:03.789Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "Honda Cカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/honda.html",
-    "observedAt": "2026-10-01T10:30:26.280Z"
+    "observedAt": "2026-11-01T10:52:44.335Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "Honda Cカード ゴールド",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/honda_gold.html",
-    "observedAt": "2026-10-01T10:30:25.692Z"
+    "observedAt": "2026-11-01T10:52:43.583Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "http://www.shinkincard.co.jp/platinum/",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_platinum.html",
-    "observedAt": "2026-10-01T10:30:03.070Z"
+    "observedAt": "2026-11-01T10:52:18.299Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "icon_credit-card",
     "officialURL": "https://www.tohoku-jcb.co.jp/icon_credit-card/",
-    "observedAt": "2026-10-01T10:30:15.322Z"
+    "observedAt": "2026-11-01T10:52:28.170Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "icon_debit-card",
     "officialURL": "https://www.tohoku-jcb.co.jp/icon_debit-card/",
-    "observedAt": "2026-10-01T10:30:16.195Z"
+    "observedAt": "2026-11-01T10:52:28.728Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ICカード",
     "officialURL": "https://www.cr.mufg.jp/carduse/ic/index.html",
-    "observedAt": "2026-10-01T10:30:48.283Z"
+    "observedAt": "2026-11-01T10:53:00.776Z"
   },
   {
     "issuerID": "jcca-清水リ-ス",
     "issuerName": "清水リース＆カード株式会社",
     "name": "ICキャッシュカード",
     "officialURL": "https://www.shimizubank.co.jp/individual/service/ic_cash_card/",
-    "observedAt": "2026-10-01T10:29:55.442Z"
+    "observedAt": "2026-11-01T10:52:11.578Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "JAF・UCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/jaf.html",
-    "observedAt": "2026-10-01T10:30:27.478Z"
+    "observedAt": "2026-11-01T10:52:44.827Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "JAF・UCゴールドカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/jaf_gold.html",
-    "observedAt": "2026-10-01T10:30:26.885Z"
+    "observedAt": "2026-11-01T10:52:44.427Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAL アメリカン・エキスプレス®・カード",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/jalamex/index.html",
-    "observedAt": "2026-10-01T10:29:36.962Z"
+    "observedAt": "2026-11-01T10:51:48.776Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAL アメリカン・エキスプレス®・カード (CLUB-Aゴールドカード)",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/jalamex/clubagold/index.html",
-    "observedAt": "2026-10-01T10:29:36.741Z"
+    "observedAt": "2026-11-01T10:51:48.376Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAL アメリカン・エキスプレス®・カード プラチナ",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/jalamex/platinum/index.html",
-    "observedAt": "2026-10-01T10:29:38.167Z"
+    "observedAt": "2026-11-01T10:51:50.136Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAL アメリカン・エキスプレス®・カード(普通カード)",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/jalamex/normal/index.html",
-    "observedAt": "2026-10-01T10:29:37.875Z"
+    "observedAt": "2026-11-01T10:51:49.575Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JALカード(CLUB-Aカード)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/jal_cluba/index.html",
-    "observedAt": "2026-10-01T10:29:54.250Z"
+    "observedAt": "2026-11-01T10:52:07.017Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JALカード(CLUB-Aゴールドカード)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/jal_cluba_gold/index.html",
-    "observedAt": "2026-10-01T10:29:53.791Z"
+    "observedAt": "2026-11-01T10:52:06.611Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JALカード(navi)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/jal_navi/index.html",
-    "observedAt": "2026-10-01T10:29:54.600Z"
+    "observedAt": "2026-11-01T10:52:07.418Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JALカード(普通カード)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/jal/index.html",
-    "observedAt": "2026-10-01T10:29:55.023Z"
+    "observedAt": "2026-11-01T10:52:07.822Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード キャッシュカード一体型",
     "officialURL": "https://www.cr.mufg.jp/apply/card/ja/cash_001/index.html",
-    "observedAt": "2026-10-01T10:29:51.392Z"
+    "observedAt": "2026-11-01T10:52:04.195Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード キャッシュカード一体型",
     "officialURL": "https://www.cr.mufg.jp/ja/apply/cash/index.html",
-    "observedAt": "2026-10-01T10:30:57.530Z"
+    "observedAt": "2026-11-01T10:53:10.140Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード キャッシュカード一体型(ロードアシスタンスサービス付き)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/ja/cash_002/index.html",
-    "observedAt": "2026-10-01T10:29:51.798Z"
+    "observedAt": "2026-11-01T10:52:04.593Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード クレジットカード単機能型",
     "officialURL": "https://www.cr.mufg.jp/apply/card/ja/credit_001/index.html",
-    "observedAt": "2026-10-01T10:29:52.609Z"
+    "observedAt": "2026-11-01T10:52:05.406Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード クレジットカード単機能型",
     "officialURL": "https://www.cr.mufg.jp/ja/apply/credit/index.html",
-    "observedAt": "2026-10-01T10:30:58.038Z"
+    "observedAt": "2026-11-01T10:53:10.547Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード クレジットカード単機能型(ロードアシスタンスサービス付き)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/ja/credit_002/index.html",
-    "observedAt": "2026-10-01T10:29:52.997Z"
+    "observedAt": "2026-11-01T10:52:05.798Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード(一般)・マリンクレジット年会費について",
     "officialURL": "https://www.cr.mufg.jp/ja/apply/nenkaihi/index.html",
-    "observedAt": "2026-10-01T10:30:58.726Z"
+    "observedAt": "2026-11-01T10:53:11.346Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAカード(単機能型) WEB入会申し込みの流れ",
     "officialURL": "https://www.cr.mufg.jp/apply/flow/ja/speed.html",
-    "observedAt": "2026-10-01T10:30:41.861Z"
+    "observedAt": "2026-11-01T10:52:54.327Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAゴールドカード キャッシュカード一体型",
     "officialURL": "https://www.cr.mufg.jp/apply/card/ja/cash_003/index.html",
-    "observedAt": "2026-10-01T10:29:52.209Z"
+    "observedAt": "2026-11-01T10:52:04.989Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JAゴールドカード クレジットカード単機能型",
     "officialURL": "https://www.cr.mufg.jp/apply/card/ja/credit_003/index.html",
-    "observedAt": "2026-10-01T10:29:53.396Z"
+    "observedAt": "2026-11-01T10:52:06.190Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "JCB CARD EXTAGE",
     "officialURL": "https://www.tohoku-jcb.co.jp/jcb-card-extage/",
-    "observedAt": "2026-10-01T10:30:17.192Z"
+    "observedAt": "2026-11-01T10:52:29.326Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCB エクステージEXTAGE",
     "officialURL": "https://www.82card.co.jp/jcbcard/ippanextage/",
-    "observedAt": "2026-10-01T10:29:34.960Z"
+    "observedAt": "2026-11-01T10:51:47.027Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCB ゴールドGOLD",
     "officialURL": "https://www.82card.co.jp/jcbcard/gold/",
-    "observedAt": "2026-10-01T10:29:34.159Z"
+    "observedAt": "2026-11-01T10:51:46.226Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCB ゴールドエクステージGOLD EXTAGE",
     "officialURL": "https://www.82card.co.jp/jcbcard/goldextage/",
-    "observedAt": "2026-10-01T10:29:34.560Z"
+    "observedAt": "2026-11-01T10:51:46.631Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCB プラチナPLATINUM",
     "officialURL": "https://www.82card.co.jp/jcbcard/platinum/",
-    "observedAt": "2026-10-01T10:29:38.791Z"
+    "observedAt": "2026-11-01T10:51:50.854Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCB リンダLINDA",
     "officialURL": "https://www.82card.co.jp/jcbcard/linda/",
-    "observedAt": "2026-10-01T10:29:35.360Z"
+    "observedAt": "2026-11-01T10:51:47.427Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCB 一般カードSTANDARD",
     "officialURL": "https://www.82card.co.jp/jcbcard/os/",
-    "observedAt": "2026-10-01T10:29:38.235Z"
+    "observedAt": "2026-11-01T10:51:50.233Z"
   },
   {
     "issuerID": "jcca-北陸",
     "issuerName": "株式会社北陸カード",
     "name": "JCB-QUOカードのご案内",
     "officialURL": "https://www.hokurikucard.jp/jcb/quocard.html",
-    "observedAt": "2026-10-01T10:29:21.025Z"
+    "observedAt": "2026-11-01T10:51:34.343Z"
   },
   {
     "issuerID": "jcca-もみじ",
     "issuerName": "もみじカード株式会社",
     "name": "JCBカード",
     "officialURL": "https://www.momiji-card.co.jp/jcbcard.html",
-    "observedAt": "2026-10-01T10:29:24.045Z"
-  },
-  {
-    "issuerID": "jcca-七十七",
-    "issuerName": "株式会社七十七カード",
-    "name": "JCBカード S",
-    "officialURL": "https://www.77card.co.jp/card_s/",
-    "observedAt": "2026-10-01T10:29:20.095Z"
+    "observedAt": "2026-11-01T10:51:36.128Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "JCBカード S – 個人のお客さま - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/jcb-card-s/",
-    "observedAt": "2026-10-01T10:29:27.358Z"
+    "observedAt": "2026-11-01T10:51:38.942Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "JCBカード/プラスANAマイレージクラブ(西日本シティ銀行・全日本空輸(株)提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/jcb/plus_ana_mileageclub/",
-    "observedAt": "2026-10-01T10:29:50.572Z"
+    "observedAt": "2026-11-01T10:52:04.469Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "JCBカードS",
     "officialURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_s.html",
-    "observedAt": "2026-10-01T10:29:59.066Z"
+    "observedAt": "2026-11-01T10:52:14.217Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCBカードSとJCBカードWの違い",
     "officialURL": "https://www.82card.co.jp/blog/blog_202608-5/jcb-card-s-vs-w.html",
-    "observedAt": "2026-10-01T10:29:31.485Z"
+    "observedAt": "2026-11-01T10:51:42.970Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCBカードSのクラブオフ完全攻略",
     "officialURL": "https://www.82card.co.jp/blog/blog_202608-2/jcb-card-s-club-off.html",
-    "observedAt": "2026-10-01T10:29:30.281Z"
+    "observedAt": "2026-11-01T10:51:41.715Z"
+  },
+  {
+    "issuerID": "jcca-八十二",
+    "issuerName": "株式会社八十二カード",
+    "name": "JCBカードSのデメリットも正直に",
+    "officialURL": "https://www.82card.co.jp/blog/blog_202610-2/jcb-card-s-demerits.html",
+    "observedAt": "2026-11-01T10:51:43.696Z"
+  },
+  {
+    "issuerID": "jcca-八十二",
+    "issuerName": "株式会社八十二カード",
+    "name": "JCBカードSの審査は厳しい?発行会社が話す「審査で確認すること」と通らない主な理由",
+    "officialURL": "https://www.82card.co.jp/blog/blog_202610-1/jcb-card-s-screening.html",
+    "observedAt": "2026-11-01T10:51:43.297Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCBカードが届いたらまずやること",
     "officialURL": "https://www.82card.co.jp/jcbcard/merit/usage/",
-    "observedAt": "2026-10-01T10:29:37.974Z"
+    "observedAt": "2026-11-01T10:51:49.831Z"
   },
   {
     "issuerID": "jcca-群銀",
     "issuerName": "株式会社群銀カード",
     "name": "JCBカードについて",
     "officialURL": "https://www.gungin-card.co.jp/card/jcb/",
-    "observedAt": "2026-10-01T10:29:20.123Z"
+    "observedAt": "2026-11-01T10:51:32.913Z"
   },
   {
     "issuerID": "jcca-群銀",
     "issuerName": "株式会社群銀カード",
     "name": "JCBカードについて",
     "officialURL": "https://www.gungin-card.co.jp/card/jcb/index.html",
-    "observedAt": "2026-10-01T10:29:20.508Z"
+    "observedAt": "2026-11-01T10:51:33.375Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "JCBカードのご案内",
     "officialURL": "https://www.yamagin-cs.co.jp/jcbcard/",
-    "observedAt": "2026-10-01T10:30:09.123Z"
+    "observedAt": "2026-11-01T10:52:28.184Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "JCBゴールド",
     "officialURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_gold.html",
-    "observedAt": "2026-10-01T10:29:58.674Z"
+    "observedAt": "2026-11-01T10:52:13.823Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "JCBゴールド",
     "officialURL": "https://www.yamagin-cs.co.jp/jcbcard/gold.html",
-    "observedAt": "2026-10-01T10:30:10.977Z"
+    "observedAt": "2026-11-01T10:52:30.039Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "JCBゴールド ザ・プレミアム – 個人のお客さま - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/jcb-gold-the-premium/",
-    "observedAt": "2026-10-01T10:29:27.764Z"
+    "observedAt": "2026-11-01T10:51:39.348Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "JCBゴールドカード",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/jcb/gold_card/",
-    "observedAt": "2026-10-01T10:29:49.356Z"
+    "observedAt": "2026-11-01T10:52:03.250Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "JCBゴールドカード - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/jcb-gold/",
-    "observedAt": "2026-10-01T10:29:28.182Z"
+    "observedAt": "2026-11-01T10:51:39.743Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "JCBゴールド法人カード",
     "officialURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_gold_corp.html",
-    "observedAt": "2026-10-01T10:29:58.289Z"
+    "observedAt": "2026-11-01T10:52:13.418Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "JCBザ・クラス – 個人のお客さま - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/jcb-the-class/",
-    "observedAt": "2026-10-01T10:29:29.382Z"
+    "observedAt": "2026-11-01T10:51:40.921Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCBスマートフォン保険",
     "officialURL": "https://www.82card.co.jp/jcbcard/merit/sp-insurance/",
-    "observedAt": "2026-10-01T10:29:37.117Z"
+    "observedAt": "2026-11-01T10:51:49.029Z"
   },
   {
     "issuerID": "jcca-スルガ",
     "issuerName": "スルガカード株式会社",
     "name": "JCBについて",
     "officialURL": "https://www.suruga-card.co.jp/card/jcb/jcbindex.html",
-    "observedAt": "2026-10-01T10:30:00.171Z"
+    "observedAt": "2026-11-01T10:52:14.514Z"
   },
   {
     "issuerID": "jcca-きらぼしjcb",
     "issuerName": "きらぼしＪＣＢ株式会社",
     "name": "JCBの新しいスタンダード、JCBカード S │ きらぼしJCB株式会社",
     "officialURL": "https://www.kiraboshijcb.co.jp/card-s/",
-    "observedAt": "2026-10-01T10:29:42.227Z"
+    "observedAt": "2026-11-01T10:51:55.101Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "JCBプラチナ",
     "officialURL": "https://www.yamagin-cs.co.jp/jcbcard/platinum.html",
-    "observedAt": "2026-10-01T10:30:11.167Z"
+    "observedAt": "2026-11-01T10:52:30.532Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "JCBプラチナカード - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/jcb-platinum/",
-    "observedAt": "2026-10-01T10:29:28.577Z"
+    "observedAt": "2026-11-01T10:51:40.142Z"
   },
   {
     "issuerID": "jcca-北国サ-ビス",
     "issuerName": "株式会社北国クレジットサービス",
     "name": "JCBプラチナ法人カード",
     "officialURL": "https://www.hokkokucard.co.jp/jcb/cards/jcb_platinum/",
-    "observedAt": "2026-10-01T10:29:42.999Z"
+    "observedAt": "2026-11-01T10:51:56.898Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "JCBポイントプログラム",
     "officialURL": "https://www.82card.co.jp/jcbcard/merit/point/",
-    "observedAt": "2026-10-01T10:29:36.309Z"
+    "observedAt": "2026-11-01T10:51:48.231Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "JCB一般カード",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/jcb/standard_card/",
-    "observedAt": "2026-10-01T10:29:50.958Z"
+    "observedAt": "2026-11-01T10:52:04.863Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "JCB一般カード",
     "officialURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_general.html",
-    "observedAt": "2026-10-01T10:29:57.867Z"
+    "observedAt": "2026-11-01T10:52:13.028Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "JCB一般カード - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/jcb-standard/",
-    "observedAt": "2026-10-01T10:29:29.014Z"
+    "observedAt": "2026-11-01T10:51:40.548Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "JCB一般法人カード",
     "officialURL": "https://www.shinkincard.co.jp/application/card/jcb/jcb_general_corp.html",
-    "observedAt": "2026-10-01T10:29:57.463Z"
+    "observedAt": "2026-11-01T10:52:12.615Z"
   },
   {
     "issuerID": "jcca-京銀サ-ビス",
     "issuerName": "京銀カードサービス株式会社",
     "name": "JCB京都カードのお申込み方法・流れ",
     "officialURL": "https://www.kyotojcb.jp/apply/",
-    "observedAt": "2026-10-01T10:29:22.914Z"
+    "observedAt": "2026-11-01T10:51:34.234Z"
   },
   {
     "issuerID": "jcca-大分",
     "issuerName": "株式会社大分カード",
     "name": "JCB大分カード",
     "officialURL": "https://www.oitacard.co.jp/cards-lineup/",
-    "observedAt": "2026-10-01T10:29:55.815Z"
+    "observedAt": "2026-11-01T10:52:08.836Z"
   },
   {
     "issuerID": "jcca-静銀",
     "issuerName": "静銀カード株式会社",
     "name": "JCB法人カード",
     "officialURL": "https://shizugin-card.shizuokabank.co.jp/card/cardlist/jcb/",
-    "observedAt": "2026-10-01T10:29:27.204Z"
+    "observedAt": "2026-11-01T10:51:38.978Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "Jizile(ジザイル)※リボ払い専用カード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/dc_jizile/index.html",
-    "observedAt": "2026-10-01T10:29:47.000Z"
+    "observedAt": "2026-11-01T10:51:59.879Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "JLPGA CLUBカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/lpga.html",
-    "observedAt": "2026-10-01T10:30:31.078Z"
+    "observedAt": "2026-11-01T10:52:47.819Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "JQ CARD特典(JQ CARD機能付きクレジットカード利用特典)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/jqcard/sugoca/",
-    "observedAt": "2026-10-01T10:30:26.392Z"
+    "observedAt": "2026-11-01T10:52:40.636Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "JQ CARD特典(SUGOCA機能付きクレジットカード利用特典)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/jqcard/jqcard_benefit/",
-    "observedAt": "2026-10-01T10:30:25.595Z"
+    "observedAt": "2026-11-01T10:52:39.851Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "JRA CARD(一般カード)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/jra/index.html",
-    "observedAt": "2026-10-01T10:29:56.193Z"
+    "observedAt": "2026-11-01T10:52:09.041Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "KIPS UCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/kips.html",
-    "observedAt": "2026-10-01T10:30:30.439Z"
+    "observedAt": "2026-11-01T10:52:47.730Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "KIPSカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/kips_d/index.html",
-    "observedAt": "2026-10-01T10:29:57.421Z"
+    "observedAt": "2026-11-01T10:52:09.843Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "KIPSカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/kips_s/index.html",
-    "observedAt": "2026-10-01T10:29:57.800Z"
+    "observedAt": "2026-11-01T10:52:10.235Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "KIPSカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/kips_t/index.html",
-    "observedAt": "2026-10-01T10:29:58.234Z"
+    "observedAt": "2026-11-01T10:52:10.633Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "KIPSカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/kips/index.html",
-    "observedAt": "2026-10-01T10:29:58.614Z"
+    "observedAt": "2026-11-01T10:52:11.042Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "kv_cards",
     "officialURL": "https://www.tohoku-jcb.co.jp/kv_cards/",
-    "observedAt": "2026-10-01T10:30:25.313Z"
+    "observedAt": "2026-11-01T10:52:33.229Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "kv_cards_vertical",
     "officialURL": "https://www.tohoku-jcb.co.jp/kv_cards_vertical/",
-    "observedAt": "2026-10-01T10:30:24.419Z"
+    "observedAt": "2026-11-01T10:52:32.824Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "KYOGIN CARD クラシックカード(佐賀共栄銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/saga_kyoei_bank/kyogin/classic_card/",
-    "observedAt": "2026-10-01T10:30:02.993Z"
+    "observedAt": "2026-11-01T10:52:17.000Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "KYOGIN CARD ゴールドカード(佐賀共栄銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/saga_kyoei_bank/kyogin/gold_card/",
-    "observedAt": "2026-10-01T10:30:03.387Z"
+    "observedAt": "2026-11-01T10:52:17.397Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "KYUSHU CARD ゴールド(MDC)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/mufg/prestige_card/",
-    "observedAt": "2026-10-01T10:29:52.962Z"
+    "observedAt": "2026-11-01T10:52:06.869Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "Mastercard ゴールド(九州カードオリジナルゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/mastercard/gold/",
-    "observedAt": "2026-10-01T10:29:51.766Z"
+    "observedAt": "2026-11-01T10:52:05.682Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "Mastercard スタンダード(九州カードオリジナルクレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/mastercard/standard/",
-    "observedAt": "2026-10-01T10:29:52.191Z"
+    "observedAt": "2026-11-01T10:52:06.077Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "Mastercardマークの付いたカード",
     "officialURL": "https://www2.uccard.co.jp/mastercard_pop.html",
-    "observedAt": "2026-10-01T10:30:53.691Z"
+    "observedAt": "2026-11-01T10:53:10.998Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "Mastercard認証サービス規約",
     "officialURL": "https://www2.uccard.co.jp/uc/services/vbv_mastercard.html",
-    "observedAt": "2026-10-01T10:30:58.429Z"
+    "observedAt": "2026-11-01T10:53:16.592Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "MEITETSU μ’s Card(名鉄ミューズカード)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/meitetsu_ms/index.html",
-    "observedAt": "2026-10-01T10:30:03.406Z"
+    "observedAt": "2026-11-01T10:52:15.850Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "MEITETSU μ’s Card(名鉄ミューズカード)ゴールド",
     "officialURL": "https://www.cr.mufg.jp/apply/card/meitetsu_ms_goldprestige/index.html",
-    "observedAt": "2026-10-01T10:30:03.030Z"
+    "observedAt": "2026-11-01T10:52:15.459Z"
   },
   {
     "issuerID": "jcca-okbペイメントプラット",
     "issuerName": "株式会社ＯＫＢペイメントプラット",
     "name": "MEMBER STOREクレジットカード加盟店",
     "officialURL": "https://www.okbpp.jp/kameiten/credit.html",
-    "observedAt": "2026-10-01T10:29:51.248Z"
+    "observedAt": "2026-11-01T10:52:08.668Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "MileagePlus MUFGカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mileageplus/index.html",
-    "observedAt": "2026-10-01T10:30:04.219Z"
+    "observedAt": "2026-11-01T10:52:16.687Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "MileagePlus MUFGカード ゴールドプレステージ(Visa)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mileageplus_goldprestige/index.html",
-    "observedAt": "2026-10-01T10:30:03.818Z"
+    "observedAt": "2026-11-01T10:52:16.241Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "MileagePlus UCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/mileageplus.html",
-    "observedAt": "2026-10-01T10:30:33.225Z"
+    "observedAt": "2026-11-01T10:52:50.632Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "MileagePlus UCゴールドカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/mileageplus_gold.html",
-    "observedAt": "2026-10-01T10:30:32.647Z"
+    "observedAt": "2026-11-01T10:52:50.040Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "MileagePlusMUFGカード・ゴールドプレステージ・アメリカン・エキスプレス®・カード",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/mileageplus_goldprestige/index.html",
-    "observedAt": "2026-10-01T10:29:38.673Z"
+    "observedAt": "2026-11-01T10:51:50.429Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "Miles & More MUFG CARD Platinum American Express® Card",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/miles_more/index.html",
-    "observedAt": "2026-10-01T10:29:38.988Z"
+    "observedAt": "2026-11-01T10:51:51.126Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "Miles & More MUFGカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/miles_more/index.html",
-    "observedAt": "2026-10-01T10:30:04.648Z"
+    "observedAt": "2026-11-01T10:52:17.060Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "MINI Card",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mini/index.html",
-    "observedAt": "2026-10-01T10:30:05.448Z"
+    "observedAt": "2026-11-01T10:52:17.864Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "My JCB",
     "officialURL": "https://www.82card.co.jp/jcbcard/merit/myjcb/",
-    "observedAt": "2026-10-01T10:29:35.760Z"
+    "observedAt": "2026-11-01T10:51:47.835Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビット-Visaがご利用いただけない加盟店",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/answer/0008/",
-    "observedAt": "2026-10-01T10:31:38.556Z"
+    "observedAt": "2026-11-01T10:53:52.727Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカード(JCBデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/jcb/ncb_debit_jcb/",
-    "observedAt": "2026-10-01T10:29:49.772Z"
+    "observedAt": "2026-11-01T10:52:03.661Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカード(Visaデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/",
-    "observedAt": "2026-10-01T10:30:07.801Z"
+    "observedAt": "2026-11-01T10:52:21.779Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカードお得&便利なサービス(VISAデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/value_convenience/",
-    "observedAt": "2026-10-01T10:30:10.207Z"
+    "observedAt": "2026-11-01T10:52:24.193Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカードが届いたら(VISAデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/card_arrives/",
-    "observedAt": "2026-10-01T10:30:08.999Z"
+    "observedAt": "2026-11-01T10:52:22.980Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカードご利用上の注意(VISAデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/notes/",
-    "observedAt": "2026-10-01T10:30:09.798Z"
+    "observedAt": "2026-11-01T10:52:23.781Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカードのご利用方法(Visaデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/how_to_use/",
-    "observedAt": "2026-10-01T10:30:09.405Z"
+    "observedAt": "2026-11-01T10:52:23.386Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカード商品概要(JCBデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/jcb/ncb_debit_jcb/outline/",
-    "observedAt": "2026-10-01T10:29:50.156Z"
+    "observedAt": "2026-11-01T10:52:04.081Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "NCBデビットカード商品概要(Visaデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/about_ncb_debit_visa/",
-    "observedAt": "2026-10-01T10:30:08.619Z"
+    "observedAt": "2026-11-01T10:52:22.592Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "nimocaカードの氏名変更のお手続き",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/answer/0011/",
-    "observedAt": "2026-10-01T10:31:39.748Z"
+    "observedAt": "2026-11-01T10:53:53.933Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "nimocaカードの障害時のお手続き",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/answer/0012/",
-    "observedAt": "2026-10-01T10:31:40.154Z"
+    "observedAt": "2026-11-01T10:53:54.325Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "nimocaカード再発行後のお手続き",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/answer/0010/",
-    "observedAt": "2026-10-01T10:31:39.355Z"
+    "observedAt": "2026-11-01T10:53:53.526Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "nimocaカード紛失・盗難時のお手続き",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/answer/0009/",
-    "observedAt": "2026-10-01T10:31:38.948Z"
+    "observedAt": "2026-11-01T10:53:53.133Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "nimoca機能付きクレジットカードの定期券発売所",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/nimoca_kenbai/",
-    "observedAt": "2026-10-01T10:31:32.565Z"
+    "observedAt": "2026-11-01T10:53:46.729Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "SBJ VISAカード[駐在者様用](SBJ銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/sbj_bank/visa_resident/",
-    "observedAt": "2026-10-01T10:30:05.409Z"
+    "observedAt": "2026-11-01T10:52:19.400Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "SBJ VISAクラシックカード(SBJ銀行提携カード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/sbj_bank/visa/classic_card/",
-    "observedAt": "2026-10-01T10:30:05.806Z"
+    "observedAt": "2026-11-01T10:52:19.810Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "SBJ VISAゴールドカード(SBJ銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/sbj_bank/visa/gold_card/",
-    "observedAt": "2026-10-01T10:30:06.214Z"
+    "observedAt": "2026-11-01T10:52:20.202Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ShiseidoカードEX",
     "officialURL": "https://www.cr.mufg.jp/apply/card/shiseido/index.html",
-    "observedAt": "2026-10-01T10:30:24.623Z"
+    "observedAt": "2026-11-01T10:52:37.123Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "SKYPASS MUFGカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/skypass/index.html",
-    "observedAt": "2026-10-01T10:30:25.427Z"
+    "observedAt": "2026-11-01T10:52:37.918Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "SKYPASS MUFGカード(ゴールド)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/skypass_gold/index.html",
-    "observedAt": "2026-10-01T10:30:25.026Z"
+    "observedAt": "2026-11-01T10:52:37.512Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "SKYPASS MUFGカード/SKYPASS MUFG CARD Platinum American Express® Card ラインナップ",
     "officialURL": "https://www.cr.mufg.jp/apply/card/skypass/lineup/index.html",
-    "observedAt": "2026-10-01T10:30:25.816Z"
+    "observedAt": "2026-11-01T10:52:38.300Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "taiyo patona nimocaクラシックカード(宮崎太陽銀行・(株)ニモカ提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/miyazaki_taiyo-nimoca/patona_nimoca/classic_card/",
-    "observedAt": "2026-10-01T10:30:18.802Z"
+    "observedAt": "2026-11-01T10:52:33.065Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "taiyo patona nimocaゴールドカード(宮崎太陽銀行・(株)ニモカ提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/miyazaki_taiyo-nimoca/patona_nimoca/gold_card/",
-    "observedAt": "2026-10-01T10:30:19.203Z"
+    "observedAt": "2026-11-01T10:52:33.455Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "taiyo patona クラシックカード(宮崎太陽銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/miyazaki_taiyo/patona/classic_card/",
-    "observedAt": "2026-10-01T10:29:55.371Z"
+    "observedAt": "2026-11-01T10:52:09.325Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "taiyo patona ゴールドカード(宮崎太陽銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/miyazaki_taiyo/patona/gold_card/",
-    "observedAt": "2026-10-01T10:29:55.779Z"
+    "observedAt": "2026-11-01T10:52:09.726Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "TEPCOカード(ゴールド)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tepco_gold/index.html",
-    "observedAt": "2026-10-01T10:30:28.639Z"
+    "observedAt": "2026-11-01T10:52:41.126Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "TEPCOカード(一般)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tepco/index.html",
-    "observedAt": "2026-10-01T10:30:29.449Z"
+    "observedAt": "2026-11-01T10:52:41.924Z"
   },
   {
     "issuerID": "jcca-東京海上日動ファイナンス",
     "issuerName": "東京海上日動ファイナンス株式会社",
     "name": "TOKIO MARINE NICHIDO CARD",
     "officialURL": "https://www.tmarinecard.co.jp/card/index.html",
-    "observedAt": "2026-10-01T10:30:02.328Z"
+    "observedAt": "2026-11-01T10:52:19.593Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "Tokyo Metro To Me CARD",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/metro.html",
-    "observedAt": "2026-10-01T10:30:32.078Z"
+    "observedAt": "2026-11-01T10:52:48.951Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "Tokyo Metro To Me CARD PASMO ゴールド",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tokyometro_gold_pasmo/index.html",
-    "observedAt": "2026-10-01T10:30:29.823Z"
+    "observedAt": "2026-11-01T10:52:42.318Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "Tokyo Metro To Me CARD Prime",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tokyometro_prime/index.html",
-    "observedAt": "2026-10-01T10:30:31.062Z"
+    "observedAt": "2026-11-01T10:52:43.514Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "Tokyo Metro To Me CARD Prime PASMO",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tokyometro_prime_pasmo/index.html",
-    "observedAt": "2026-10-01T10:30:30.837Z"
+    "observedAt": "2026-11-01T10:52:43.107Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "Tokyo Metro To Me CARD UC",
     "officialURL": "https://www2.uccard.co.jp/cs/card/metro/autocharge.html",
-    "observedAt": "2026-10-01T10:30:40.441Z"
+    "observedAt": "2026-11-01T10:52:57.539Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "Tokyo Metro To Me CARD ゴールド",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tokyometro_gold/index.html",
-    "observedAt": "2026-10-01T10:30:30.258Z"
+    "observedAt": "2026-11-01T10:52:42.710Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "Tokyo Metro To Me CARDUCゴールドカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/metro_gold.html",
-    "observedAt": "2026-10-01T10:30:31.164Z"
+    "observedAt": "2026-11-01T10:52:48.861Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "UC ETCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/etc.html",
-    "observedAt": "2026-10-01T10:30:24.510Z"
+    "observedAt": "2026-11-01T10:52:42.043Z"
   },
   {
     "issuerID": "jcca-もみじ",
     "issuerName": "もみじカード株式会社",
     "name": "UCカード",
     "officialURL": "https://www.momiji-card.co.jp/uccard.html",
-    "observedAt": "2026-10-01T10:29:24.353Z"
+    "observedAt": "2026-11-01T10:51:36.541Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "UCカード ヤマダポイントへの交換",
     "officialURL": "https://www2.uccard.co.jp/cs/card/yamada/yamada_point.html",
-    "observedAt": "2026-10-01T10:30:43.179Z"
+    "observedAt": "2026-11-01T10:53:00.745Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "UCカード会員規約",
     "officialURL": "https://www2.uccard.co.jp/uc/uccard/agreement/",
-    "observedAt": "2026-10-01T10:30:58.944Z"
+    "observedAt": "2026-11-01T10:53:16.676Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "UCプラチナカード",
     "officialURL": "https://www2.uccard.co.jp/card/lineup/uc_platinum.html",
-    "observedAt": "2026-10-01T10:30:15.941Z"
+    "observedAt": "2026-11-01T10:52:33.319Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "UnionPay(銀聯)カード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/unionpay/index.html",
-    "observedAt": "2026-10-01T10:30:31.865Z"
+    "observedAt": "2026-11-01T10:52:44.314Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "UnionPay(銀聯)カード",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/add/unionpay/index.html",
-    "observedAt": "2026-10-01T10:31:27.968Z"
+    "observedAt": "2026-11-01T10:53:40.596Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/m_viaso/index.html",
-    "observedAt": "2026-10-01T10:29:59.012Z"
+    "observedAt": "2026-11-01T10:52:11.452Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(mofusand×サンリオキャラクターズ デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_mofusand_sanrio/index.html",
-    "observedAt": "2026-10-01T10:30:37.887Z"
+    "observedAt": "2026-11-01T10:52:50.326Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(TVアニメ「ぼっち・ざ・ろっく!」デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_bocchi.rocks/index.html",
-    "observedAt": "2026-10-01T10:30:33.170Z"
+    "observedAt": "2026-11-01T10:52:45.512Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(アズールレーンデザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_azurlane/index.html",
-    "observedAt": "2026-10-01T10:30:32.666Z"
+    "observedAt": "2026-11-01T10:52:45.123Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(ぐでたま デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_gudetama/index.html",
-    "observedAt": "2026-10-01T10:30:35.467Z"
+    "observedAt": "2026-11-01T10:52:47.928Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(くまモンデザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_kumamon/index.html",
-    "observedAt": "2026-10-01T10:30:36.264Z"
+    "observedAt": "2026-11-01T10:52:48.719Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(クロミ デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_kuromi/index.html",
-    "observedAt": "2026-10-01T10:30:36.671Z"
+    "observedAt": "2026-11-01T10:52:49.121Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(けいおん!デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_k-on/index.html",
-    "observedAt": "2026-10-01T10:30:35.867Z"
+    "observedAt": "2026-11-01T10:52:48.323Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(コジコジデザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_cojicoji/index.html",
-    "observedAt": "2026-10-01T10:30:33.872Z"
+    "observedAt": "2026-11-01T10:52:46.321Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(ファイナルファンタジーXIVデザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_ffxiv/index.html",
-    "observedAt": "2026-10-01T10:30:35.074Z"
+    "observedAt": "2026-11-01T10:52:47.529Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(ファイナルファンタジーXIV天野喜孝ロゴ デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_ffxiv_2/index.html",
-    "observedAt": "2026-10-01T10:30:34.670Z"
+    "observedAt": "2026-11-01T10:52:47.126Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(ふなっしーデザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_274/index.html",
-    "observedAt": "2026-10-01T10:30:32.274Z"
+    "observedAt": "2026-11-01T10:52:44.721Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(マイメロディ デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_mm/index.html",
-    "observedAt": "2026-10-01T10:30:37.466Z"
+    "observedAt": "2026-11-01T10:52:49.940Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(ラブライブ!デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_ll/index.html",
-    "observedAt": "2026-10-01T10:30:37.061Z"
+    "observedAt": "2026-11-01T10:52:49.529Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカード(浦和レッズデザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_reds/index.html",
-    "observedAt": "2026-10-01T10:30:38.270Z"
+    "observedAt": "2026-11-01T10:52:50.723Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "VIASOカードご入会特典",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso/attention_06.html",
-    "observedAt": "2026-10-01T10:30:39.066Z"
-  },
-  {
-    "issuerID": "jcca-七十七",
-    "issuerName": "株式会社七十七カード",
-    "name": "Visa クラシックカード",
-    "officialURL": "https://www.77card.co.jp/admission/cardtype_visamaster/visa01.html",
-    "observedAt": "2026-10-01T10:29:19.572Z"
+    "observedAt": "2026-11-01T10:52:51.521Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "Visa/Mastercardのご案内",
     "officialURL": "https://www.yamagin-cs.co.jp/visamastercard/",
-    "observedAt": "2026-10-01T10:30:12.049Z"
+    "observedAt": "2026-11-01T10:52:31.256Z"
   },
   {
     "issuerID": "jcca-四国しんきん",
     "issuerName": "株式会社四国しんきんカード",
     "name": "VISAカード 新規入会申し込み",
     "officialURL": "https://www.shikokuvisa.co.jp/cardlineup/",
-    "observedAt": "2026-10-01T10:29:54.439Z"
+    "observedAt": "2026-11-01T10:52:11.666Z"
   },
   {
     "issuerID": "jcca-群銀",
     "issuerName": "株式会社群銀カード",
     "name": "VISAカードについて",
     "officialURL": "https://www.gungin-card.co.jp/card/visa/",
-    "observedAt": "2026-10-01T10:29:20.902Z"
+    "observedAt": "2026-11-01T10:51:33.826Z"
   },
   {
     "issuerID": "jcca-群銀",
     "issuerName": "株式会社群銀カード",
     "name": "VISAカードについて",
     "officialURL": "https://www.gungin-card.co.jp/card/visa/index.html",
-    "observedAt": "2026-10-01T10:29:21.302Z"
+    "observedAt": "2026-11-01T10:51:34.280Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "VISAクラシックカード(九州カードオリジナルクレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card/",
-    "observedAt": "2026-10-01T10:30:07.410Z"
+    "observedAt": "2026-11-01T10:52:21.413Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "VISAクラシックカードA(九州カードオリジナルクレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card_a/",
-    "observedAt": "2026-10-01T10:30:06.615Z"
+    "observedAt": "2026-11-01T10:52:20.612Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "VISAゴールドカード(九州カードオリジナルゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/gold_card/",
-    "observedAt": "2026-10-01T10:30:12.213Z"
+    "observedAt": "2026-11-01T10:52:26.205Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "VISAデビューカード",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-visa/visa-debut/",
-    "observedAt": "2026-10-01T10:30:00.291Z"
+    "observedAt": "2026-11-01T10:52:17.905Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "VISAデビューカード(九州カードオリジナルクレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debut_card/",
-    "observedAt": "2026-10-01T10:30:11.016Z"
+    "observedAt": "2026-11-01T10:52:25.013Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "Visaネオステージプラス",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_neostageplus.html",
-    "observedAt": "2026-10-01T10:30:02.691Z"
+    "observedAt": "2026-11-01T10:52:17.923Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "Visaのタッチ決済が早くて便利!メリットや使い方を徹底解説",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20210402/",
-    "observedAt": "2026-10-01T10:31:05.323Z"
+    "observedAt": "2026-11-01T10:53:19.517Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "VISAプラチナカード (九州カードオリジナルプラチナカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/platinum_card/",
-    "observedAt": "2026-10-01T10:30:12.621Z"
+    "observedAt": "2026-11-01T10:52:26.623Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "VISAブランドのクレジットカードの特徴",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/features/",
-    "observedAt": "2026-10-01T10:30:24.394Z"
+    "observedAt": "2026-11-01T10:52:38.635Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "VISA認証サービス(VISAデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/value_convenience/certification_service/",
-    "observedAt": "2026-10-01T10:30:10.601Z"
+    "observedAt": "2026-11-01T10:52:24.582Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "WAZZE JQ SUGOCA クラシックカード(南日本銀行・JR九州提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/minaminihon-jr_kyushu/wazze_jq_sugoca/classic_card/",
-    "observedAt": "2026-10-01T10:30:18.005Z"
+    "observedAt": "2026-11-01T10:52:32.271Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "WAZZE JQ SUGOCA ゴールドカード(南日本銀行・JR九州提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/minaminihon-jr_kyushu/wazze_jq_sugoca/gold_card/",
-    "observedAt": "2026-10-01T10:30:18.403Z"
+    "observedAt": "2026-11-01T10:52:32.665Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "WWFカード(ゴールド)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/wwf_gold.html",
-    "observedAt": "2026-10-01T10:30:37.566Z"
+    "observedAt": "2026-11-01T10:52:54.749Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "WWFカード(セレクト)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/wwf_select.html",
-    "observedAt": "2026-10-01T10:30:38.174Z"
+    "observedAt": "2026-11-01T10:52:55.361Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "WWFカード(一般)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/wwf.html",
-    "observedAt": "2026-10-01T10:30:38.772Z"
-  },
-  {
-    "issuerID": "jcca-秋田国際",
-    "issuerName": "株式会社秋田国際カード",
-    "name": "あきぎんカード iD",
-    "officialURL": "https://www3.vpass.ne.jp/mem/addcard/id-credit_top.jsp?cc=036",
-    "observedAt": "2026-10-01T10:30:38.491Z"
+    "observedAt": "2026-11-01T10:52:55.952Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "アシアナUCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/asiana.html",
-    "observedAt": "2026-10-01T10:30:22.453Z"
+    "observedAt": "2026-11-01T10:52:40.133Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "アシアナUCゴールドカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/asiana_gold.html",
-    "observedAt": "2026-10-01T10:30:21.856Z"
+    "observedAt": "2026-11-01T10:52:40.044Z"
   },
   {
     "issuerID": "jcca-四国しんきん",
     "issuerName": "株式会社四国しんきんカード",
     "name": "あなぶきホテルズVISAカード",
     "officialURL": "https://www.shikokuvisa.co.jp/cardlineup/anabuki.html",
-    "observedAt": "2026-10-01T10:29:54.953Z"
+    "observedAt": "2026-11-01T10:52:12.455Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "アビスパ福岡カード(アビスパ福岡提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/standard/avispa/",
-    "observedAt": "2026-10-01T10:30:14.412Z"
-  },
-  {
-    "issuerID": "jcca-いわぎんサ-ビス",
-    "issuerName": "株式会社いわぎんクレジットサービス",
-    "name": "いわぎんVISAカード",
-    "officialURL": "https://www3.vpass.ne.jp/nyukai/index.jsp?cc=031",
-    "observedAt": "2026-10-01T10:31:24.027Z"
-  },
-  {
-    "issuerID": "jcca-いわぎんサ-ビス",
-    "issuerName": "株式会社いわぎんクレジットサービス",
-    "name": "いわぎんVISAカード iD",
-    "officialURL": "https://www3.vpass.ne.jp/mem/addcard/id-credit_top.jsp?cc=031",
-    "observedAt": "2026-10-01T10:30:37.162Z"
+    "observedAt": "2026-11-01T10:52:28.664Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "インボイス制度の開始に伴うご利用明細書の変更について◆MUFGカード(三菱UFJカード含む)会員さま",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/invoice/index.html",
-    "observedAt": "2026-10-01T10:31:12.741Z"
+    "observedAt": "2026-11-01T10:53:25.378Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "エメラルドSTACIA PiTaPaカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/emerald_stacia/index.html",
-    "observedAt": "2026-10-01T10:29:47.787Z"
+    "observedAt": "2026-11-01T10:52:00.554Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "オーストラリアのクレジットカード事情は?旅行者の体験談も紹介",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/25051/index.html",
+    "observedAt": "2026-11-01T10:54:59.201Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワン JQ SUGOCA ゴールドカード(西日本シティ銀行・JR九州提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/nc_bank-jr_kyushu/all_in_one_jq_sugoca/gold_card/",
-    "observedAt": "2026-10-01T10:30:20.809Z"
+    "observedAt": "2026-11-01T10:52:35.069Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワン JQ SUGOCA ベーシックカード(西日本シティ銀行・JR九州提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/nc_bank-jr_kyushu/all_in_one_jq_sugoca/basic_card/",
-    "observedAt": "2026-10-01T10:30:20.402Z"
+    "observedAt": "2026-11-01T10:52:34.678Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワン nimoca ゴールドカード(西日本シティ銀行・(株)ニモカ提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/nc_bank-jr_kyushu/all_in_one_nimoca/gold_card/",
-    "observedAt": "2026-10-01T10:30:21.607Z"
+    "observedAt": "2026-11-01T10:52:35.858Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワン nimoca ベーシックカード(西日本シティ銀行・(株)ニモカ提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/nc_bank-jr_kyushu/all_in_one_nimoca/basic_card/",
-    "observedAt": "2026-10-01T10:30:21.202Z"
+    "observedAt": "2026-11-01T10:52:35.475Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワンJCBカード(西日本シティ銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/jcb/bank/nc_bank/all_in_one/basic_card/",
-    "observedAt": "2026-10-01T10:29:48.963Z"
+    "observedAt": "2026-11-01T10:52:02.848Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワンキャンパスカード(西日本シティ銀行提携学生専用クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/all_in_one/campus_card/",
-    "observedAt": "2026-10-01T10:29:58.185Z"
+    "observedAt": "2026-11-01T10:52:12.167Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワンゴールドカード(西日本シティ銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/all_in_one/gold_card/",
-    "observedAt": "2026-10-01T10:29:58.578Z"
+    "observedAt": "2026-11-01T10:52:12.567Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワンベーシックカード(西日本シティ銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/all_in_one/basic_card/",
-    "observedAt": "2026-10-01T10:29:57.777Z"
+    "observedAt": "2026-11-01T10:52:11.766Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オールインワンレディースカード(西日本シティ銀行提携女性専用クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/all_in_one/ladies_card/",
-    "observedAt": "2026-10-01T10:29:58.989Z"
+    "observedAt": "2026-11-01T10:52:12.985Z"
   },
   {
     "issuerID": "jcca-おきぎんジェ-シ-ビ",
     "issuerName": "株式会社おきぎんジェーシービー",
     "name": "おきぎんJCBカードS",
     "officialURL": "https://www.okigin-jcb.co.jp/personal/1591934260/card_s/",
-    "observedAt": "2026-10-01T10:29:52.371Z"
+    "observedAt": "2026-11-01T10:52:08.849Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "オンラインでのお支払口座設定の詳細(クレジットカード入会手続き)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/online_account/",
-    "observedAt": "2026-10-01T10:31:33.357Z"
+    "observedAt": "2026-11-01T10:53:47.545Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "オンラインで完結!今すぐカードを申し込む",
     "officialURL": "https://www.shinkincard.co.jp/lp/jcb/shinkincard_s/",
-    "observedAt": "2026-10-01T10:30:04.047Z"
+    "observedAt": "2026-11-01T10:52:19.272Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "オンラインで完結!今すぐカードを申し込む",
     "officialURL": "https://www.shinkincard.co.jp/lp/visa/shinkincard_smile/",
-    "observedAt": "2026-10-01T10:30:05.283Z"
+    "observedAt": "2026-11-01T10:52:20.741Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "お支払日に間に合わなかったとき-MDCマーク(旧MUFGカード)が入ったカード-",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/support/procedure/index.html",
-    "observedAt": "2026-10-01T10:32:00.385Z"
+    "observedAt": "2026-11-01T10:54:13.542Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "お持ちのカードに掲載されているロゴマークをご選択ください。",
     "officialURL": "https://www.cr.mufg.jp/apply/card/3dsecure/select/index.html",
-    "observedAt": "2026-10-01T10:29:43.374Z"
+    "observedAt": "2026-11-01T10:51:55.410Z"
   },
   {
     "issuerID": "jcca-東京海上日動ファイナンス",
     "issuerName": "東京海上日動ファイナンス株式会社",
     "name": "お問い合わせ TOKIO MARINE NICHIDO CARD",
     "officialURL": "https://www.tmarinecard.co.jp/card/contact/index.html",
-    "observedAt": "2026-10-01T10:30:01.660Z"
+    "observedAt": "2026-11-01T10:52:18.440Z"
   },
   {
     "issuerID": "jcca-静銀",
     "issuerName": "静銀カード株式会社",
     "name": "カード・お支払いの種類",
     "officialURL": "https://shizugin-card.shizuokabank.co.jp/merchant/cardtype/",
-    "observedAt": "2026-10-01T10:29:28.404Z"
-  },
-  {
-    "issuerID": "jcca-アメリカン-エキスプレス-インタ-ナショナル-inc",
-    "issuerName": "アメリカン・エキスプレス・インターナショナル，Inc．",
-    "name": "カードお申し込みからお届けまでの流れ",
-    "officialURL": "https://www.americanexpress.com/ja-jp/support/guide/application-delivery-flow/index.html?intlink=jp-ja-hp-product4-pr-default-ordercardflow-20260730",
-    "observedAt": "2026-10-01T10:29:31.276Z"
+    "observedAt": "2026-11-01T10:51:40.178Z"
   },
   {
     "issuerID": "jcca-愛媛ジェ-シ-ビ",
     "issuerName": "株式会社愛媛ジェーシービー",
     "name": "カードお申込み(個人カード)",
     "officialURL": "https://www.ehime-jcb.co.jp/card/",
-    "observedAt": "2026-10-01T10:29:39.743Z"
-  },
-  {
-    "issuerID": "jcca-東北しんきん",
-    "issuerName": "株式会社東北しんきんカード",
-    "name": "カードお届け内容の照会・変更",
-    "officialURL": "https://www3.vpass.ne.jp/mem/update/card_henkou.jsp?cc=017",
-    "observedAt": "2026-10-01T10:31:10.346Z"
-  },
-  {
-    "issuerID": "jcca-いわぎんサ-ビス",
-    "issuerName": "株式会社いわぎんクレジットサービス",
-    "name": "カードお届け内容の照会・変更",
-    "officialURL": "https://www3.vpass.ne.jp/mem/update/card_henkou.jsp?cc=031",
-    "observedAt": "2026-10-01T10:31:13.606Z"
-  },
-  {
-    "issuerID": "jcca-秋田国際",
-    "issuerName": "株式会社秋田国際カード",
-    "name": "カードお届け内容の照会・変更",
-    "officialURL": "https://www3.vpass.ne.jp/mem/update/card_henkou.jsp?cc=036",
-    "observedAt": "2026-10-01T10:31:14.876Z"
+    "observedAt": "2026-11-01T10:51:52.503Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カードが利用できない",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/contact/nonavailable/index.html",
-    "observedAt": "2026-10-01T10:31:09.541Z"
+    "observedAt": "2026-11-01T10:53:22.187Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "カードが利用できない原因と対処方法",
     "officialURL": "https://www2.uccard.co.jp/cs/guide/card-riyou/",
-    "observedAt": "2026-10-01T10:30:44.669Z"
+    "observedAt": "2026-11-01T10:53:01.998Z"
   },
   {
     "issuerID": "jcca-むさしの",
     "issuerName": "むさしのカード株式会社",
     "name": "カードサービスのご案内",
     "officialURL": "https://www.musashino-card.co.jp/card_service/index.html",
-    "observedAt": "2026-10-01T10:29:49.485Z"
-  },
-  {
-    "issuerID": "jcca-三菱ufjニコス",
-    "issuerName": "三菱ＵＦＪニコス株式会社",
-    "name": "カードデザインの変更をご希望の方",
-    "officialURL": "https://www.cr.mufg.jp/apply/card/jra/jradc_pop.html",
-    "observedAt": "2026-10-01T10:29:56.616Z"
+    "observedAt": "2026-11-01T10:52:05.989Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カードにまつわるトラブル事例",
     "officialURL": "https://www.cr.mufg.jp/carduse/trouble/index.html",
-    "observedAt": "2026-10-01T10:30:55.117Z"
+    "observedAt": "2026-11-01T10:53:07.760Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "カードのお支払い口座に指定できる金融機関",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/application/bankaccount/",
-    "observedAt": "2026-10-01T10:29:45.750Z"
+    "observedAt": "2026-11-01T10:51:59.599Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "カードの解約",
     "officialURL": "https://www2.uccard.co.jp/cs/guide/card-kaiyaku/",
-    "observedAt": "2026-10-01T10:30:43.415Z"
+    "observedAt": "2026-11-01T10:53:01.493Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カードの更新",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/support/renewal/index.html",
-    "observedAt": "2026-10-01T10:32:00.787Z"
+    "observedAt": "2026-11-01T10:54:13.957Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "カードの更新について",
     "officialURL": "https://www2.uccard.co.jp/cs/guide/card-koshin.html",
-    "observedAt": "2026-10-01T10:30:44.191Z"
+    "observedAt": "2026-11-01T10:53:01.584Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "カードの再発行",
     "officialURL": "https://www2.uccard.co.jp/cs/guide/card-saihatsukou/",
-    "observedAt": "2026-10-01T10:30:45.180Z"
-  },
-  {
-    "issuerID": "jcca-東北しんきん",
-    "issuerName": "株式会社東北しんきんカード",
-    "name": "カードの再発行",
-    "officialURL": "https://www3.vpass.ne.jp/mem/update/card_saisei.jsp?cc=017",
-    "observedAt": "2026-10-01T10:31:17.166Z"
-  },
-  {
-    "issuerID": "jcca-秋田国際",
-    "issuerName": "株式会社秋田国際カード",
-    "name": "カードの再発行",
-    "officialURL": "https://www3.vpass.ne.jp/mem/update/card_saisei.jsp?cc=036",
-    "observedAt": "2026-10-01T10:31:19.524Z"
+    "observedAt": "2026-11-01T10:53:02.409Z"
   },
   {
     "issuerID": "jcca-むさしの",
     "issuerName": "むさしのカード株式会社",
     "name": "カードの種類",
     "officialURL": "https://www.musashino-card.co.jp/card_kind/index.html",
-    "observedAt": "2026-10-01T10:29:45.727Z"
+    "observedAt": "2026-11-01T10:52:00.418Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "カードの不正利用対策・My安心設定",
     "officialURL": "https://www.82card.co.jp/jcbcard/merit/safe-secure/",
-    "observedAt": "2026-10-01T10:29:36.562Z"
+    "observedAt": "2026-11-01T10:51:48.627Z"
+  },
+  {
+    "issuerID": "jcca-福邦",
+    "issuerName": "福邦カード株式会社",
+    "name": "カードの紛失・盗難",
+    "officialURL": "https://www.fukuhocard.co.jp/card.html",
+    "observedAt": "2026-11-01T10:51:52.808Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "カードラインナップ 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/",
-    "observedAt": "2026-10-01T10:29:29.969Z"
+    "observedAt": "2026-11-01T10:51:43.089Z"
   },
   {
     "issuerID": "jcca-トマト",
     "issuerName": "トマトカード株式会社",
     "name": "カードをお持ちでない方",
-    "officialURL": "https://www.tomatocard.co.jp/nocard/index.html",
-    "observedAt": "2026-10-01T10:30:08.572Z"
+    "officialURL": "https://www.tomatocard.co.jp/nocard/index",
+    "observedAt": "2026-11-01T10:52:24.730Z"
   },
   {
     "issuerID": "jcca-むさしの",
     "issuerName": "むさしのカード株式会社",
     "name": "カードをお持ちのお客様へ",
     "officialURL": "https://www.musashino-card.co.jp/card_holder/index.html",
-    "observedAt": "2026-10-01T10:29:44.756Z"
+    "observedAt": "2026-11-01T10:51:59.352Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "カードを作る 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/",
-    "observedAt": "2026-10-01T10:29:29.052Z"
+    "observedAt": "2026-11-01T10:51:41.549Z"
   },
   {
     "issuerID": "jcca-きらぼしjcb",
     "issuerName": "きらぼしＪＣＢ株式会社",
     "name": "カードを申し込む",
     "officialURL": "https://www.kiraboshijcb.co.jp/card/index.html",
-    "observedAt": "2026-10-01T10:29:42.723Z"
+    "observedAt": "2026-11-01T10:51:55.618Z"
   },
   {
     "issuerID": "jcca-十六",
     "issuerName": "株式会社十六カード",
     "name": "カードを知る",
     "officialURL": "https://www.16card.co.jp/card/",
-    "observedAt": "2026-10-01T10:29:20.175Z"
+    "observedAt": "2026-11-01T10:51:33.201Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カード会員サイト",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/index.html",
-    "observedAt": "2026-10-01T10:31:12.348Z"
-  },
-  {
-    "issuerID": "jcca-ユ-シ",
-    "issuerName": "ユーシーカード株式会社",
-    "name": "カード会社一覧",
-    "officialURL": "https://www2.uccard.co.jp/uc/money/card_loan/popup.html",
-    "observedAt": "2026-10-01T10:30:57.157Z"
+    "observedAt": "2026-11-01T10:53:24.986Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "カード機能・サービス",
     "officialURL": "https://www2.uccard.co.jp/uc/uccard/user/002index.html",
-    "observedAt": "2026-10-01T10:31:02.636Z"
+    "observedAt": "2026-11-01T10:53:20.453Z"
   },
   {
     "issuerID": "jcca-nttファイナンス",
     "issuerName": "NTTファイナンス株式会社",
     "name": "カード決済ソリューションサービス「PaySol」(ペイソル)",
     "officialURL": "https://www.ntt-finance.co.jp/service/card_settlement/",
-    "observedAt": "2026-10-01T10:29:48.677Z"
+    "observedAt": "2026-11-01T10:52:05.734Z"
   },
   {
     "issuerID": "jcca-清水リ-ス",
     "issuerName": "清水リース＆カード株式会社",
     "name": "カード事業清水リース&カード株式会社",
     "officialURL": "https://www.shimizubank.co.jp/aboutus/group/slc/card/s_jcb/",
-    "observedAt": "2026-10-01T10:29:54.738Z"
+    "observedAt": "2026-11-01T10:52:10.577Z"
   },
   {
     "issuerID": "jcca-清水リ-ス",
     "issuerName": "清水リース＆カード株式会社",
     "name": "カード事業清水リース&カード株式会社",
     "officialURL": "https://www.shimizubank.co.jp/aboutus/group/slc/card/s_mufg/",
-    "observedAt": "2026-10-01T10:29:55.055Z"
-  },
-  {
-    "issuerID": "jcca-福邦",
-    "issuerName": "福邦カード株式会社",
-    "name": "カード紹介",
-    "officialURL": "https://www.fukuhocard.co.jp/card.php",
-    "observedAt": "2026-10-01T10:29:43.377Z"
+    "observedAt": "2026-11-01T10:52:11.154Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カード盗難・紛失のご連絡",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/contact/lost/index.html",
-    "observedAt": "2026-10-01T10:31:09.142Z"
+    "observedAt": "2026-11-01T10:53:21.780Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カード比較",
     "officialURL": "https://www.cr.mufg.jp/apply/compare/index.html",
-    "observedAt": "2026-10-01T10:30:39.470Z"
+    "observedAt": "2026-11-01T10:52:51.924Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カード付帯保険サービスの保険金請求~海外旅行傷害保険・海外渡航便遅延等費用に関する補償~",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/insurance/request_ab/index.html",
-    "observedAt": "2026-10-01T10:31:29.156Z"
+    "observedAt": "2026-11-01T10:53:41.932Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "カード付帯保険サービスの保険金請求~国内旅行傷害保険・国内渡航便遅延等費用に関する補償~",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/insurance/request_dt/index.html",
-    "observedAt": "2026-10-01T10:31:29.552Z"
+    "observedAt": "2026-11-01T10:53:42.336Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "カーライフ(クレジットカードのお得&便利なサービス)",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/lifestyle/car/",
-    "observedAt": "2026-10-01T10:31:45.757Z"
+    "observedAt": "2026-11-01T10:53:59.931Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "かいぎんVISAクラシックカード(沖縄海邦銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/okinawa_kaihou_bank/visa/classic_card/",
-    "observedAt": "2026-10-01T10:30:01.789Z"
+    "observedAt": "2026-11-01T10:52:15.814Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "かいぎんVISAゴールドカード(沖縄海邦銀行提携カード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/okinawa_kaihou_bank/visa/gold_card/",
-    "observedAt": "2026-10-01T10:30:02.192Z"
+    "observedAt": "2026-11-01T10:52:16.200Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "かいぎんマルチクラシックカード(沖縄海邦銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/okinawa_kaihou_bank/multi/classic_card/",
-    "observedAt": "2026-10-01T10:30:00.985Z"
+    "observedAt": "2026-11-01T10:52:14.982Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "かいぎんマルチゴールドカード(沖縄海邦銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/okinawa_kaihou_bank/multi/gold_card/",
-    "observedAt": "2026-10-01T10:30:01.395Z"
+    "observedAt": "2026-11-01T10:52:15.383Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "かわいいデザインのクレジットカード!人気キャラクターのカードを紹介",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/20064/index.html",
+    "observedAt": "2026-11-01T10:54:27.426Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "キャセイパシフィック MUFGカード ゴールド Mastercard®",
     "officialURL": "https://www.cr.mufg.jp/apply/card/cathay_pacific/index.html",
-    "observedAt": "2026-10-01T10:29:46.597Z"
+    "observedAt": "2026-11-01T10:51:59.456Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "キャッシング・カードローン、リボ払い・分割払いについて",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/contact/payment/index.html",
-    "observedAt": "2026-10-01T10:31:09.940Z"
+    "observedAt": "2026-11-01T10:53:22.582Z"
   },
   {
     "issuerID": "jcca-きらやか",
     "issuerName": "きらやかカード株式会社",
     "name": "きらやかカード",
     "officialURL": "https://www.kirayaka-card.co.jp/jcb/promotion/fc/card_s/",
-    "observedAt": "2026-10-01T10:29:21.919Z"
+    "observedAt": "2026-11-01T10:51:34.254Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカードお申し込みJAカードなら、お得な特典・サービスであらゆるシーンをサポート!!",
     "officialURL": "https://www.cr.mufg.jp/ja/apply/index.html",
-    "observedAt": "2026-10-01T10:30:58.330Z"
+    "observedAt": "2026-11-01T10:53:10.952Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードお申し込みの流れ",
     "officialURL": "https://www2.uccard.co.jp/apply/flow.html",
-    "observedAt": "2026-10-01T10:30:12.293Z"
+    "observedAt": "2026-11-01T10:52:30.519Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカードご利用時に気をつけていただくこと",
     "officialURL": "https://www.cr.mufg.jp/carduse/caution/index.html",
-    "observedAt": "2026-10-01T10:30:47.485Z"
+    "observedAt": "2026-11-01T10:52:59.987Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードご利用代金WEB明細書サービスのご案内",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/web_statement/",
-    "observedAt": "2026-10-01T10:31:34.545Z"
+    "observedAt": "2026-11-01T10:53:48.721Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "クレジットカードでお得に新幹線の切符を購入するメリットや注意点",
+    "officialURL": "https://www.cr.mufg.jp/mycard/benefit/20061/index.html",
+    "observedAt": "2026-11-01T10:55:10.391Z"
   },
   {
     "issuerID": "jcca-nttファイナンス",
     "issuerName": "NTTファイナンス株式会社",
     "name": "クレジットカードで支払う",
     "officialURL": "https://www.ntt-finance.co.jp/billing/usersupport/method/card.html",
-    "observedAt": "2026-10-01T10:29:48.079Z"
+    "observedAt": "2026-11-01T10:52:04.944Z"
   },
   {
     "issuerID": "jcca-東京サ-ビス",
     "issuerName": "株式会社東京クレジットサービス",
     "name": "クレジットカードなら東京カード",
     "officialURL": "https://www.tokyo-card.co.jp/card/",
-    "observedAt": "2026-10-01T10:30:05.167Z"
+    "observedAt": "2026-11-01T10:52:22.387Z"
   },
   {
     "issuerID": "jcca-めぶき",
     "issuerName": "株式会社めぶきカード",
     "name": "クレジットカードのお客さま",
     "officialURL": "https://www.mebuki-card.co.jp/credit_card/index.html",
-    "observedAt": "2026-10-01T10:29:44.947Z"
+    "observedAt": "2026-11-01T10:51:58.447Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードのお申し込みについて",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/application/",
-    "observedAt": "2026-10-01T10:29:45.341Z"
+    "observedAt": "2026-11-01T10:51:59.209Z"
   },
   {
     "issuerID": "jcca-たいこう",
     "issuerName": "たいこうカード株式会社",
     "name": "クレジットカードのご案内",
     "officialURL": "https://www.taikobank.jp/personal/creditcard.php",
-    "observedAt": "2026-10-01T10:30:00.160Z"
+    "observedAt": "2026-11-01T10:52:16.770Z"
   },
   {
     "issuerID": "jcca-たいこう",
     "issuerName": "たいこうカード株式会社",
     "name": "クレジットカードのご案内",
     "officialURL": "https://www.taikobank.jp/personal/creditcard/contact/",
-    "observedAt": "2026-10-01T10:30:00.440Z"
+    "observedAt": "2026-11-01T10:52:17.079Z"
   },
   {
     "issuerID": "jcca-たいこう",
     "issuerName": "たいこうカード株式会社",
     "name": "クレジットカードのご案内",
     "officialURL": "https://www.taikobank.jp/personal/creditcard/jcb-card/",
-    "observedAt": "2026-10-01T10:30:02.374Z"
+    "observedAt": "2026-11-01T10:52:19.223Z"
   },
   {
     "issuerID": "jcca-たいこう",
     "issuerName": "たいこうカード株式会社",
     "name": "クレジットカードのご案内",
     "officialURL": "https://www.taikobank.jp/personal/creditcard/support/",
-    "observedAt": "2026-10-01T10:30:02.791Z"
+    "observedAt": "2026-11-01T10:52:19.640Z"
   },
   {
     "issuerID": "jcca-たいこう",
     "issuerName": "たいこうカード株式会社",
     "name": "クレジットカードのご案内",
     "officialURL": "https://www.taikobank.jp/personal/creditcard/taiko-card/",
-    "observedAt": "2026-10-01T10:30:03.178Z"
+    "observedAt": "2026-11-01T10:52:20.073Z"
   },
   {
     "issuerID": "jcca-ちばぎん",
     "issuerName": "ちばぎんカード株式会社",
     "name": "クレジットカードのご案内(個人のお客さま)",
     "officialURL": "https://www.chibagincard.co.jp/private_card/",
-    "observedAt": "2026-10-01T10:29:33.661Z"
+    "observedAt": "2026-11-01T10:51:45.954Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカードのご利用前に",
     "officialURL": "https://www.cr.mufg.jp/carduse/before/index.html",
-    "observedAt": "2026-10-01T10:30:47.086Z"
+    "observedAt": "2026-11-01T10:52:59.586Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードのセキュリティについて",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/attention/",
-    "observedAt": "2026-10-01T10:31:44.555Z"
-  },
-  {
-    "issuerID": "jcca-三菱ufjニコス",
-    "issuerName": "三菱ＵＦＪニコス株式会社",
-    "name": "クレジットカードのポイントのお得な使い方!有効活用する方法を紹介",
-    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/22081/index.html",
-    "observedAt": "2026-10-01T10:32:23.461Z"
+    "observedAt": "2026-11-01T10:53:58.752Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカードの基本",
     "officialURL": "https://www.cr.mufg.jp/carduse/index.html",
-    "observedAt": "2026-10-01T10:30:48.685Z"
+    "observedAt": "2026-11-01T10:53:01.183Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードの再発行変更手続きのお願い(オールインワンカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/reissue/",
-    "observedAt": "2026-10-01T10:31:33.745Z"
+    "observedAt": "2026-11-01T10:53:47.922Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカードの使い方は?店舗やネットでの支払い方法をわかりやすく解説",
     "officialURL": "https://www.cr.mufg.jp/mycard/beginner/19114/index.html",
-    "observedAt": "2026-10-01T10:32:09.196Z"
+    "observedAt": "2026-11-01T10:54:22.384Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードの住所変更手続きのお願い(オールインワンカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/address_change/",
-    "observedAt": "2026-10-01T10:29:45.001Z"
+    "observedAt": "2026-11-01T10:51:58.876Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカードの不正利用に対する取り組みについて",
     "officialURL": "https://www.cr.mufg.jp/carduse/misappropriate/index.html",
-    "observedAt": "2026-10-01T10:30:53.911Z"
+    "observedAt": "2026-11-01T10:53:06.556Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "クレジットカードの有効期限・更新について",
     "officialURL": "https://www.82card.co.jp/jcbcard/merit/update/",
-    "observedAt": "2026-10-01T10:29:37.383Z"
+    "observedAt": "2026-11-01T10:51:49.429Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/apply/campaign.html",
-    "observedAt": "2026-10-01T10:30:11.757Z"
+    "observedAt": "2026-11-01T10:52:30.116Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/campaign/nyukai.html",
-    "observedAt": "2026-10-01T10:30:14.393Z"
+    "observedAt": "2026-11-01T10:52:32.121Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/card/lineup/select.html",
-    "observedAt": "2026-10-01T10:30:14.889Z"
+    "observedAt": "2026-11-01T10:52:32.515Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/card/lineup/uc_gold.html",
-    "observedAt": "2026-10-01T10:30:15.346Z"
+    "observedAt": "2026-11-01T10:52:32.919Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/card/lineup/uc_younggold.html",
-    "observedAt": "2026-10-01T10:30:16.424Z"
+    "observedAt": "2026-11-01T10:52:33.720Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/card/lineup/uc.html",
-    "observedAt": "2026-10-01T10:30:16.930Z"
+    "observedAt": "2026-11-01T10:52:34.118Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/campaign/atu/entry.html",
-    "observedAt": "2026-10-01T10:30:17.671Z"
+    "observedAt": "2026-11-01T10:52:35.452Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/campaign/iccard/",
-    "observedAt": "2026-10-01T10:30:18.343Z"
+    "observedAt": "2026-11-01T10:52:36.038Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/mmc/revo.html",
-    "observedAt": "2026-10-01T10:30:42.930Z"
+    "observedAt": "2026-11-01T10:53:00.124Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/mastercard/",
-    "observedAt": "2026-10-01T10:30:45.702Z"
+    "observedAt": "2026-11-01T10:53:03.317Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/spn/card/",
-    "observedAt": "2026-10-01T10:30:54.197Z"
+    "observedAt": "2026-11-01T10:53:11.614Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/uc/campaign/iccard/",
-    "observedAt": "2026-10-01T10:30:55.239Z"
+    "observedAt": "2026-11-01T10:53:12.310Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/uc/card/lineup/etc.html",
-    "observedAt": "2026-10-01T10:30:55.737Z"
+    "observedAt": "2026-11-01T10:53:12.708Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/uc/lp/card/",
-    "observedAt": "2026-10-01T10:30:56.265Z"
+    "observedAt": "2026-11-01T10:53:14.170Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/uc/mastercard/",
-    "observedAt": "2026-10-01T10:30:57.074Z"
+    "observedAt": "2026-11-01T10:53:14.792Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードはUCカード",
     "officialURL": "https://www2.uccard.co.jp/uc/uccard/hojincard/",
-    "observedAt": "2026-10-01T10:30:59.485Z"
+    "observedAt": "2026-11-01T10:53:17.477Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカードは何歳から作れる?学生や18歳未満の未成年は?",
     "officialURL": "https://www.cr.mufg.jp/mycard/beginner/19101/index.html",
-    "observedAt": "2026-10-01T10:32:07.585Z"
+    "observedAt": "2026-11-01T10:54:20.775Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードは九州カード",
     "officialURL": "https://www.kyushu-card.co.jp/",
-    "observedAt": "2026-10-01T10:30:14.166Z"
+    "observedAt": "2026-11-01T10:52:28.306Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードへのご入会ありがとうございます(オールインワンカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/entry_thanks/ncb_aio/",
-    "observedAt": "2026-10-01T10:30:23.189Z"
+    "observedAt": "2026-11-01T10:52:37.433Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカードをつかう",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/",
-    "observedAt": "2026-10-01T10:31:34.955Z"
+    "observedAt": "2026-11-01T10:53:49.134Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/cs/card/asiana/flight_mile.html",
-    "observedAt": "2026-10-01T10:30:18.818Z"
+    "observedAt": "2026-11-01T10:52:36.683Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/cs/card/asiana/shop_mile.html",
-    "observedAt": "2026-10-01T10:30:19.437Z"
+    "observedAt": "2026-11-01T10:52:37.455Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/cs/card/asiana/ticket.html",
-    "observedAt": "2026-10-01T10:30:20.059Z"
+    "observedAt": "2026-11-01T10:52:38.063Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/cs/card/flow.html",
-    "observedAt": "2026-10-01T10:30:20.635Z"
+    "observedAt": "2026-11-01T10:52:38.666Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/cs/card/houjin/pop.html",
-    "observedAt": "2026-10-01T10:30:21.237Z"
+    "observedAt": "2026-11-01T10:52:39.270Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/cs/card/metro/tome_flow.html",
-    "observedAt": "2026-10-01T10:30:41.507Z"
+    "observedAt": "2026-11-01T10:52:58.184Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/20201116kaigai-credit.html",
-    "observedAt": "2026-10-01T10:30:46.832Z"
+    "observedAt": "2026-11-01T10:53:04.045Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/220930mastercard.html",
-    "observedAt": "2026-10-01T10:30:47.452Z"
+    "observedAt": "2026-11-01T10:53:05.106Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/card0904.html",
-    "observedAt": "2026-10-01T10:30:48.043Z"
+    "observedAt": "2026-11-01T10:53:05.195Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/card1008.html",
-    "observedAt": "2026-10-01T10:30:48.616Z"
+    "observedAt": "2026-11-01T10:53:06.128Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/cardinfo1004.html",
-    "observedAt": "2026-10-01T10:30:49.221Z"
+    "observedAt": "2026-11-01T10:53:06.218Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/iccard1808.html",
-    "observedAt": "2026-10-01T10:30:49.831Z"
+    "observedAt": "2026-11-01T10:53:07.148Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/kips_card_ag1109.html",
-    "observedAt": "2026-10-01T10:30:50.513Z"
+    "observedAt": "2026-11-01T10:53:07.782Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/kips_card1109.html",
-    "observedAt": "2026-10-01T10:30:51.138Z"
+    "observedAt": "2026-11-01T10:53:07.873Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/onlinecard0907.html",
-    "observedAt": "2026-10-01T10:30:52.006Z"
+    "observedAt": "2026-11-01T10:53:09.194Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "クレジットカードを選ぶなら永久不滅ポイントが貯まる・使えるUCカード!",
     "officialURL": "https://www2.uccard.co.jp/important/pop/yamato_credit.html",
-    "observedAt": "2026-10-01T10:30:52.743Z"
+    "observedAt": "2026-11-01T10:53:09.824Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカード全般についてのお問い合わせ",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/contact/call/index.html",
-    "observedAt": "2026-10-01T10:31:04.052Z"
+    "observedAt": "2026-11-01T10:53:16.562Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "クレジットカード盗難・紛失のオンライン手続き",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/contact/theft/index.html",
-    "observedAt": "2026-10-01T10:31:10.341Z"
+    "observedAt": "2026-11-01T10:53:22.984Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカード入会申込書資料請求",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/application/document_request/",
-    "observedAt": "2026-10-01T10:29:46.139Z"
+    "observedAt": "2026-11-01T10:52:00.025Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカード入会申込書資料請求[家族カード]",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/family/document_request/",
-    "observedAt": "2026-10-01T10:30:23.988Z"
+    "observedAt": "2026-11-01T10:52:38.229Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカード発行までの流れ",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/application/flow/",
-    "observedAt": "2026-10-01T10:29:47.355Z"
+    "observedAt": "2026-11-01T10:52:01.205Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "クレジットカード利用分も家計簿アプリで簡単管理。Vpassアプリの「家計管理機能」を活用しよう!",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20220602/",
-    "observedAt": "2026-10-01T10:31:15.335Z"
+    "observedAt": "2026-11-01T10:53:29.522Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "ゴールド - やまぎんカードサービス株式会社",
     "officialURL": "https://www.yamagin-cs.co.jp/visamastercard/gold.html",
-    "observedAt": "2026-10-01T10:30:13.155Z"
+    "observedAt": "2026-11-01T10:52:32.380Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "サーラカード(ゴールド)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/sala_goldprestige/index.html",
-    "observedAt": "2026-10-01T10:30:23.030Z"
+    "observedAt": "2026-11-01T10:52:35.503Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "サーラカード(一般)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/sala/index.html",
-    "observedAt": "2026-10-01T10:30:23.425Z"
+    "observedAt": "2026-11-01T10:52:35.908Z"
   },
   {
     "issuerID": "jcca-しがぎんジェ-シ-ビ",
     "issuerName": "株式会社しがぎんジェーシービー",
     "name": "しがぎんジェーシービー - ETCカード",
     "officialURL": "https://www.shigaginjcb.jp/card/etc.html",
-    "observedAt": "2026-10-01T10:29:53.308Z"
+    "observedAt": "2026-11-01T10:52:10.262Z"
   },
   {
     "issuerID": "jcca-しがぎんジェ-シ-ビ",
     "issuerName": "株式会社しがぎんジェーシービー",
     "name": "しがぎんジェーシービー - オンラインカード入会",
     "officialURL": "https://www.shigaginjcb.jp/card/index.html",
-    "observedAt": "2026-10-01T10:29:53.495Z"
+    "observedAt": "2026-11-01T10:52:10.503Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "シナモロールのVIASOカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_cinnamon/index.html",
-    "observedAt": "2026-10-01T10:30:33.466Z"
+    "observedAt": "2026-11-01T10:52:45.924Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ショッピング (クレジットカードのお得&便利なサービス)",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/lifestyle/shopping/",
-    "observedAt": "2026-10-01T10:31:48.157Z"
+    "observedAt": "2026-11-01T10:54:02.349Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "ショッピングをお楽しみいただくお客さまへ - やまぎんカードサービス株式会社",
     "officialURL": "https://www.yamagin-cs.co.jp/jcbcard/shopping.html",
-    "observedAt": "2026-10-01T10:30:11.862Z"
+    "observedAt": "2026-11-01T10:52:31.015Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "ショッピングをお楽しみいただくお客さまへ - やまぎんカードサービス株式会社",
     "officialURL": "https://www.yamagin-cs.co.jp/visamastercard/shopping.html",
-    "observedAt": "2026-10-01T10:30:13.595Z"
+    "observedAt": "2026-11-01T10:52:32.728Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ショッピング保険 三菱UFJカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/insurance/shopping/index.html",
-    "observedAt": "2026-10-01T10:30:08.211Z"
+    "observedAt": "2026-11-01T10:52:20.665Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんカードSmile",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_smile.html",
-    "observedAt": "2026-10-01T10:30:03.504Z"
+    "observedAt": "2026-11-01T10:52:18.681Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんカードゴールドVisa",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_gold.html",
-    "observedAt": "2026-10-01T10:30:01.886Z"
+    "observedAt": "2026-11-01T10:52:17.025Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんカードデザイン・名称リニューアルのお知らせ(法人会員)",
     "officialURL": "https://www.shinkincard.co.jp/lp/visa_newcard_corp/",
-    "observedAt": "2026-10-01T10:30:04.457Z"
+    "observedAt": "2026-11-01T10:52:19.742Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんカードデザイン変更のお知らせ(個人会員)",
     "officialURL": "https://www.shinkincard.co.jp/lp/visa_newcard/",
-    "observedAt": "2026-10-01T10:30:04.878Z"
+    "observedAt": "2026-11-01T10:52:20.249Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんカードネオステージVisa",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_neostage.html",
-    "observedAt": "2026-10-01T10:30:02.313Z"
+    "observedAt": "2026-11-01T10:52:17.475Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんカード一般Visa",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_clasic.html",
-    "observedAt": "2026-10-01T10:29:59.921Z"
+    "observedAt": "2026-11-01T10:52:15.073Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんビジネスカードFVisa",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_f_corp.html",
-    "observedAt": "2026-10-01T10:30:01.069Z"
+    "observedAt": "2026-11-01T10:52:16.264Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんビジネスカードゴールドVisa",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_gold_corp.html",
-    "observedAt": "2026-10-01T10:30:01.505Z"
+    "observedAt": "2026-11-01T10:52:16.710Z"
   },
   {
     "issuerID": "jcca-しんきん",
     "issuerName": "株式会社しんきんカード",
     "name": "しんきんビジネスカード一般Visa",
     "officialURL": "https://www.shinkincard.co.jp/application/card/visa/visa_clasic_corp.html",
-    "observedAt": "2026-10-01T10:29:59.524Z"
+    "observedAt": "2026-11-01T10:52:14.700Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "スギグループNICOSカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/sugi/index.html",
-    "observedAt": "2026-10-01T10:30:26.222Z"
+    "observedAt": "2026-11-01T10:52:38.708Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "スターフライヤーVISAカード (スターフライヤー提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/standard/starflyer/",
-    "observedAt": "2026-10-01T10:30:16.000Z"
+    "observedAt": "2026-11-01T10:52:30.268Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "スヌーピーカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mufgcard_snoopy/index_01.html",
-    "observedAt": "2026-10-01T10:30:21.012Z"
+    "observedAt": "2026-11-01T10:52:33.504Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "スヌーピーカード デザイン変更サービス",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/point/snoopy/design/index02.html",
-    "observedAt": "2026-10-01T10:31:21.146Z"
+    "observedAt": "2026-11-01T10:53:33.792Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "スヌーピーデザインのVIASOカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/viaso_snoopy/index_01.html",
-    "observedAt": "2026-10-01T10:30:38.674Z"
+    "observedAt": "2026-11-01T10:52:51.128Z"
   },
   {
     "issuerID": "jcca-スルガ",
     "issuerName": "スルガカード株式会社",
     "name": "スルガJCBカード",
     "officialURL": "https://www.suruga-card.co.jp/lp/jcb_card_s/index.html",
-    "observedAt": "2026-10-01T10:30:00.687Z"
+    "observedAt": "2026-11-01T10:52:15.105Z"
   },
   {
     "issuerID": "jcca-めぶき",
     "issuerName": "株式会社めぶきカード",
     "name": "セッキーカード",
     "officialURL": "https://www.mebuki-card.co.jp/credit_card/seki.html",
-    "observedAt": "2026-10-01T10:29:45.764Z"
+    "observedAt": "2026-11-01T10:51:59.248Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "タカキューグループカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/taka_q/index.html",
-    "observedAt": "2026-10-01T10:30:27.421Z"
+    "observedAt": "2026-11-01T10:52:39.915Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "タカキューグループカードの種類",
     "officialURL": "https://www.cr.mufg.jp/apply/card/taka_q/select001.html",
-    "observedAt": "2026-10-01T10:30:27.824Z"
+    "observedAt": "2026-11-01T10:52:40.307Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "タッチ決済(非接触型カード決済)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/touch_payment/index.html",
-    "observedAt": "2026-10-01T10:30:31.463Z"
+    "observedAt": "2026-11-01T10:52:43.916Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "タッチ決済(非接触型カード決済)",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/touch_payment/index.html",
-    "observedAt": "2026-10-01T10:32:06.394Z"
+    "observedAt": "2026-11-01T10:54:19.591Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ディノスカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/dinos/index.html",
-    "observedAt": "2026-10-01T10:29:47.389Z"
+    "observedAt": "2026-11-01T10:52:00.277Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "デビッドカードとは(NCBデビットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/debit/ncb_debit/about_debit/",
-    "observedAt": "2026-10-01T10:30:08.194Z"
+    "observedAt": "2026-11-01T10:52:22.199Z"
   },
   {
     "issuerID": "jcca-四国しんきん",
     "issuerName": "株式会社四国しんきんカード",
     "name": "デュークVISAカード",
     "officialURL": "https://www.shikokuvisa.co.jp/cardlineup/duke.html",
-    "observedAt": "2026-10-01T10:29:56.134Z"
+    "observedAt": "2026-11-01T10:52:13.749Z"
   },
   {
     "issuerID": "jcca-とちぎん-サ-ビス",
     "issuerName": "株式会社とちぎんカード・サービス",
     "name": "とちぎんカード・サービス",
     "officialURL": "https://www.tochigin-card.co.jp/amex/card.html",
-    "observedAt": "2026-10-01T10:30:02.126Z"
+    "observedAt": "2026-11-01T10:52:20.290Z"
   },
   {
     "issuerID": "jcca-とちぎん-サ-ビス",
     "issuerName": "株式会社とちぎんカード・サービス",
     "name": "とちぎんカード・サービス",
     "officialURL": "https://www.tochigin-card.co.jp/card_use_shop.html",
-    "observedAt": "2026-10-01T10:30:02.926Z"
+    "observedAt": "2026-11-01T10:52:21.659Z"
   },
   {
     "issuerID": "jcca-とちぎん-サ-ビス",
     "issuerName": "株式会社とちぎんカード・サービス",
     "name": "とちぎんカード・サービス",
     "officialURL": "https://www.tochigin-card.co.jp/jcb/card.html",
-    "observedAt": "2026-10-01T10:30:03.764Z"
+    "observedAt": "2026-11-01T10:52:22.936Z"
   },
   {
     "issuerID": "jcca-とちぎん-サ-ビス",
     "issuerName": "株式会社とちぎんカード・サービス",
     "name": "とちぎんカード・サービス",
     "officialURL": "https://www.tochigin-card.co.jp/mufg/card.html",
-    "observedAt": "2026-10-01T10:30:04.783Z"
+    "observedAt": "2026-11-01T10:52:24.523Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "ドライバーズカード",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-dc/dc-driver/",
-    "observedAt": "2026-10-01T10:29:50.097Z"
+    "observedAt": "2026-11-01T10:52:06.394Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "ドライバーズカード",
     "officialURL": "https://www.yamagin-cs.co.jp/visamastercard/drivers.html",
-    "observedAt": "2026-10-01T10:30:12.699Z"
+    "observedAt": "2026-11-01T10:52:31.909Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "ドライバーズカード 安心・快適なカーライフをサポート",
     "officialURL": "https://www.82card.co.jp/dccard/c_driver/",
-    "observedAt": "2026-10-01T10:29:31.752Z"
+    "observedAt": "2026-11-01T10:51:44.081Z"
   },
   {
     "issuerID": "jcca-百十四ディ-シ",
     "issuerName": "株式会社百十四ディーシーカード",
     "name": "ドライバーズカード(個人向けカード) 百十四カード / ビジネスシーンで活躍114法人カード 株式会社百十四カード",
     "officialURL": "https://www.114card.jp/dc/card/lineup/driver.html",
-    "observedAt": "2026-10-01T10:29:34.371Z"
+    "observedAt": "2026-11-01T10:51:48.883Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "トリィ/クレジットカードなら三菱UFJニコス",
     "officialURL": "https://www.cr.mufg.jp/mucard/character/tori/comic.html",
-    "observedAt": "2026-10-01T10:31:01.647Z"
+    "observedAt": "2026-11-01T10:53:14.149Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "トリィ/クレジットカードなら三菱UFJニコス",
     "officialURL": "https://www.cr.mufg.jp/mucard/character/tori/index.html",
-    "observedAt": "2026-10-01T10:31:01.936Z"
+    "observedAt": "2026-11-01T10:53:14.553Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "トリィ/クレジットカードなら三菱UFJニコス",
     "officialURL": "https://www.cr.mufg.jp/mucard/character/tori/photo.html",
-    "observedAt": "2026-10-01T10:31:02.349Z"
+    "observedAt": "2026-11-01T10:53:14.957Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ながさきオールインワン JQ SUGOCA クラシックカード(長崎銀行・JR九州提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/nagasaki_bank-jr_kyushu/nagasaki_all_in_one_jq_sugoca/classic_card/",
-    "observedAt": "2026-10-01T10:30:19.599Z"
+    "observedAt": "2026-11-01T10:52:33.864Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ながさきオールインワン JQ SUGOCA ゴールドカード(長崎銀行・JR九州提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/nagasaki_bank-jr_kyushu/nagasaki_all_in_one_jq_sugoca/gold_card/",
-    "observedAt": "2026-10-01T10:30:19.997Z"
+    "observedAt": "2026-11-01T10:52:34.255Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "なんでん JQ SUGOCA クラシックカード(豊和銀行・JR九州提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/howa_bank-jr_kyushu/nanden_jq_sugoca/classic_card/",
-    "observedAt": "2026-10-01T10:30:17.203Z"
+    "observedAt": "2026-11-01T10:52:31.461Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "なんでん JQ SUGOCA ゴールドカード(豊和銀行・JR九州提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/traffic/howa_bank-jr_kyushu/nanden_jq_sugoca/gold_card/",
-    "observedAt": "2026-10-01T10:30:17.597Z"
-  },
-  {
-    "issuerID": "jcca-三菱ufjニコス",
-    "issuerName": "三菱ＵＦＪニコス株式会社",
-    "name": "ネットショッピングでクレジットカード決済をするメリットと注意点",
-    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/20062/index.html",
-    "observedAt": "2026-10-01T10:32:13.600Z"
+    "observedAt": "2026-11-01T10:52:31.865Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "バーチャルカード(インターネット決済専用クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/virtual_card/",
-    "observedAt": "2026-10-01T10:30:21.997Z"
+    "observedAt": "2026-11-01T10:52:36.253Z"
   },
   {
     "issuerID": "jcca-十六",
     "issuerName": "株式会社十六カード",
     "name": "はじめてのカード選び",
     "officialURL": "https://www.16card.co.jp/card/firsttime/",
-    "observedAt": "2026-10-01T10:29:21.193Z"
+    "observedAt": "2026-11-01T10:51:34.067Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "はじめてのクレジットカード選び",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/first_time/",
-    "observedAt": "2026-10-01T10:30:24.793Z"
+    "observedAt": "2026-11-01T10:52:39.033Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "はじめてのゴールドカードに!九州カードNEXT ゴールドの魅力をご紹介",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20240801/",
-    "observedAt": "2026-10-01T10:31:24.942Z"
+    "observedAt": "2026-11-01T10:53:39.122Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "ぴあ NICOSカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/pia/index.html",
-    "observedAt": "2026-10-01T10:30:21.426Z"
+    "observedAt": "2026-11-01T10:52:33.911Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "ビックカード インターナショナル",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/bic.html",
-    "observedAt": "2026-10-01T10:30:23.060Z"
+    "observedAt": "2026-11-01T10:52:40.531Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "プラスハッピーUCカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/plus_happy.html",
-    "observedAt": "2026-10-01T10:30:35.310Z"
+    "observedAt": "2026-11-01T10:52:52.269Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ポイントについて(JQ SUGOCA機能付きクレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/jqcard/jqcard_point/",
-    "observedAt": "2026-10-01T10:30:25.994Z"
+    "observedAt": "2026-11-01T10:52:40.238Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ほうわVISAクラシックカード(豊和銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/howa_bank/visa/classic_card/",
-    "observedAt": "2026-10-01T10:29:53.772Z"
+    "observedAt": "2026-11-01T10:52:07.724Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ほうわVISAゴールドカード(豊和銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/howa_bank/visa/gold_card/",
-    "observedAt": "2026-10-01T10:29:54.178Z"
+    "observedAt": "2026-11-01T10:52:08.128Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "マイナポイントならUCカード",
     "officialURL": "https://www2.uccard.co.jp/important/pop/mynumbercard-point.html",
-    "observedAt": "2026-10-01T10:30:51.751Z"
+    "observedAt": "2026-11-01T10:53:08.269Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "みずほマイレージクラブカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/mmc.html",
-    "observedAt": "2026-10-01T10:30:34.727Z"
+    "observedAt": "2026-11-01T10:52:51.868Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "みずほマイレージクラブカード(クレジットカード)のサービス",
     "officialURL": "https://www2.uccard.co.jp/cs/card/mmc/",
-    "observedAt": "2026-10-01T10:30:42.012Z"
+    "observedAt": "2026-11-01T10:52:59.091Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "みずほマイレージクラブカード(クレジットカード)限定アイテム",
     "officialURL": "https://www2.uccard.co.jp/cs/card/mmc/point_item.html",
-    "observedAt": "2026-10-01T10:30:42.098Z"
+    "observedAt": "2026-11-01T10:52:59.183Z"
   },
   {
     "issuerID": "jcca-みなと",
     "issuerName": "株式会社みなとカード",
     "name": "みなとJCBカード - 株式会社みなとカード",
     "officialURL": "https://www.minatocard.com/jcb/cardlineup/card_index.html",
-    "observedAt": "2026-10-01T10:29:44.495Z"
+    "observedAt": "2026-11-01T10:51:58.929Z"
   },
   {
     "issuerID": "jcca-みなと",
     "issuerName": "株式会社みなとカード",
     "name": "みなとJCBカード(個人カード) - 株式会社みなとカード",
     "officialURL": "https://www.minatocard.com/jcb/cardlineup/kojin.html",
-    "observedAt": "2026-10-01T10:29:45.922Z"
+    "observedAt": "2026-11-01T10:52:00.639Z"
   },
   {
     "issuerID": "jcca-みなと",
     "issuerName": "株式会社みなとカード",
     "name": "みなとJCBカード(法人カード) - 株式会社みなとカード",
     "officialURL": "https://www.minatocard.com/jcb/cardlineup/hojin.html",
-    "observedAt": "2026-10-01T10:29:45.229Z"
+    "observedAt": "2026-11-01T10:51:59.930Z"
   },
   {
     "issuerID": "jcca-みなと",
     "issuerName": "株式会社みなとカード",
     "name": "みなとVISAカード(個人カード) - 株式会社みなとカード",
     "officialURL": "https://www.minatocard.com/visa/cardlineup/card_kojin.htm",
-    "observedAt": "2026-10-01T10:29:47.706Z"
+    "observedAt": "2026-11-01T10:52:02.891Z"
   },
   {
     "issuerID": "jcca-みなと",
     "issuerName": "株式会社みなとカード",
     "name": "みなとVISAカード(法人カード) - 株式会社みなとカード",
     "officialURL": "https://www.minatocard.com/visa/cardlineup/card_hojin.htm",
-    "observedAt": "2026-10-01T10:29:46.548Z"
+    "observedAt": "2026-11-01T10:52:01.368Z"
   },
   {
     "issuerID": "jcca-みなと",
     "issuerName": "株式会社みなとカード",
     "name": "みなとVISAカードラインナップ - 株式会社みなとカード",
     "officialURL": "https://www.minatocard.com/visa/cardlineup/card_lineup.htm",
-    "observedAt": "2026-10-01T10:29:47.992Z"
+    "observedAt": "2026-11-01T10:52:03.197Z"
   },
   {
     "issuerID": "jcca-むさしの",
     "issuerName": "むさしのカード株式会社",
     "name": "むさしのJCBカード:お取扱カードの種類",
     "officialURL": "https://www.musashino-card.co.jp/card_kind/kind_jcb.html",
-    "observedAt": "2026-10-01T10:29:46.528Z"
+    "observedAt": "2026-11-01T10:52:01.668Z"
   },
   {
     "issuerID": "jcca-むさしの",
     "issuerName": "むさしのカード株式会社",
     "name": "むさしのVISAカード:お取扱カードの種類",
     "officialURL": "https://www.musashino-card.co.jp/card_kind/kind_visa.html",
-    "observedAt": "2026-10-01T10:29:47.218Z"
+    "observedAt": "2026-11-01T10:52:02.753Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "ヤマダLABIカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/yamada.html",
-    "observedAt": "2026-10-01T10:30:39.951Z"
+    "observedAt": "2026-11-01T10:52:56.621Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "ヤマダLABIゴールドカード",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/yamada_gold.html",
-    "observedAt": "2026-10-01T10:30:39.369Z"
-  },
-  {
-    "issuerID": "jcca-ユ-シ",
-    "issuerName": "ユーシーカード株式会社",
-    "name": "ユーシーカードグループ一覧",
-    "officialURL": "https://www2.uccard.co.jp/uccard_pop.html",
-    "observedAt": "2026-10-01T10:31:03.253Z"
+    "observedAt": "2026-11-01T10:52:56.532Z"
   },
   {
     "issuerID": "jcca-りゅうぎんディ-シ",
     "issuerName": "株式会社りゅうぎんディーシー",
     "name": "りゅうぎん PARTNER CARD",
     "officialURL": "http://www.ryugindc.co.jp/cardlineup/partner_card/",
-    "observedAt": "2026-10-01T10:29:27.179Z"
+    "observedAt": "2026-11-01T10:51:39.040Z"
   },
   {
     "issuerID": "jcca-りゅうぎんディ-シ",
     "issuerName": "株式会社りゅうぎんディーシー",
     "name": "りゅうぎん PARTNER CARD",
     "officialURL": "https://www.ryugindc.co.jp/cardlineup/partner_card/",
-    "observedAt": "2026-10-01T10:29:38.716Z"
+    "observedAt": "2026-11-01T10:51:51.977Z"
   },
   {
     "issuerID": "jcca-りゅうぎんディ-シ",
     "issuerName": "株式会社りゅうぎんディーシー",
     "name": "りゅうぎんカード(一般)",
     "officialURL": "https://www.ryugindc.co.jp/cardlineup/dc_general/",
-    "observedAt": "2026-10-01T10:29:36.283Z"
+    "observedAt": "2026-11-01T10:51:49.184Z"
   },
   {
     "issuerID": "jcca-りゅうぎんディ-シ",
     "issuerName": "株式会社りゅうぎんディーシー",
     "name": "りゅうぎんカードゴールド",
     "officialURL": "https://www.ryugindc.co.jp/cardlineup/goldcard/",
-    "observedAt": "2026-10-01T10:29:37.507Z"
+    "observedAt": "2026-11-01T10:51:50.573Z"
   },
   {
     "issuerID": "jcca-りゅうぎんディ-シ",
     "issuerName": "株式会社りゅうぎんディーシー",
     "name": "りゅうぎん法人カード(ゴールド)",
     "officialURL": "https://www.ryugindc.co.jp/cardlineup/corp_gold/",
-    "observedAt": "2026-10-01T10:29:33.928Z"
+    "observedAt": "2026-11-01T10:51:46.496Z"
   },
   {
     "issuerID": "jcca-りゅうぎんディ-シ",
     "issuerName": "株式会社りゅうぎんディーシー",
     "name": "りゅうぎん法人カード(一般)",
     "officialURL": "https://www.ryugindc.co.jp/cardlineup/corp_general/",
-    "observedAt": "2026-10-01T10:29:32.719Z"
+    "observedAt": "2026-11-01T10:51:45.124Z"
   },
   {
     "issuerID": "jcca-四国しんきん",
     "issuerName": "株式会社四国しんきんカード",
     "name": "ロードサービスVISAカード",
     "officialURL": "https://www.shikokuvisa.co.jp/cardlineup/roadservice.html",
-    "observedAt": "2026-10-01T10:29:57.070Z"
+    "observedAt": "2026-11-01T10:52:15.065Z"
   },
   {
     "issuerID": "jcca-四国しんきん",
     "issuerName": "株式会社四国しんきんカード",
     "name": "ロードサービスVISAゴールドカード",
     "officialURL": "https://www.shikokuvisa.co.jp/cardlineup/roadservice-gold.html",
-    "observedAt": "2026-10-01T10:29:56.555Z"
+    "observedAt": "2026-11-01T10:52:14.476Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "ロードサービス付帯のクレジットカードがお得&安心!九州カードなら年会費825円!",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20230401/",
-    "observedAt": "2026-10-01T10:31:18.941Z"
+    "observedAt": "2026-11-01T10:53:33.124Z"
   },
   {
     "issuerID": "jcca-愛媛ジェ-シ-ビ",
     "issuerName": "株式会社愛媛ジェーシービー",
     "name": "愛媛JCB",
     "officialURL": "https://www.ehime-jcb.co.jp/card/card_s/",
-    "observedAt": "2026-10-01T10:29:40.467Z"
+    "observedAt": "2026-11-01T10:51:53.487Z"
   },
   {
     "issuerID": "jcca-愛媛ジェ-シ-ビ",
     "issuerName": "株式会社愛媛ジェーシービー",
     "name": "愛媛JCB",
     "officialURL": "https://www.ehime-jcb.co.jp/card/platinum/",
-    "observedAt": "2026-10-01T10:29:41.287Z"
+    "observedAt": "2026-11-01T10:51:54.475Z"
   },
   {
     "issuerID": "jcca-やまぎんサ-ビス",
     "issuerName": "やまぎんカードサービス株式会社",
     "name": "一般 - やまぎんカードサービス株式会社",
     "officialURL": "https://www.yamagin-cs.co.jp/visamastercard/standard.html",
-    "observedAt": "2026-10-01T10:30:13.781Z"
+    "observedAt": "2026-11-01T10:52:33.235Z"
   },
   {
     "issuerID": "jcca-紀陽ディ-シ",
     "issuerName": "株式会社紀陽カードディーシー",
     "name": "一般カード",
     "officialURL": "https://www.kiyocard.co.jp/kiyo_dc_card.html",
-    "observedAt": "2026-10-01T10:29:43.918Z"
+    "observedAt": "2026-11-01T10:51:56.621Z"
   },
   {
     "issuerID": "jcca-紀陽ディ-シ",
     "issuerName": "株式会社紀陽カードディーシー",
     "name": "一般カード",
     "officialURL": "https://www.kiyocard.co.jp/kiyo_jcb_card.html",
-    "observedAt": "2026-10-01T10:29:44.243Z"
+    "observedAt": "2026-11-01T10:51:57.056Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "運転免許証について(クレジットカード入会審査等の本人確認資料)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/drivers_license/",
-    "observedAt": "2026-10-01T10:30:22.389Z"
+    "observedAt": "2026-11-01T10:52:36.627Z"
   },
   {
     "issuerID": "jcca-東京海上日動ファイナンス",
     "issuerName": "東京海上日動ファイナンス株式会社",
     "name": "加盟店の皆様へ TOKIO MARINE NICHIDO CARD",
     "officialURL": "https://www.tmarinecard.co.jp/card/merchant/index.html",
-    "observedAt": "2026-10-01T10:30:02.796Z"
+    "observedAt": "2026-11-01T10:52:20.888Z"
   },
   {
     "issuerID": "jcca-宮銀",
     "issuerName": "宮銀カード株式会社",
     "name": "加盟店加入案内 - 宮銀カード株式会社",
     "officialURL": "https://miyagincard.co.jp/kameiten/nyukai",
-    "observedAt": "2026-10-01T10:29:25.613Z"
-  },
-  {
-    "issuerID": "jcca-三菱ufjニコス",
-    "issuerName": "三菱ＵＦＪニコス株式会社",
-    "name": "可愛いデザインのクレジットカード!人気キャラクターのカードを紹介",
-    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/20064/index.html",
-    "observedAt": "2026-10-01T10:32:14.656Z"
+    "observedAt": "2026-11-01T10:51:38.849Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "家族カード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/family/index.html",
-    "observedAt": "2026-10-01T10:29:49.394Z"
+    "observedAt": "2026-11-01T10:52:02.204Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "家族カード",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/add/family/index.html",
-    "observedAt": "2026-10-01T10:31:26.758Z"
+    "observedAt": "2026-11-01T10:53:39.396Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "家族カード~家族で使えばもっと便利に!",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/application/family/webentry/",
-    "observedAt": "2026-10-01T10:29:46.929Z"
+    "observedAt": "2026-11-01T10:52:00.786Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "家族カード~家族で使えばもっと便利に!",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/family/",
-    "observedAt": "2026-10-01T10:30:23.597Z"
+    "observedAt": "2026-11-01T10:52:37.849Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "家族カードのお申込方法",
     "officialURL": "https://www.cr.mufg.jp/apply/card/family/select001/index.html",
-    "observedAt": "2026-10-01T10:29:49.784Z"
+    "observedAt": "2026-11-01T10:52:02.579Z"
   },
   {
     "issuerID": "jcca-東京海上日動ファイナンス",
     "issuerName": "東京海上日動ファイナンス株式会社",
     "name": "会員サポート TOKIO MARINE NICHIDO CARD",
     "officialURL": "https://www.tmarinecard.co.jp/card/support/index.html",
-    "observedAt": "2026-10-01T10:30:04.203Z"
+    "observedAt": "2026-11-01T10:52:23.104Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "海外アシスタンスサービス「ハローデスク」/JCBプラザ",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/travel/assistance/index.html",
-    "observedAt": "2026-10-01T10:31:49.978Z"
+    "observedAt": "2026-11-01T10:54:03.150Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "海外からのカード盗難・紛失時の連絡先",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/contact/lost_ab/index.html",
-    "observedAt": "2026-10-01T10:31:08.738Z"
+    "observedAt": "2026-11-01T10:53:21.382Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "海外旅行傷害保険 三菱UFJカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/insurance/injury_ab/index.html",
-    "observedAt": "2026-10-01T10:30:07.811Z"
+    "observedAt": "2026-11-01T10:52:20.262Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "海外旅行傷害保険 三菱UFJカード ゴールド",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard_goldprestige/insurance/injury_ab/index.html",
-    "observedAt": "2026-10-01T10:30:06.253Z"
+    "observedAt": "2026-11-01T10:52:18.660Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "海外旅行傷害保険 三菱UFJカード・プラチナ・アメリカン・エキスプレス®・カード",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/mucard_platinum/insurance/injury_ab/index.html",
-    "observedAt": "2026-10-01T10:29:39.769Z"
+    "observedAt": "2026-11-01T10:51:51.804Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "海外旅行傷害保険(ビジネス(法人)・コーポレートカード)",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/other/insurance/injury_abbusi/index.html",
-    "observedAt": "2026-10-01T10:31:36.364Z"
+    "observedAt": "2026-11-01T10:53:49.169Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "各カードの付帯保険サービス一覧",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/insurance/list/index.html",
-    "observedAt": "2026-10-01T10:31:28.765Z"
+    "observedAt": "2026-11-01T10:53:41.680Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "各種カード支払申込書の資料請求",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/request/pay/index.html",
-    "observedAt": "2026-10-01T10:31:25.155Z"
+    "observedAt": "2026-11-01T10:53:37.843Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "各種税金のクレジットカード払いについて",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/lifestyle/life/local_public_service/",
-    "observedAt": "2026-10-01T10:31:47.357Z"
+    "observedAt": "2026-11-01T10:54:01.547Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "楽天銀行ジョーヌカード(楽天銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/rakuten_bank/jaune/",
-    "observedAt": "2026-10-01T10:30:02.591Z"
+    "observedAt": "2026-11-01T10:52:16.602Z"
   },
   {
     "issuerID": "jcca-とりぎんサ-ビス",
     "issuerName": "株式会社とりぎんカードサービス",
     "name": "株式会社とりぎんカードサービス",
     "officialURL": "https://www.tottoribank.co.jp/jcb_card/index.html",
-    "observedAt": "2026-10-01T10:30:07.285Z"
-  },
-  {
-    "issuerID": "jcca-東邦",
-    "issuerName": "株式会社東邦カード",
-    "name": "株式会社東邦カード",
-    "officialURL": "https://www.tohocard.co.jp/",
-    "observedAt": "2026-10-01T10:29:28.586Z"
+    "observedAt": "2026-11-01T10:52:27.852Z"
   },
   {
     "issuerID": "jcca-福井",
     "issuerName": "株式会社福井カード",
     "name": "株式会社福井カード",
     "officialURL": "https://www.fukuicard.co.jp/dc/cardlineup.html",
-    "observedAt": "2026-10-01T10:29:40.680Z"
+    "observedAt": "2026-11-01T10:51:53.889Z"
   },
   {
     "issuerID": "jcca-福井",
     "issuerName": "株式会社福井カード",
     "name": "株式会社福井カード",
     "officialURL": "https://www.fukuicard.co.jp/jcb/cardlineup.html",
-    "observedAt": "2026-10-01T10:29:41.014Z"
+    "observedAt": "2026-11-01T10:51:54.332Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "韓国旅行でクレジットカードは使える?キャッシュレス事情を紹介",
     "officialURL": "https://www.cr.mufg.jp/mycard/beginner/22103/index.html",
-    "observedAt": "2026-10-01T10:32:25.859Z"
+    "observedAt": "2026-11-01T10:54:35.505Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "宮崎太陽VISAクラシックカード(宮崎太陽銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/miyazaki_taiyo/visa/classic_card/",
-    "observedAt": "2026-10-01T10:29:56.174Z"
+    "observedAt": "2026-11-01T10:52:10.127Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "宮崎太陽VISAゴールドカード(宮崎太陽銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/miyazaki_taiyo/visa/gold_card/",
-    "observedAt": "2026-10-01T10:29:56.583Z"
+    "observedAt": "2026-11-01T10:52:10.528Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "虚偽・なりすましによる入会・カード不正使用に対し断固対応します!",
     "officialURL": "https://www.cr.mufg.jp/carduse/trouble/defend/index.html",
-    "observedAt": "2026-10-01T10:30:54.703Z"
+    "observedAt": "2026-11-01T10:53:07.341Z"
   },
   {
     "issuerID": "jcca-京都サ-ビス",
     "issuerName": "京都クレジットサービス株式会社",
     "name": "京都カードのWebサイトから移動します",
     "officialURL": "https://www.kyotodc.co.jp/outlink/to_nicos.php?https://www.cr.mufg.jp/mufgcard/support/webs/index.html",
-    "observedAt": "2026-10-01T10:29:23.309Z"
+    "observedAt": "2026-11-01T10:51:33.885Z"
   },
   {
     "issuerID": "jcca-京都サ-ビス",
     "issuerName": "京都クレジットサービス株式会社",
     "name": "京都カードのお申込み方法・流れ",
     "officialURL": "https://www.kyotodc.co.jp/apply/",
-    "observedAt": "2026-10-01T10:29:22.892Z"
+    "observedAt": "2026-11-01T10:51:33.467Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "玉川高島屋SCカードインターナショナル[盲導犬育成サポートカード]",
     "officialURL": "https://www.cr.mufg.jp/apply/card/tamagawa_sc_supportdog/index.html",
-    "observedAt": "2026-10-01T10:30:28.229Z"
+    "observedAt": "2026-11-01T10:52:40.714Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "金融機関ごとのお支払い方法とカード利用再開予定日",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/answer/0002/",
-    "observedAt": "2026-10-01T10:31:36.147Z"
+    "observedAt": "2026-11-01T10:53:50.324Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "九州カードNEXT クラシックカード",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/classic_card_qr/",
-    "observedAt": "2026-10-01T10:30:07.012Z"
+    "observedAt": "2026-11-01T10:52:21.014Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "九州カードNEXT ゴールド",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/gold_card_qr/",
-    "observedAt": "2026-10-01T10:30:11.822Z"
+    "observedAt": "2026-11-01T10:52:25.820Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "九州のグルメ・観光情報が満載!九州カードのインスタグラムをチェックしよう",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20220601/",
-    "observedAt": "2026-10-01T10:31:14.937Z"
+    "observedAt": "2026-11-01T10:53:29.120Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "九州銀聯カード(ショッピング専用クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/ginren/kyushu_ginren_card/",
-    "observedAt": "2026-10-01T10:29:48.154Z"
+    "observedAt": "2026-11-01T10:52:02.009Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "空港ラウンジサービス(JAL アメリカン・エキスプレス®・カード専用)",
     "officialURL": "https://www.cr.mufg.jp/jalcard/domestic_lounge/index.html",
-    "observedAt": "2026-10-01T10:30:59.531Z"
+    "observedAt": "2026-11-01T10:53:12.150Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "慶應カード(ゴールド、ヤングゴールド)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/keio_gold.html",
-    "observedAt": "2026-10-01T10:30:28.674Z"
+    "observedAt": "2026-11-01T10:52:45.826Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "慶應カード(一般カード)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/keio.html",
-    "observedAt": "2026-10-01T10:30:29.856Z"
+    "observedAt": "2026-11-01T10:52:47.147Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "慶應カード(学生カード)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/keio_student.html",
-    "observedAt": "2026-10-01T10:30:29.260Z"
+    "observedAt": "2026-11-01T10:52:46.225Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "県医倶楽部 FMA VISAクラシックAカード(福岡県医師会提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/standard/keniclub/classic_card_a/",
-    "observedAt": "2026-10-01T10:30:15.195Z"
+    "observedAt": "2026-11-01T10:52:29.462Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "県医倶楽部 FMA VISAゴールドカード(福岡県医師会提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/standard/keniclub/gold_card/",
-    "observedAt": "2026-10-01T10:30:15.602Z"
+    "observedAt": "2026-11-01T10:52:29.859Z"
   },
   {
     "issuerID": "jcca-紀陽ディ-シ",
     "issuerName": "株式会社紀陽カードディーシー",
     "name": "個人カードのご案内",
     "officialURL": "https://www.kiyocard.co.jp/online_nyukai.html",
-    "observedAt": "2026-10-01T10:29:44.537Z"
+    "observedAt": "2026-11-01T10:51:57.333Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "個人カードラインナップ - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/",
-    "observedAt": "2026-10-01T10:29:26.571Z"
+    "observedAt": "2026-11-01T10:51:38.141Z"
   },
   {
     "issuerID": "jcca-商工中金",
     "issuerName": "商工中金カード株式会社",
     "name": "個人カード比較表 - 商工中金カード株式会社",
     "officialURL": "https://shokochukincard.co.jp/private/cards/comparison/",
-    "observedAt": "2026-10-01T10:29:26.988Z"
+    "observedAt": "2026-11-01T10:51:38.526Z"
   },
   {
     "issuerID": "jcca-東北ジェ-シ-ビ",
     "issuerName": "株式会社東北ジェーシービーカード",
     "name": "個人向カード JCBカードS",
     "officialURL": "https://www.tohoku-jcb.co.jp/klineup/card_s/",
-    "observedAt": "2026-10-01T10:30:23.563Z"
+    "observedAt": "2026-11-01T10:52:32.413Z"
   },
   {
     "issuerID": "jcca-とりぎんサ-ビス",
     "issuerName": "株式会社とりぎんカードサービス",
     "name": "個人向けカード",
     "officialURL": "https://www.tottoribank.co.jp/jcb_card/card/retail/index.html",
-    "observedAt": "2026-10-01T10:30:06.847Z"
+    "observedAt": "2026-11-01T10:52:27.435Z"
   },
   {
     "issuerID": "jcca-札幌北洋",
     "issuerName": "株式会社札幌北洋カード",
     "name": "個人向けカードのご案内",
     "officialURL": "https://www.sapporohokuyocard.co.jp/card/ufj/",
-    "observedAt": "2026-10-01T10:29:25.359Z"
+    "observedAt": "2026-11-01T10:51:37.200Z"
   },
   {
     "issuerID": "jcca-札幌北洋",
     "issuerName": "株式会社札幌北洋カード",
     "name": "個人向けカードのご案内",
     "officialURL": "https://www.sapporohokuyocard.co.jp/card/ufj/index.html",
-    "observedAt": "2026-10-01T10:29:27.268Z"
+    "observedAt": "2026-11-01T10:51:39.313Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "固定資産税はクレジットカード払いができる?メリットや注意点・納税方法をご紹介",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20210702/",
-    "observedAt": "2026-10-01T10:31:08.929Z"
+    "observedAt": "2026-11-01T10:53:23.119Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "公共料金はまとめてクレジットカード払いがお得!メリットや注意点を徹底解説",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20220501/",
-    "observedAt": "2026-10-01T10:31:14.532Z"
+    "observedAt": "2026-11-01T10:53:28.725Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "佐賀共栄VISAクラシックカード(佐賀共栄銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/saga_kyoei_bank/visa/classic_card/",
-    "observedAt": "2026-10-01T10:30:03.796Z"
+    "observedAt": "2026-11-01T10:52:17.799Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "佐賀共栄VISAゴールドカード(佐賀共栄銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/saga_kyoei_bank/visa/gold_card/",
-    "observedAt": "2026-10-01T10:30:04.256Z"
+    "observedAt": "2026-11-01T10:52:18.210Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "三十三カードはVISAカードを発行するクレジットカード会社です。",
     "officialURL": "https://www.33bank.co.jp/33card/",
-    "observedAt": "2026-10-01T10:29:29.997Z"
+    "observedAt": "2026-11-01T10:51:42.727Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "三十三カードはVISAカードを発行するクレジットカード会社です。",
     "officialURL": "https://www.33bank.co.jp/33card/img_window/img_window01.html",
-    "observedAt": "2026-10-01T10:29:33.625Z"
+    "observedAt": "2026-11-01T10:51:46.338Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "三十三カードはVISAカードを発行するクレジットカード会社です。",
     "officialURL": "https://www.33bank.co.jp/33card/index.html",
-    "observedAt": "2026-10-01T10:29:34.829Z"
+    "observedAt": "2026-11-01T10:51:47.533Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "三十三カードパワフルサポートのお知らせ。",
     "officialURL": "https://www.33bank.co.jp/33card/img_window/img_window02.html",
-    "observedAt": "2026-10-01T10:29:34.035Z"
+    "observedAt": "2026-11-01T10:51:46.738Z"
   },
   {
     "issuerID": "jcca-三十三",
     "issuerName": "株式会社三十三カード",
     "name": "三十三カードパワフルサポートのお知らせ。",
     "officialURL": "https://www.33bank.co.jp/33card/img_window/img_window03.html",
-    "observedAt": "2026-10-01T10:29:34.436Z"
+    "observedAt": "2026-11-01T10:51:47.139Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/index06.html",
-    "observedAt": "2026-10-01T10:30:07.446Z"
+    "observedAt": "2026-11-01T10:52:19.859Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード",
     "officialURL": "https://www.cr.mufg.jp/mucard_concept/index.html",
-    "observedAt": "2026-10-01T10:31:01.243Z"
+    "observedAt": "2026-11-01T10:53:13.754Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード VIASOポイントプログラム",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/point/viaso/index.html",
-    "observedAt": "2026-10-01T10:31:22.755Z"
+    "observedAt": "2026-11-01T10:53:35.411Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード ゴールド",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard_goldprestige/index.html",
-    "observedAt": "2026-10-01T10:30:05.830Z"
+    "observedAt": "2026-11-01T10:52:18.252Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード ポイントの確認・還元方法",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/point/smart/confirm/index.html",
-    "observedAt": "2026-10-01T10:31:19.961Z"
+    "observedAt": "2026-11-01T10:53:32.596Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード 家族カード追加特典 もれなく1,000円相当グローバルポイントプレゼント",
     "officialURL": "https://www.cr.mufg.jp/apply/campaign/family_card_02/index.html",
-    "observedAt": "2026-10-01T10:29:42.572Z"
+    "observedAt": "2026-11-01T10:51:54.602Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード 会員紹介特典",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/introduce/index.html",
-    "observedAt": "2026-10-01T10:31:29.968Z"
+    "observedAt": "2026-11-01T10:53:42.743Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード 新規ご入会特典 最大15,000円相当[グローバルポイント3,000ポイント]プレゼント!",
     "officialURL": "https://www.cr.mufg.jp/apply/app/account/card/mucard/index_02.html",
-    "observedAt": "2026-10-01T10:29:41.766Z"
+    "observedAt": "2026-11-01T10:51:53.822Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード・プラチナ・アメリカン・エキスプレス®・カード",
     "officialURL": "https://www.cr.mufg.jp/amex/apply/mucard_platinum/index.html",
-    "observedAt": "2026-10-01T10:29:39.488Z"
+    "observedAt": "2026-11-01T10:51:51.250Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード(ディズニー・デザイン)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mufgcard_disney/index.html",
-    "observedAt": "2026-10-01T10:30:20.212Z"
+    "observedAt": "2026-11-01T10:52:32.709Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードスマートポイントプログラム",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/point/smart/index.html",
-    "observedAt": "2026-10-01T10:31:20.354Z"
+    "observedAt": "2026-11-01T10:53:32.993Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードスマートポイントプログラムとは",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/point/smart/outline/index.html",
-    "observedAt": "2026-10-01T10:31:20.754Z"
+    "observedAt": "2026-11-01T10:53:33.392Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードならではの金融取引サービス",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/other/group/index.html",
-    "observedAt": "2026-10-01T10:31:32.772Z"
+    "observedAt": "2026-11-01T10:53:45.567Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードの家賃払い",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/scene/home/index.html",
-    "observedAt": "2026-10-01T10:31:47.970Z"
+    "observedAt": "2026-11-01T10:54:00.932Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードはコンビニ・飲食店・スーパーなどのご利用分が最大20%還元!",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup/index03.html",
-    "observedAt": "2026-10-01T10:30:19.925Z"
+    "observedAt": "2026-11-01T10:52:32.306Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/index.html",
-    "observedAt": "2026-10-01T10:30:08.604Z"
+    "observedAt": "2026-11-01T10:52:21.068Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share10.0.html",
-    "observedAt": "2026-10-01T10:30:09.006Z"
+    "observedAt": "2026-11-01T10:52:21.464Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share10.5.html",
-    "observedAt": "2026-10-01T10:30:09.399Z"
+    "observedAt": "2026-11-01T10:52:21.867Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share11.0.html",
-    "observedAt": "2026-10-01T10:30:09.805Z"
+    "observedAt": "2026-11-01T10:52:22.265Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share11.5.html",
-    "observedAt": "2026-10-01T10:30:10.201Z"
+    "observedAt": "2026-11-01T10:52:22.659Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share12.0.html",
-    "observedAt": "2026-10-01T10:30:10.623Z"
+    "observedAt": "2026-11-01T10:52:23.064Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share12.5.html",
-    "observedAt": "2026-10-01T10:30:11.003Z"
+    "observedAt": "2026-11-01T10:52:23.463Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share13.0.html",
-    "observedAt": "2026-10-01T10:30:11.408Z"
+    "observedAt": "2026-11-01T10:52:23.858Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share13.5.html",
-    "observedAt": "2026-10-01T10:30:11.806Z"
+    "observedAt": "2026-11-01T10:52:24.256Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share14.0.html",
-    "observedAt": "2026-10-01T10:30:12.202Z"
+    "observedAt": "2026-11-01T10:52:24.664Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share14.5.html",
-    "observedAt": "2026-10-01T10:30:12.607Z"
+    "observedAt": "2026-11-01T10:52:25.058Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share15.0.html",
-    "observedAt": "2026-10-01T10:30:13.007Z"
+    "observedAt": "2026-11-01T10:52:25.464Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share15.5.html",
-    "observedAt": "2026-10-01T10:30:13.406Z"
+    "observedAt": "2026-11-01T10:52:25.870Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share16.0.html",
-    "observedAt": "2026-10-01T10:30:13.808Z"
+    "observedAt": "2026-11-01T10:52:26.255Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share16.5.html",
-    "observedAt": "2026-10-01T10:30:14.211Z"
+    "observedAt": "2026-11-01T10:52:26.671Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share17.0.html",
-    "observedAt": "2026-10-01T10:30:14.612Z"
+    "observedAt": "2026-11-01T10:52:27.061Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share17.5.html",
-    "observedAt": "2026-10-01T10:30:15.011Z"
+    "observedAt": "2026-11-01T10:52:27.459Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share18.0.html",
-    "observedAt": "2026-10-01T10:30:15.408Z"
+    "observedAt": "2026-11-01T10:52:27.864Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share18.5.html",
-    "observedAt": "2026-10-01T10:30:15.810Z"
+    "observedAt": "2026-11-01T10:52:28.265Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share19.0.html",
-    "observedAt": "2026-10-01T10:30:16.205Z"
+    "observedAt": "2026-11-01T10:52:28.683Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share19.5.html",
-    "observedAt": "2026-10-01T10:30:16.606Z"
+    "observedAt": "2026-11-01T10:52:29.087Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share20.0.html",
-    "observedAt": "2026-10-01T10:30:17.004Z"
+    "observedAt": "2026-11-01T10:52:29.480Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share7.0.html",
-    "observedAt": "2026-10-01T10:30:17.405Z"
+    "observedAt": "2026-11-01T10:52:29.895Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share7.5.html",
-    "observedAt": "2026-10-01T10:30:17.804Z"
+    "observedAt": "2026-11-01T10:52:30.289Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share8.0.html",
-    "observedAt": "2026-10-01T10:30:18.208Z"
+    "observedAt": "2026-11-01T10:52:30.701Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share8.5.html",
-    "observedAt": "2026-10-01T10:30:18.608Z"
+    "observedAt": "2026-11-01T10:52:31.094Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share9.0.html",
-    "observedAt": "2026-10-01T10:30:19.005Z"
+    "observedAt": "2026-11-01T10:52:31.498Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカードポイント獲得シミュレーション",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mucard/pup_sim/share9.5.html",
-    "observedAt": "2026-10-01T10:30:19.413Z"
+    "observedAt": "2026-11-01T10:52:31.902Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱UFJカード限定「グローバルポイントでんき」",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/point/global/save/electricity/index.html",
-    "observedAt": "2026-10-01T10:31:16.752Z"
+    "observedAt": "2026-11-01T10:53:29.387Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱地所グループCARD",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mec/index.html",
-    "observedAt": "2026-10-01T10:30:02.637Z"
+    "observedAt": "2026-11-01T10:52:15.038Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱地所グループCARD(ザ クラブ・ロイヤルパークホテルズ)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mec_royalparkhotels/index.html",
-    "observedAt": "2026-10-01T10:30:02.214Z"
+    "observedAt": "2026-11-01T10:52:14.647Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱地所グループCARD(みなとみらいポイント一体型)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mec_mm/index.html",
-    "observedAt": "2026-10-01T10:30:01.842Z"
+    "observedAt": "2026-11-01T10:52:14.239Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱地所グループCARD(丸の内ポイント一体型)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mec_marunouchi/index.html",
-    "observedAt": "2026-10-01T10:30:01.023Z"
+    "observedAt": "2026-11-01T10:52:13.442Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱地所グループCARDゴールド",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mec_gold/index.html",
-    "observedAt": "2026-10-01T10:30:00.212Z"
+    "observedAt": "2026-11-01T10:52:12.649Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱地所グループCARDゴールド(みなとみらいポイント一体型)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mec_mm_gold/index.html",
-    "observedAt": "2026-10-01T10:30:01.415Z"
+    "observedAt": "2026-11-01T10:52:13.846Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "三菱地所グループCARDゴールド(丸の内ポイント一体型)",
     "officialURL": "https://www.cr.mufg.jp/apply/card/mec_marunouchi_gold/index.html",
-    "observedAt": "2026-10-01T10:30:00.613Z"
+    "observedAt": "2026-11-01T10:52:13.049Z"
   },
   {
     "issuerID": "jcca-山梨中銀ディ-シ",
     "issuerName": "山梨中銀ディーシーカード株式会社",
     "name": "山梨中銀ディーシーカード株式会社",
     "officialURL": "https://www.yamanashidc.co.jp/items/entry/",
-    "observedAt": "2026-10-01T10:30:10.982Z"
+    "observedAt": "2026-11-01T10:52:29.751Z"
   },
   {
     "issuerID": "jcca-四国しんきん",
     "issuerName": "株式会社四国しんきんカード",
     "name": "四国VISAカード",
     "officialURL": "https://www.shikokuvisa.co.jp/cardlineup/shikoku-visa.html",
-    "observedAt": "2026-10-01T10:29:58.003Z"
+    "observedAt": "2026-11-01T10:52:16.383Z"
   },
   {
     "issuerID": "jcca-四国しんきん",
     "issuerName": "株式会社四国しんきんカード",
     "name": "四国VISAゴールドカード",
     "officialURL": "https://www.shikokuvisa.co.jp/cardlineup/shikoku-gold.html",
-    "observedAt": "2026-10-01T10:29:57.477Z"
+    "observedAt": "2026-11-01T10:52:15.798Z"
   },
   {
     "issuerID": "jcca-おきぎんジェ-シ-ビ",
     "issuerName": "株式会社おきぎんジェーシービー",
     "name": "取扱カード",
     "officialURL": "https://www.okigin-jcb.co.jp/card/",
-    "observedAt": "2026-10-01T10:29:51.479Z"
+    "observedAt": "2026-11-01T10:52:07.924Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "手荷物空港宅配サービス(JAL アメリカン・エキスプレス®・カード専用)",
     "officialURL": "https://www.cr.mufg.jp/jalcard/baggage/index.html",
-    "observedAt": "2026-10-01T10:30:59.144Z"
+    "observedAt": "2026-11-01T10:53:11.741Z"
   },
   {
     "issuerID": "jcca-十六",
     "issuerName": "株式会社十六カード",
     "name": "十六カード",
     "officialURL": "https://www.16card.co.jp/promotion/card_s/index.html",
-    "observedAt": "2026-10-01T10:29:22.414Z"
+    "observedAt": "2026-11-01T10:51:35.269Z"
   },
   {
     "issuerID": "jcca-十六",
     "issuerName": "株式会社十六カード",
     "name": "十六カードとは",
     "officialURL": "https://www.16card.co.jp/card/about/",
-    "observedAt": "2026-10-01T10:29:20.893Z"
+    "observedAt": "2026-11-01T10:51:33.645Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page1/index.html",
+    "observedAt": "2026-11-01T10:55:02.832Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page10/index.html",
+    "observedAt": "2026-11-01T10:55:03.175Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page11/index.html",
+    "observedAt": "2026-11-01T10:55:03.582Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page12/index.html",
+    "observedAt": "2026-11-01T10:55:03.976Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page13/index.html",
+    "observedAt": "2026-11-01T10:55:04.377Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page14/index.html",
+    "observedAt": "2026-11-01T10:55:04.780Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page15/index.html",
+    "observedAt": "2026-11-01T10:55:05.182Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page2/index.html",
+    "observedAt": "2026-11-01T10:55:05.607Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page3/index.html",
+    "observedAt": "2026-11-01T10:55:05.982Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page4/index.html",
+    "observedAt": "2026-11-01T10:55:06.376Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page5/index.html",
+    "observedAt": "2026-11-01T10:55:06.779Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page6/index.html",
+    "observedAt": "2026-11-01T10:55:07.184Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page7/index.html",
+    "observedAt": "2026-11-01T10:55:07.576Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page8/index.html",
+    "observedAt": "2026-11-01T10:55:07.976Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "初めてのクレジットカード",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/page9/index.html",
+    "observedAt": "2026-11-01T10:55:08.389Z"
   },
   {
     "issuerID": "jcca-東京海上日動ファイナンス",
     "issuerName": "東京海上日動ファイナンス株式会社",
     "name": "商品案内 TOKIO MARINE NICHIDO CARD",
     "officialURL": "https://www.tmarinecard.co.jp/card/service/index.html",
-    "observedAt": "2026-10-01T10:30:03.486Z"
+    "observedAt": "2026-11-01T10:52:22.148Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "新しくカードを作る",
     "officialURL": "https://www2.uccard.co.jp/apply/ichiran.html",
-    "observedAt": "2026-10-01T10:30:13.310Z"
+    "observedAt": "2026-11-01T10:52:31.318Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "新しくカードを作る",
     "officialURL": "https://www2.uccard.co.jp/apply/keyword.html",
-    "observedAt": "2026-10-01T10:30:13.800Z"
+    "observedAt": "2026-11-01T10:52:31.715Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "身に覚えのないクレジットカード利用はありませんか?不正利用の5つのケースや防止策をご紹介!",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20240901/",
-    "observedAt": "2026-10-01T10:31:25.350Z"
+    "observedAt": "2026-11-01T10:53:39.529Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西京VISAクラシックカード(西京銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/saikyo/visa/classic_card/",
-    "observedAt": "2026-10-01T10:30:04.612Z"
+    "observedAt": "2026-11-01T10:52:18.617Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西京VISAゴールドカード(西京銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/saikyo/visa/gold_card/",
-    "observedAt": "2026-10-01T10:30:05.007Z"
+    "observedAt": "2026-11-01T10:52:19.024Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西鉄トラベルVISAクラシックカード(西鉄旅行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/standard/yuyuclub/classic_card/",
-    "observedAt": "2026-10-01T10:30:16.405Z"
+    "observedAt": "2026-11-01T10:52:30.664Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西鉄トラベルVISAゴールドカード(西鉄旅行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/standard/yuyuclub/gold_card/",
-    "observedAt": "2026-10-01T10:30:16.800Z"
+    "observedAt": "2026-11-01T10:52:31.075Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西日本シティVISAアミティエカード(西日本シティ銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/visa/amitie_card/",
-    "observedAt": "2026-10-01T10:29:59.382Z"
+    "observedAt": "2026-11-01T10:52:13.369Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西日本シティVISAクラシックカード(西日本シティ銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/visa/classic_card/",
-    "observedAt": "2026-10-01T10:29:59.798Z"
+    "observedAt": "2026-11-01T10:52:13.771Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西日本シティVISAゴールドカード(西日本シティ銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/visa/gold_card/",
-    "observedAt": "2026-10-01T10:30:00.592Z"
+    "observedAt": "2026-11-01T10:52:14.562Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "西日本シティVISAデビューカード(西日本シティ銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nc_bank/visa/debut_card/",
-    "observedAt": "2026-10-01T10:30:00.178Z"
+    "observedAt": "2026-11-01T10:52:14.165Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "早稲田カード(ゴールドカード)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/waseda_gold.html",
-    "observedAt": "2026-10-01T10:30:36.175Z"
+    "observedAt": "2026-11-01T10:52:53.717Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "早稲田カード(一般用・Alumniカード)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/waseda_alumni.html",
-    "observedAt": "2026-10-01T10:30:35.936Z"
+    "observedAt": "2026-11-01T10:52:52.669Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "早稲田カード(学生用・Studentsカード)",
     "officialURL": "https://www2.uccard.co.jp/cs/card/lineup/waseda.html",
-    "observedAt": "2026-10-01T10:30:36.968Z"
+    "observedAt": "2026-11-01T10:52:53.802Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "台湾旅行でクレジットカードが使えない場所は?旅行者の体験談も紹介",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/26031/index.html",
+    "observedAt": "2026-11-01T10:55:00.780Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "知らないと損!クレジットカード2回払いの仕組みと活用法",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/sp/20260501/",
-    "observedAt": "2026-10-01T10:31:30.948Z"
-  },
-  {
-    "issuerID": "jcca-池田泉州dc",
-    "issuerName": "株式会社池田泉州ＤＣ",
-    "name": "池田泉州カード",
-    "officialURL": "https://www.si-card.jp/welcome/crmufg_creditcardgoriyouji.html",
-    "observedAt": "2026-10-01T10:29:57.309Z"
-  },
-  {
-    "issuerID": "jcca-池田泉州dc",
-    "issuerName": "株式会社池田泉州ＤＣ",
-    "name": "池田泉州カード",
-    "officialURL": "https://www.si-card.jp/welcome/crmufg_creditcardshopping.html",
-    "observedAt": "2026-10-01T10:29:57.708Z"
-  },
-  {
-    "issuerID": "jcca-池田泉州dc",
-    "issuerName": "株式会社池田泉州ＤＣ",
-    "name": "池田泉州カード",
-    "officialURL": "https://www.si-card.jp/welcome/crmufg_dccardservicelist.html",
-    "observedAt": "2026-10-01T10:29:58.109Z"
-  },
-  {
-    "issuerID": "jcca-池田泉州jcb",
-    "issuerName": "株式会社池田泉州ＪＣＢ",
-    "name": "池田泉州カード",
-    "officialURL": "https://www.si-card.jp/welcome/jcb_ic-card.html",
-    "observedAt": "2026-10-01T10:29:58.509Z"
-  },
-  {
-    "issuerID": "jcca-池田泉州jcb",
-    "issuerName": "株式会社池田泉州ＪＣＢ",
-    "name": "池田泉州カード",
-    "officialURL": "https://www.si-card.jp/welcome/jcredit_attention.html",
-    "observedAt": "2026-10-01T10:29:58.911Z"
+    "observedAt": "2026-11-01T10:53:45.133Z"
   },
   {
     "issuerID": "jcca-中銀",
     "issuerName": "中銀カード株式会社",
     "name": "中銀カード株式会社",
     "officialURL": "http://www.chugincard.co.jp/cardinfo.htm",
-    "observedAt": "2026-10-01T10:29:19.272Z"
+    "observedAt": "2026-11-01T10:51:31.774Z"
+  },
+  {
+    "issuerID": "jcca-三菱ufjニコス",
+    "issuerName": "三菱ＵＦＪニコス株式会社",
+    "name": "中国で使えるクレジットカードは?旅行者の体験談も紹介",
+    "officialURL": "https://www.cr.mufg.jp/mycard/beginner/26021/index.html",
+    "observedAt": "2026-11-01T10:55:00.381Z"
   },
   {
     "issuerID": "jcca-中部しんきん",
     "issuerName": "株式会社中部しんきんカード",
     "name": "中部しんきんカードデザイン変更のお知らせ",
     "officialURL": "https://www.chubu-shinkincard.com/lp/visa_newcard/",
-    "observedAt": "2026-10-01T10:29:34.384Z"
+    "observedAt": "2026-11-01T10:51:42.391Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "長崎VISAクラシックカード(長崎銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nagasaki_bank/visa/classic_card/",
-    "observedAt": "2026-10-01T10:29:56.975Z"
+    "observedAt": "2026-11-01T10:52:10.913Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "長崎VISAゴールドカード(長崎銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/nagasaki_bank/visa/gold_card/",
-    "observedAt": "2026-10-01T10:29:57.384Z"
+    "observedAt": "2026-11-01T10:52:11.355Z"
   },
   {
     "issuerID": "jcca-長野",
     "issuerName": "長野カード株式会社",
     "name": "長野UCカード",
     "officialURL": "https://sec.naganocard.co.jp/card/index.htm",
-    "observedAt": "2026-10-01T10:29:25.071Z"
-  },
-  {
-    "issuerID": "jcca-東北しんきん",
-    "issuerName": "株式会社東北しんきんカード",
-    "name": "追加カード",
-    "officialURL": "https://www3.vpass.ne.jp/mem/addcard/index.jsp?cc=017",
-    "observedAt": "2026-10-01T10:30:40.853Z"
-  },
-  {
-    "issuerID": "jcca-いわぎんサ-ビス",
-    "issuerName": "株式会社いわぎんクレジットサービス",
-    "name": "追加カード",
-    "officialURL": "https://www3.vpass.ne.jp/mem/addcard/index.jsp?cc=031",
-    "observedAt": "2026-10-01T10:30:42.140Z"
-  },
-  {
-    "issuerID": "jcca-秋田国際",
-    "issuerName": "株式会社秋田国際カード",
-    "name": "追加カード",
-    "officialURL": "https://www3.vpass.ne.jp/mem/addcard/index.jsp?cc=036",
-    "observedAt": "2026-10-01T10:30:45.396Z"
+    "observedAt": "2026-11-01T10:51:36.864Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "追加カード申込書の資料請求",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/request/add/index.html",
-    "observedAt": "2026-10-01T10:31:23.952Z"
+    "observedAt": "2026-11-01T10:53:36.586Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "追加できるカード・機能",
     "officialURL": "https://www.cr.mufg.jp/apply/card/additional/index.html",
-    "observedAt": "2026-10-01T10:29:43.779Z"
+    "observedAt": "2026-11-01T10:51:55.813Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "追加できるカードとサービス",
     "officialURL": "https://www.cr.mufg.jp/mufgcard/service/add/index.html",
-    "observedAt": "2026-10-01T10:31:27.159Z"
+    "observedAt": "2026-11-01T10:53:39.801Z"
   },
   {
     "issuerID": "jcca-東京サ-ビス",
     "issuerName": "株式会社東京クレジットサービス",
     "name": "東京VISA エグゼクティブカード",
-    "officialURL": "https://www.tokyo-card.co.jp/card/c_visaexe.php",
-    "observedAt": "2026-10-01T10:30:07.611Z"
+    "officialURL": "https://www.tokyo-card.co.jp/card/c_visaexe.html",
+    "observedAt": "2026-11-01T10:52:25.314Z"
   },
   {
     "issuerID": "jcca-東京サ-ビス",
     "issuerName": "株式会社東京クレジットサービス",
     "name": "東京VISA ゴールドカード",
-    "officialURL": "https://www.tokyo-card.co.jp/card/c_visagold.php",
-    "observedAt": "2026-10-01T10:30:08.011Z"
+    "officialURL": "https://www.tokyo-card.co.jp/card/c_visagold.html",
+    "observedAt": "2026-11-01T10:52:25.781Z"
   },
   {
     "issuerID": "jcca-東京サ-ビス",
     "issuerName": "株式会社東京クレジットサービス",
     "name": "東京VISAカード",
-    "officialURL": "https://www.tokyo-card.co.jp/card/c_visa.php",
-    "observedAt": "2026-10-01T10:30:06.408Z"
+    "officialURL": "https://www.tokyo-card.co.jp/card/c_visa.html",
+    "observedAt": "2026-11-01T10:52:23.924Z"
   },
   {
     "issuerID": "jcca-東京サ-ビス",
     "issuerName": "株式会社東京クレジットサービス",
     "name": "東京VISAカード A",
-    "officialURL": "https://www.tokyo-card.co.jp/card/c_visaa.php",
-    "observedAt": "2026-10-01T10:30:06.805Z"
-  },
-  {
-    "issuerID": "jcca-東北しんきん",
-    "issuerName": "株式会社東北しんきんカード",
-    "name": "東北しんきんカード iD",
-    "officialURL": "https://www3.vpass.ne.jp/mem/addcard/id-credit_top.jsp?cc=017",
-    "observedAt": "2026-10-01T10:30:25.846Z"
-  },
-  {
-    "issuerID": "jcca-東北しんきん",
-    "issuerName": "株式会社東北しんきんカード",
-    "name": "東北しんきんカードラインナップ",
-    "officialURL": "https://www3.vpass.ne.jp/mem/cardinfo/cardinfo5041065_lineup.jsp?cc=017",
-    "observedAt": "2026-10-01T10:30:53.493Z"
+    "officialURL": "https://www.tokyo-card.co.jp/card/c_visaa.html",
+    "observedAt": "2026-11-01T10:52:24.415Z"
   },
   {
     "issuerID": "jcca-東和",
     "issuerName": "東和カード株式会社",
     "name": "東和カード株式会社 (群馬県)",
     "officialURL": "https://www.towacard.co.jp/card_amex.html",
-    "observedAt": "2026-10-01T10:30:09.316Z"
+    "observedAt": "2026-11-01T10:52:26.733Z"
   },
   {
     "issuerID": "jcca-東和",
     "issuerName": "東和カード株式会社",
     "name": "東和カード株式会社 (群馬県)",
     "officialURL": "https://www.towacard.co.jp/card_vm.html",
-    "observedAt": "2026-10-01T10:30:09.621Z"
+    "observedAt": "2026-11-01T10:52:26.978Z"
   },
   {
     "issuerID": "jcca-東和",
     "issuerName": "東和カード株式会社",
     "name": "東和カード株式会社 (群馬県)",
     "officialURL": "https://www.towacard.co.jp/card.html",
-    "observedAt": "2026-10-01T10:30:10.023Z"
+    "observedAt": "2026-11-01T10:52:27.378Z"
   },
   {
     "issuerID": "jcca-道銀",
     "issuerName": "道銀カード株式会社",
     "name": "道銀カード株式会社",
     "officialURL": "https://www.dogincard.co.jp/visa/nyukai.htm",
-    "observedAt": "2026-10-01T10:29:38.817Z"
+    "observedAt": "2026-11-01T10:51:51.336Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "南銀VISAクラシックカード(南日本銀行提携クレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/minaminihon/visa/classic_card/",
-    "observedAt": "2026-10-01T10:29:54.572Z"
+    "observedAt": "2026-11-01T10:52:08.526Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "南銀VISAゴールドカード(南日本銀行提携ゴールドカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/card_list/visa/bank/minaminihon/visa/gold_card/",
-    "observedAt": "2026-10-01T10:29:54.981Z"
+    "observedAt": "2026-11-01T10:52:08.929Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "南都DCカード (一般カード)",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-dc/dc-ippan/",
-    "observedAt": "2026-10-01T10:29:52.578Z"
+    "observedAt": "2026-11-01T10:52:09.887Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "南都DCカード ゴールド",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-dc/dc-gold/",
-    "observedAt": "2026-10-01T10:29:50.898Z"
+    "observedAt": "2026-11-01T10:52:07.558Z"
   },
   {
     "issuerID": "jcca-南都ディ-シ",
     "issuerName": "南都ディーシーカード株式会社",
     "name": "南都DC法人カード",
     "officialURL": "https://www.nantocard.jp/ordercard/ordercard-dc/dc-hojin/",
-    "observedAt": "2026-10-01T10:29:51.735Z"
+    "observedAt": "2026-11-01T10:52:08.726Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "日常生活(クレジットカードのお得&便利なサービス)",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/lifestyle/life/",
-    "observedAt": "2026-10-01T10:31:46.962Z"
+    "observedAt": "2026-11-01T10:54:01.143Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "入会申込書資料請求[家族カード]",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/application/family/document_request/",
-    "observedAt": "2026-10-01T10:29:46.555Z"
+    "observedAt": "2026-11-01T10:52:00.407Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "如水会会員証カード",
     "officialURL": "https://www.cr.mufg.jp/apply/card/josuikai/index.html",
-    "observedAt": "2026-10-01T10:29:55.811Z"
-  },
-  {
-    "issuerID": "jcca-池田泉州vc",
-    "issuerName": "株式会社池田泉州ＶＣ",
-    "name": "年会費無料で充実の割引・サービスが利用できるカード",
-    "officialURL": "https://www.si-card.jp/jcb/card_s/index.html",
-    "observedAt": "2026-10-01T10:29:57.118Z"
+    "observedAt": "2026-11-01T10:52:08.638Z"
   },
   {
     "issuerID": "jcca-八十二",
     "issuerName": "株式会社八十二カード",
     "name": "八十二JCB カード S 年会費永年無料で想像以上のオトクを手にしよう",
     "officialURL": "https://www.82card.co.jp/jcbcard/card_s/index.html",
-    "observedAt": "2026-10-01T10:29:33.880Z"
-  },
-  {
-    "issuerID": "jcca-八十二",
-    "issuerName": "株式会社八十二カード",
-    "name": "八十二カードのWebサービス",
-    "officialURL": "https://www.82card.co.jp/dccard/webservice/",
-    "observedAt": "2026-10-01T10:29:32.944Z"
+    "observedAt": "2026-11-01T10:51:45.910Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "福岡市の歴史と未来。福岡の発展と九州カードの歩みを振り返る",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/magazine/nd/202007/",
-    "observedAt": "2026-10-01T10:30:30.809Z"
+    "observedAt": "2026-11-01T10:52:45.099Z"
   },
   {
     "issuerID": "jcca-もみじ",
     "issuerName": "もみじカード株式会社",
     "name": "法人カード",
     "officialURL": "https://www.momiji-card.co.jp/hojincard.html",
-    "observedAt": "2026-10-01T10:29:23.534Z"
+    "observedAt": "2026-11-01T10:51:35.546Z"
   },
   {
     "issuerID": "jcca-静銀",
     "issuerName": "静銀カード株式会社",
     "name": "法人カード(一般カード)",
     "officialURL": "https://shizugin-card.shizuokabank.co.jp/card/cardlist/dc-general/",
-    "observedAt": "2026-10-01T10:29:26.402Z"
+    "observedAt": "2026-11-01T10:51:38.177Z"
   },
   {
     "issuerID": "jcca-ユ-シ",
     "issuerName": "ユーシーカード株式会社",
     "name": "法人カードのご案内",
     "officialURL": "https://www2.uccard.co.jp/uc/uccard/hojincard/pop_uc_point.html",
-    "observedAt": "2026-10-01T10:31:00.328Z"
+    "observedAt": "2026-11-01T10:53:19.007Z"
   },
   {
     "issuerID": "jcca-静銀",
     "issuerName": "静銀カード株式会社",
     "name": "法人カード導入メリット",
     "officialURL": "https://shizugin-card.shizuokabank.co.jp/card/merit/",
-    "observedAt": "2026-10-01T10:29:28.006Z"
+    "observedAt": "2026-11-01T10:51:39.778Z"
   },
   {
     "issuerID": "jcca-静銀",
     "issuerName": "静銀カード株式会社",
     "name": "法人ゴールドカード",
     "officialURL": "https://shizugin-card.shizuokabank.co.jp/card/cardlist/dc-gold/",
-    "observedAt": "2026-10-01T10:29:26.802Z"
+    "observedAt": "2026-11-01T10:51:38.576Z"
   },
   {
     "issuerID": "jcca-北陸",
     "issuerName": "株式会社北陸カード",
     "name": "北陸Visaクラシックカード",
     "officialURL": "https://www.hokurikucard.jp/visa/card/classic.html",
-    "observedAt": "2026-10-01T10:29:21.414Z"
+    "observedAt": "2026-11-01T10:51:34.832Z"
   },
   {
     "issuerID": "jcca-北陸",
     "issuerName": "株式会社北陸カード",
     "name": "北陸Visaゴールドカード",
     "officialURL": "https://www.hokurikucard.jp/visa/card/gold.html",
-    "observedAt": "2026-10-01T10:29:22.216Z"
+    "observedAt": "2026-11-01T10:51:35.773Z"
   },
   {
     "issuerID": "jcca-北陸",
     "issuerName": "株式会社北陸カード",
     "name": "北陸Visaデビュー・デビューカードA",
     "officialURL": "https://www.hokurikucard.jp/visa/card/debut.html",
-    "observedAt": "2026-10-01T10:29:21.816Z"
+    "observedAt": "2026-11-01T10:51:35.283Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "有効期限更新時のお手続き(JQ SUGOCA機能付きクレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/jq_sugoca_expiration_date_renewal/",
-    "observedAt": "2026-10-01T10:30:25.194Z"
+    "observedAt": "2026-11-01T10:52:39.436Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "有効期限更新時のお手続き(nimoca機能付きクレジットカード)",
     "officialURL": "https://www.kyushu-card.co.jp/get_card_personal/nimoca_expiration_date_renewal/",
-    "observedAt": "2026-10-01T10:31:32.137Z"
+    "observedAt": "2026-11-01T10:53:46.321Z"
   },
   {
     "issuerID": "jcca-三菱ufjニコス",
     "issuerName": "三菱ＵＦＪニコス株式会社",
     "name": "要エントリー 三菱UFJカード 新規ご入会特典 最大15,000円相当[グローバルポイント3,000ポイント]プレゼント!",
     "officialURL": "https://www.cr.mufg.jp/apply/app/account/card/mucard/index_04.html",
-    "observedAt": "2026-10-01T10:29:42.173Z"
+    "observedAt": "2026-11-01T10:51:54.208Z"
   },
   {
     "issuerID": "jcca-九州",
     "issuerName": "九州カード株式会社",
     "name": "旅行(クレジットカードのお得&便利なサービス)",
     "officialURL": "https://www.kyushu-card.co.jp/use_card/lifestyle/travel/",
-    "observedAt": "2026-10-01T10:31:48.561Z"
+    "observedAt": "2026-11-01T10:54:02.762Z"
   }
 ]
