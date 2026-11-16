@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "20261116T063933Z",
-  "generatedAt": "2026-11-16T06:39:33.590Z",
-  "path": "catalog-20261116T063933Z.json",
-  "sha256": "79e8f74f9c9216282dd975571d5b251c44e5fc91ab6d35133990753e73aa7271",
+  "catalogVersion": "20261116T221248Z",
+  "generatedAt": "2026-11-16T22:12:48.116Z",
+  "path": "catalog-20261116T221248Z.json",
+  "sha256": "5ca7162b73f65124e499a7a153c17298eb8fc8c3e06055bbd359572d7f41a498",
   "productCount": 40,
   "issuerCoverage": {
     "registryCount": 114,
